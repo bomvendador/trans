@@ -10,3 +10,6 @@
 176.107.241.132 - - [30/Jan/2017:22:40:17 +0300] "GET /ru/dashbrd/1/favicon.ico HTTP/1.1" 404 1829 "http://prolingva.ru/ru/dashbrd/1/" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
 176.107.241.132 - - [30/Jan/2017:23:03:32 +0300] "GET /ru/dashbrd/1/ HTTP/1.1" 502 575 "http://prolingva.ru/ru/" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
 176.107.241.132 - - [30/Jan/2017:23:03:40 +0300] "GET /ru/ HTTP/1.1" 502 575 "http://prolingva.ru/ru/learn_more_trans/" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36"
+217.69.133.237 - - [31/Jan/2017:00:11:09 +0300] "GET /robots.txt HTTP/1.0" 502 173 "-" "Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/2.0; +http://go.mail.ru/help/robots)"
+217.69.133.240 - - [31/Jan/2017:00:11:10 +0300] "GET / HTTP/1.1" 502 173 "-" "Mozilla/5.0 (compatible; Linux x86_64; Mail.RU_Bot/2.0; +http://go.mail.ru/help/robots)"
+46.20.78.245 - - [31/Jan/2017:00:21:01 +0300] "GET / HTTP/1.1" 502 173 "-" "Mozilla"

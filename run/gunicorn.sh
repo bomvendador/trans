@@ -11,8 +11,8 @@ NAME=trans # REPLACE WITH BASE DIR NAME
 
 
 SETTINGS=$NAME.settings
-SOCK=/home/1/trans/proc/$NAME-gunicorn.sock
-PID=/home/1/trans/proc/$NAME-gunicorn.pid
+SOCK=/home/trans/proc/$NAME-gunicorn.sock
+PID=/home/trans/proc/$NAME-gunicorn.pid
 #LOGFILE=/home/trans/logs/$NAME-gunicorn.log
 WORKERS=3
 
@@ -21,20 +21,20 @@ echo 'Creating Daemon process for: '$NAME
 #echo 'LOGFILE: '$LOGFILE
 
 # this is where .sock .log and .pid get put
-DIRECT=/home/1/trans/proc
+DIRECT=/home/trans/proc
 if ! [ -d $DIRECT ]; then
-    ls -la /home/1/trans/
+    ls -la /home/trans/
     echo $DIRECT" does not exist.. creating.."
     sudo mkdir $DIRECT
-    ls -la /home/1/trans/
+    ls -la /home/trans/
 else
     echo "Yes it does."
     echo "removing /opt/proc/$NAME*"
-    rm -rf /home/1/trans/proc/$NAME*
+    rm -rf /home/trans/proc/$NAME*
 fi
 
 
-exec /home/1/trans/venv/bin/gunicorn \
+exec /home/trans/venv/bin/gunicorn \
     --env DJANGO_SETTINGS_MODULE=$SETTINGS \
     $NAME.wsgi:application \
     --pid $PID \
