@@ -1,3 +1,4 @@
+#-*- encoding:utf-8-*-
 """
 Django settings for trans project.
 
@@ -30,7 +31,7 @@ SECRET_KEY = '(88!z$t1e&bb+yg5dxh2#q74j+i4+q&_l4sjg(+w@q4%g=y4w@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['prolingva.ru']
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 # LANGUAGE_CODE = 'ru'
@@ -104,23 +105,23 @@ WSGI_APPLICATION = 'trans.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'prolingva',
+        'USER': 'root',
+        'PASSWORD': 'r3TNdQW97l',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'prolingva',
-#         'USER': 'root',
-#         'PASSWORD': 'r3TNdQW97l',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -174,4 +175,24 @@ LOCALE_PATHS = (
 )
 
 DATE_INPUT_FORMATS = '%d-%m-%Y'
+
+LOGGING = {
+	'version': 1,
+    'handlers': {
+        'error_file': {
+            'level': 'INFO',
+            'class': 'deferred_filelogger.DeferredFilehandler',
+            'filename': 'errors.log',
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['error_file', 'mail_admins'],
+            'level': 'ERROR',
+            'propagate': False
+        }
+    }
+}
+
+LOG_ROOT = '/home/1/trans/logs/django'
 

@@ -1,2 +1,0 @@
-pip install django-localeurl
-pip install django-transmeta
