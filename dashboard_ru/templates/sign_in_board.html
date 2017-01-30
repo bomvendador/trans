@@ -1,0 +1,176 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+{#    <link rel="icon" href="../../favicon.ico" type="image/x-icon">#}
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css" />
+
+{#    <!-- Bootstrap Core Css -->#}
+    <link href="{% static 'dashboard/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet" />
+
+    <!-- Waves Effect Css -->
+    <link href="{% static 'dashboard/plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="{% static 'dashboard/plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+
+</head>
+
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Admin<b>BSB</b></a>
+            <small>Admin BootStrap Based - Material Design</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                <form id="sign_in" method="POST">{% csrf_token %}
+                    <div class="msg">Вход в систему</div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="text" class="form-control" name="email" placeholder="Email" id="email" autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="password" placeholder="Пароль" id="password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8 p-t-5">
+                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <label for="rememberme">Запомнить меня</label>
+                        </div>
+                        <div class="col-xs-4">
+                            <button class="btn btn-block bg-pink waves-effect" id="submit">Войти</button>
+                        </div>
+                    </div>
+                    <div class="row m-t-15 m-b--20">
+                        <div class="col-xs-6">
+                            <a href="sign-up.html">Зарегистрироваться!</a>
+                        </div>
+                        <div class="col-xs-6 align-right">
+                            <a href="forgot-password.html">Забыли пароль?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'dashboard/plugins/jquery/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'dashboard/plugins/bootstrap/js/bootstrap.js' %}"></script>
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'dashboard/plugins/node-waves/waves.js' %}"></script>
+
+    <!-- Validation Plugin Js -->
+    <script src="{% static 'dashboard/plugins/jquery-validation/jquery.validate.js' %}"></script>
+
+    <!-- Custom Js -->
+    <script src="{% static 'js/dashboard/admin.js' %}"></script>
+
+    <script src="{% static 'js/dashboard/pages/examples/sign-in.js' %}"></script>
+
+    <script src="{% static 'js/toastr.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
+
+<script>
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+
+    $('#submit').on('click', function (e) {
+        e.preventDefault();
+        if ($('#email').val() == '' || $('#password').val() == ''){
+            swal({
+                title: 'Ошибка',
+                text: 'Email и пароль должны быть указаны',
+                type: 'error',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: false
+            });
+        }else {
+        var formdata = new FormData($('#sign_in').get(0));
+        $.ajax({
+            url: "{% url 'ru:dashboard_ru:login_board' %}",
+            type: 'POST',
+
+            data: formdata,
+
+
+            processData: false,
+            contentType: false,
+            error: function(data){
+                console.log('error' + data);
+            },
+            success:function (data) {
+{#                console.log(''data);#}
+                if (data == 'error'){
+                    swal({
+                        title: 'Ошибка',
+                        text: 'Email или пароль указаны не верно',
+                        type: 'error',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: false
+                    });
+
+                }else {
+                    window.location.href = '/ru/dashbrd/' + data;
+                }
+            }
+        });
+
+        }
+
+    })
+</script>
+</body>
+
+</html>

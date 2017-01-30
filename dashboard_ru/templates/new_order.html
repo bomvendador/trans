@@ -1,0 +1,458 @@
+{% extends 'base_board.html' %}
+{% load static%}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/dropzone/dropzone.css' %}" rel="stylesheet" />
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}">
+
+{% endblock %}
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-library-plus f_s_15"></i> Новый заказ
+        </li>
+    </ol>
+
+{% endblock %}
+
+{%  block content %}
+
+{% include 'preloader.html' %}
+
+
+            <div class="row clearfix" id="modalDocSend">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                НОВЫЙ ЗАКАЗ
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="message_doc_send" class="f_s_15 mrg-bot-20 border_radius_0" style="display: none"></div>
+                        <form id="doc_send_form">{% csrf_token %}
+                            <div class="body">
+                                {% if user_profile.role.role_name != 'Клиент' %}
+                                <h2 class="card-inside-title">Клиент</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <div data-toggle="modal" data-target="#defaultModal">
+                                                <i class="mdi mdi-account f_s_20 pointer-pure" data-toggle="tooltip" title="Выбрать из существующих" data-placement="right"></i>
+                                                </div>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_doc_send" name="name_doc_send">
+
+                                            </div>
+                                        </div>
+
+                                        <input type="text" class="form-control none" id="client_id_doc_send" name="client_id_doc_send">
+                                        <!-- Default Size modal список существующих клиентов-->
+                                            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="defaultModalLabel">Выберите клиента</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                {#                            {% for client in clients %}#}
+                                                            <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Имя</th>
+                                                                        <th>Телефон</th>
+                                                                        <th>Email</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot>
+                                                                        <th>ID</th>
+                                                                        <th>Имя</th>
+                                                                        <th>Телефон</th>
+                                                                        <th>Email</th>
+
+                                                                </tfoot>
+                                                                <tbody>
+                                                                {% for client in clients %}
+
+                                                                    <tr class="client_existing pointer-pure" id="{{ client.id }}">
+                                                                        <td>
+                                                                            {{ client.id }}
+                                                                        </td>
+                                                                        <td>{{ client.name }}</td>
+                                                                        <td>{{ client.tel }}</td>
+                                                                        <td>{{ client.email }}</td>
+
+                                                                    </tr>
+
+                                                                {% endfor %}
+
+                                                                </tbody>
+                                                            </table>
+
+
+
+
+                                {#                                {{ client.name }}#}
+                                {#                            {% endfor %}#}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
+                                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- modal end-->
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-email f_s_20"></i>
+                                            </span>
+
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date" placeholder="Email" id="email_doc_send" name="email_doc_send">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date" placeholder="Телефон" id="tel_doc_send" name="tel_doc_send">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+{#                                <input type="text" class="form-control none" id="order_source" name="order_source" >#}
+
+                                <h2 class="card-inside-title">Материал для перевода</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-clipboard-text f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <textarea rows="4" class="form-control no-resize" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+    {#                                    <div class="md-form">#}
+                                            <i class="mdi mdi-paperclip text_label prefix"></i>
+
+                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
+                                                <span>Загрузить файл(ы)</span>
+                                                <input type="file" class="upload height-100" name="filesToUpload" id="filesToUpload" multiple="" onchange="makeFileList();">
+
+                                            </div>
+{#                                            <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" ></i>#}
+
+                                            <div>
+                                                <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
+
+                                                <ul id="fileList" class="" style="margin-top: -20px!important; margin-left: 30px!important;"></ul>
+
+                                            </div>
+
+    {#                                    </div>#}
+                                    </div>
+                                </div>
+                                <h2 class="card-inside-title">Язык</h2>
+                                <div class="row clearfix">
+                                    <div class="body">
+                                        <div class="row clearfix">
+                                            <div class="col-sm-5">
+                                                <select class="form-control show-tick" id="trans_from" name="trans_from">
+                                                    <option value="default">-- Перевод С --</option>
+                                                    {% for lang in langs %}
+                                                    <option value="{{ lang.name }}">{{ lang.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 text text_align_center f_s_20">
+                                                <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>
+                                                <i class="mdi mdi-arrow-right hidden-xs"></i>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <select class="form-control show-tick" id="trans_to" name="trans_to">
+                                                    <option value="default">-- Перевод НА --</option>
+                                                    {% for lang in langs %}
+                                                    <option value="{{ lang.name }}">{{ lang.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+                    <a href="{% url 'ru:dashboard_ru:add_new_order' %}">
+                        <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float round_btn" data-toggle="tooltip" title="Добвавить заявку" data-placement="left" id="btn_submit_group_doc_send">
+                            <i class="mdi mdi-content-save text_rnd_btn_save" style="top: 2px!important;"></i>
+                        </button>
+                    </a>
+
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'dashboard/plugins/dropzone/dropzone.js' %}"></script>
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+
+    <script src="{% static 'js/doc_send.js' %}"></script>
+{#    <script src="{% static 'js/check_doc_send.js' %}"></script>#}
+    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+    <script src="{% static 'dashboard/plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+    <script src="{% static 'js/dashboard/pages/tables/jquery-datatable.js' %}"></script>
+
+
+
+    <script>
+//send documents starts
+
+    //выбор существующего клиента
+
+    $('.client_existing').on('click', function () {
+        var row = $(this).parent().children().index($(this).parent());
+        var name = $(this).eq(row).find('td').eq(1).text();
+        var id = $(this).eq(row).find('td').eq(0).text();
+        var tel = $(this).eq(row).find('td').eq(2).text();
+        var email = $(this).eq(row).find('td').eq(3).text();
+        $('#name_doc_send').val(name);
+        $('#email_doc_send').val(email);
+        $('#tel_doc_send').val(tel);
+        $('#client_id_doc_send').val(id);
+        $('#close_modal_select_client_btn').click();
+
+
+    });
+
+{#            $('#btn_doc_send_open').on#}
+
+    var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
+    var tel_exp = new RegExp(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)
+
+
+    $('#email_doc_send').on('click', function () {
+        hideMessage_doc_send();
+    });
+    $('#name_doc_send').on('click', function () {
+        hideMessage_doc_send();
+    });
+    $('#tel_doc_send').on('click', function () {
+        hideMessage_doc_send();
+    });
+    $('#text_doc_send').on('click', function () {
+        hideMessage_doc_send();
+    });
+    $('#filesToUpload').on('click', function () {
+        hideMessage_doc_send();
+    });
+
+    $('#btn_submit_group_doc_send').on('click', function (e) {
+        var message_doc_send = '';
+        var email_err_doc_send = false;
+        var email_err_doc_send_msg = '';
+        var name_err_doc_send = false;
+        var name_err_doc_send_msg = '';
+        var tel_err_doc_send = false;
+        var tel_err_doc_send_msg = '';
+        var file_err_doc_send = false;
+        var file_err_doc_send_msg = '';
+        e.preventDefault();
+        {% if user_profile.role.role_name != 'Клиент' %}
+        //валидация email
+        if ($('#email_doc_send').val() != '') {
+            if (!email.test($('#email_doc_send').val())) {
+                $('#email_doc_send').addClass('invalid');
+                email_err_doc_send_msg = 'Проверьте правильность заполнения email<br/>';
+                email_err_doc_send = true;
+            }
+        } else {
+            email_err_doc_send = true;
+            email_err_doc_send_msg = 'Введите email<br/>';
+            $('#email_doc_send').addClass('invalid');
+        }
+        //проверка имени
+        if ($('#name_doc_send').val() == ''){
+            name_err_doc_send = true;
+            name_err_doc_send_msg = 'Введите имя </br>';
+            $('#name_doc_send').addClass('invalid');
+
+        }
+        //проверка телефона
+        if ($('#tel_doc_send').val() == ''){
+            tel_err_doc_send = true;
+            tel_err_doc_send_msg = 'Введите номер телефона </br>';
+            $('#tel_doc_send').addClass('invalid');
+
+        }else {
+            if (!tel_exp.test($('#tel_doc_send').val())) {
+                $('#tel_doc_send').addClass('invalid');
+                tel_err_doc_send_msg = 'Проверьте правильность номера телефона<br/>';
+                tel_err_doc_send = true;
+            }
+        }
+        {% endif %}
+        //проверка файла
+        if ($('#text_doc_send').val() == '' && $('#fileList li').length == 0){
+            file_err_doc_send = true;
+            file_err_doc_send_msg = 'Добавьте текст или файл';
+            $('#text_doc_send').addClass('invalid');
+
+        }
+
+
+        if({% if user_profile.role.role_name != 'Клиент' %}email_err_doc_send || name_err_doc_send || tel_err_doc_send ||{% endif %} file_err_doc_send){
+            $('#message_doc_send').html('');
+            message_doc_send = {% if user_profile.role.role_name != 'Клиент' %}name_err_doc_send_msg + email_err_doc_send_msg + tel_err_doc_send_msg + {% endif %}file_err_doc_send_msg;
+            $('html, body').animate({scrollTop: 0}, 'slow');
+{#                    console.log('error');#}
+            showMessage_doc_send(message_doc_send);
+{#                    console.log($('#trans_from').val() + ' ' + $('#trans_to').val());#}
+
+{#                    $('#modalDocSend').on('shown.bs.modal', function () {#}
+{#                        $('#modalDocSend .modal-content').animate({'scrollTop': $('#message_doc_send').offset().top}, 2000)#}
+{##}
+{#                    });#}
+
+        }else {
+            $('#order_source').val('dashboard');
+            console.log('src = ' + $('#order_source').val());
+{#                    showPreloader();#}
+            var formdata = new FormData($('#doc_send_form').get(0));
+            formdata.append('order_source', 'dashboard');
+            $.ajax({
+                url: '{% url 'ru:save_files_trans' %}',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    console.log(data);
+                },
+                success:function (data) {
+{#                            hidePreloader();#}
+                        if ($('#fileList').val() == ''){
+                            $('#del_files').fadeOut('slow');
+                        }
+                    $('#dropdown-menu .inner li:first').addClass('selected');
+                    $('#trans_from').find('option[value="default"]').prop('selected', true);
+                    $('#trans_to').find('option[value="default"]').prop('selected', true);
+                    console.log($('#trans_to').find('option[value="default"]').val());
+                    console.log(data);
+                    if (data == 'ok'){
+{#                                $('.close').click();#}
+                            swal({
+                                title: 'Информация успешно сохранена',
+                                text: '',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                    window.location.reload();
+
+                                }
+                            });
+
+{#                                toastr.success('Заголовок', 'Текст все ок');#}
+                    }else {
+{#                                $('.close').click();#}
+
+                        if (data == 'user_exists'){
+                            swal({
+                                title: 'Информация успешно сохранена',
+                                text: '',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                    swal({
+                                        title: 'Пользователь с таким email уже зарегистрирован',
+                                        text: '',
+                                        type: 'warning'
+                                    });
+                                    {% else %}
+                                    swal({
+                                        title: 'Уважаемый {{ client.name }}',
+                                        text: 'Ваш заказ отправлен и в ближайшее время будет обработан.' +
+                                        'Спасибо за оказнное доверие нашей компании!',
+                                        type: 'warning',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm){
+                                            window.location.reload();
+                                        }
+                                    }
+
+                                );
+
+
+                                    {% endif %}
+                                }
+                            });
+
+                        }
+                    }
+{#                        alert(data);#}
+                    clear_send_docs();
+                }
+            });
+
+        }
+    });
+</script>
+{% endblock %}

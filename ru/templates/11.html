@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+            <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css">
+
+        <link rel="stylesheet" href="{% static 'css/mdl_file.css' %}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div class="customfile-container">
+  <label>File: </label>
+  <input type="file" id="file" name="myfiles[]" multiple />
+</div>
+
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
+    <input class="mdl-textfield__input" placeholder="File" type="text" id="uploadFile" readonly/>
+    <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+      <i class="material-icons">attach_file</i><input type="file" id="uploadBtn">
+    </div>
+  </div>
+
+{#  <choose-file layout="row" flex="25">#}
+{#    <input id="fileInput" type="file" class="ng-hide">#}
+{#    <md-input-container flex class="md-block">#}
+{#      <input type="text" ng-model="fileName" disabled>#}
+{#      <div class="hint">Select your file</div>#}
+{#    </md-input-container>#}
+{#    <div>#}
+{#      <md-button id="uploadButton" class="md-fab md-mini">#}
+{#        <md-icon class="material-icons">attach_file</md-icon>#}
+{#      </md-button>#}
+{#    </div>#}
+{#  </choose-file>#}
+
+</div>
+
+
+
+            <script src="{% static 'js/mdl_file.js' %}"></script>
+
+
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1584 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+{#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ru:dashboard_ru:get_sent_docs' %}">
+                <i class="mdi mdi-library-books f_s_15"></i> Заявки
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-file-document-box f_s_15"></i> Заявка № {{ order_details.id }}
+        </li>
+    </ol>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="card">
+        <div class="header bg-cyan">
+            <h2>
+                Заявка № {{ order_details.id }} <small>Дата создания: {{ order_details.timestamp|date:"d.m.Y, H:i" }}</small>{% if author_role.role.role_name %}{% if user_role.role.role_name != 'Клиент'%}<a href=""><small>Автор: {{ order_details.author.id }}. {{ author_role.role.role_name }} - {{ order_details.author.first_name }} {{ order_details.author.last_name }}</small></a><small>Источник: {{ order_details.order_src.name }}</small>{% endif %}{% endif %}
+            </h2>
+        <div style="float: right; font-size: 20px; position: absolute; top: 15px; right: 35px;">
+
+            <i class="mdi mdi-account cursor-default {% if order_details.resp %} opacity-1 {% else %}opacity-0_5 {% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+            {% if user_profile.role.role_name != 'Клиент' %}
+            <i class="mdi mdi-comment-processing cursor-default {% if comments %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="message" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
+            {% endif %}
+            <i class="mdi mdi-currency-rub cursor-default {% if order_details.calc_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отправлен" data-placement="top"></i>
+            <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+            <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+            <i class="mdi mdi-note cursor-default {% if translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="left"></i>
+            <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="left"></i>
+
+        </div>
+            {% if user_profile.role.role_name == 'Суперадмин' %}
+
+            <ul class="header-dropdown">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="delete_order">Удалить заявку</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% endif %}
+
+        </div>
+    <!--сообщения-->
+    {% if user_profile.role.role_name == 'Клиент' %}
+        {% if order_details.price and order_details.paystatus.name != 'Paid' %}
+        <div class="alert bg-pink alert-dismissible" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+           <i class="mdi mdi-information-outline f_s_15"></i> &nbsp;По заявке ожидается оплата
+        </div>
+        {% endif %}
+        {% if translation_files and order_details.paystatus.name == 'Paid' and not order_details.translation_downloaded %}
+        <div class="alert bg-green alert-dismissible" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close_translation_message"><span aria-hidden="true">×</span></button>
+           <i class="mdi mdi-spellcheck f_s_15"></i> &nbsp;Файлы перевода готовы к скачиванию. Их можно скачать в разделе ПЕРЕВОД
+        </div>
+        {% endif %}
+
+    {% endif %}
+    <!---->
+            <div class="body">
+
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#order" data-toggle="tab">ЗАЯВКА <span class="label-count background-transparent none" id="order_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    <li role="presentation"><a href="#translate" data-toggle="tab">ПЕРЕВОД <span class="label-count background-transparent none" id="order_translation_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    <li role="presentation"><a href="#payment" data-toggle="tab">ОПЛАТА <span class="label-count background-transparent none" id="order_payment_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    {% if user_profile.role.role_name != 'Клиент' %}
+                    <li role="presentation"><a href="#comments" data-toggle="tab">КОММЕНТАРИИ</a></li>
+                    {% endif %}
+                    <li role="presentation"><a href="#client_comments" data-toggle="tab">{% if user_profile.role.role_name != 'Клиент' %}КОММЕНТАРИИ КЛИЕНТА{% else %}КОММЕНТАРИИ{% endif %}</a></li>
+
+                </ul>
+
+                        <div class="tab-content paddin padding-15">
+                            <div role="tabpanel" class="tab-pane fade in active" id="order">
+                    <form id="form">{% csrf_token %}
+                                {% if user_profile.role.role_name != 'Клиент' %}
+                                <h2 class="card-inside-title">Клиент</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-account f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_doc_send" name="name_doc_send" value="{{ order_details.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-email f_s_20"></i>
+                                            </span>
+
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date" placeholder="Email" id="email_doc_send" name="email_doc_send" value="{{ order_details.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control date" placeholder="Телефон" id="tel_doc_send" name="tel_doc_send" value="{% if order_details.tel %}{{ order_details.tel }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} <i class="mdi mdi-content-copy f_s_20 float-right pointer-pure" id="copy_text_doc_send" data-toggle="tooltip" title="Скопировать текст" data-placement="left"></i></h2>
+                                <div class="row clearfix" >
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-clipboard-text f_s_20"></i>
+                                            </span>
+                                            <div id="text_doc_send_div" class="">
+                                                <div class="form-line">
+                                                    <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ order_details.text }}</textarea>
+                                                    <textarea rows="4" class="form-control no-resize none-important" id="text_doc_send_hidden" name="text_doc_send">{{ order_details.text }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    {#                        {% if files %}#}
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                {#                                    <div class="md-form">#}
+                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>
+                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
+                                                    <span>Загрузить файл(ы)</span>
+                                                    <input type="file" class="upload height-100" name="file" id="filesToUpload"  onchange="add_files({{ order_details.id }});">
+
+                                            </div>
+                                    {% endif %}
+                                            <div {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -24px"{% endif %}>
+{#                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>#}
+                                            {% if user_profile.role.role_name != 'Клиент' %}
+                                                <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
+                                            {% endif %}
+                                                    <div class="list-group col-sm-offset-1" id="fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+{#                                                <ul id="fileList" class="" style="margin-left: 48px!important;">#}
+                                                    {% for file in files %}
+
+{#                                                        <li class="margin-left--20" id="file_{{ file.id }}">#}
+                                                        {% if user_profile.role.role_name != 'Клиент' %}
+
+
+                                                        <div class="margin-left--20 translation_file list-group-item row" id="file_{{ file.id }}">
+                                                            <div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
+                                                                <i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i>
+                                                            </div>
+                                                            <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                                <p class="pointer-pure display-inline file_download">{{ file.file_name }}</p>
+{#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
+                                                            </div>
+                                                        </div>
+
+
+
+{#                                                            <i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="left" style="width: 28px"></i>#}
+{#                                                        {% endif %}#}
+{#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
+{#                                                        </li>#}
+                                                        {% else %}
+                                                        <div class="margin-left--20 list-group-item row" id="file_{{ file.id }}">
+                                                            <div class="col-sm-1 margin-bottom-0">
+                                                                <i class="mdi mdi-download text_label prefix file_download pointer-pure"   style="width: 28px" data-toggle="tooltip" title="Скачать" data-placement="top"></i>
+                                                            </div>
+                                                            <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                                <p class="display-inline">{{ file.file_name }}</p>
+{#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
+                                                            </div>
+                                                        </div>
+
+                                                        {% endif %}
+                                                    {% endfor %}
+{#                                                </ul>#}
+                                                    </div>
+                                            </div>
+
+
+                {#                                    </div>#}
+                                    </div>
+                                </div>
+    {#                         {% endif %}#}
+                                {% if order_details.contact_form_message %}
+                                <h2 class="card-inside-title">Сообщение</h2>
+                                <div class="row clearfix">
+                                    <div class="body">
+                                        {{ order_details.contact_form_message }}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <div class="row clearfix">
+                                    <div class="body">
+                                        <div class="row clearfix">
+
+                                            <div class="col-sm-6">
+                                                <h2 class="card-inside-title">Тематика</h2>
+
+                                                <select class="form-control show-tick" id="trans_theme" name="trans_theme" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                    <option value="">-- Тема --</option>
+                                                    {% for trans_theme in trans_themes %}
+                                                    <option value="{{ trans_theme.short_name }}" {% if trans_theme.id == order_details.translation_theme.id %} selected {% endif %}>{{ trans_theme.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <h2 class="card-inside-title">Тип</h2>
+
+                                                <select class="form-control show-tick" id="trans_type" name="trans_type" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                    <option value="">-- Тип --</option>
+                                                    {% for trans_type in trans_types %}
+                                                    <option value="{{ trans_type.short_name }}" {% if trans_type.id == order_details.translation_type.id %} selected {% endif %}>{{ trans_type.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="card-inside-title">Язык</h2>
+                                <div class="row clearfix">
+                                    <div class="body">
+                                        <div class="row clearfix">
+                                            <div class="col-sm-5">
+                                                <select class="form-control show-tick" id="trans_from" name="trans_from" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                    <option value="">-- Перевод С --</option>
+                                                    {% for lang in langs %}
+                                                    <option value="{{ lang.name }}" {% if lang.name == order_details.trans_from.name %} selected {% endif %}>{{ lang.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2 text text_align_center f_s_20">
+                                                <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>
+                                                <i class="mdi mdi-arrow-right hidden-xs"></i>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <select class="form-control show-tick" id="trans_to" name="trans_to" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                    <option value="">-- Перевод НА --</option>
+                                                    {% for lang in langs %}
+                                                    <option value="{{ lang.name }}" {% if lang.name == order_details.trans_to.name %} selected {% endif %}>{{ lang.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                {% if user_profile.role.role_name != 'Клиент' %}
+                                    {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                    <div class="col-sm-4 col-xs-12">
+                                        <h2 class="card-inside-title">Ответственный</h2>
+                                        <div class="row clearfix">
+                                            <div class="body">
+                                                <div class="row clearfix">
+                                                    <div class="">
+                                                        <select class="form-control show-tick" id="resp" name="resp">
+                                                            <option value="">--  --</option>
+                                                            {% for manager in managers %}
+                                                            <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+{#                                    <div class="col-sm-6">#}
+{#                                        <h2 class="card-inside-title">Статус</h2>#}
+{##}
+{#                                        <div class="row clearfix">#}
+{#                                            <div class="body">#}
+{#                                                <div class="row clearfix">#}
+{#                                                    <div class="">#}
+{#                                                        <select class="form-control show-tick" id="order_status" name="order_status">#}
+{#                                                            <option value="">--  --</option>#}
+{#                                                            {% for o_status in order_status %}#}
+{#                                                            <option value="{{ o_status.name }}" {% if order_details.status.id == o_status.id %} selected {% endif %}{% if user_profile.role.id == 3 %} disabled {% endif %}>{{ o_status.name }}</option>#}
+{#                                                            {% endfor %}#}
+{#                                                        </select>#}
+{#                                                    </div>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{#                                        </div>#}
+{#                                    </div>#}
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
+                                            <div class="input-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <i class="mdi mdi-currency-rub font-24"></i>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control date" id="order_price" name="order_price" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Дата отправки расчета</h2>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today font-24"></i>
+
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="calc_sent_date" name="calc_sent_date" value="{% if order_details.calc_sent_date %}{{ order_details.calc_sent_date }}{% endif %}">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
+                                    <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
+                                       <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
+                                    </div>
+
+                                </div>
+
+
+
+                    </form>
+
+                            </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="payment">
+                                <form id="form_payment">
+
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">{% if user_profile.role.role_name == 'Клиент' %}Сумма к оплате{% else %}Сумма оплаты{% endif %}</h2>
+                                            <div class="input-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <i class="mdi mdi-currency-rub font-24"></i>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        {% if user_profile.role.role_name == 'Клиент' %}
+                                                        <div class="form-line">
+                                                            <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
+                                                        </div>
+                                                        {% if order_details.paystatus.name == 'Paid' %}
+                                                        <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
+                                                        {% endif %}
+                                                        {% else %}
+                                                        <div class="form-line">
+                                                            <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
+                                                        </div>
+
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Дата оплаты</h2>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today font-24"></i>
+
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date" value="{% if order_details.payment_date %}{{ order_details.payment_date }}{% endif %}">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Способ оплаты</h2>
+                                            <div class="input-group">
+                                                <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <i class="mdi mdi-wallet font-24"></i>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        <select class="form-control show-tick" id="payment_method" name="payment_method">
+                                                            <option value="">-- Выберите способ --</option>
+                                                            {% for paymethod in paymethods %}
+                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod.id == paymethod.id %} selected {% endif %}{% if user_profile.role.role_name == 'Клиент' %} disabled {% endif %}>{{ paymethod.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        {% endif %}
+
+                                    </div>
+                                    {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
+                                        {% if order_details.paystatus.name != 'Paid' %}
+                                            <div class="{% if order_details.payment_amount %}none{% endif %}" id="btn_pay">
+                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="save_order_payment_btn">ОПЛАТИТЬ</button>
+                                            </div>
+                                        {% endif %}
+
+                                    {% else %}
+
+                                    <div class="none" id="save_order_payment_div">
+                                       <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_payment_btn">СОХРАНИТЬ</button>
+                                    </div>
+                                    {% endif %}
+                                </form>
+                            </div>
+
+    <!-- перевод -->
+                            <div role="tabpanel" class="tab-pane fade" id="translate">
+                                <form id="translation_form">
+                                {% if user_profile.role.role_name != 'Клиент' %}
+                                    <div class="row clearfix">
+                                        <div class="col-sm-6 col-xs-12">
+                                            <h2 class="card-inside-title">Переводчик</h2>
+
+                                            <div class="row clearfix">
+                                                <div class="body">
+                                                    <div class="row clearfix">
+                                                        <div class="row">
+                                                            <div class="col-sm-1">
+                                                                <i class="mdi mdi-account-card-details opacity-0_3" style="font-size: 24px; margin-left: 10px" id="translator_details"></i>
+                                                            </div>
+                                                            <div class="col-sm-11">
+                                                                <select class="form-control show-tick" id="translator" name="translator">
+                                                                    <option value="">-- Выберите пероводчика --</option>
+                                                                    {% for translator in translators %}
+                                                                    <option value="translator_{{ translator.id }}" {% if order_details.translator.id == translator.id %} selected {% endif %}{% if user_profile.role.role_name == 'Клиент' %} disabled {% endif %}>{{ translator.id }}. {{ translator.name }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Дата отправки заказчику</h2>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today font-24"></i>
+
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="translation_sent_date" name="translation_sent_date" value="{% if order_details.translation_sent_date %}{{ order_details.translation_sent_date }}{% endif %}">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    {% else %}
+
+                                    {% endif %}
+
+                                    <div class="row clearfix">
+                                        <div class="col-md-12">
+                    {#                                    <div class="md-form">#}
+
+                                                <i class="mdi mdi-paperclip text_label prefix"></i>
+                                                {% if user_profile.role.role_name != 'Клиент' %}
+                                                <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
+                                                        <span>Загрузить файл(ы)</span>
+                                                        <input type="file" class="upload height-100" name="file" id="traslations_filesToUpload"  onchange="add_translation_files({{ order_details.id }});">
+                                                </div>
+                                                {% endif %}
+
+                                                <div>
+                                                    <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
+                                                    <div class="list-group col-sm-offset-1" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+{#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
+                                                    {% if user_profile.role.role_name == 'Клиент' %}
+
+                                                        {% if translation_files %}
+                                                            {% if order_details.paystatus.name == 'Paid' %}
+                                                                {% for translation_file in translation_files %}
+
+                                                                    <div class="margin-left--20 translation_file list-group-item row" id="translation_file_{{ translation_file.id }}">
+                                                                        <div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Скачать файл" data-placement="left">
+                                                                            <i class="mdi mdi-download text_label prefix pointer-pure translation_file_download" style="width: 28px"></i>
+                                                                        </div>
+                                                                        <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                                            <p class="display-inline">{{ translation_file.file_name }}</p>
+        {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
+                                                                        </div>
+                                                                    </div>
+                                                                {% endfor %}
+                                                            {% else %}
+                                                                <div class="margin-left--20 translation_file list-group-item row">
+                                                                Файлы перевода готовы, но требуется оплата
+                                                                </div>
+                                                            {% endif %}
+                                                        {% else %}
+                                                            <div class="margin-left--20 translation_file list-group-item row">
+                                                                Файлы отсутствуют
+                                                            </div>
+                                                        {% endif %}
+                                                    {% else %}
+                                                        {% for translation_file in translation_files %}
+
+                                                            <div class="margin-left--20 translation_file list-group-item row" id="translation_file_{{ translation_file.id }}">
+                                                                <div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
+                                                                    <i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px"></i>
+                                                                </div>
+                                                                <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                                    <p class="pointer-pure display-inline translation_file_download">{{ translation_file.file_name }}</p>
+{#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+{#                                                    </ul>#}
+                                                    </div>
+                                                </div>
+
+
+                    {#                                    </div>#}
+                                        </div>
+                                    </div>
+                                </form>
+                                    <div class="none" id="save_order_translation_div">
+                                       <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_translation_btn">СОХРАНИТЬ</button>
+                                    </div>
+
+                            </div>
+                        {% if user_profile.role.role_name != 'Клиент' %}
+
+                            <div role="tabpanel" class="tab-pane fade" id="comments">
+                                <form name="form_comments" id="form_comments">
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <textarea rows="4" class="form-control" placeholder="Текст комментария..." id="comment_text" name="comment_text"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="" id="save_order_translation_div">
+                                                    <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_comment_btn">СОХРАНИТЬ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7" style="overflow-y: scroll; height:200px; " id="comments_div">
+                                            {% for comment in comments %}
+                                            <div class="comments-style">
+                                                <div style="">
+                                                    <div>
+                                                        <small>{{ comment.added|date:"d.m.Y, H:i" }}</small>
+                                                    </div>
+
+                                                    <small>{{ comment.author_role.role_name }},{{ comment.author.first_name }} {{ comment.author.last_name }}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mrg-bot-20" style="margin-left: 10px">
+                                                {{ comment.comment }}
+                                            </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                            {% endif %}
+                        <!-- комментари клиента -->
+                            <div role="tabpanel" class="tab-pane fade" id="client_comments">
+                                <form name="form_comments" id="form_clients_comments">
+                                    <div class="mrg-bottom-33 padding-bottom-10 border-bottom-1-grey">
+                                        <h2 class="card-inside-title">Комментарии, вопросы к заявке</h2>
+                                        {% if user_profile.role.role_name == 'Клиент' %}
+                                        <small class="mrg-bottom-33">В этом разделе Вы можете оставить свои комментарии или вопросы к заявке. Ответы Вы получите по электронной почте, а также сможете их увидеть в этой вкладке</small>
+                                        {% endif %}
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <textarea rows="4" class="form-control" placeholder="Текст..." id="comment_text" name="comment_text"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="" id="save_order_translation_div">
+                                                    <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_comment_btn">ОТПРАВИТЬ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7" style="overflow-y: scroll; height:200px; " id="comments_div">
+                                            {% for comment in comments %}
+                                            <div class="comments-style">
+                                                <div style="">
+                                                    <div>
+                                                        <small>{{ comment.added|date:"d.m.Y, H:i" }}</small>
+                                                    </div>
+
+                                                    <small>{{ comment.author_role.role_name }},{{ comment.author.first_name }} {{ comment.author.last_name }}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mrg-bot-20" style="margin-left: 10px">
+                                                {{ comment.comment }}
+                                            </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+{#                    <div role="tabpanel" class="card-inside-title tab-pane fade in active" id="payment">#}
+{##}
+{#                        <div class="row clearfix jsdemo-notification-button">#}
+{#<button type="button" class="btn btn-success btn-block waves-effect" data-placement-from="bottom" data-placement-align="center"#}
+{#                                            data-animate-enter="" data-animate-exit="" data-color-name="alert-success">#}
+{#                                        SUCCESS#}
+{#                                    </button>#}
+{##}
+{#                            </div>#}
+{##}
+{##}
+{#                    </div>#}
+            </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+
+{#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
+    <script>
+
+    $(document).ready(function () {
+        //скролл до конца комментариев
+        $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+
+    });
+
+    {% if user_profile.role.role_name != 'Клиент' %}
+{#    moment.locale("ru");#}
+{##}
+
+    
+    //иконки состояния заказа
+
+
+    function updateIcons() {
+
+        if ($('#resp').val() != ''){
+            $('#manager_assigned').css('opacity', 1)
+        }else {
+            $('#manager_assigned').css('opacity', 0.5)
+        }
+
+        if ($('#calc_sent_date').val() != ''){
+            $('#calc_sent').css('opacity', 1)
+        }else {
+            $('#calc_sent').css('opacity', 0.5)
+        }
+
+        if ($('#translator').val() != ''){
+            $('#translator_assigned').css('opacity', 1)
+        }else {
+            $('#translator_assigned').css('opacity', 0.5)
+        }
+
+        if ($('#payment_date').val() != ''){
+            $('#paid').css('opacity', 1)
+        }else {
+            $('#paid').css('opacity', 0.5)
+        }
+
+        if ($('#translation_sent_date').val() != ''){
+            $('#order_complete').css('opacity', 1)
+        }else {
+            $('#order_complete').css('opacity', 0.5)
+        }
+        if ($('#translations_fileList div').length != 0){
+            $('#translation_files_uploaded').css('opacity', 1)
+        }else {
+            $('#translation_files_uploaded').css('opacity', 0.5)
+        }
+        if ($('#comments_div').children().length != 0){
+            $('#message').css('opacity', 1)
+        }else {
+            $('#message').css('opacity', 0.5)
+        }
+
+    }
+
+    updateIcons();
+
+        //отображение кнопки сохранения при изменениях
+    function show_save_order() {
+        console.log('dddd')
+        $('#order_label').fadeIn('slow');
+        $('#save_order_info_div').fadeIn('slow');
+    }
+    function hide_save_order() {
+        $('#order_label').fadeOut('slow');
+        $('#save_order_info_div').fadeOut('slow');
+    }
+    function show_save_order_payment() {
+        $('#order_payment_label').fadeIn('slow');
+        $('#save_order_payment_div').fadeIn('slow');
+    }
+    function hide_save_order_payment() {
+        $('#order_payment_label').fadeOut('slow');
+        $('#save_order_payment_div').fadeOut('slow');
+    }
+    function show_save_order_translation() {
+        $('#order_translation_label').fadeIn('slow');
+        $('#save_order_translation_div').fadeIn('slow');
+    }
+    function hide_save_order_translation() {
+        $('#order_translation_label').fadeOut('slow');
+        $('#save_order_translation_div').fadeOut('slow');
+    }
+
+    /////заявка
+    $('#name_doc_send').on('input', function () {
+        console.log('inpt')
+        show_save_order();
+    });
+
+    $('#email_doc_send').on('input', function () {
+        show_save_order();
+    });
+
+    $('#tel_doc_send').on('input', function () {
+        show_save_order();
+    });
+    $('#text_doc_send').on('input', function () {
+        show_save_order();
+    });
+    $('#trans_from').on('change', function () {
+        show_save_order();
+    });
+    $('#trans_to').on('change', function () {
+        show_save_order();
+    });
+    $('#trans_theme').on('change', function () {
+        show_save_order();
+    });
+    $('#trans_type').on('change', function () {
+        show_save_order();
+    });
+    $('#order_price').on('input', function () {
+        show_save_order();
+    });
+    $('#calc_sent_date').on('change', function () {
+        show_save_order();
+    });
+
+    ////оплата
+    $('#paid_amount').on('input', function () {
+        show_save_order_payment();
+    });
+    $('#payment_date').on('change', function () {
+        show_save_order_payment();
+    });
+    $('#payment_method').on('change', function () {
+        show_save_order_payment();
+    });
+    //перевод
+    $('#translation_sent_date').on('change', function () {
+        show_save_order_translation();
+    });
+
+    //функция копирования
+    function copyToClipboard(element) {
+        var $temp = $("<input>");
+        $("body").append($temp);
+        $temp.val($(element).text()).select();
+        document.execCommand("copy");
+        $temp.remove();
+    }
+
+    //копирование текста для перевода
+        $('#copy_text_doc_send').on('click', function () {
+            copyToClipboard($('#text_doc_send_hidden'));
+            $.notify({
+                message: 'Текст скопирован в буфер обмена'
+
+            },
+                {
+                    type:'success',
+                    allow_dismiss: true,
+                    newest_on_top: true,
+                    placement: {
+                        from: 'bottom',
+                        align: 'center'
+                    }
+                }
+            );
+
+
+        });
+
+
+        //сохранение комментария
+    $('#save_order_comment_btn').on('click', function () {
+        var data_ = new FormData($('#form_comments').get(0));
+{#            data_.append('user_id', {{ order_details.user.id }});#}
+        data_.append('order_id', {{ order_details.id }});
+
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_order_comment' %}',
+            type: 'POST',
+            data: data_,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                console.log(data);
+                console.log(data['date']);
+
+                swal({
+                    title: 'Информация сохранена',
+                    text: 'Данные на сервере успешно обновлены',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    if (isConfirm){
+                        var data_json = $.parseJSON(data);
+                        var first_name = data_json['author_firstname'];
+                        var last_name = data_json['author_lastname'];
+                        var date = data_json['date'];
+                        var role = data_json['role'];
+                        var comment = data_json['comment'];
+                        $('#message').css('opacity', 1)
+                        $('#comments_div').append('<div class="comments-style"><div style=""><div><small>' + date + '</small></div> <small>' + role + ','  + first_name + ' ' + last_name + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment + '</div>')
+                        $("#comments_div").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+                        $('#comment_text').val('')
+                    }
+                });
+            }
+        });
+
+    });
+
+
+        //сохранение ПЕРЕВОД
+    $('#save_order_translation_btn').on('click', function () {
+        if ($('#translations_fileList div').length == 0){
+            swal({
+                title: 'Файлы перевода отсутствуют',
+                text: 'Добавьте файлы перевода для добавления даты',
+                type: 'warning'
+            });
+
+        }else {
+            var data_ = new FormData($('#translation_form').get(0));
+{#            data_.append('user_id', {{ order_details.user.id }});#}
+            data_.append('order_id', {{ order_details.id }});
+
+            $.ajax({
+                url: '{% url 'ru:dashboard_ru:update_order_translation' %}',
+                type: 'POST',
+                data: data_,
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    swal({
+                        title: 'Ошибка сервера',
+                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                        type: 'warning'
+                    });
+                },
+                success:function (data) {
+                    console.log(data);
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Данные на сервере успешно обновлены',
+                        type: 'success',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: true
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+                            hide_save_order_translation();
+                            updateIcons();
+                        }
+                    });
+                }
+            });
+
+        }
+    });
+
+        //сохранение ОПЛАТЫ
+    var price_exp = new RegExp(/^[0-9]+(\.[0-9]{1,2})?$/);
+    $('#save_order_payment_btn').on('click', function () {
+
+        if (!price_exp.test($('#paid_amount').val())) {
+            swal({
+                title: 'Ошибка ввода',
+                text: 'Стоимость введена не верно',
+                type: 'warning'
+            });
+
+        }else {
+
+            if ($('#payment_method').val() == '' || $('#payment_date').val() == ''){
+                    swal({
+                        title: 'Ошибка ввода',
+                        text: 'Введите дату и/или способ оплаты',
+                        type: 'warning'
+                    });
+
+            }else {
+                var data_ = new FormData($('#form_payment').get(0));
+                data_.append('user_id', {{ order_details.user.id }});
+                data_.append('order_id', {{ order_details.id }});
+
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:update_order_payment' %}',
+                    type: 'POST',
+                    data: data_,
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        console.log(data);
+                        swal({
+                            title: 'Информация об оплате сохранена',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                hide_save_order_payment();
+                                updateIcons();
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
+
+    //сохранение ИНФО
+    $('#save_order_info_btn').on('click', function () {
+        if ($('#calc_sent_date').val() != '' && $('#order_price').val() == ''){
+            swal({
+                title: 'Ошибка вода',
+                text: 'Введите стоимость заказа',
+                type: 'warning'
+            });
+
+        }else {
+            var data_ = new FormData($('#form').get(0));
+            data_.append('user_id', {{ order_details.user.id }});
+            data_.append('order_id', {{ order_details.id }});
+            $.ajax({
+                url: '{% url 'ru:dashboard_ru:update_order' %}',
+                type: 'POST',
+                data: data_,
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    swal({
+                        title: 'Ошибка сервера',
+                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                        type: 'warning'
+                    });
+                },
+                success:function (data) {
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Данные на сервере успешно обновлены',
+                        type: 'success',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: true
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+                            hide_save_order();
+                            updateIcons();
+                        }
+                    });
+                }
+            });
+
+        }
+
+
+
+    });
+
+    //удаление файла
+    $('#fileList').on('click', '.del_file', function () {
+{#    $('.del_file').on('click', function () {#}
+       var id_raw = $(this).parents().parents().attr('id');
+        var id = id_raw.split('_')[1];
+
+        swal({
+            title: 'Удаление файла',
+            text: 'Вы уверены, что хотите удалить файл?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Да',
+            cancelButtonText: 'Нет',
+            closeOnConfirm: false,
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:delete_file_from_order' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        'file_id': id
+                    }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        console.log(data);
+                        swal({
+                            title: 'Файл удален',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                var file_id = 'file_' + data;
+                                $('#file_' + data).fadeOut('slow');
+                                $('#file_' + data).remove();
+                                updateIcons();
+                            }
+                        });
+                    }
+                });
+
+            }
+        }
+        );
+
+
+
+
+    });
+
+    //удаление файла перевода
+    $('#translations_fileList').on('click', '.del_translation_file', function () {
+        console.log('del');
+        var id_raw = $(this).parents().parents().attr('id');
+        var id = id_raw.split('_')[2];
+
+        swal({
+            title: 'Удаление файла',
+            text: 'Вы уверены, что хотите удалить файл?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Да',
+            cancelButtonText: 'Нет',
+            closeOnConfirm: false,
+        },
+        function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:delete_translation_file_from_order' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        'file_id': id
+                    }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        console.log(data);
+                        swal({
+                            title: 'Файл удален',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                updateIcons();
+                                var file_id = 'translation_file_' + data;
+                                $('#translation_file_' + data).fadeOut('slow');
+                                $('#translation_file_' + data).remove();
+                            }
+                        });
+                    }
+                });
+
+            }
+        }
+        );
+
+
+
+
+
+
+
+
+
+
+
+    });
+
+    //добавление файлов в ЗАЯВКА
+    function add_files(order_id) {
+        var data_ = new FormData($('#form').get(0));
+        data_.append('order_id', order_id);
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:add_file_to_order' %}',
+            type: 'POST',
+            data: data_,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                var json = $.parseJSON(data);
+                console.log(json['file_name']);
+{#                $('#fileList').append('<li class="margin-left--20" id="file_' + json["file_id"] + '"><i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="left" style="width: 28px"></i><a href="/ru/dashbrd/download_file/' +json["file_id"] + '">' + json["file_name"] + '</a></li>');#}
+                $('#fileList').append('<div class="margin-left--20 file list-group-item row" id="file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');
+
+
+{#                li class="margin-left--20" id="file_{{ file.id }}">#}
+{#                                                            <i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="right" style="width: 28px"></i>#}
+{#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
+{#                                                        </li>#}
+
+
+
+
+                swal({
+                    title: 'Файл сохранен',
+                    text: 'Данные на сервере успешно обновлены',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    if (isConfirm){
+                        updateIcons();
+{#                        window.location.href = '/ru/dashbrd/sent_docs/';#}
+
+                    }
+                });
+            }
+        });
+
+    }
+
+    //добавление файлов перевода
+    function add_translation_files(order_id) {
+        var data_ = new FormData($('#translation_form').get(0));
+        data_.append('order_id', order_id);
+{#        console.log($('#filesToUpload')[0].files[0]);#}
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:add_translation_file_to_order' %}',
+            type: 'POST',
+            data: data_,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                var json = $.parseJSON(data);
+                console.log(json['file_name']);
+
+                $('#translations_fileList').append('<div class="margin-left--20 translation_file list-group-item row" id="translation_file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');
+
+
+{#                li class="margin-left--20" id="file_{{ file.id }}">#}
+{#                                                            <i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="right" style="width: 28px"></i>#}
+{#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
+{#                                                        </li>#}
+
+
+
+
+                swal({
+                    title: 'Файл сохранен',
+                    text: 'Данные на сервере успешно обновлены',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    if (isConfirm){
+                        updateIcons();
+{#                        window.location.href = '/ru/dashbrd/sent_docs/';#}
+
+                    }
+                });
+            }
+        });
+
+    }
+
+
+
+    {% if user_profile.role.role_name == 'Суперадмин' %}
+
+    //удаление заказа
+        $('#delete_order').on('click', function () {
+            swal({
+                title: 'Удаление заказа',
+                text: 'Вы уверены, что хотите удалить заказ?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Да',
+                cancelButtonText: 'Нет',
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm){
+                    $.ajax({
+                        url: '{% url 'ru:dashboard_ru:delete_order' %}',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            'order_id': {{ order_details.id }}
+                        }),
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            swal({
+                                title: 'Ошибка сервера',
+                                text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                                type: 'warning'
+                            });
+                        },
+                        success:function (data) {
+                            console.log(data)
+                            swal({
+                                title: 'Заказ удален',
+                                text: 'Данные на сервере успешно обновлены',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                    window.location.href = '/ru/dashbrd/sent_docs/';
+
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+        });
+
+    {% endif %}
+
+
+
+
+
+
+
+    {#    console.log(moment.locale("ru"));#}
+    $('.datetimepicker').bootstrapMaterialDatePicker({
+        lang : 'ru',
+        format : 'DD.MM.YYYY',
+        time: false,
+        weekStart: 1,
+    });
+
+//изменение ответственного
+    $('#resp').on('change', function () {
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:set_resp' %}',
+            type: 'POST',
+
+            data: JSON.stringify({
+                'resp': $(this).val(),
+                'order_id': "{{ order_details.id }}"
+            }),
+
+            error: function(data){
+{#                console.log('error')#}
+                    $.notify({
+                        message: 'Возникли ошибки на сервере при сохранении',
+
+                    },
+                        {
+                            type:'danger',
+                            allow_dismiss: true,
+                            newest_on_top: true,
+                            placement: {
+                                from: 'bottom',
+                                align: 'center'
+                            }
+                        }
+                    );
+            },
+            success: function (data) {
+                if (data != 0){
+                    $('#new_count_label').text(data);
+                }else {
+                    $('#new_count_label').text('');
+                }
+                updateIcons();
+
+                $.notify({
+                    message: 'Информация сохранена',
+
+                },
+                    {
+                        type:'success',
+                        allow_dismiss: true,
+                        newest_on_top: true,
+                        placement: {
+                            from: 'bottom',
+                            align: 'center'
+                        }
+                    }
+                );
+
+{#                        alert(data);#}
+
+            }
+        });
+
+    });
+
+
+// получение данных переводчика
+
+    $('#translator_details').on('click', function () {
+       if ($('#translator').val() == ''){
+            $.notify({
+                message: 'Выберите переводчика',
+
+                },
+                {
+                    type:'danger',
+                    allow_dismiss: true,
+                    newest_on_top: true,
+                    placement: {
+                        from: 'bottom',
+                        align: 'center'
+                    }
+                }
+            );
+
+       }else {
+           var id = $('#translator').val().split('_');
+           window.location.href = '/ru/dashbrd/translator_details/' + id[1]
+       }
+    });
+
+    console.log($('#translator').val())
+    if ($('#translator').val() != ''){
+        $('#translator_details').removeClass('opacity-0_3').addClass('pointer-pure')
+        $('#translator_details').prop('title', 'Подробнее о переводчике')
+
+    }
+
+//изменение переводчика
+    $('#translator').on('change', function () {
+        console.log($(this).val())
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:set_translator_for_order' %}',
+            type: 'POST',
+
+            data: JSON.stringify({
+                'translator': $(this).val(),
+                'order_id': "{{ order_details.id }}"
+            }),
+
+            error: function(data){
+                    $.notify({
+                        message: 'Возникли ошибки на сервере при сохранении',
+
+                    },
+                        {
+                            type:'danger',
+                            allow_dismiss: true,
+                            newest_on_top: true,
+                            placement: {
+                                from: 'bottom',
+                                align: 'center'
+                            }
+                        }
+                    );
+            },
+            success: function (data) {
+                updateIcons();
+
+                $("#order_status").find('option').each(function () {
+                  $(this).attr("selected",false)
+                });
+                if (data == 'translator is set'){
+                    $('#order_status option[value="Назначен переводчик"]').prop('selected', true);
+                    $('#translator_details').prop('title', 'Подробнее о переводчике');
+                    $('#translator_details').addClass('pointer-pure').removeClass('opacity-0_3');
+                    console.log(data)
+
+                }else {
+                    console.log(data)
+                    $('#order_status option[value="Расчет отослан"]').prop('selected', true);
+                    $('#translator_details').addClass('opacity-0_3')
+                    $('#translator_details').prop('title', '');
+                    $('#translator_details').removeClass('pointer-pure').addClass('opacity-0_3');
+
+                }
+                $.notify({
+                    message: 'Переводчик изменен',
+
+                },
+                    {
+                        type:'success',
+                        allow_dismiss: true,
+                        newest_on_top: true,
+                        placement: {
+                            from: 'bottom',
+                            align: 'center'
+                        }
+                    }
+                );
+
+                $('#order_status').selectpicker('refresh');
+{#                        alert(data);#}
+
+            }
+        });
+
+    });
+
+
+{% endif %}
+
+    //скачивание файла перевода и закрытие сообщения после
+    $('#translations_fileList').on('click', '.translation_file_download', function () {
+        console.log('file download');
+        var id_raw = $(this).parents().parents().attr('id');
+        var id = id_raw.split('_')[2];
+        {% if user_profile.role.role_name == 'Клиент' %}
+        $('#close_translation_message').click();
+        {% endif %}
+        window.location.href = '/ru/dashbrd/download_translation_file/' + id;
+    });
+
+    //скачивание файла ЗАЯВКИ
+    $('#fileList').on('click', '.file_download', function () {
+        var id_raw = $(this).parents().parents().attr('id');
+        var id = id_raw.split('_')[1];
+        window.location.href = '/ru/dashbrd/download_file/' + id;
+    });
+
+
+//изменение статуса
+    $('#order_status').on('change', function () {
+        console.log('sdfsdfds');
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:set_order_status' %}',
+            type: 'POST',
+
+            data: JSON.stringify({
+                'order_status': $(this).val(),
+                'order_id': "{{ order_details.id }}"
+            }),
+
+            error: function(data){
+                console.log(data);
+                console.log('gfgdfgdfg');
+            },
+            success: function (data) {
+                if (data == 'ok'){
+                    updateIcons();
+
+                    $.notify({
+                        message: 'Информация сохранена',
+
+                    },
+                        {
+                            type:'success',
+                            allow_dismiss: true,
+                            newest_on_top: true,
+                            placement: {
+                                from: 'bottom',
+                                align: 'center'
+                            }
+                        }
+                    );
+                }
+
+            }
+        });
+
+    });
+
+    </script>
+
+{% endblock %}

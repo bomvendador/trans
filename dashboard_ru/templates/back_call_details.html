@@ -1,0 +1,259 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+{#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ru:dashboard_ru:get_back_calls' %}">
+                <i class="mdi mdi-library-books f_s_15"></i> Обратные звонки
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-file-document-box f_s_15"></i> Обратный звонок № {{ back_call.id }}
+        </li>
+    </ol>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="card">
+        <div class="header bg-cyan">
+            <h2>
+                Обратный звонок № {{ back_call.id }} <small>Дата создания: {{ back_call.added|date:"d.m.Y, H:i" }}</small>{% if author_role.role.role_name %}{% if user_role.role.role_name != 'Клиент'%}<a href=""><small>Автор: {{ order_details.author.id }}. {{ author_role.role.role_name }} - {{ order_details.author.first_name }} {{ order_details.author.last_name }}</small></a><small>Источник: {{ order_details.order_src.name }}</small>{% endif %}{% endif %}
+            </h2>
+{#        <div style="float: right; font-size: 20px; position: absolute; top: 15px; right: 35px;">#}
+{##}
+{#            <i class="mdi mdi-account cursor-default {% if order_details.resp %} opacity-1 {% else %}opacity-0_5 {% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>#}
+{#            {% if user_profile.role.role_name != 'Клиент' %}#}
+{#            <i class="mdi mdi-comment-processing cursor-default {% if comments %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="message" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>#}
+{#            {% endif %}#}
+{#            <i class="mdi mdi-currency-rub cursor-default {% if order_details.calc_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отправлен" data-placement="top"></i>#}
+{#            <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>#}
+{#            <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>#}
+{#            <i class="mdi mdi-note cursor-default {% if translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="left"></i>#}
+{#            <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="left"></i>#}
+{##}
+{#        </div>#}
+            {% if user_profile.role.role_name == 'Суперадмин' %}
+
+            <ul class="header-dropdown">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="delete_order">Удалить заявку</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% endif %}
+
+        </div>
+    <!--сообщения-->
+{#    {% if user_profile.role.role_name == 'Клиент' %}#}
+{#        {% if order_details.price and order_details.paystatus.name != 'Paid' %}#}
+{#        <div class="alert bg-pink alert-dismissible" role="alert">#}
+{#           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>#}
+{#           <i class="mdi mdi-information-outline f_s_15"></i> &nbsp;По заявке ожидается оплата#}
+{#        </div>#}
+{#        {% endif %}#}
+{#        {% if translation_files and order_details.paystatus.name == 'Paid' and not order_details.translation_downloaded %}#}
+{#        <div class="alert bg-green alert-dismissible" role="alert">#}
+{#           <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close_translation_message"><span aria-hidden="true">×</span></button>#}
+{#           <i class="mdi mdi-spellcheck f_s_15"></i> &nbsp;Файлы перевода готовы к скачиванию. Их можно скачать в разделе ПЕРЕВОД#}
+{#        </div>#}
+{#        {% endif %}#}
+{##}
+{#    {% endif %}#}
+    <!---->
+            <div class="body">
+
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#order" data-toggle="tab">ДАННЫЕ <span class="label-count background-transparent none" id="order_label"><i class="mdi mdi-content-save"></i></span></a></li>
+
+                </ul>
+
+                        <div class="tab-content padding-15">
+                            <div role="tabpanel" class="tab-pane fade in active" id="order">
+                                <form id="back_call_form">{% csrf_token %}
+                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                    <h2 class="card-inside-title">Клиент</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-account f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Имя" id="name_back_call" name="name_back_call" value="{{ back_call.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Телефон" id="tel_back_call" name="tel_back_call" value="{% if back_call.tel %}{{ back_call.tel }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </form>
+                            </div>
+
+                        {% if user_profile.role.role_name != 'Клиент' %}
+
+                                <form name="back_call_form_comments" id="back_call_form_comments">
+
+                                    <div class="row">
+                                        <div class="col-sm-5">
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <textarea rows="4" class="form-control" placeholder="Текст комментария..." id="back_call_comment_text" name="back_call_comment_text"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <div class="" id="back_call_comment_div">
+                                                    <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="back_call_comment_btn" disabled>СОХРАНИТЬ</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-7" style="overflow-y: scroll; height:200px; " id="comments_div">
+                                            {% for comment in back_call_comments %}
+                                            <div class="comments-style">
+                                                <div style="">
+                                                    <div>
+                                                        <small>{{ comment.added|date:"d.m.Y, H:i" }}</small>
+                                                    </div>
+
+                                                    <small>{{ comment.author_role.role_name }},{{ comment.author.first_name }} {{ comment.author.last_name }}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mrg-bot-20" style="margin-left: 10px">
+                                                {{ comment.comment }}
+                                            </div>
+
+                                            {% endfor %}
+
+                                        </div>
+                                    </div>
+                                </form>
+
+                            {% endif %}
+                        </div>
+
+{#                    <div role="tabpanel" class="card-inside-title tab-pane fade in active" id="payment">#}
+{##}
+{#                        <div class="row clearfix jsdemo-notification-button">#}
+{#<button type="button" class="btn btn-success btn-block waves-effect" data-placement-from="bottom" data-placement-align="center"#}
+{#                                            data-animate-enter="" data-animate-exit="" data-color-name="alert-success">#}
+{#                                        SUCCESS#}
+{#                                    </button>#}
+{##}
+{#                            </div>#}
+{##}
+{##}
+{#                    </div>#}
+            </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+
+
+{#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
+    <script>
+
+    $(document).ready(function () {
+        //скролл до конца комментариев
+        $('#back_call_comment_div').animate({ scrollTop: $('#back_call_comment_div')[0].scrollHeight}, 'slow');
+
+    });
+
+    {% if user_profile.role.role_name != 'Клиент' %}
+{#    moment.locale("ru");#}
+{##}
+
+    $("#comments_div").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+    //активация кнопки сохранения сообщения
+        $('#back_call_comment_text').on('input', function () {
+           $('#back_call_comment_btn').removeAttr('disabled')
+        });
+
+
+        //сохранение комментария
+    $('#back_call_comment_btn').on('click', function () {
+        var data_ = new FormData($('#back_call_form_comments').get(0));
+{#            data_.append('user_id', {{ order_details.user.id }});#}
+        data_.append('back_call_id', {{ back_call.id }});
+
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_order_comment' %}',
+            type: 'POST',
+            data: data_,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                console.log(data);
+                console.log(data['date']);
+                var data_json = $.parseJSON(data);
+                var first_name = data_json['author_firstname'];
+                var last_name = data_json['author_lastname'];
+                var date = data_json['date'];
+                var role = data_json['role'];
+                var comment = data_json['comment'];
+                $('#message').css('opacity', 1)
+                $('#comments_div').append('<div class="comments-style"><div style=""><div><small>' + date + '</small></div> <small>' + role + ','  + first_name + ' ' + last_name + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment + '</div>')
+                $("#comments_div").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+                $('#back_call_comment_text').val('');
+                $('#back_call_comment_btn').prop('disabled', 'true');
+{#                swal({#}
+{#                    title: 'Информация сохранена',#}
+{#                    text: 'Данные на сервере успешно обновлены',#}
+{#                    type: 'success',#}
+{#                    confirmButtonText: 'Ok',#}
+{#                    closeOnConfirm: true#}
+{#                },#}
+{#                function (isConfirm) {#}
+{#                    if (isConfirm){#}
+{#                    }#}
+{#                });#}
+            }
+        });
+
+    });
+
+    {% endif %}
+    </script>
+
+{% endblock %}

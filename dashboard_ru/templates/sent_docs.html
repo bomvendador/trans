@@ -1,0 +1,202 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+            <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+            <link rel="stylesheet" href="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}">
+            <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="material-icons">home</i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <i class="material-icons">library_books</i> {% if new_orders %} Новые заявки {% elif in_progress_orders %} Заявки в работе {% elif orders_complete %}Выполненные заявки{% else %}Заявки{% endif %}
+        </li>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="page-loader-wrapper">#}
+{#        <div class="loader">#}
+{#            <div class="preloader">#}
+{#                <div class="spinner-layer pl-red">#}
+{#                    <div class="circle-clipper left">#}
+{#                        <div class="circle"></div>#}
+{#                    </div>#}
+{#                    <div class="circle-clipper right">#}
+{#                        <div class="circle"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <p>Загрузка...</p>#}
+{#        </div>#}
+{#    </div>#}
+
+
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                {% if new_orders %} СПИСОК НОВЫХ ЗАЯВОК {% elif in_progress_orders %} СПИСОК ЗАЯВОК В РАБОТЕ {% elif orders_complete %}СПИСОК ВЫПОЛНЕННЫХ ЗАЯВОК{% else %}СПИСОК ЗАЯВОК{% endif %}
+
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                        <li><a href="{% url 'ru:dashboard_ru:get_new_orders' %}" id="orders_new">Новые</a></li>
+                                        {% else %}
+                                        <li><a href="{% url 'ru:dashboard_ru:get_sent_docs' %}" id="orders_new">Все</a></li>
+
+                                        {% endif %}
+                                        <li><a href="{% url 'ru:dashboard_ru:get_in_progress_sent_docs' %}" id="orders_in_progress">В работе</a></li>
+                                        <li><a href="{% url 'ru:dashboard_ru:get_complete_sent_docs' %}" id="orders_complete">Выполненные</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable {% if user_profile.role.id == 1 %} js-exportable {% else %} js-basic-example {% endif %}">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Дата и время</th>
+                                        <th>Текст</th>
+                                        <th>Файлы</th>
+                                        <th>Статус</th>
+                                        <th>Перевод с/на</th>
+                                        {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                        <th>Ответственный</th>
+                                        {% endif %}
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                        <th>Заказчик</th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                        <th>ID</th>
+                                        <th>Дата и время</th>
+                                        <th>Текст</th>
+                                        <th>Файлы</th>
+                                        <th class="">Статус</th>
+                                        <th>Перевод с/на</th>
+                                        {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                        <th>Ответственный</th>
+                                        {% endif %}
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                        <th>Заказчик</th>
+                                        {% endif %}
+
+                                </tfoot>
+                                <tbody>
+
+                                {% for sent_doc in sent_docs %}
+
+                                    <tr class="sent_doc pointer-pure" id="{{ sent_doc.id }}">
+
+                                        <td class="">
+
+                                        {% if user_profile.role.role_name == 'Админ' or user_profile.role.role_name == 'Суперадмин' %}
+                                            {% if sent_doc.status.name == 'Новый' %}
+                                                <i class="mdi mdi-download color-blue"></i>
+                                            {% endif %}
+                                        {% endif %}
+                                        {% if user_profile.role.role_name == 'Менеджер' %}
+                                            {% if sent_doc.status.name == 'Назначен менеджер' %}
+                                                <i class="mdi mdi-download color-blue"></i>
+                                            {% endif %}
+                                        {% endif %}
+                                        {{ sent_doc.id }}
+                                        </td>
+                                        <td>{{ sent_doc.timestamp|date:"d.m.Y, H:i" }}</td>
+                                        <td>{% if sent_doc.text_qnt > 0 %}
+                                            {{ sent_doc.text_qnt }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if sent_doc.files_qnt > 0 %}
+                                            {{ sent_doc.files_qnt }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <i class="mdi mdi-account {% if not sent_doc.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                                            {% if user_profile.role.role_name != 'Клиент' %}
+                                            <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
+                                            {% endif %}
+                                            <i class="mdi mdi-currency-rub {% if not sent_doc.calc_sent_date %}opacity-0_5{% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отослан" data-placement="top"></i>
+                                            <i class="mdi mdi-voice {% if not sent_doc.translator %}opacity-0_5{% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+                                            <i class="mdi mdi-wallet {% if sent_doc.paystatus.name != 'Paid' %}opacity-0_5{% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+                                            <i class="mdi mdi-note {% if not sent_doc.translation_files %}opacity-0_5{% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+
+                                            <i class="mdi mdi-spellcheck {% if not sent_doc.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
+
+                                        </td>
+                                        <td>{% if sent_doc.trans_from.name %}
+                                            {{ sent_doc.trans_from.name }}/{{ sent_doc.trans_to.name }}
+                                            {% else %}
+                                            -
+                                            {% endif %}
+                                        </td>
+                                        {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                        <td>{{ sent_doc.resp.first_name }} {{ sent_doc.resp.last_name }}</td>
+                                        {% endif %}
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                        <td>{{ sent_doc.email }}</td>
+                                        {% endif %}
+
+                                    </tr>
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+{% endblock %}
+
+{% block script %}
+        <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+        <script src="{% static 'js/dashboard/pages/tables/jquery-datatable.js' %}"></script>
+
+<script>
+
+    $('#menu_list li').each(function () {
+        $(this).removeClass('active')
+    });
+    $('#menu_orders').addClass('active');
+
+
+    $('.sent_doc').on('click', function () {
+        window.location.href = "/ru/dashbrd/order_details/" + $(this).attr('id');
+    })
+
+
+</script>
+{% endblock %}

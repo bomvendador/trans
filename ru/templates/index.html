@@ -1,0 +1,810 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% load i18n %}
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% block links %}
+{#        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'css/flexslider.css' %}">#}
+
+{#        <link rel="stylesheet" href="{% static 'css/testimonials-carousel/reset.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'css/testimonials-carousel/style.css' %}">#}
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+        <link rel="stylesheet" href="{% static 'css/carousel2.css' %}">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" media="all">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+{#Slider start#}
+
+        <div id="bootstrap-touch-slider" class="carousel bs-slider slide  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#bootstrap-touch-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#bootstrap-touch-slider" data-slide-to="1"></li>
+                <li data-target="#bootstrap-touch-slider" data-slide-to="2"></li>
+            </ol>
+
+            <!-- Wrapper For Slides -->
+            <div class="carousel-inner" role="listbox">
+
+                <!-- First Slide -->
+                <div class="item active slider-height-mobile">
+
+                    <!-- Slide Background -->
+                    <img src="{% static 'img/slider/1_1.jpg' %}" alt="Bootstrap Touch Slider"  class="slide-image hidden-xs padding-top-55"/>
+                    <img src="{% static 'img/slider/background-1_1.jpg' %}" alt="Bootstrap Touch Slider"  class="slide-image hidden-lg hidden-md hidden-sm padding-top-55"/>
+                    <div class="bs-slider-overlay"></div>
+
+                    <div class="container">
+                        <div class="row">
+                            <!-- Slide Text Layer -->
+                            <div class="slide-text slide_style_left">
+                                <h1 data-animation="animated zoomInRight" class="main-page-title">Переводим</h1>
+                                <p data-animation="animated fadeInLeft" class="margin-bottom-5"><i class="mdi mdi-earth"></i> &nbsp;С более, чем 50 языков мира</p>
+                                <p data-animation="animated fadeInLeft" class="margin-bottom-5"><i class="mdi mdi-note-multiple-outline"></i> &nbsp;Более 2000 страниц документов в месяц</p>
+                                <p data-animation="animated fadeInLeft" class="margin-bottom-5"><i class="mdi mdi-account-multiple" ></i> &nbsp;С участием высококвалифицированных редакторов</p>
+                                <p data-animation="animated fadeInLeft" class="margin-bottom-5"><i class="mdi mdi-clock-fast" ></i> &nbsp;От отправки заявки до получения расчета - 30 мин.</p>
+
+                                <a href="http://bootstrapthemes.co/" target="_blank"  class="btn btn-primary margin-top-30 margin-left-0" data-animation="animated fadeInRight">Подробнее</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+                <!-- Second Slide -->
+                <div class="item slider-height-mobile">
+
+                    <!-- Slide Background -->
+                    <img src="{% static 'img/slider/1_1.jpg' %}" alt="Bootstrap Touch Slider"  class="slide-image hidden-xs padding-top-55"/>
+                    <img src="{% static 'img/slider/background-15-2.jpg' %}" alt="Bootstrap Touch Slider"  class="slide-image hidden-lg hidden-md hidden-sm padding-top-55"/>
+                    <div class="bs-slider-overlay"></div>
+                    <!-- Slide Text Layer -->
+                    <div class="slide-text slide_style_center">
+                        <h1 data-animation="animated flipInX">Bootstrap touch slider</h1>
+                        <p data-animation="animated lightSpeedIn">Make Bootstrap Better together.</p>
+
+                        <a href="http://bootstrapthemes.co/" target="_blank"  class="btn btn-primary" data-animation="animated fadeInDown">select two</a>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+                <!-- Third Slide -->
+                <div class="item slider-height-mobile">
+
+                    <!-- Slide Background -->
+                    <img src="{% static 'img/slider/1_1.jpg' %}" alt="Bootstrap Touch Slider"  class="slide-image slider-height-mobile padding-top-55"/>
+                    <div class="bs-slider-overlay"></div>
+                    <!-- Slide Text Layer -->
+                    <div class="slide-text slide_style_right">
+                        <h1 data-animation="animated zoomInLeft">Beautiful Animations</h1>
+                        <p data-animation="animated fadeInRight">Lots of css3 Animations to make slide beautiful .</p>
+
+                        <a href="http://bootstrapthemes.co/" target="_blank" class="btn btn-primary" data-animation="animated fadeInRight">select two</a>
+                    </div>
+                </div>
+                <!-- End of Slide -->
+
+
+            </div><!-- End of Wrapper For Slides -->
+
+            <!-- Left Control -->
+            <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+                <span class="fa fa-angle-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <!-- Right Control -->
+            <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+                <span class="fa fa-angle-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div>
+<!-- Slider ends -->
+
+
+
+
+{#    <section id="fh5co-about" data-section="about">#}
+{#		<div class="container">#}
+{##}
+{#			<div class="row">#}
+{#				<div class="col-md-7 col-md-pull-1">#}
+{#					<img src="images/img_1.jpg" class="img-shadow img-responsive" alt="Free HTML5 Bootstrap Template">#}
+{#				</div>#}
+{#				<div class="col-md-5">#}
+{#					<h2 class="to-animate">About Us</h2>#}
+{#					<p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>#}
+{#					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>#}
+{##}
+{#					<p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.</p>#}
+{##}
+{#					<ul class="list-nav">#}
+{#						<li><i class="icon-check2"></i>Far far away, behind the word</li>#}
+{#						<li><i class="icon-check2"></i>There live the blind texts</li>#}
+{#						<li><i class="icon-check2"></i>Separated they live in bookmarksgrove</li>#}
+{#						<li><i class="icon-check2"></i>Semantics a large language ocean</li>#}
+{#						<li><i class="icon-check2"></i>A small river named Duden</li>#}
+{#					</ul>#}
+{#				</div>#}
+{#			</div>#}
+{##}
+{#		</div>#}
+{#	</section>#}
+
+
+
+
+
+
+
+
+
+{#services#}
+	<section id="fh5co-services" data-section="services">
+		<div class="fh5co-services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate main-page-title">Направления осуществляемых переводов</h2>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 subtext">
+								<h3 class="to-animate"></h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-account-card-details to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Перевод официальных и личных документов</h3>
+
+                                <p class="font_color_text">Удостоверения личности, деловая и личная переписка, документы общего неспециализированного характера</p>
+							</div>
+						</div>
+
+						<div class="box-services">
+							<i class="mdi mdi-sign-caution to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Международные договоры, таможенные документы</h3>
+								<p class="font_color_text">Перевод и составление договоров в соответствии с международными стандартами, таможенное оформление </p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-wrench to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Технический перевод</h3>
+								<p class="font_color_text">Проведение пуско-наладочных работ, подбор оборудования, соответствующего требованиям заказчика, перевод инструкций по эксплуатации</p>
+							</div>
+						</div>
+
+						<div class="box-services">
+							<i class="mdi mdi-web to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Интернет-ресурсы</h3>
+								<p class="font_color_text">Перевод различных интернет-ресурсов с сохранением разметки</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-heart-pulse to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Медицинский перевод</h3>
+								<p class="font_color_text">Перевод специализированной медицинской литературы, перевод семинаров, конференций и презентаций медицинской направленности</p>
+							</div>
+						</div>
+						<div class="box-services">
+							<i class="mdi mdi-chart-areaspline to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Экономический и бухгалтерский переводы</h3>
+								<p class="font_color_text">Перевод документов экономической и бухгалтерской направленности, аудиторские отчеты, экономические расчеты, бизнес-планы, коммерческие предложения</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="call-to-action text-center to-animate"><a href="{% url 'ru:learn_more_trans' %}" class="btn btn-learn">Подробнее</a></div>
+			</div>
+		</div>
+	</section>
+
+
+    	<section id="fh5co-team" data-section="types">
+		<div class="">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate main-page-title">Виды переводов</h2>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 subtext">
+								<h3 class="to-animate"></h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="team-box text-center to-animate-2">
+							<div class="user"><img class="img-reponsive" src="{% static 'img/written_crop.jpg' %}" alt="Roger Garfield"></div>
+							<h3 class="header_font">Письменный</h3>
+							<span class="position">бумажные, электронные носители, html текст</span>
+							<p class="font_color_text">Перевод текстовой информации на бумажных и электронных носителях, отправленных через сайт, простой html текст, через форму на сайте</p>
+{#							<ul class="social-media">#}
+{#								<li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>#}
+{#								<li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>#}
+{#								<li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>#}
+{#								<li><a href="#" class="codepen"><i class="icon-codepen"></i></a></li>#}
+{#								<li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>#}
+{#							</ul>#}
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="team-box text-center to-animate-2" style="height: 463px">
+							<div class="user"><img class="img-reponsive" src="{% static 'img/verbal.jpg' %}" alt="Roger Garfield"></div>
+							<h3 class="header_font mob-text-align-center">Устный</h3>
+							<span class="position">синхронный, последовательный, шушутаж</span>
+							<p class="font_color_text">Cопровождение иностранных представителей, выезд за границу с заказчиком, видео-конференции</p>
+{#							<ul class="social-media">#}
+{#								<li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>#}
+{#								<li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>#}
+{#								<li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>#}
+{#								<li><a href="#" class="codepen"><i class="icon-codepen"></i></a></li>#}
+{#								<li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>#}
+{#							</ul>#}
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="team-box text-center to-animate-2" style="height: 463px">
+							<div class="user"><img class="img-reponsive" src="{% static 'img/audio.jpg' %}" alt="Roger Garfield"></div>
+							<h3 class="header_font">Аудио, видео контент</h3>
+							<span class="position">результат: текстовый документ, аудио, видео</span>
+							<p class="font_color_text">Перевод видео, аудио презентаций, фильмов, видеоуроков, обращений, поздравлений, видеоинструкций </p>
+{#							<ul class="social-media">#}
+{#								<li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>#}
+{#								<li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>#}
+{#								<li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>#}
+{#								<li><a href="#" class="codepen"><i class="icon-codepen"></i></a></li>#}
+{#								<li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>#}
+{#							</ul>#}
+						</div>
+					</div>
+				</div>
+                <div class="call-to-action text-center to-animate margin-top-30"><a href="{% url 'ru:learn_more_types' %}" class="btn btn-learn background-red">Подробнее</a></div>
+
+			</div>
+		</div>
+	</section>
+
+
+
+{#services#}
+	<section id="fh5co-whyus" data-section="whyus" class="">
+		<div class="fh5co-services">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 section-heading text-center">
+						<h2 class="to-animate main-page-title">6 причин доверять нам</h2>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2 subtext">
+								<h3 class="to-animate"></h3>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-account-search to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Более 4000 переводчиков</h3>
+								<p class="font_color_text">Наши переводчики владеют различными направлениями и специализацией. Переводчики выполняют работу строго в пределах собственной специализации, что гарантирует высокое качество переводов</p>
+							</div>
+						</div>
+
+						<div class="box-services">
+							<i class="mdi mdi-chart-line to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Более 2000 переводов</h3>
+								<p class="font_color_text">Мы выполняем более 2000 заказов ежемесячно, строго выдерживая оговоренные сроки и качество</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-buffer to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Многоуровневая система качества</h3>
+								<p class="font_color_text">Мы работаем только с проверенными переводчиками, используя многоуровневую систему проверки выполняемых переводов</p>
+							</div>
+						</div>
+
+						<div class="box-services">
+							<i class="mdi mdi-credit-card to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Различные способы оплаты</h3>
+								<p class="font_color_text">Для удобства наших клиентов мы принимаем различные способы оплаты: безналичный расчет, оплата картой на сайте, электронные деньги</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="box-services">
+							<i class="mdi mdi-speedometer to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Скорость выполнения работ</h3>
+								<p class="font_color_text">Все заказы выполняются в строгом соответствии с регламентом нашей компании, предполагающий подбор переводчика и начало работ в течение суток, с момента подтверждения заказа</p>
+							</div>
+						</div>
+						<div class="box-services">
+							<i class="mdi mdi-account-key to-animate-2"></i>
+							<div class="fh5co-post to-animate">
+								<h3 class="header_font">Личный кабинет</h3>
+								<p class="font_color_text">С помощью личного кабинета Вы всегда сможете видеть прогресс выполняемых работ, историю заказов, свои накопительные баллы и другую полезную статистику</p>
+							</div>
+						</div>
+					</div>
+				</div>
+{#				<div class="call-to-action text-center to-animate"><a href="#" class="btn btn-learn">Learn More</a></div>#}
+			</div>
+		</div>
+	</section>
+
+
+{#    <section id="fh5co-testimony" data-section="testimony">#}
+{#		<div class="container">#}
+{#			<div class="row">#}
+{#				<div class="col-md-12 to-animate">#}
+{#					<div class="wrap-testimony">#}
+{#						<div class="owl-carousel-fullwidth">#}
+{#							<div class="item">#}
+{#								<div class="testimony-slide active text-center">#}
+{#									<figure>#}
+{#										<img src="images/person2.jpg" alt="user">#}
+{#									</figure>#}
+{#									<blockquote>#}
+{#										<p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>#}
+{#									</blockquote>#}
+{#									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="item">#}
+{#								<div class="testimony-slide active text-center">#}
+{#									<figure>#}
+{#										<img src="images/person3.jpg" alt="user">#}
+{#									</figure>#}
+{#									<blockquote>#}
+{#										<p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>#}
+{#									</blockquote>#}
+{#									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>#}
+{#								</div>#}
+{#							</div>#}
+{#							<div class="item">#}
+{#								<div class="testimony-slide active text-center">#}
+{#									<figure>#}
+{#										<img src="images/person2.jpg" alt="user">#}
+{#									</figure>#}
+{#									<blockquote>#}
+{#										<p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>#}
+{#									</blockquote>#}
+{#									<span>John Doe, via <a href="#" class="twitter">Twitter</a></span>#}
+{#								</div>#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+{#	</section>#}
+
+
+
+    <section id="fh5co-testimonials" data-section="testimonials" class="padding-top-10 padding-bottom-10" style="background: #1A1B1E">
+
+        <div class="cd-testimonials-wrapper cd-container">
+            <ul class="cd-testimonials">
+                <li>
+                    <p>Заказали письменный перевод технической документации. Все было сделано оперативно и качественно. Спасибо за квалифицированный сервис! Обязательно обратимся снова.</p>
+                    <div class="cd-author">
+                        <img src="{% static 'img/avatar-1.jpg' %}" alt="Author image" class="margin-bottom-0">
+                        <ul class="cd-author-info text_align_center margin-top-5 hidden-lg hidden-sm hidden-md">
+                            <li>Виктор Бочинский</li>
+                            <li>Генеральный директор, ООО "Производственные технологии"</li>
+                        </ul>
+                        <ul class="cd-author-info text-align-left hidden-xs">
+                            <li>Виктор Бочинский</li>
+                            <li>Генеральный директор, ООО "Производственные технологии"</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <p>Организовывали презентацию компании для иностранного инвестора с дальнейшими проведением переговоров. Очень благодарны за помощь. Переводчик высокой квалификации. Все прошло отлично!</p>
+                    <div class="cd-author">
+                        <img src="{% static 'img/avatar-3.jpg' %}" alt="Author image" class="margin-bottom-0">
+                        <ul class="cd-author-info text_align_center margin-top-5 hidden-lg hidden-sm hidden-md">
+                            <li>Анатолий Деревянко</li>
+                            <li>Коммерческий директор, ООО "ИНН-ГРУПП"</li>
+                        </ul>
+                        <ul class="cd-author-info text-align-left hidden-xs">
+                            <li>Анатолий Деревянко</li>
+                            <li>Коммерческий директор, ООО "ИНН-ГРУПП"</li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li>
+                    <p>Закупали оборудование в Китае. Обратились к ООО "ДАТАПРО ЦЕНТР", вели сделку, начиная с переговоров до пуско-наладки. Все было сделано профессионально.</p>
+                    <div class="cd-author">
+                        <img src="{% static 'img/avatar-4.jpg' %}" alt="Author image" class="margin-bottom-0">
+                        <ul class="cd-author-info text_align_center margin-top-5 hidden-lg hidden-sm hidden-md">
+                            <li>Владимир Соловьев</li>
+                            <li>Генеральный директор, ООО "Пласт-профи"</li>
+                        </ul>
+                        <ul class="cd-author-info text-align-left hidden-xs">
+                            <li>Владимир Соловьев</li>
+                            <li>Генеральный директор, ООО "Пласт-профи"</li>
+                        </ul>
+                    </div>
+                </li>
+
+            </ul> <!-- cd-testimonials -->
+
+            <a href="#0" class="cd-see-all">Все отзывы</a>
+        </div> <!-- cd-testimonials-wrapper -->
+
+        <div class="cd-testimonials-all">
+            <div class="cd-testimonials-all-wrapper" style="background: #39393C">
+                <ul>
+                    <li class="cd-testimonials-item">
+                        <p>Неоднократно обращались за переводом документов. Работают оперативно, четко выдерживая сроки.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>Елена Колченко</li>
+                                <li>Кадровое Агенство "Кадры решают все"</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>В связи с началом работы с иностранными поставщиками, необходима была помощь в переписке. Начали с этого, в дальнейшем вели переговоры и дальнейшую деятельность.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem quibusdam eveniet, molestiae laborum voluptatibus minima hic quasi accusamus ut facere, eius expedita, voluptatem? Repellat incidunt veniam quaerat, qui laboriosam dicta. Quidem ducimus laudantium dolorum enim qui at ipsum, a error.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero voluptates officiis tempore quae officia! Beatae quia deleniti cum corporis eos perferendis libero reiciendis nemo iusto accusamus, debitis tempora voluptas praesentium repudiandae laboriosam excepturi laborum, nisi optio repellat explicabo, incidunt ex numquam. Ullam perferendis officiis harum doloribus quae corrupti minima quia, aliquam nostrum expedita pariatur maxime repellat, voluptas sunt unde, inventore.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit totam saepe iste maiores neque animi molestias nihil illum nisi temporibus.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis quia quas, quis illo adipisci voluptate ex harum iste commodi nulla dolor. Eius ratione quod ab!</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, dignissimos iure rem fugiat consequuntur officiis.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At temporibus tempora necessitatibus reiciendis provident deserunt maxime sit id. Dicta aut voluptatibus placeat quibusdam vel, dolore.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis iusto sapiente, excepturi velit, beatae possimus est tenetur cumque fugit tempore dolore fugiat! Recusandae, vel suscipit? Perspiciatis non similique sint suscipit officia illo, accusamus dolorum, voluptate vitae quia ea amet optio magni voluptatem nemo, natus nihil.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor quasi officiis pariatur, fugit minus omnis animi ut assumenda quod commodi, ad a alias maxime unde suscipit magnam, voluptas laboriosam ipsam quibusdam quidem, dolorem deleniti id.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At temporibus tempora necessitatibus reiciendis provident deserunt maxime sit id. Dicta aut voluptatibus placeat quibusdam vel, dolore.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+
+                    <li class="cd-testimonials-item">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque tempore ipsam, eos suscipit nostrum molestias reprehenderit, rerum amet cum similique a, ipsum soluta delectus explicabo nihil repellat incidunt! Minima magni possimus mollitia deserunt facere, tempore earum modi, ea ipsa dicta temporibus suscipit quidem ut quibusdam vero voluptatibus nostrum excepturi explicabo nulla harum, molestiae alias. Ab, quidem rem fugit delectus quod.</p>
+
+                        <div class="cd-author">
+                            <ul class="cd-author-info">
+                                <li>MyName</li>
+                                <li>CEO, CompanyName</li>
+                            </ul>
+                        </div> <!-- cd-author -->
+                    </li>
+                </ul>
+            </div>	<!-- cd-testimonials-all-wrapper -->
+
+            <a href="#0" class="close-btn color_white"><i class="mdi mdi-close font-size-25"></i></a>
+        </div> <!-- cd-testimonials-all -->
+
+
+
+    </section>
+
+
+
+
+
+
+	<section id="fh5co-form" data-section="form" class="">
+
+        <div class="getting-started getting-started-1 animated">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 to-animate fadeInUp animated">
+                        <h3 class="header_font">Отправьте нам материал для бесплатного расчета стоимости и сроков</h3>
+                        <p>Вы можете отправить нам материал для расчета в виде электронного документа (jpg, tiff, pdf, doc, xls), а также просто скопировав текст и вставив его в форму</p>
+                    </div>
+                    <div class="col-md-6 to-animate-2 fadeInRight animated mrg-top-35">
+                        <div class="call-to-action text-right">
+                            <button href="#" class="btn btn-cyan btn-send-doc col-xs-12 col-lg-6 col-lg-push-6" id="btn_doc_send_open">Отправить</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+<section id="fh5co-footer" data-section="contacts" class="animated">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 to-animate fadeIn animated">
+					<h3 class="section-title">About Us</h3>
+					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics.</p>
+					<p class="copy-right">© 2016 | PROLINGVA<br> ООО "ДАТАПРО ЦЕНТР", ИНН 9717025446 <br>
+{#						Designed by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a>#}
+{#						Demo Images: <a href="http://unsplash.com/" target="_blank">Unsplash</a>#}
+					</p>
+				</div>
+
+				<div class="col-md-4 to-animate fadeIn animated">
+					<h3 class="section-title main-page-title">Контакты</h3>
+					<ul class="contact-info">
+						<li><i class="mdi mdi-map top--5"></i>129515, г. Москва, ул. Академика Королева, 13, стр. 1</li>
+						<li><i class="mdi mdi-phone top--5"></i>тел: +7 8 800 000 00 00</li>
+						<li><i class="mdi mdi-email top--5"></i><a href="#">info@yoursite.com</a></li>
+						<li><i class="mdi mdi-web top--5"></i><a href="#">www.yoursite.com</a></li>
+					</ul>
+{#					<h3 class="section-title">Connect with Us</h3>#}
+{#					<ul class="social-media">#}
+{#						<li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>#}
+{#						<li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>#}
+{#						<li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>#}
+{#						<li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>#}
+{#					</ul>#}
+				</div>
+				<div class="col-md-4 to-animate fadeIn animated">
+					<h3 class="section-title main-page-title">Свяжитесь с нами</h3>
+					<form class="contact-form" id="contact_form_footer">{% csrf_token %}
+						<div class="form-group">
+{#							<label for="name" class="sr-only">Имя</label>#}
+							<input type="name" class="form-control padding-left-10" id="name_contact_form_footer" name="name_contact_form_footer" placeholder="Имя">
+						</div>
+						<div class="form-group">
+{#							<label for="email" class="sr-only">Email</label>#}
+{#							<input type="name" class="form-control padding-left-10" id="name_contact_form_footer" name="name_contact_form_footer" placeholder="Имя">#}
+
+
+							<input type="name" class="form-control padding-left-10" id="email_contact_form_footer" name="email_contact_form_footer" placeholder="Email">
+{#							<input type="text" class="form-control padding-left-10 hidden-sm hidden-md hidden-lg" id="email_contact_form_footer_mob" name="email_contact_form_footer_mob" placeholder="Email" style="width: 98.5%;">#}
+						</div>
+						<div class="form-group">
+							<label for="message" class="sr-only">Message</label>
+							<textarea class="form-control padding-left-10" id="message_contact_form_footer" name="message_contact_form_footer" rows="7" placeholder="Сообщение"></textarea>
+						</div>
+						<div class="form-group">
+                            <div class="text-center btn btn-learn background-red margin-left-0 letter-spacing-1 col-sm-6 col-xs-12" id="btn_send_form_footer">
+                                Отправить
+                            </div>
+
+{#							<input type="submit" id="" class="btn btn-learn background-red" value="Send Message">#}
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+{% endblock %}
+
+{% block script_footer %}
+    <script src="{% static 'js/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/carousel2.js' %}"></script>
+
+    <script src="{% static 'js/testimonials-carousel/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/testimonials-carousel/jquery.flexslider-min.js' %}"></script>
+    <script src="{% static 'js/testimonials-carousel/main.js' %}"></script>
+    <script>
+
+    var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
+    var email_err_contact_form = false;
+    var email_err_contact_form_msg = '';
+    $('#btn_send_form_footer').on('click', function () {
+        //валидация email
+        console.log($("#email_contact_form_footer").val());
+        if ($('#email_contact_form_footer').val() != '') {
+            if (!email.test($('#email_contact_form_footer').val())) {
+                $('#email_contact_form_footer').focus();
+                email_err_contact_form_msg = 'Проверьте правильность заполнения email';
+                email_err_contact_form = true;
+            }
+        } else {
+            email_err_contact_form = true;
+            email_err_contact_form_msg = 'Введите, пожалуйста, email';
+            $('#email_contact_form_footer').focus();
+        }
+        if (email_err_contact_form){
+            swal({
+                title: 'Ошибка',
+                text: email_err_contact_form_msg,
+                type: 'warning',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: false
+            });
+            email_err_contact_form = false;
+        }else {
+            showPreloader();
+            var formdata = new FormData($('#contact_form_footer').get(0));
+            formdata.append('contact_form_footer', 'yes');
+            $.ajax({
+                url: '{% url 'ru:save_files_trans' %}',
+                type: 'POST',
+                data: formdata,
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    console.log(data);
+                },
+                success:function (data) {
+                    $("#email_contact_form_footer").val('');
+                    $("#name_contact_form_footer").val('');
+                    $("#message_contact_form_footer").val('');
+                    hidePreloader();
+
+                    if (data == 'ok'){
+{#                        $('.close').click();#}
+                            swal({
+                                title: 'Информация успешно отправлена',
+                                text: 'Спасибо за оказанное нам доверие! В ближайшее время с Вами свяжется наш Manager',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            });
+
+{#                                toastr.success('Заголовок', 'Текст все ок');#}
+                    }else {
+                        $('.close').click();
+
+                        if (data == 'user_exists'){
+                            swal({
+                                title: 'Информация успешно отправлена',
+                                text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                    swal({
+                                        title: 'Пользователь с таким email уже зарегистрирован',
+                                        text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',
+                                        type: 'warning'
+                                    })
+                                }
+                            });
+
+                        }
+                    }
+{#                        alert(data);#}
+                    clear_send_docs();
+                }
+            });
+
+        }
+
+    })
+
+
+    </script>
+{% endblock %}
+</body>
+</html>

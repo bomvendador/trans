@@ -1,0 +1,418 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/multi-select/css/multi-select.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tokenize2.min.css' %}" rel="stylesheet" />
+{#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+    ввв
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ru:dashboard_ru:get_admins_list' %}">
+                <i class="mdi mdi-account-multiple f_s_15"></i> Админы
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-account f_s_15"></i> Админ № {{ admin.id }}
+        </li>
+    </ol>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="card">
+        <div class="header bg-cyan">
+            <h2>
+                Админ № {{ admin.id }} <small>Дата регистрации: {{ admin.registered|date:"d.m.Y, H:i" }}</small>{% if admin.creator %}<small>Автор: {{ admin.creator.id }}. {{ creator_role.role_name }} - {{ admin.creator.first_name }} {{ admin.creator.last_name }}</small>{% endif %}
+            </h2>
+        {% if user_profile.role.role_name == 'Суперадмин' %}
+            <ul class="header-dropdown">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="del_admin_btn">Удалить</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
+        </div>
+            <div class="body">
+
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#info" data-toggle="tab">ИНФО <span class="label-count background-transparent none" id="info_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    <li role="presentation"><a href="#payment" data-toggle="tab">ОПЛАТА</a></li>
+                    <li role="presentation"><a href="#orders" data-toggle="tab">ЗАЯВКИ</a></li>
+                    <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+                </ul>
+                    <div class="tab-content padding-top-30">
+                            <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                <form action="" method="post" id="form_info">{% csrf_token %}
+
+    {#                            <h2 class="card-inside-title">Клиент</h2>#}
+                                <div class="row clearfix">
+                                        <div class="col-md-3">
+                                            <div id="foto" class="foto" style="background-image: url('/static/photo/{{ admin.photo.name }}'); ">
+
+                                                <div class="foto" >
+
+                                                <div id="upload_foto" class="foto" style="background: rgba(0, 0, 0,0.3); {% if admin.photo.name %}display: none{% endif %}">
+                                                    <div>
+                                                        <i class="mdi mdi-cloud-upload font-30 centered pointer-pure" style="color: white" title="Загрузить фото (мин размер 150х200)" id="upload_icon"></i>
+                                                        <input type="file" id="admin_foto" name="admin_foto" class="opacity-0"/>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        {#                                <div class="col-md-1">#}
+        {#                                    <i class="mdi mdi-rotate-left f_s_20" id="rotate"></i>#}
+        {#                                </div>#}
+
+                                    {#                            <div class="row clearfix">#}
+                                        <div class="col-md-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-account f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Имя" id="name_admin" name="name_admin" value="{{ admin.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                                </div>
+                                            </div>
+        {#                                </div>#}
+
+
+        {#                                <div class="col-md-4">#}
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-email f_s_20"></i>
+                                                </span>
+
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Email" id="email_admin" name="email_admin" value="{{ admin.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+        {#                                </div>#}
+        {#                                <div class="col-md-4">#}
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Телефон" id="tel_admin" name="tel_admin" value="{{ admin.tel }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Введите дату рождения..." name="birthday" id="birthday" value="{{ admin.date_birth }}">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+{#                                    <h2 class="card-inside-title">Владение языками</h2>#}
+                                    <div class="row clearfix">
+{#                                        <div class="body">#}
+{#                                            <div class="row clearfix">#}
+{#                                                <div class="col-sm-5">#}
+{#                                                    <select class="form-control show-tick" id="language" name="language">#}
+{#                                                        <option value="default">-- Выберите язык --</option>#}
+{#                                                        {% for lang in langs %}#}
+{#                                                                    <option value="{{ lang.name }}">{{ lang.name }}</option>#}
+{#                                                        {% endfor %}#}
+{#                                                    </select>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-2 text text_align_center f_s_20">#}
+{#                                                    <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>#}
+{#                                                    <i class="mdi mdi-arrow-right hidden-xs"></i>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-5">#}
+{#                                                    <ul class="list-group" id="language_select">#}
+{#                                                        {% for lang in langs_select %}#}
+{#                                                        <li class="list-group-item" style="" value="{{ lang.lang.name }}">{{ lang.lang.name }}<i class="mdi mdi-close float-right pointer-pure del-lang" data-toggle="tooltip" title="" data-placement="left" data-original-title=""></i></li>#}
+{#                                                        {% endfor %}#}
+        {#                                                <li class="list-group-item">Dapibus ac facilisis in <i class="mdi mdi-arrow-right hidden-xs"></i></li>#}
+        {#                                                <li class="list-group-item">Morbi leo risus</li>#}
+        {#                                                <li class="list-group-item">Porta ac consectetur ac</li>#}
+        {#                                                <li class="list-group-item">Vestibulum at eros</li>#}
+{#                                                    </ul>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{##}
+{#                                        </div>#}
+                                        <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
+                                        </div>
+
+                                    </div>
+                                <input name="new_admin" value="no" class="none"/>
+{#                                <input name="admin_id" value="{{ admin.id }}" class="none"/>#}
+
+                                </form>
+
+{#                            </div>#}
+                    </div>
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="payment">
+
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" id="orders">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" class="datetimepicker form-control" placeholder="Выберите дату...">
+                                            </div>
+                                        </div>
+
+                        </div>
+                    </div>
+
+
+            </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+{#    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/multi-select/js/jquery.multi-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/dropzone/dropzone.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/nouislider/nouislider.js' %}"></script>#}
+    <script src="{% static 'js/moment_ru.js' %}"></script>
+    <script src="{% static 'js/tokenize2.min.js' %}"></script>
+
+
+{#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
+    <script>
+
+
+        $('.datetimepicker').bootstrapMaterialDatePicker({
+            lang : 'ru',
+            format : 'DD.MM.YYYY',
+            time: false,
+            weekStart: 1
+        });
+
+
+{% if user_profile.role.role_name != 'Клиент' %}
+
+    function hide_save_info() {
+        $('#info_label').fadeOut('slow');
+        $('#btn_save_info').fadeOut('slow');
+
+    }
+
+    //отправка формы ИНФО
+
+    $('#save_info_btn').on('click', function () {
+        var formdata = new FormData($('#form_info').get(0));
+{#        formdata.append('langs', langs_item);#}
+
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_admin_new' %}',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                console.log(data)
+                hide_save_info();
+                swal({
+                    title: 'Информация сохранена',
+                    text: 'Данные на сервере успешно обновлены',
+                    type: 'success'
+                });
+
+            }
+        });
+
+    });
+
+
+
+
+    {#    moment.locale("ru");#}
+{##}
+
+
+
+{#    var now = moment();#}
+{##}
+{#    console.log(now.format('dddd, MMMM DD YYYY, h:mm:ss'));#}
+{##}
+{#moment.locale('fr');#}
+{#console.log(moment(1316116057189).fromNow()); // il y a une heure#}
+{#moment.locale('en');#}
+{#console.log(moment(1316116057189).fromNow()); // an hour ago#}
+
+
+    //загрузка фото
+    $('#foto').on('mouseover', function () {
+        $('#upload_foto').fadeIn('fast');
+
+        {% if admin.photo.name %}
+        $('#foto').on('mouseleave', function () {
+            $('#upload_foto').fadeOut('fast');
+        });
+        {% endif %}
+    });
+
+    $('#upload_icon').on('click', function () {
+        $('#admin_foto').click();
+    });
+
+    $('#admin_foto').on('change', function () {
+        var data = new FormData();
+        data.append('photo', $('#admin_foto').prop('files')[0]);
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_admin_photo' admin.id %}',
+            type: 'POST',
+            data: data,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сожранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                $('#foto').css('background-image', 'url("/static/photo/' + data +'")')
+                $('#upload_foto').fadeOut('fast');
+                $('#foto').on('mouseleave', function () {
+                    $('#upload_foto').fadeOut('fast');
+                });
+            }
+        });
+
+    });
+    //загрузка фото конец
+
+$(document).ready(function () {
+
+    //удаление аьмина
+    $('#del_admin_btn').on('click', function () {
+        swal({
+            title: 'Удаление админа',
+            text: 'Вы уверены, что хотите удалить админа?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Да',
+            cancelButtonText: 'Нет',
+            closeOnConfirm: false,
+        },
+        function (isConfirm) {
+            if (isConfirm){
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:delete_admin' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        'admin_id': {{ admin.id }}
+                    }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        console.log(data)
+                        swal({
+                            title: 'Админ удален',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                window.location.href = '/ru/dashbrd/admins_list/';
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+    });
+
+    //отображение кнопки сохранения при изменениях ИНФО
+    function show_save_info() {
+        $('#info_label').fadeIn('slow');
+        $('#btn_save_info').fadeIn('slow');
+
+    }
+    $('#name_admin').on('input', function () {
+        show_save_info();
+    });
+
+    $('#email_admin').on('input', function () {
+        show_save_info();
+    });
+
+    $('#tel_admin').on('input', function () {
+        show_save_info();
+    });
+    $('#birthday').on('change', function () {
+        show_save_info();
+    });
+
+
+
+
+
+
+
+
+
+    $('#tokenize').tokenize2();
+
+
+
+    {% endif %}
+
+
+});
+
+    </script>
+
+{% endblock %}

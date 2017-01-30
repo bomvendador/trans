@@ -1,0 +1,649 @@
+1;;;;
+;GR01-00001896;Color:color:0;фиолетовый:0;GR01-00001896
+;GR00120747;Color:color:0;синий:0;GR00120747
+;GR01-00003196;Color:color:0;кремовый:0;GR01-00003196
+;GR01-00003196;Color:color:1;оранжевый:1;GR01-00003196
+;GR00122230;Color:color:0;фиолетовый:0;GR00122230
+;GR00121768;Color:color:0;желтый:0;GR00121768
+;GR00121768;Color:color:1;черный:1;GR00121768
+;GR01-00003484;Color:color:0;бордовый:0;GR01-00003484
+;GR01-00003481;Color:color:0;розовый:0;GR01-00003481
+;GR01-00007116;Color:color:0;серый:0;GR01-00007116
+;GR01-00008581;Color:color:0;розовый:0;GR01-00008581
+;GR01-00008580;Color:color:0;лиловый:0;GR01-00008580
+;GR00114113;Color:color:0;синий:0;GR00114113
+;GR00116425;Color:color:0;коричневый:0;GR00116425
+;GR00117521;Color:color:0;фиолетовый:0;GR00117521
+;GR00119149;Color:color:0;фиолетовый:0;GR00119149
+;GR00119215;Color:color:0;черный:0;GR00119215
+;GR00120322;Color:color:0;серый:0;GR00120322
+;GR00121700;Color:color:0;коричневый:0;GR00121700
+;GR01-00001841;Color:color:0;бежевый:0;GR01-00001841
+;GR01-00007338;Color:color:0;зеленый:0;GR01-00007338
+;GR01-00008944;Color:color:0;розовый:0;GR01-00008944
+;LS6425;Color:color:0;коричневый:0;LS6425
+;LS6426;Color:color:0;красный:0;LS6426
+;LS6429;Color:color:0;красный:0;LS6429
+;LS5191;Color:color:0;черный:0;LS5191
+;LS5254;Color:color:0;черный:0;LS5254
+;GR00116814;Color:color:0;коричневый:0;GR00116814
+;GR00121622;Color:color:0;коньячный:0;GR00121622
+;GR00121627;Color:color:0;черный:0;GR00121627
+;TTRS-135 Евро (2 наволочки);Color:color:0;розовый:0;TTRS-135 Евро (2 наволочки)
+;TTRS-139 Евро (2 наволочки);Color:color:0;коричневый:0;TTRS-139 Евро (2 наволочки)
+;TTA-146 2 спальный;Color:color:0;бежевый:0;TTA-146 2 спальный
+;TTPRC-02 220x240;Color:color:0;кремовый:0;TTPRC-02 220x240
+;TTPRC-03 220x240;Color:color:0;бежевый:0;TTPRC-03 220x240
+;TTPRC-04 220x240;Color:color:0;шоколадный:0;TTPRC-04 220x240
+;TTRS-95 Евро (2 наволочки);Color:color:0;зеленый:0;TTRS-95 Евро (2 наволочки)
+;TTRS-95 Евро (4 наволочки);Color:color:0;зеленый:0;TTRS-95 Евро (4 наволочки)
+;TTRS-96 2 спальный (4 наволочки);Color:color:0;коричневый:0;TTRS-96 2 спальный (4 наволочки)
+;TTA-153 Евро;Color:color:0;зеленый:0;TTA-153 Евро
+;TTRS-145 2 спальный (4 наволочки);Color:color:0;коричневый:0;TTRS-145 2 спальный (4 наволочки)
+;TTRS-148 2 спальный (4 наволочки);Color:color:0;коричневый:0;TTRS-148 2 спальный (4 наволочки)
+;TTRS-98 2 спальный (4 наволочки);Color:color:0;красный:0;TTRS-98 2 спальный (4 наволочки)
+;TTA-156 Семейный;Color:color:0;серый:0;TTA-156 Семейный
+;TTA-157 Евро;Color:color:0;салатовый:0;TTA-157 Евро
+;TTA-157 Семейный;Color:color:0;салатовый:0;TTA-157 Семейный
+;TTRS-125 Евро (2 наволочки);Color:color:0;сиреневый:0;TTRS-125 Евро (2 наволочки)
+;TTRS-128 2 спальный (4 наволочки);Color:color:0;розовый:0;TTRS-128 2 спальный (4 наволочки)
+;TTRS-128 Евро (2 наволочки);Color:color:0;розовый:0;TTRS-128 Евро (2 наволочки)
+;TTRS-128 Евро (4 наволочки);Color:color:0;розовый:0;TTRS-128 Евро (4 наволочки)
+;TTRS-130 Евро (4 наволочки);Color:color:0;бежевый:0;TTRS-130 Евро (4 наволочки)
+;TTTJ-01 2 спальный;Color:color:0;сиреневый:0;TTTJ-01 2 спальный
+;TTTJ-03 Евро;Color:color:0;бежевый:0;TTTJ-03 Евро
+;TTTJ-04 2 спальный;Color:color:0;красный:0;TTTJ-04 2 спальный
+;TTTJ-06 2 спальный;Color:color:0;серый:0;TTTJ-06 2 спальный
+;TTTJ-06 Семейный;Color:color:0;серый:0;TTTJ-06 Семейный
+;TTTJ-07 2 спальный;Color:color:0;розовый:0;TTTJ-07 2 спальный
+;TTTJ-08 2 спальный;Color:color:0;бежевый:0;TTTJ-08 2 спальный
+;TTTJ-10 Евро;Color:color:0;серый:0;TTTJ-10 Евро
+;TTTJ-12 Евро;Color:color:0;бежевый:0;TTTJ-12 Евро
+;TTRS-20 2 спальный (4 наволочки);Color:color:0;белый:0;TTRS-20 2 спальный (4 наволочки)
+;TTRS-20 Евро (2 наволочки);Color:color:0;белый:0;TTRS-20 Евро (2 наволочки)
+;TTRS-27 Евро (2 наволочки);Color:color:0;белый:0;TTRS-27 Евро (2 наволочки)
+;TTRS-29 Евро (4 наволочки);Color:color:0;черный:0;TTRS-29 Евро (4 наволочки)
+;TTRS-30 Евро (2 наволочки);Color:color:0;черный:0;TTRS-30 Евро (2 наволочки)
+;TTRS-32 Евро (2 наволочки);Color:color:0;белый:0;TTRS-32 Евро (2 наволочки)
+;TTRS-36 Евро (4 наволочки);Color:color:0;бежевый:0;TTRS-36 Евро (4 наволочки)
+;TTRS-41 2 спальный (4 наволочки);Color:color:0;белый:0;TTRS-41 2 спальный (4 наволочки)
+;TTRS-43 2 спальный (4 наволочки);Color:color:0;зеленый:0;TTRS-43 2 спальный (4 наволочки)
+;TTRS-52 Евро (2 наволочки);Color:color:0;зеленый:0;TTRS-52 Евро (2 наволочки)
+;TTRS-52 Евро (4 наволочки);Color:color:0;зеленый:0;TTRS-52 Евро (4 наволочки)
+;TTRS-62 Евро (2 наволочки);Color:color:0;коричневый:0;TTRS-62 Евро (2 наволочки)
+;TTRS-62 Евро (4 наволочки);Color:color:0;коричневый:0;TTRS-62 Евро (4 наволочки)
+;TTRS-68 Евро (2 наволочки);Color:color:0;белый:0;TTRS-68 Евро (2 наволочки)
+;TTA-126 2 спальный;Color:color:0;серый:0;TTA-126 2 спальный
+;TTA-126 Евро;Color:color:0;серый:0;TTA-126 Евро
+;TTA-132 2 спальный;Color:color:0;серый:0;TTA-132 2 спальный
+;TTA-138 2 спальный;Color:color:0;голубой:0;TTA-138 2 спальный
+;TTA-138 Евро;Color:color:0;голубой:0;TTA-138 Евро
+;TTRS-106 Евро (2 наволочки);Color:color:0;белый:0;TTRS-106 Евро (2 наволочки)
+;TTSDS-32 Евро;Color:color:0;красный:0;TTSDS-32 Евро
+;TTTJ-14 2 спальный;Color:color:0;сиреневый:0;TTTJ-14 2 спальный
+;TTTJ-14 Евро;Color:color:0;сиреневый:0;TTTJ-14 Евро
+;TTMF-13 Семейный;Color:color:0;коричневый:0;TTMF-13 Семейный
+;TTA-128 2 спальный;Color:color:0;розовый:0;TTA-128 2 спальный
+;TTA-128 Семейный;Color:color:0;розовый:0;TTA-128 Семейный
+;TTRS-113 Евро (2 наволочки);Color:color:0;зеленый:0;TTRS-113 Евро (2 наволочки)
+;TTSK 01 160х300;Color:color:0;бежевый:0;TTSK 01 160х300
+;TTSK 01 160х220 овальная;Color:color:0;бежевый:0;TTSK 01 160х220 овальная
+;TTSK 01 150х180;Color:color:0;бежевый:0;TTSK 01 150х180
+;TTSK 01 160х220;Color:color:0;бежевый:0;TTSK 01 160х220
+;TTSK 10 160 см круглая;Color:color:0;белый:0;TTSK 10 160 см круглая
+;TTSK 10 180 см круглая;Color:color:0;белый:0;TTSK 10 180 см круглая
+;TTA-140 2 спальный;Color:color:0;серый:0;TTA-140 2 спальный
+;TTODA 195x215;Color:color:0;белый:0;TTODA 195x215
+;TTDS-08 1.5 спальный;Color:color:0;синий:0;TTDS-08 1.5 спальный
+;TTL-33 2 спальный;Color:color:0;коричневый:0;TTL-33 2 спальный
+;TTD-156 Евро;Color:color:0;розовый:0;TTD-156 Евро
+;TTA-147 Евро;Color:color:0;серый:0;TTA-147 Евро
+;TTRS-71 Евро (2 наволочки);Color:color:0;зеленый:0;TTRS-71 Евро (2 наволочки)
+;TTRS-71 2 спальный (4 наволочки);Color:color:0;зеленый:0;TTRS-71 2 спальный (4 наволочки)
+;TTRS-72 2 спальный (4 наволочки);Color:color:0;салатовый:0;TTRS-72 2 спальный (4 наволочки)
+;TTRS-74 2 спальный (4 наволочки);Color:color:0;белый:0;TTRS-74 2 спальный (4 наволочки)
+;TTRS-129 Евро (2 наволочки);Color:color:0;голубой:0;TTRS-129 Евро (2 наволочки)
+;TTДБ-26 1.5 спальный;Color:color:0;розовый:0;TTДБ-26 1.5 спальный
+;TTДБ-27 1.5 спальный;Color:color:0;желтый:0;TTДБ-27 1.5 спальный
+;TTДБ-29 1.5 спальный;Color:color:0;розовый:0;TTДБ-29 1.5 спальный
+;TTДБ-31 1.5 спальный;Color:color:0;синий:0;TTДБ-31 1.5 спальный
+;TTП-19 1.5 спальный;Color:color:0;бежевый:0;TTП-19 1.5 спальный
+;TTП-19 2 спальный;Color:color:0;бежевый:0;TTП-19 2 спальный
+;TTП-19 Евро;Color:color:0;бежевый:0;TTП-19 Евро
+;TTП-32 Евро;Color:color:0;бежевый:0;TTП-32 Евро
+;TTП-33 1.5 спальный;Color:color:0;голубой:0;TTП-33 1.5 спальный
+;TTC-105 Семейный;Color:color:0;бежевый:0;TTC-105 Семейный
+;TTC-105 Евро;Color:color:0;бежевый:0;TTC-105 Евро
+;TTC-29 1.5 спальный;Color:color:0;бежевый:0;TTC-29 1.5 спальный
+;TTC-29 2 спальный;Color:color:0;бежевый:0;TTC-29 2 спальный
+;TTC-29 Семейный;Color:color:0;бежевый:0;TTC-29 Семейный
+;TTC-29 Евро;Color:color:0;бежевый:0;TTC-29 Евро
+;TT110-15 Семейный;Color:color:0;розовый:0;TT110-15 Семейный
+;TT220-74 Евро;Color:color:0;бежевый:0;TT220-74 Евро
+;TTL-27 2 спальный;Color:color:0;синий:0;TTL-27 2 спальный
+;TTL-28 Семейный;Color:color:0;коричневый:0;TTL-28 Семейный
+;TTA-111 2 спальный;Color:color:0;коричневый:0;TTA-111 2 спальный
+;TTA-117 2 спальный;Color:color:0;розовый:0;TTA-117 2 спальный
+;TTA-121 Евро;Color:color:0;голубой:0;TTA-121 Евро
+;TTA-81 2 спальный;Color:color:0;белый:0;TTA-81 2 спальный
+;TTA-81 Евро;Color:color:0;белый:0;TTA-81 Евро
+;TTA-93 2 спальный;Color:color:0;бежевый:0;TTA-93 2 спальный
+;TTA-93 Семейный;Color:color:0;бежевый:0;TTA-93 Семейный
+;TTA-108_2 2 спальный;Color:color:0;салатовый:0;TTA-108_2 2 спальный
+;TTA-21 2 спальный;Color:color:0;бежевый:0;TTA-21 2 спальный
+;TTA-22 2 спальный;Color:color:0;белый:0;TTA-22 2 спальный
+;TTA-25 2 спальный;Color:color:0;серый:0;TTA-25 2 спальный
+;TTA-28 1.5 спальный;Color:color:0;белый:0;TTA-28 1.5 спальный
+;TTA-28 2 спальный;Color:color:0;белый:0;TTA-28 2 спальный
+;TTA-55 2 спальный;Color:color:0;бежевый:0;TTA-55 2 спальный
+;TTA-58 2 спальный;Color:color:0;желтый:0;TTA-58 2 спальный
+;TTA-67 2 спальный;Color:color:0;белый:0;TTA-67 2 спальный
+;TTA-92 2 спальный;Color:color:0;сиреневый:0;TTA-92 2 спальный
+;TTA-92 Семейный;Color:color:0;сиреневый:0;TTA-92 Семейный
+;TTA-84 Евро;Color:color:0;бежевый:0;TTA-84 Евро
+;TTA-1 2 спальный;Color:color:0;бежевый:0;TTA-1 2 спальный
+;TTA-85 Евро;Color:color:0;желтый:0;TTA-85 Евро
+;TTD-89 Семейный;Color:color:0;розовый:0;TTD-89 Семейный
+;TTD-111 Евро;Color:color:0;серый:0;TTD-111 Евро
+;TTD-90 Семейный;Color:color:0;серый:0;TTD-90 Семейный
+;TTD-90 Евро;Color:color:0;серый:0;TTD-90 Евро
+;GR01-00010462;Color:color:0;бирюзовый:0;GR01-00010462
+;GR01-00009269;Color:color:0;красный:0;GR01-00009269
+;GR01-00009280;Color:color:0;бирюзовый:0;GR01-00009280
+;GR01-00011085;Color:color:0;серый:0;GR01-00011085
+;TTSDS-50 Евро;Color:color:0;коричневый:0;TTSDS-50 Евро
+;TTA-157 2 спальный;Color:color:0;салатовый:0;TTA-157 2 спальный
+;TTАфродита 50x70;Color:color:0;белый:0;TTАфродита 50x70
+;TTA-159 Евро;Color:color:0;бежевый:0;TTA-159 Евро
+;TTC-105 2 спальный;Color:color:0;бежевый:0;TTC-105 2 спальный
+;TTA-91 1.5 спальный;Color:color:0;серый:0;TTA-91 1.5 спальный
+;TTMF-30 1.5 спальный;Color:color:0;красный:0;TTMF-30 1.5 спальный
+;TTPP-6 150x200;Color:color:0;бежевый:0;TTPP-6 150x200
+;TTDS-09 1.5 спальный;Color:color:0;голубой:0;TTDS-09 1.5 спальный
+;TTDS-10 1.5 спальный;Color:color:0;синий:0;TTDS-10 1.5 спальный
+;LS6810;Color:color:0;красный:0;LS6810
+;TTC-100 1.5 спальный;Color:color:0;бежевый:0;TTC-100 1.5 спальный
+;TTC-100 2 спальный;Color:color:0;бежевый:0;TTC-100 2 спальный
+;TTC-100 Семейный;Color:color:0;бежевый:0;TTC-100 Семейный
+;TTC-100 Евро;Color:color:0;бежевый:0;TTC-100 Евро
+;GR01-00009058;Color:color:0;оранжевый:0;GR01-00009058
+;GR01-00009058;Color:color:1;серый:1;GR01-00009058
+;TT100-49 Евро;Color:color:0;коричневый:0;TT100-49 Евро
+;TTC-160 Евро;Color:color:0;салатовый:0;TTC-160 Евро
+;TTC-160 Семейный;Color:color:0;салатовый:0;TTC-160 Семейный
+;GR01-00012328;Color:color:0;синий:0;GR01-00012328
+;GR01-00011686;Color:color:0;черный:0;GR01-00011686
+;TTMF-43 Семейный;Color:color:0;сиреневый:0;TTMF-43 Семейный
+;LS6867;Color:color:0;черный:0;LS6867
+;п41;Color:color:0;синий:0;п41
+;п41-d93148;Color:color:0;синий:0;п41-d93148
+;п532;Color:color:0;синий:0;п532
+;п532-d93161;Color:color:0;синий:0;п532-d93161
+;TTJC-06 Семейный;Color:color:0;бежевый:0;TTJC-06 Семейный
+;GR01-00012635;Color:color:0;коричневый:0;GR01-00012635
+;TTДБ-32 1.5 спальный;Color:color:0;коралловый:0;TTДБ-32 1.5 спальный
+;TTДБ-33 1.5 спальный;Color:color:0;синий:0;TTДБ-33 1.5 спальный
+;GR01-00012838;Color:color:0;синий:0;GR01-00012838
+;GR01-00011711;Color:color:0;фиолетовый:0;GR01-00011711
+;TTДБ-35 1.5 спальный;Color:color:0;синий:0;TTДБ-35 1.5 спальный
+;TTДБ-36 1.5 спальный;Color:color:0;серый:0;TTДБ-36 1.5 спальный
+;GR01-00011584;Color:color:0;черный:0;GR01-00011584
+;GR01-00011498;Color:color:0;коричневый:0;GR01-00011498
+;TTMF-43 2 спальный;Color:color:0;сиреневый:0;TTMF-43 2 спальный
+;GR01-00009463;Color:color:0;фиолетовый:0;GR01-00009463
+;GR01-00011102;Color:color:0;синий:0;GR01-00011102
+;GR01-00012891;Color:color:0;синий:0;GR01-00012891
+;TTD-97 Евро;Color:color:0;оранжевый:0;TTD-97 Евро
+;TTC-165 1.5 спальный;Color:color:0;бежевый:0;TTC-165 1.5 спальный
+;TTC-165 2 спальный;Color:color:0;бежевый:0;TTC-165 2 спальный
+;TTC-165 Евро;Color:color:0;бежевый:0;TTC-165 Евро
+;TTC-165 Семейный;Color:color:0;бежевый:0;TTC-165 Семейный
+;TTMF-39 2 спальный;Color:color:0;белый:0;TTMF-39 2 спальный
+;TTPRC-R-14 160x200;Color:color:0;голубой:0;TTPRC-R-14 160x200
+;TTMF-41 1.5 спальный;Color:color:0;серый:0;TTMF-41 1.5 спальный
+;TTMF-42 1.5 спальный;Color:color:0;сиреневый:0;TTMF-42 1.5 спальный
+;TTMF-29 1.5 спальный;Color:color:0;бежевый:0;TTMF-29 1.5 спальный
+;TTMF-29 2 спальный;Color:color:0;бежевый:0;TTMF-29 2 спальный
+;TTMF-46 1.5 спальный;Color:color:0;бежевый:0;TTMF-46 1.5 спальный
+;TTMF-46 2 спальный;Color:color:0;бежевый:0;TTMF-46 2 спальный
+;TTPRC-R-13 160x200;Color:color:0;салатовый:0;TTPRC-R-13 160x200
+;TTPRC-R-02 160x200;Color:color:0;кремовый:0;TTPRC-R-02 160x200
+;GR01-00007175;Color:color:0;зеленый:0;GR01-00007175
+;TTPRC-R-03 160x200;Color:color:0;бежевый:0;TTPRC-R-03 160x200
+;GR01-00013508;Color:color:0;красный:0;GR01-00013508
+;GR01-00009460;Color:color:0;синий:0;GR01-00009460
+;GR01-00013722;Color:color:0;синий:0;GR01-00013722
+;GR01-00013722;Color:color:1;мульти:1;GR01-00013722
+;GR01-00014269;Color:color:0;бежевый:0;GR01-00014269
+;GR01-00014296;Color:color:0;бирюзовый:0;GR01-00014296
+;GR01-00014607;Color:color:0;красный:0;GR01-00014607
+;GR01-00014631;Color:color:0;оранжевый:0;GR01-00014631
+;GR01-00014605;Color:color:0;фиолетовый:0;GR01-00014605
+;GR01-00014076;Color:color:0;лиловый:0;GR01-00014076
+;GR01-00014616;Color:color:0;фиолетовый:0;GR01-00014616
+;GR01-00014937;Color:color:0;зеленый:0;GR01-00014937
+;GR01-00014939;Color:color:0;фиолетовый:0;GR01-00014939
+;GR01-00014927;Color:color:0;оранжевый:0;GR01-00014927
+;GR01-00014931;Color:color:0;зеленый:0;GR01-00014931
+;GR01-00014133;Color:color:0;синий:0;GR01-00014133
+;GR01-00014941;Color:color:0;голубой:0;GR01-00014941
+;GR01-00014943;Color:color:0;оранжевый:0;GR01-00014943
+;GR01-00014134;Color:color:0;розовый:0;GR01-00014134
+;GR01-00014648;Color:color:0;красный:0;GR01-00014648
+;GR01-00010839;Color:color:0;розовый:0;GR01-00010839
+;GR01-00010838;Color:color:0;коралловый:0;GR01-00010838
+;GR01-00014414;Color:color:0;фуксия:0;GR01-00014414
+;GR01-00014682;Color:color:0;синий:0;GR01-00014682
+;GR01-00014683;Color:color:0;фиолетовый:0;GR01-00014683
+;GR01-00014684;Color:color:0;бежевый:0;GR01-00014684
+;GR01-00014686;Color:color:0;серый:0;GR01-00014686
+;GR01-00013713;Color:color:0;розовый:0;GR01-00013713
+;GR01-00014077;Color:color:0;розовый:0;GR01-00014077
+;GR01-00014079;Color:color:0;фиолетовый:0;GR01-00014079
+;GR01-00013442;Color:color:0;розовый:0;GR01-00013442
+;GR01-00013459;Color:color:0;фуксия:0;GR01-00013459
+;GR01-00014352;Color:color:0;красный:0;GR01-00014352
+;GR01-00014352;Color:color:1;серый:1;GR01-00014352
+;GR01-00013464;Color:color:0;голубой:0;GR01-00013464
+;GR01-00013474;Color:color:0;розовый:0;GR01-00013474
+;GR01-00014479;Color:color:0;коричневый:0;GR01-00014479
+;GR01-00013461;Color:color:0;желтый:0;GR01-00013461
+;GR01-00014213;Color:color:0;голубой:0;GR01-00014213
+;GR01-00014019;Color:color:0;коралловый:0;GR01-00014019
+;GR01-00014093;Color:color:0;розовый:0;GR01-00014093
+;GR01-00014096;Color:color:0;коралловый:0;GR01-00014096
+;GR01-00014095;Color:color:0;голубой:0;GR01-00014095
+;GR01-00014412;Color:color:0;красный:0;GR01-00014412
+;GR01-00014412;Color:color:1;серый:1;GR01-00014412
+;GR01-00014685;Color:color:0;салатовый:0;GR01-00014685
+;GR01-00014366;Color:color:0;бирюзовый:0;GR01-00014366
+;GR01-00014366;Color:color:1;синий:1;GR01-00014366
+;GR01-00014391;Color:color:0;красный:0;GR01-00014391
+;GR01-00014322;Color:color:0;розовый:0;GR01-00014322
+;GR01-00014754;Color:color:0;розовый:0;GR01-00014754
+;GR01-00014594;Color:color:0;черный:0;GR01-00014594
+;GR01-00014588;Color:color:0;черный:0;GR01-00014588
+;GR01-00013857;Color:color:0;красный:0;GR01-00013857
+;GR01-00007627;Color:color:0;кремовый:0;GR01-00007627
+;GR01-00014950;Color:color:0;голубой:0;GR01-00014950
+;GR01-00014947;Color:color:0;оранжевый:0;GR01-00014947
+;TTBS-01 2 спальный;Color:color:0;кремовый:0;TTBS-01 2 спальный
+;TTBS-06 2 спальный;Color:color:0;голубой:0;TTBS-06 2 спальный
+;TTBS-10 Евро;Color:color:0;шоколадный:0;TTBS-10 Евро
+;TT100-62 2 спальный;Color:color:0;голубой:0;TT100-62 2 спальный
+;GR01-00014979;Color:color:0;рыжий:0;GR01-00014979
+;TTA-156 1.5 спальный;Color:color:0;серый:0;TTA-156 1.5 спальный
+;TTA-156 2 спальный;Color:color:0;серый:0;TTA-156 2 спальный
+;TTPP-52 170x210;Color:color:0;сиреневый:0;TTPP-52 170x210
+;п41-d100330;Color:color:0;черный:0;п41-d100330
+;п532-d100331;Color:color:0;черный:0;п532-d100331
+;GR01-00015465;Color:color:0;кремовый:0;GR01-00015465
+;GR01-00015470;Color:color:0;бежевый:0;GR01-00015470
+;TTPBA-8 200x210;Color:color:0;бежевый:0;TTPBA-8 200x210
+;TTPled Azhyr frezya 175x210;Color:color:0;бежевый:0;TTPled Azhyr frezya 175x210
+;TTSK 50 160х300;Color:color:0;белый:0;TTSK 50 160х300
+;TTPM bezhevaya 200x200;Color:color:0;бежевый:0;TTPM bezhevaya 200x200
+;GR01-00014318;Color:color:0;оранжевый:0;GR01-00014318
+;TTD-89 2 спальный;Color:color:0;розовый:0;TTD-89 2 спальный
+;TTPNJC-20 Евро (230х250) 2 наволочки (50х70);Color:color:0;коричневый:0;TTPNJC-20 Евро (230х250) 2 наволочки (50х70)
+;TTPMP-06 Евро (230х250) 2 наволочки (50х70);Color:color:0;черный:0;TTPMP-06 Евро (230х250) 2 наволочки (50х70)
+;TTPMP-08 Евро (230х250) 2 наволочки (50х70);Color:color:0;белый:0;TTPMP-08 Евро (230х250) 2 наволочки (50х70)
+;TTEuphoria Евро;Color:color:0;коричневый:0;TTEuphoria Евро
+;TTWinter morning 2 спальный;Color:color:0;белый:0;TTWinter morning 2 спальный
+;TTLily 2 спальный;Color:color:0;белый:0;TTLily 2 спальный
+;TTCL-165 2 спальный;Color:color:0;бежевый:0;TTCL-165 2 спальный
+;TTCL-165 Евро;Color:color:0;бежевый:0;TTCL-165 Евро
+;TTCL-165 Семейный;Color:color:0;бежевый:0;TTCL-165 Семейный
+;GR01-00016631;Color:color:0;бежевый:0;GR01-00016631
+;TTNostalgia 1.5 спальный;Color:color:0;синий:0;TTNostalgia 1.5 спальный
+;TTNostalgia Евро;Color:color:0;синий:0;TTNostalgia Евро
+;TTNostalgia Семейный;Color:color:0;синий:0;TTNostalgia Семейный
+;TTEuphoria 1.5 спальный;Color:color:0;коричневый:0;TTEuphoria 1.5 спальный
+;TTEuphoria 2 спальный;Color:color:0;коричневый:0;TTEuphoria 2 спальный
+;TTCornflowers 2 спальный;Color:color:0;бежевый:0;TTCornflowers 2 спальный
+;TTCornflowers Евро;Color:color:0;бежевый:0;TTCornflowers Евро
+;TTHydrangea 1.5 спальный;Color:color:0;сиреневый:0;TTHydrangea 1.5 спальный
+;TTHydrangea 2 спальный;Color:color:0;сиреневый:0;TTHydrangea 2 спальный
+;TTPeonies Евро;Color:color:0;серый:0;TTPeonies Евро
+;TTPeonies Семейный;Color:color:0;серый:0;TTPeonies Семейный
+;TTThe Romance Of Paris 1.5 спальный;Color:color:0;серый:0;TTThe Romance Of Paris 1.5 спальный
+;TTItalian 1.5 спальный;Color:color:0;кремовый:0;TTItalian 1.5 спальный
+;TTItalian 2 спальный;Color:color:0;кремовый:0;TTItalian 2 спальный
+;TTLondon 1.5 спальный;Color:color:0;серый:0;TTLondon 1.5 спальный
+;TTLondon 2 спальный;Color:color:0;серый:0;TTLondon 2 спальный
+;TTSwan Lake 1.5 спальный;Color:color:0;синий:0;TTSwan Lake 1.5 спальный
+;TTSwan Lake 2 спальный;Color:color:0;синий:0;TTSwan Lake 2 спальный
+;TTSwan Lake Евро;Color:color:0;синий:0;TTSwan Lake Евро
+;TTLouise Евро;Color:color:0;салатовый:0;TTLouise Евро
+;TTLove letters Евро;Color:color:0;зеленый:0;TTLove letters Евро
+;TTMuseum 1.5 спальный;Color:color:0;серый:0;TTMuseum 1.5 спальный
+;TTMuseum 2 спальный;Color:color:0;серый:0;TTMuseum 2 спальный
+;TTMuseum Евро;Color:color:0;серый:0;TTMuseum Евро
+;TTMuseum Семейный;Color:color:0;серый:0;TTMuseum Семейный
+;TTSpace 1.5 спальный;Color:color:0;зеленый:0;TTSpace 1.5 спальный
+;TTSpace Семейный;Color:color:0;зеленый:0;TTSpace Семейный
+;TTSandra 1.5 спальный;Color:color:0;бежевый:0;TTSandra 1.5 спальный
+;TTSandra 2 спальный;Color:color:0;бежевый:0;TTSandra 2 спальный
+;TTSandra Евро;Color:color:0;бежевый:0;TTSandra Евро
+;TTSandra Семейный;Color:color:0;бежевый:0;TTSandra Семейный
+;TTLady Евро;Color:color:0;розовый:0;TTLady Евро
+;TTLady Семейный;Color:color:0;розовый:0;TTLady Семейный
+;TTMichelle 1.5 спальный;Color:color:0;бежевый:0;TTMichelle 1.5 спальный
+;TTMichelle 2 спальный;Color:color:0;бежевый:0;TTMichelle 2 спальный
+;TTMichelle Евро;Color:color:0;бежевый:0;TTMichelle Евро
+;TTMichelle Семейный;Color:color:0;бежевый:0;TTMichelle Семейный
+;TTDolphins 1.5 спальный;Color:color:0;голубой:0;TTDolphins 1.5 спальный
+;GR01-00016699;Color:color:0;зеленый:0;GR01-00016699
+;GR01-00015906;Color:color:0;коричневый:0;GR01-00015906
+;GR01-00010827;Color:color:0;оранжевый:0;GR01-00010827
+;GR01-00014041;Color:color:0;коричневый:0;GR01-00014041
+;GR01-00012377;Color:color:0;красный:0;GR01-00012377
+;GR01-00015761;Color:color:0;серый:0;GR01-00015761
+;GR01-00015642;Color:color:0;сиреневый:0;GR01-00015642
+;GR01-00015642;Color:color:1;сливовый:1;GR01-00015642
+;3972;Color:color:0;черный:0;3972
+;5089;Color:color:0;черный:0;5089
+;GR01-00016706;Color:color:0;зеленый:0;GR01-00016706
+;TT220-131 Евро;Color:color:0;коричневый:0;TT220-131 Евро
+;GR01-00014339;Color:color:0;красный:0;GR01-00014339
+;TTCL-105 2 спальный;Color:color:0;сиреневый:0;TTCL-105 2 спальный
+;TTCL-105 Евро;Color:color:0;сиреневый:0;TTCL-105 Евро
+;TTCL-105 Семейный;Color:color:0;сиреневый:0;TTCL-105 Семейный
+;GR01-00017572;Color:color:0;бежевый:0;GR01-00017572
+;GR01-00017572;Color:color:1;черный:1;GR01-00017572
+;GR01-00016696;Color:color:0;зеленый:0;GR01-00016696
+;GR01-00017041;Color:color:0;розовый:0;GR01-00017041
+;GR01-00016145;Color:color:0;бордовый:0;GR01-00016145
+;GR01-00015911;Color:color:0;лиловый:0;GR01-00015911
+;GR01-00017084;Color:color:0;голубой:0;GR01-00017084
+;GR01-00017087;Color:color:0;бежевый:0;GR01-00017087
+;GR01-00016549;Color:color:0;фуксия:0;GR01-00016549
+;GR01-00016878;Color:color:0;хаки:0;GR01-00016878
+;GR01-00016552;Color:color:0;лиловый:0;GR01-00016552
+;GR01-00016185;Color:color:0;хаки:0;GR01-00016185
+;GR01-00016497;Color:color:0;синий:0;GR01-00016497
+;GR01-00015590;Color:color:0;серый:0;GR01-00015590
+;GR01-00015590;Color:color:1;черный:1;GR01-00015590
+;GR01-00017579;Color:color:0;бирюзовый:0;GR01-00017579
+;GR01-00017579;Color:color:1;серый:1;GR01-00017579
+;TTSDS-49 Евро;Color:color:0;бордовый:0;TTSDS-49 Евро
+;TTSDS-56 2 спальный;Color:color:0;коричневый:0;TTSDS-56 2 спальный
+;TTSDS-56 Евро;Color:color:0;коричневый:0;TTSDS-56 Евро
+;TTSDS-58 Семейный;Color:color:0;синий:0;TTSDS-58 Семейный
+;TTTP-20 Евро;Color:color:0;голубой:0;TTTP-20 Евро
+;GR01-00016005;Color:color:0;оранжевый:0;GR01-00016005
+;TTPRC-02 240x260;Color:color:0;кремовый:0;TTPRC-02 240x260
+;TTPRC-03 240x260;Color:color:0;бежевый:0;TTPRC-03 240x260
+;TTPRC-15 240x260;Color:color:0;белый:0;TTPRC-15 240x260
+;GR01-00017012;Color:color:0;черный:0;GR01-00017012
+;TTWAVE Pembe 70x120;Color:color:0;розовый:0;TTWAVE Pembe 70x120
+;GR01-00015998;Color:color:0;оранжевый:0;GR01-00015998
+;TTThe Romance Of Paris 2 спальный;Color:color:0;серый:0;TTThe Romance Of Paris 2 спальный
+;TTPersia Семейный;Color:color:0;коричневый:0;TTPersia Семейный
+;TTCornflowers 1.5 спальный;Color:color:0;бежевый:0;TTCornflowers 1.5 спальный
+;TTPersia 2 спальный;Color:color:0;коричневый:0;TTPersia 2 спальный
+;TTDolphins 2 спальный;Color:color:0;голубой:0;TTDolphins 2 спальный
+;TTIndonesia 2 спальный;Color:color:0;розовый:0;TTIndonesia 2 спальный
+;TTIndonesia Евро;Color:color:0;розовый:0;TTIndonesia Евро
+;TTIndonesia Семейный;Color:color:0;розовый:0;TTIndonesia Семейный
+;TTPersia Евро;Color:color:0;коричневый:0;TTPersia Евро
+;TTImperatritsa 2 спальный;Color:color:0;коричневый:0;TTImperatritsa 2 спальный
+;TTImperatritsa Семейный;Color:color:0;коричневый:0;TTImperatritsa Семейный
+;TTM 140x200;Color:color:0;терракотовый:0;TTM 140x200
+;TTMG-04 1.5 спальный;Color:color:0;белый:0;TTMG-04 1.5 спальный
+;TTMG-05 2 спальный;Color:color:0;белый:0;TTMG-05 2 спальный
+;TTPNJC-24 Евро (230х250) 2 наволочки (50х70);Color:color:0;салатовый:0;TTPNJC-24 Евро (230х250) 2 наволочки (50х70)
+;TTPRC-18 240x260;Color:color:0;серый:0;TTPRC-18 240x260
+;LS8515;Color:color:0;синий:0;LS8515
+;TTPRC-R-15 160x200;Color:color:0;белый:0;TTPRC-R-15 160x200
+;TTPRC-R-15 200x220;Color:color:0;белый:0;TTPRC-R-15 200x220
+;TTBakkardi 1.5 спальный;Color:color:0;коричневый:0;TTBakkardi 1.5 спальный
+;TTBakkardi 2 спальный;Color:color:0;коричневый:0;TTBakkardi 2 спальный
+;TTBakkardi Евро;Color:color:0;коричневый:0;TTBakkardi Евро
+;GR01-00017028;Color:color:0;фиолетовый:0;GR01-00017028
+;LS8654;Color:color:0;коричневый:0;LS8654
+;GR01-00005171;Color:color:0;бежевый:0;GR01-00005171
+;GR01-00016943;Color:color:0;коричневый:0;GR01-00016943
+;GR01-00014354;Color:color:0;желтый:0;GR01-00014354
+;GR01-00014354;Color:color:1;синий:1;GR01-00014354
+;GR01-00016968;Color:color:0;розовый:0;GR01-00016968
+;GR01-00016968;Color:color:1;мульти:1;GR01-00016968
+;GR01-00017300;Color:color:0;фиолетовый:0;GR01-00017300
+;GR01-00017300;Color:color:1;мульти:1;GR01-00017300
+;TTPM fioletovaya 180x200;Color:color:0;фиолетовый:0;TTPM fioletovaya 180x200
+;TTPT persikovyy 200x200;Color:color:0;персиковый:0;TTPT persikovyy 200x200
+;GR01-00008550;Color:color:0;зеленый:0;GR01-00008550
+;GR01-00008550;Color:color:1;мульти:1;GR01-00008550
+;GR01-00017814;Color:color:0;красный:0;GR01-00017814
+;GR01-00018810;Color:color:0;зеленый:0;GR01-00018810
+;GR01-00018997;Color:color:0;синий:0;GR01-00018997
+;GR01-00018807;Color:color:0;лиловый:0;GR01-00018807
+;GR01-00018995;Color:color:0;оранжевый:0;GR01-00018995
+;GR01-00018802;Color:color:0;желтый:0;GR01-00018802
+;GR01-00018998;Color:color:0;зеленый:0;GR01-00018998
+;GR01-00006893;Color:color:0;лиловый:0;GR01-00006893
+;GR01-00019083;Color:color:0;розовый:0;GR01-00019083
+;GR01-00019073;Color:color:0;синий:0;GR01-00019073
+;TTNegniy buket 2 спальный;Color:color:0;розовый:0;TTNegniy buket 2 спальный
+;TTBatterfly 1.5 спальный;Color:color:0;серый:0;TTBatterfly 1.5 спальный
+;TTBatterfly 2 спальный;Color:color:0;серый:0;TTBatterfly 2 спальный
+;TTBatterfly Евро;Color:color:0;серый:0;TTBatterfly Евро
+;GR01-00016757;Color:color:0;красный:0;GR01-00016757
+;TTA-168 2 спальный;Color:color:0;бежевый:0;TTA-168 2 спальный
+;GR01-00016758;Color:color:0;фуксия:0;GR01-00016758
+;GR01-00016758;Color:color:1;мульти:1;GR01-00016758
+;GR01-00017571;Color:color:0;розовый:0;GR01-00017571
+;3008;Color:color:0;коралловый:0;3008
+;GR01-00018277;Color:color:0;салатовый:0;GR01-00018277
+;GR01-00018268;Color:color:0;бежевый:0;GR01-00018268
+;5419;Color:color:0;красный:0;5419
+;GR01-00019084;Color:color:0;лиловый:0;GR01-00019084
+;GR01-00019080;Color:color:0;бордовый:0;GR01-00019080
+;GR01-00019079;Color:color:0;желтый:0;GR01-00019079
+;GR01-00018290;Color:color:0;розовый:0;GR01-00018290
+;п020;Color:color:0;черный:0;п020
+;п021;Color:color:0;черный:0;п021
+;п023;Color:color:0;черный:0;п023
+;п024;Color:color:0;черный:0;п024
+;п024-d127946;Color:color:0;черный:0;п024-d127946
+;п023-d127947;Color:color:0;черный:0;п023-d127947
+;GR01-00017563;Color:color:0;бежевый:0;GR01-00017563
+;GR01-00019240;Color:color:0;лавандовый:0;GR01-00019240
+;2639-d128325;Color:color:0;красный:0;2639-d128325
+;GR01-00019076;Color:color:0;зеленый:0;GR01-00019076
+;TTGRAVEL Siyah 70x120;Color:color:0;черный:0;TTGRAVEL Siyah 70x120
+;TTA-128 1.5 спальный;Color:color:0;розовый:0;TTA-128 1.5 спальный
+;TTPMP-10 Евро (230х250) 2 наволочки (50х70);Color:color:0;серый:0;TTPMP-10 Евро (230х250) 2 наволочки (50х70)
+;TTДБ-39 1.5 спальный;Color:color:0;розовый:0;TTДБ-39 1.5 спальный
+;TTSadko korich 1.5 спальный;Color:color:0;бежевый:0;TTSadko korich 1.5 спальный
+;GR01-00014961;Color:color:0;лиловый:0;GR01-00014961
+;TTSadko korich 2 спальный;Color:color:0;бежевый:0;TTSadko korich 2 спальный
+;TTSadko korich Евро;Color:color:0;бежевый:0;TTSadko korich Евро
+;TTSadko korich Семейный;Color:color:0;бежевый:0;TTSadko korich Семейный
+;GR01-00021047;Color:color:0;серый:0;GR01-00021047
+;GR01-00020221;Color:color:0;коричневый:0;GR01-00020221
+;GR01-00020210;Color:color:0;коричневый:0;GR01-00020210
+;GR01-00020236;Color:color:0;коричневый:0;GR01-00020236
+;GR01-00020223;Color:color:0;красный:0;GR01-00020223
+;GR01-00020224;Color:color:0;синий:0;GR01-00020224
+;GR01-00020215;Color:color:0;черный:0;GR01-00020215
+;GR01-00020235;Color:color:0;черный:0;GR01-00020235
+;GR01-00020233;Color:color:0;черный:0;GR01-00020233
+;GR01-00020220;Color:color:0;черный:0;GR01-00020220
+;2466-d130365;Color:color:0;синий:0;2466-d130365
+;GR01-00021160;Color:color:0;синий:0;GR01-00021160
+;GR01-00021271;Color:color:0;черный:0;GR01-00021271
+;GR01-00020837;Color:color:0;синий:0;GR01-00020837
+;GR01-00021162;Color:color:0;фиолетовый:0;GR01-00021162
+;GR01-00021012;Color:color:0;бежевый:0;GR01-00021012
+;GR01-00021164;Color:color:0;зеленый:0;GR01-00021164
+;GR01-00021001;Color:color:0;бордовый:0;GR01-00021001
+;GR01-00020838;Color:color:0;бордовый:0;GR01-00020838
+;GR01-00021148;Color:color:0;синий:0;GR01-00021148
+;GR01-00020866;Color:color:0;хаки:0;GR01-00020866
+;GR01-00021149;Color:color:0;коричневый:0;GR01-00021149
+;GR01-00021173;Color:color:0;синий:0;GR01-00021173
+;GR01-00020883;Color:color:0;синий:0;GR01-00020883
+;GR01-00021289;Color:color:0;лиловый:0;GR01-00021289
+;GR01-00020951;Color:color:0;черный:0;GR01-00020951
+;GR01-00021023;Color:color:0;бордовый:0;GR01-00021023
+;GR01-00021171;Color:color:0;зеленый:0;GR01-00021171
+;GR01-00020757;Color:color:0;черный:0;GR01-00020757
+;GR01-00021038;Color:color:0;серый:0;GR01-00021038
+;GR01-00020879;Color:color:0;синий:0;GR01-00020879
+;GR01-00021147;Color:color:0;коричневый:0;GR01-00021147
+;GR01-00020640;Color:color:0;бежевый:0;GR01-00020640
+;GR01-00020640;Color:color:1;коричневый:1;GR01-00020640
+;GR01-00021177;Color:color:0;хаки:0;GR01-00021177
+;GR01-00020616;Color:color:0;черный:0;GR01-00020616
+;GR01-00021145;Color:color:0;фиолетовый:0;GR01-00021145
+;GR01-00021169;Color:color:0;оранжевый:0;GR01-00021169
+;GR01-00020756;Color:color:0;синий:0;GR01-00020756
+;GR01-00021146;Color:color:0;синий:0;GR01-00021146
+;GR01-00021163;Color:color:0;бордовый:0;GR01-00021163
+;GR01-00020741;Color:color:0;коричневый:0;GR01-00020741
+;GR01-00021291;Color:color:0;желтый:0;GR01-00021291
+;GR01-00020887;Color:color:0;черный:0;GR01-00020887
+;GR01-00021176;Color:color:0;серый:0;GR01-00021176
+;GR01-00021264;Color:color:0;фиолетовый:0;GR01-00021264
+;GR01-00020724;Color:color:0;бежевый:0;GR01-00020724
+;GR01-00020896;Color:color:0;лиловый:0;GR01-00020896
+;GR01-00020889;Color:color:0;зеленый:0;GR01-00020889
+;GR01-00020628;Color:color:0;коричневый:0;GR01-00020628
+;GR01-00020628;Color:color:1;синий:1;GR01-00020628
+;GR01-00021054;Color:color:0;синий:0;GR01-00021054
+;GR01-00021255;Color:color:0;синий:0;GR01-00021255
+;GR01-00021032;Color:color:0;бежевый:0;GR01-00021032
+;GR01-00020625;Color:color:0;голубой:0;GR01-00020625
+;GR01-00020625;Color:color:1;синий:1;GR01-00020625
+;GR01-00021048;Color:color:0;серый:0;GR01-00021048
+;GR01-00021258;Color:color:0;розовый:0;GR01-00021258
+;GR01-00021293;Color:color:0;коричневый:0;GR01-00021293
+;GR01-00020821;Color:color:0;черный:0;GR01-00020821
+;GR01-00021265;Color:color:0;лиловый:0;GR01-00021265
+;GR01-00020881;Color:color:0;черный:0;GR01-00020881
+;GR01-00021256;Color:color:0;бордовый:0;GR01-00021256
+;GR01-00021137;Color:color:0;фиолетовый:0;GR01-00021137
+;GR01-00021254;Color:color:0;хаки:0;GR01-00021254
+;GR01-00021294;Color:color:0;зеленый:0;GR01-00021294
+;GR01-00020759;Color:color:0;коричневый:0;GR01-00020759
+;GR01-00021253;Color:color:0;лиловый:0;GR01-00021253
+;GR01-00021172;Color:color:0;фиолетовый:0;GR01-00021172
+;GR01-00021170;Color:color:0;розовый:0;GR01-00021170
+;GR01-00020878;Color:color:0;черный:0;GR01-00020878
+;GR01-00020795;Color:color:0;хаки:0;GR01-00020795
+;GR01-00021024;Color:color:0;серый:0;GR01-00021024
+;GR01-00020793;Color:color:0;голубой:0;GR01-00020793
+;GR01-00020905;Color:color:0;розовый:0;GR01-00020905
+;GR01-00020791;Color:color:0;синий:0;GR01-00020791
+;GR01-00021043;Color:color:0;коричневый:0;GR01-00021043
+;GR01-00021041;Color:color:0;синий:0;GR01-00021041
+;GR01-00020082;Color:color:0;черный:0;GR01-00020082
+;GR01-00020083;Color:color:0;синий:0;GR01-00020083
+;GR01-00020874;Color:color:0;красный:0;GR01-00020874
+;GR01-00020641;Color:color:0;красный:0;GR01-00020641
+;GR01-00020709;Color:color:0;салатовый:0;GR01-00020709
+;GR01-00020707;Color:color:0;зеленый:0;GR01-00020707
+;GR01-00020701;Color:color:0;красный:0;GR01-00020701
+;GR01-00020695;Color:color:0;оранжевый:0;GR01-00020695
+;GR01-00020696;Color:color:0;салатовый:0;GR01-00020696
+;GR01-00021283;Color:color:0;бордовый:0;GR01-00021283
+;GR01-00021008;Color:color:0;коричневый:0;GR01-00021008
+;GR01-00021287;Color:color:0;коралловый:0;GR01-00021287
+;GR01-00021280;Color:color:0;коричневый:0;GR01-00021280
+;GR01-00021275;Color:color:0;оранжевый:0;GR01-00021275
+;GR01-00021003;Color:color:0;бордовый:0;GR01-00021003
+;GR01-00021299;Color:color:0;серый:0;GR01-00021299
+;GR01-00020515;Color:color:0;синий:0;GR01-00020515
+;GR01-00021281;Color:color:0;зеленый:0;GR01-00021281
+;GR01-00020802;Color:color:0;серый:0;GR01-00020802
+;GR01-00021004;Color:color:0;серый:0;GR01-00021004
+;GR01-00021006;Color:color:0;коричневый:0;GR01-00021006
+;GR01-00021034;Color:color:0;синий:0;GR01-00021034
+;GR01-00021036;Color:color:0;коричневый:0;GR01-00021036
+;GR01-00021000;Color:color:0;коричневый:0;GR01-00021000
+;GR01-00021007;Color:color:0;черный:0;GR01-00021007
+;GR01-00021035;Color:color:0;бордовый:0;GR01-00021035
+;GR01-00021037;Color:color:0;голубой:0;GR01-00021037
+;GR01-00021033;Color:color:0;синий:0;GR01-00021033
+;GR01-00020950;Color:color:0;синий:0;GR01-00020950
+;GR01-00020689;Color:color:0;коричневый:0;GR01-00020689
+;TTSakura 1.5 спальный;Color:color:0;белый:0;TTSakura 1.5 спальный
+;TTEuphoria130 1.5 спальный;Color:color:0;бежевый:0;TTEuphoria130 1.5 спальный
+;TTEuphoria130 2 спальный;Color:color:0;бежевый:0;TTEuphoria130 2 спальный
+;TTEuphoria130 Евро;Color:color:0;бежевый:0;TTEuphoria130 Евро
+;TTДБ-40 1.5 спальный;Color:color:0;голубой:0;TTДБ-40 1.5 спальный
+;GR01-00020996;Color:color:0;коричневый:0;GR01-00020996
+;GR01-00021010;Color:color:0;синий:0;GR01-00021010
+;GR01-00021018;Color:color:0;бордовый:0;GR01-00021018
+;GR01-00021009;Color:color:0;оранжевый:0;GR01-00021009
+;144-d131867;Color:color:0;бордовый:0;144-d131867
+;GR01-00021807;Color:color:0;фиолетовый:0;GR01-00021807
+;GR01-00021559;Color:color:0;бордовый:0;GR01-00021559
+;GR01-00021066;Color:color:0;черный:0;GR01-00021066
+;GR01-00021159;Color:color:0;голубой:0;GR01-00021159
+;GR01-00020697;Color:color:0;зеленый:0;GR01-00020697
+;GR01-00020708;Color:color:0;оранжевый:0;GR01-00020708
+;GR01-00020706;Color:color:0;фиолетовый:0;GR01-00020706
+;GR01-00020714;Color:color:0;серый:0;GR01-00020714
+;GR01-00020617;Color:color:0;коричневый:0;GR01-00020617
+;GR01-00020617;Color:color:1;розовый:1;GR01-00020617
+;GR01-00020539;Color:color:0;синий:0;GR01-00020539
+;GR01-00020543;Color:color:0;черный:0;GR01-00020543
+;GR01-00020693;Color:color:0;зеленый:0;GR01-00020693
+;GR01-00021161;Color:color:0;коричневый:0;GR01-00021161
+;GR01-00021175;Color:color:0;оранжевый:0;GR01-00021175
+;GR01-00021262;Color:color:0;желтый:0;GR01-00021262
+;GR01-00021261;Color:color:0;бордовый:0;GR01-00021261
+;GR01-00021174;Color:color:0;зеленый:0;GR01-00021174
+;GR01-00020882;Color:color:0;рыжий:0;GR01-00020882
+;GR01-00020642;Color:color:0;коричневый:0;GR01-00020642
+;GR01-00020542;Color:color:0;винный:0;GR01-00020542
+;GR01-00020612;Color:color:0;синий:0;GR01-00020612
+;GR01-00011383;Color:color:0;фиолетовый:0;GR01-00011383
+;GR01-00021022;Color:color:0;серый:0;GR01-00021022
+;GR01-00011882;Color:color:0;розовый:0;GR01-00011882
+;GR01-00006799;Color:color:0;оранжевый:0;GR01-00006799
+;5091;Color:color:0;черный:0;5091
+;GR01-00021150;Color:color:0;хаки:0;GR01-00021150
+;TTB-160 Семейный;Color:color:0;оранжевый:0;TTB-160 Семейный
+;TTB-104 Семейный;Color:color:0;розовый:0;TTB-104 Семейный
+;3-37/2 В;Color:color:0;черный:0;3-37/2 В
+;9-633 В;Color:color:0;черный:0;9-633 В
+;9-633 В-d132608;Color:color:0;черный:0;9-633 В-d132608
+;9-15 В;Color:color:0;черный:0;9-15 В
+;897 В;Color:color:0;коричневый:0;897 В
+;908 В;Color:color:0;синий:0;908 В
+;908 В-d132613;Color:color:0;коричневый:0;908 В-d132613
+;653 В;Color:color:0;коричневый:0;653 В
+;GR01-00021691;Color:color:0;бордовый:0;GR01-00021691
+;GR01-00021691;Color:color:1;мульти:1;GR01-00021691
+;GR01-00021690;Color:color:0;коричневый:0;GR01-00021690
+;GR01-00021690;Color:color:1;мульти:1;GR01-00021690
+;GR01-00021689;Color:color:0;бордовый:0;GR01-00021689
+;GR01-00021689;Color:color:1;мульти:1;GR01-00021689
+;GR01-00021688;Color:color:0;коричневый:0;GR01-00021688
+;GR01-00021688;Color:color:1;мульти:1;GR01-00021688
+;GR01-00021686;Color:color:0;коричневый:0;GR01-00021686
+;GR01-00021686;Color:color:1;мульти:1;GR01-00021686
+;GR01-00021687;Color:color:0;бордовый:0;GR01-00021687
+;GR01-00021687;Color:color:1;мульти:1;GR01-00021687
+;GR01-00021685;Color:color:0;бордовый:0;GR01-00021685
+;GR01-00021685;Color:color:1;мульти:1;GR01-00021685
+;GR01-00021684;Color:color:0;коричневый:0;GR01-00021684
+;GR01-00021684;Color:color:1;мульти:1;GR01-00021684
+;GR01-00021650;Color:color:0;зеленый:0;GR01-00021650
+;GR01-00021656;Color:color:0;зеленый:0;GR01-00021656
+;GR01-00021653;Color:color:0;зеленый:0;GR01-00021653
+;GR01-00021647;Color:color:0;зеленый:0;GR01-00021647
+;GR01-00021655;Color:color:0;черный:0;GR01-00021655
+;GR01-00021657;Color:color:0;бордовый:0;GR01-00021657
+;GR01-00021654;Color:color:0;бордовый:0;GR01-00021654
+;GR01-00021649;Color:color:0;черный:0;GR01-00021649
+;GR01-00021651;Color:color:0;бордовый:0;GR01-00021651
+;GR01-00021646;Color:color:0;черный:0;GR01-00021646
+;GR01-00021648;Color:color:0;бордовый:0;GR01-00021648
+;TTДБ-41 1.5 спальный;Color:color:0;розовый:0;TTДБ-41 1.5 спальный
+;TTD-94 2 спальный;Color:color:0;бежевый:0;TTD-94 2 спальный
+;GR01-00021196;Color:color:0;бежевый:0;GR01-00021196
+;GR01-00021197;Color:color:0;черный:0;GR01-00021197

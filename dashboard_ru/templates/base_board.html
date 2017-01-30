@@ -1,0 +1,923 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Welcome To | Bootstrap Based Admin Template - Material Design</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    {#    <!-- Bootstrap Core Css -->#}
+        <link href="{% static 'dashboard/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    {##}
+{#    <!-- Waves Effect Css -->#}
+{#    <link href="plugins/node-waves/waves.css" rel="stylesheet" />#}
+    <link href="{% static 'dashboard/plugins/node-waves/waves.css' %}" rel="stylesheet" />
+{##}
+{#    <!-- Animation Css -->#}
+{#    <link href="plugins/animate-css/animate.css" rel="stylesheet" />#}
+    <link href="{% static 'dashboard/plugins/animate-css/animate.css' %}" rel="stylesheet" />
+{##}
+{#    <!-- Morris Chart Css-->#}
+{#    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />#}
+    <link href="{% static 'dashboard/plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet">
+
+{#    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->#}
+{#    <link href="css/themes/all-themes.css" rel="stylesheet" />#}
+    <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+
+    <link href="{% static 'css/dashboard/themes/all-themes.css' %}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css">
+
+    {% block links %}
+    {% endblock %}
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
+
+</head>
+
+
+<body class="theme-red">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Загрузка...</p>
+        </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <div class="search-icon">
+            <i class="material-icons">search</i>
+        </div>
+        <input type="text" placeholder="START TYPING...">
+        <div class="close-search">
+            <i class="material-icons">close</i>
+        </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+{#                    <!-- Call Search -->#}
+{#                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>#}
+{#                    <!-- #END# Call Search -->#}
+{#                    <!-- Notifications -->#}
+{#                    <li class="dropdown">#}
+{#                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">#}
+{#                            <i class="material-icons">notifications</i>#}
+{#                            <span class="label-count">7</span>#}
+{#                        </a>#}
+{#                        <ul class="dropdown-menu">#}
+{#                            <li class="header">NOTIFICATIONS</li>#}
+{#                            <li class="body">#}
+{#                                <ul class="menu">#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-light-green">#}
+{#                                                <i class="material-icons">person_add</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4>12 new members joined</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 14 mins ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-cyan">#}
+{#                                                <i class="material-icons">add_shopping_cart</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4>4 sales made</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 22 mins ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-red">#}
+{#                                                <i class="material-icons">delete_forever</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4><b>Nancy Doe</b> deleted account</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 3 hours ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-orange">#}
+{#                                                <i class="material-icons">mode_edit</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4><b>Nancy</b> changed name</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 2 hours ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-blue-grey">#}
+{#                                                <i class="material-icons">comment</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4><b>John</b> commented your post</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 4 hours ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-light-green">#}
+{#                                                <i class="material-icons">cached</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4><b>John</b> updated status</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> 3 hours ago#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="javascript:void(0);">#}
+{#                                            <div class="icon-circle bg-purple">#}
+{#                                                <i class="material-icons">settings</i>#}
+{#                                            </div>#}
+{#                                            <div class="menu-info">#}
+{#                                                <h4>Settings updated</h4>#}
+{#                                                <p>#}
+{#                                                    <i class="material-icons">access_time</i> Yesterday#}
+{#                                                </p>#}
+{#                                            </div>#}
+{#                                        </a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li class="footer">#}
+{#                                <a href="javascript:void(0);">View All Notifications</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <!-- #END# Notifications -->#}
+                    <!-- Tasks -->
+                {% if user_profile.role.role_name != 'Клиент' %}
+
+                    <li class="">
+                        <a href="{% url 'ru:dashboard_ru:get_new_orders' %}" class="" role="button" data-toggle="tooltip" title="Новые звонки" data-placement="bottom">
+
+                                <i class="mdi mdi-phone f_s_20"></i>
+                            <span class="label-count" id="new_count_label">{% if new_calls_count != 0 %}{{ new_calls_count }}{% endif %}</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'ru:dashboard_ru:get_new_orders' %}" class="" role="button" data-toggle="tooltip" title="Новые заявки" data-placement="bottom">
+
+                                <i class="mdi mdi-library-plus f_s_20"></i>
+                            <span class="label-count" id="new_count_label">{% if new_count != 0 %}{{ new_count }}{% endif %}</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="">
+                        <a href="{% url 'ru:dashboard_ru:help_dashboard' %}" class="" role="button" data-toggle="tooltip" title="Помощь" data-placement="bottom">
+
+                                <i class="mdi mdi-help f_s_20"></i>
+                        </a>
+                    </li>
+                {% endif %}
+
+                    <li class="">
+                        <a href="{% url 'ru:index' %}" class="" role="button" data-toggle="tooltip" title="Назад к главной странице" data-placement="bottom">
+
+                                <i class="mdi mdi-keyboard-return f_s_20"></i>
+                            <span class="label-count"></span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'ru:dashboard_ru:logout_board' %}" class="" role="button" data-toggle="tooltip" title="Выйти" data-placement="bottom">
+
+                            <i class="mdi mdi-logout f_s_20"></i>
+                            <span class="label-count"></span>
+                        </a>
+                    </li>
+                    <!-- #END# Tasks -->
+                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+        <!-- Left Sidebar -->
+        <aside id="leftsidebar" class="sidebar">
+            <!-- User Info -->
+            <div class="user-info">
+                <div class="image">
+                    <img src="{% static 'img/user.png' %}" width="48" height="48" alt="User" />
+                </div>
+                    <div class="btn-group user-helper-dropdown color_white shadow-none float-right">
+                        <i class="material-icons pointer-pure" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li role="seperator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li role="seperator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                        </ul>
+                    </div>
+
+                <div class="info-container">
+                    {% if user_profile.role.id != 3 %}
+                    <div class="email float-right">{{ user_profile.role.role_name }}</div>
+                    {% endif %}
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}</div>
+
+                    <div class="email">{{ user.email }}</div>
+                </div>
+            </div>
+            <!-- #User Info -->
+            <!-- Menu -->
+            <div class="menu">
+                <ul class="list" id="menu_list">
+                    <li class="header m-b-10">Панель навигации</li>
+                    <li class="" id="menu_orders">
+                        <a href="{% url 'ru:dashboard_ru:get_sent_docs' %}" class="padding_menu">
+                            <i class="mdi mdi-library-books f_s_20"></i>
+                            <span>Заявки</span>
+                        </a>
+                    </li>
+                {% if user_profile.role.role_name != 'Клиент' %}
+                    <li class="" id="menu_back_calls">
+                        <a href="{% url 'ru:dashboard_ru:get_back_calls' %}" class="padding_menu">
+                            <i class="mdi mdi-phone f_s_20"></i>
+                            <span>Обратный звонок</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle" id="menu_users">
+                            <i class="mdi mdi-account-multiple f_s_20"></i>
+                            <span>Пользователи</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li class="" id="menu_translators">
+                                <a href="{% url 'ru:dashboard_ru:get_translators_list' %}" class="">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Переводчики</span>
+                                </a>
+                            </li>
+                            {% if user_profile.role.role_name != 'Менеджер' and user_profile.role.role_name != 'Клиент' %}
+                            <li class="" id="menu_managers">
+                                <a href="{% url 'ru:dashboard_ru:get_managers_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Менеджеры</span>
+                                </a>
+                            </li>
+                            <li class="" id="menu_admins">
+                                <a href="{% url 'ru:dashboard_ru:get_admins_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Админы</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            <li class="" id="menu_clients">
+                                <a href="{% url 'ru:dashboard_ru:get_clients_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Клиенты</span>
+                                </a>
+                            </li>
+{#                            <li>#}
+{#                                <a href="javascript:void(0);" class="menu-toggle">#}
+{#                                    <span>Infobox</span>#}
+{#                                </a>#}
+{#                                <ul class="ml-menu">#}
+{#                                    <li>#}
+{#                                        <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>#}
+{#                                    </li>#}
+{#                                    <li>#}
+{#                                        <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>#}
+{#                                    </li>#}
+{#                                </ul>#}
+{#                            </li>#}
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+            <!-- #Menu -->
+            <!-- Footer -->
+            <div class="legal">
+                <div class="copyright">
+                    &copy; 2016 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                </div>
+                <div class="version">
+                    <b>Version: </b> 1.0.4
+                </div>
+            </div>
+            <!-- #Footer -->
+        </aside>
+        <!-- #END# Left Sidebar -->
+        <!-- Right Sidebar -->
+        <aside id="rightsidebar" class="right-sidebar">
+            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
+                <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
+                    <ul class="demo-choose-skin">
+                        <li data-theme="red" class="active">
+                            <div class="red"></div>
+                            <span>Red</span>
+                        </li>
+                        <li data-theme="pink">
+                            <div class="pink"></div>
+                            <span>Pink</span>
+                        </li>
+                        <li data-theme="purple">
+                            <div class="purple"></div>
+                            <span>Purple</span>
+                        </li>
+                        <li data-theme="deep-purple">
+                            <div class="deep-purple"></div>
+                            <span>Deep Purple</span>
+                        </li>
+                        <li data-theme="indigo">
+                            <div class="indigo"></div>
+                            <span>Indigo</span>
+                        </li>
+                        <li data-theme="blue">
+                            <div class="blue"></div>
+                            <span>Blue</span>
+                        </li>
+                        <li data-theme="light-blue">
+                            <div class="light-blue"></div>
+                            <span>Light Blue</span>
+                        </li>
+                        <li data-theme="cyan">
+                            <div class="cyan"></div>
+                            <span>Cyan</span>
+                        </li>
+                        <li data-theme="teal">
+                            <div class="teal"></div>
+                            <span>Teal</span>
+                        </li>
+                        <li data-theme="green">
+                            <div class="green"></div>
+                            <span>Green</span>
+                        </li>
+                        <li data-theme="light-green">
+                            <div class="light-green"></div>
+                            <span>Light Green</span>
+                        </li>
+                        <li data-theme="lime">
+                            <div class="lime"></div>
+                            <span>Lime</span>
+                        </li>
+                        <li data-theme="yellow">
+                            <div class="yellow"></div>
+                            <span>Yellow</span>
+                        </li>
+                        <li data-theme="amber">
+                            <div class="amber"></div>
+                            <span>Amber</span>
+                        </li>
+                        <li data-theme="orange">
+                            <div class="orange"></div>
+                            <span>Orange</span>
+                        </li>
+                        <li data-theme="deep-orange">
+                            <div class="deep-orange"></div>
+                            <span>Deep Orange</span>
+                        </li>
+                        <li data-theme="brown">
+                            <div class="brown"></div>
+                            <span>Brown</span>
+                        </li>
+                        <li data-theme="grey">
+                            <div class="grey"></div>
+                            <span>Grey</span>
+                        </li>
+                        <li data-theme="blue-grey">
+                            <div class="blue-grey"></div>
+                            <span>Blue Grey</span>
+                        </li>
+                        <li data-theme="black">
+                            <div class="black"></div>
+                            <span>Black</span>
+                        </li>
+                    </ul>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="settings">
+                    <div class="demo-settings">
+                        <p>GENERAL SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Report Panel Usage</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Email Redirect</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>SYSTEM SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Notifications</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Auto Updates</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                        <p>ACCOUNT SETTINGS</p>
+                        <ul class="setting-list">
+                            <li>
+                                <span>Offline</span>
+                                <div class="switch">
+                                    <label><input type="checkbox"><span class="lever"></span></label>
+                                </div>
+                            </li>
+                            <li>
+                                <span>Location Permission</span>
+                                <div class="switch">
+                                    <label><input type="checkbox" checked><span class="lever"></span></label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+        <!-- #END# Right Sidebar -->
+    </section>
+
+    <section class="content">
+    {% if user_profile.role.id == 1 or user_profile.role.id == 2 or user_profile.role.id == 3 %}
+{#    round button#}
+        {% if not new_order %}
+            <a href="{% url 'ru:dashboard_ru:add_new_order' %}">
+                <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float round_btn" data-toggle="tooltip" title="Добвавить заявку" data-placement="left" id="add_order">
+                    <p class="text_rnd_btn">+</p>
+                </button>
+            </a>
+        {% endif %}
+    {% endif %}
+    {% block breadcrumbs %}
+    {% endblock %}
+
+        <div class="container-fluid">
+
+
+            {% block content %}
+
+            {% if user_profile.role.role_name == 'Клиент' %}
+
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Заявки в работе</div>
+                            <div class="number">{{ client.orders_in_progress }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-green hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-check"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Выполненные</div>
+                            <div class="number">{{ client.orders_complete }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-currency-rub"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Оплачено</div>
+                            <div class="number">{{ sum_paid }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-red hover-expand-effect pointer-pure" id="infobox_orders_to_pay">
+                        <div class="icon">
+                            <i class="mdi mdi-information-outline"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Заявки к оплате</div>
+                            <div class="number">{{ orders_for_payment|length }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+    <!--модальное окно не оплаченные заявки-->
+    {% if orders_for_payment %}
+        <div class="modal fade" id="orders_for_payment_Modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-col-pink">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Заказы к оплате</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Уважаемый {{ user.first_name }},</p>
+                        <p>В Вашем кабинете имеются заявки, ожидающие оплаты</p>
+    {#                            {% for client in clients %}#}
+                        <div class="body table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Цена</th>
+                                        <th>Статус</th>
+                                    </tr>
+                                </thead>
+{#                                <tfoot>#}
+{#                                        <th>ID</th>#}
+{#                                        <th>Имя</th>#}
+{#                                        <th>Телефон</th>#}
+{#                                        <th>Email</th>#}
+{##}
+{#                                </tfoot>#}
+                                <tbody>
+                                {% for order_for_payment in orders_for_payment %}
+
+                                    <tr class="order_for_payment pointer-pure" id="{{ order_for_payment.id }}" >
+                                        <td>{{ order_for_payment.id }}</td>
+                                        <td>{{ order_for_payment.price }}</td>
+                                        <td>
+                                            <i class="mdi mdi-account {% if not sent_doc.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                                            {% if user_profile.role.role_name != 'Клиент' %}
+                                            <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
+                                            {% endif %}
+                                            <i class="mdi mdi-currency-rub {% if not order_for_payment.calc_sent_date %}opacity-0_5 {% else %} opacity-1 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отослан" data-placement="top"></i>
+                                            <i class="mdi mdi-voice {% if not order_for_payment.translator %}opacity-0_5{% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+                                            <i class="mdi mdi-wallet {% if not order_for_payment.payment_date %}opacity-0_5{% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+                                            <i class="mdi mdi-note {% if not order_for_payment.translation_files %}opacity-0_5{% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+
+                                            <i class="mdi mdi-spellcheck {% if not order_for_payment.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
+
+                                        </td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+    {#                                {{ client.name }}#}
+    {#                            {% endfor %}#}
+                    </div>
+                    <div class="modal-footer">
+    {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    {% endif %}
+
+
+            {% elif user_profile.role.role_name == 'Менеджер' %}
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-download"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% elif user_profile.role.role_name == 'Админ' %}
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-download"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% elif user_profile.role.role_name == 'Суперадмин' %}
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-download"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box bg-teal hover-expand-effect">
+                        <div class="icon">
+                            <i class="mdi mdi-wrench"></i>
+                        </div>
+                        <div class="content">
+                            <div class="text">Новые заявки</div>
+                            <div class="number">{{ new_count }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endif %}
+
+
+
+
+            {% endblock %}
+        </div>
+    </section>
+
+{#    <!-- Jquery Core Js -->#}
+{#    <script src="plugins/jquery/jquery.min.js"></script>#}
+    <script src="{% static 'dashboard/plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+{##}
+{#    <!-- Bootstrap Core Js -->#}
+{#    <script src="plugins/bootstrap/js/bootstrap.js"></script>#}
+    <script src="{% static 'dashboard/plugins/bootstrap/js/bootstrap.js' %}"></script>
+{##}
+{#    <!-- Select Plugin Js -->#}
+{#    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>#}
+    <script src="{%  static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+{##}
+{#    <!-- Slimscroll Plugin Js -->#}
+{#    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>#}
+    <script src="{% static 'dashboard/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+{##}
+{#    <!-- Waves Effect Plugin Js -->#}
+{#    <script src="plugins/node-waves/waves.js"></script>#}
+    <script src="{% static 'dashboard/plugins/node-waves/waves.js' %}"></script>
+{#    <script src="{% static 'dashboard/plugins/autosize/autosize.js' %}"></script>#}
+
+{#    <script src="{% static 'js/dashboard/pages/forms/basic-form-elements.js' %}"></script>#}
+{##}
+{#    <!-- Jquery CountTo Plugin Js -->#}
+{#    <script src="plugins/jquery-countto/jquery.countTo.js"></script>#}
+{##}
+{#    <!-- Morris Plugin Js -->#}
+{#    <script src="plugins/raphael/raphael.min.js"></script>#}
+{#    <script src="plugins/morrisjs/morris.js"></script>#}
+{##}
+{#    <!-- ChartJs -->#}
+{#    <script src="plugins/chartjs/Chart.bundle.js"></script>#}
+{##}
+{#    <!-- Flot Charts Plugin Js -->#}
+{#    <script src="plugins/flot-charts/jquery.flot.js"></script>#}
+{#    <script src="plugins/flot-charts/jquery.flot.resize.js"></script>#}
+{#    <script src="plugins/flot-charts/jquery.flot.pie.js"></script>#}
+{#    <script src="plugins/flot-charts/jquery.flot.categories.js"></script>#}
+{#    <script src="plugins/flot-charts/jquery.flot.time.js"></script>#}
+{##}
+{#    <!-- Sparkline Chart Plugin Js -->#}
+{#    <script src="plugins/jquery-sparkline/jquery.sparkline.js"></script>#}
+{##}
+{#    <!-- Custom Js -->#}
+{#    <script src="js/admin.js"></script>#}
+{#    <script src="js/pages/index.js"></script>#}
+{#    <script src="{% static 'js/dashboard/pages/index.js' %}"></script>#}
+
+{#    <!-- Demo Js -->#}
+{#    <script src="js/demo.js"></script>#}
+    <script src="{% static 'dashboard/plugins/autosize/autosize.min.js' %}"></script>
+
+{#    <script src="{% static 'js/dashboard/demo.js' %}"></script>#}
+    <script src="{% static 'js/add_csrf.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/jquery-countto/jquery.countTo.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/bootstrap-notify/bootstrap-notify.js' %}"></script>
+    <script src="{% static 'js/moment.js' %}"></script>
+
+    <script src="{% static 'js/bootstrap-material-datetimepicker_ru.js' %}"></script>
+
+    <script src="{% static 'js/dashboard/pages/forms/basic-form-elements.js' %}"></script>
+{#    <script src="{% static 'js/moment.js' %}"></script>#}
+{#    <script src="{% static 'js/dashboard/pages/ui/notifications.js' %}"></script>#}
+    <script src="{% static 'js/dashboard/admin.js' %}"></script>
+{#    <script src="{% static 'js/dashboard/demo.js' %}"></script>#}
+    <script src="{% static 'js/moment_ru.js' %}"></script>
+
+
+    {% block script %}{% endblock %}
+<script>
+
+    add_csrf();
+    $('[data-toggle="tooltip"]').tooltip({
+        trigger: 'hover'
+    });
+
+
+    {% if orders_for_payment %}
+        $('#infobox_orders_to_pay').on('click', function () {
+            $('#orders_for_payment_Modal').modal('show');
+
+        });
+
+        $('.order_for_payment').on('click', function () {
+    {#        console.log($(':first', this).text())#}
+            window.location.href = "/ru/dashbrd/order_details/" + $(':first-child', this).text();
+
+        });
+    {% endif %}
+
+
+
+{#    $('#add_order').on('click', function () {#}
+{#        console.log('pressed');#}
+{#        $.post("{% url 'ru:dashboard_ru:add_new_order' %}", function(data) {#}
+{#            console.log('post')#}
+{#        });#}
+{#    });#}
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover'
+            });
+    })
+</script>
+</body>
+
+</html>

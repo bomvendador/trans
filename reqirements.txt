@@ -1,0 +1,11 @@
+pip install django-redis-sessions
+python-pip
+pyhon-dev
+suoervisor
+virtualenv
+sudo apt-get install libmysqlclient-dev
+pip install mysql-python
+pip install django
+pip install django-positions
+pip install Pillow
+pip install gunicorn

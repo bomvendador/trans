@@ -1,0 +1,126 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+            <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+            <link rel="stylesheet" href="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}">
+            <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-phone f_s_15"></i> Обратные звонки
+        </li>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+{#    <div class="page-loader-wrapper">#}
+{#        <div class="loader">#}
+{#            <div class="preloader">#}
+{#                <div class="spinner-layer pl-red">#}
+{#                    <div class="circle-clipper left">#}
+{#                        <div class="circle"></div>#}
+{#                    </div>#}
+{#                    <div class="circle-clipper right">#}
+{#                        <div class="circle"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <p>Загрузка...</p>#}
+{#        </div>#}
+{#    </div>#}
+
+
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                СПИСОК ОБРАТНЫХ ЗВОНКОВ
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <table class="table table-bordered table-striped table-hover dataTable {% if user_profile.role.role_name == 'Суперадмин' %} js-exportable {% else %} js-basic-example {% endif %}">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Имя</th>
+                                        <th>Телефон</th>
+                                        <th>Добавлен</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                        <th>ID</th>
+                                        <th>Имя</th>
+                                        <th>Телефон</th>
+                                        <th>Добавлен</th>
+                                </tfoot>
+                                <tbody>
+                                {% for back_call in back_calls %}
+
+                                    <tr class="back_call pointer-pure" id="{{ back_call.id }}">
+                                        <td>
+                                            {% if back_call.new %}
+                                                <i class="mdi mdi-download color-blue"></i>
+                                            {% endif %}
+                                            {{ back_call.id }}
+                                        </td>
+                                        <td>{{ back_call.name }}</td>
+                                        <td>{{ back_call.tel }}</td>
+                                        <td>{{ back_call.added|date:"d.m.Y, H:i" }}</td>
+
+                                    </tr>
+
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+{% endblock %}
+
+{% block script %}
+        <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'dashboard/plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+        <script src="{% static 'js/dashboard/pages/tables/jquery-datatable.js' %}"></script>
+
+<script>
+    $('#menu_list li').each(function () {
+        $(this).remove('active')
+    });
+    $('#menu_list li a').each(function () {
+        $(this).remove('toggled');
+    });
+    $('#menu_back_calls').addClass('active');
+
+
+    $('.back_call').on('click', function () {
+        window.location.href = "/ru/dashbrd/back_call_details/" + $(this).attr('id');
+    })
+
+
+</script>
+{% endblock %}

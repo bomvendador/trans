@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="a3955b89-f865-4291-bc64-6aa6aa42f633" name="prolingva" url="http://31.31.203.77">
+        <fileTransfer host="31.31.203.77" port="22" rootFolder="/home/trans" accessType="SFTP" password="dffbdfe4dfdcdfcbdfc6dfcfdfccdfe6dfdedf98dff9dfc8dff5dfdd" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="edea2824-fd49-49ce-b609-29043a6a9465" name="192.168.0.104" url="http://192.168.0.104">
+        <fileTransfer host="192.168.0.104" port="22" rootFolder="/home/alex/trans" accessType="SFTP" username="alex">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

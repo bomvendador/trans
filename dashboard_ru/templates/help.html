@@ -1,0 +1,126 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+            <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+{#            <link rel="stylesheet" href="{% static 'dashboard/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}">#}
+{#            <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">#}
+
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-help f_s_15"></i> Помощь
+        </li>
+    </ol>
+
+{% endblock %}
+
+{% block content %}
+
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Помощь по панели управления
+                                <small>В этом разделе отражены наиболее важные вопросы по панели управления, а также по системе вцелом.</small>
+                            </h2>
+                            <ul class="header-dropdown m-r--5">
+                                <li class="dropdown">
+                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                        <i class="material-icons">more_vert</i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <li><a href="javascript:void(0);">Action</a></li>
+                                        <li><a href="javascript:void(0);">Another action</a></li>
+                                        <li><a href="javascript:void(0);">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="body">
+                                   <b>Panel Primary</b>
+                                    <div class="panel-group" id="accordion_1" role="tablist" aria-multiselectable="true">
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading" role="tab" id="headingOne_1">
+                                                <h4 class="panel-title">
+                                                    <a role="button" data-toggle="collapse" data-parent="#accordion_1" href="#new_order_add" aria-expanded="true" aria-controls="collapseOne_1">
+                                                        Добавление новой заявки
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="new_order_add" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne_1">
+                                                <div class="panel-body">
+                                                    <p class="display-inline">Добавить новую заявку можно нажав на кнопку</p>
+                                                    <p type="button" class="btn bg-red btn-circle waves-effect waves-circle waves-float display-inline" >+</p>
+                                                     в нижней правой части экрана.
+                                                    <p>
+                                                        Добавленная новая заявка, будет рассмотрена в течение 30 мин с момента ее создания. В случае возникновения вопросов по заявке, наш Менеджер свяжется с Вами.
+                                                    </p>
+                                                    <p>
+                                                        Все изменения статуса заявки будут сообщены Вам через Вашу электронную почту. Также изменения статуса Вы можете отслеживать в личном кабинете в разделе ЗАЯВКИ.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading" role="tab" id="headingTwo_1">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseTwo_1" aria-expanded="false"
+                                                       aria-controls="collapseTwo_1">
+                                                        Схема выполнения заявки
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseTwo_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_1">
+                                                <div class="panel-body">
+                                                    <p>
+                                                        После поступления заявки она рассматривается Менеджером и определяется стоимость услуг, о чем клиент уведомляется по электронной почте. Стоимость также можно отслеживать в личном кабинете в деталях заявки в разделе ОПЛАТА.
+                                                    </p>
+                                                    <p>
+                                                        После поступления заявки она рассматривается Менеджером и определяется стоимость услуг, о чем клиент уведомляется по электронной почте.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading" role="tab" id="headingThree_1">
+                                                <h4 class="panel-title">
+                                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_1" href="#collapseThree_1" aria-expanded="false"
+                                                       aria-controls="collapseThree_1">
+                                                        Collapsible Group Item #3
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="collapseThree_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_1">
+                                                <div class="panel-body">
+                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute,
+                                                    non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
+                                                    eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid
+                                                    single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+                                                    helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                                                    Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+                                                    raw denim aesthetic synth nesciunt you probably haven't heard of them
+                                                    accusamus labore sustainable VHS.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,1071 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Legal &mdash; 100% Free Fully Responsive HTML5 Template by FreeHTML5.co</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FreeHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FreeHTML5.cO" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <title>Title</title>
+<!-- Material Design fonts -->
+
+    {% block links_before %}
+    {% endblock %}
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+        <link rel="stylesheet" href="{% static 'css/testimonials-carousel/reset.css' %}">
+        <link rel="stylesheet" href="{% static 'css/testimonials-carousel/style.css' %}">
+
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+{#        <link rel="stylesheet" href="{% static 'css/bootstrap-material-design.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'css/ripples.css' %}">#}
+        <link rel="stylesheet" href="{% static 'css/jquery.filer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mdb.css' %}">
+
+
+{#        <link rel="stylesheet" href="{% static 'css/dashboard/materialize.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'dashboard/plugins/node-waves/waves.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}">#}
+{#        <link rel="stylesheet" href="{% static 'css/dashboard/style.css' %}">#}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/toastr.min.css' %}">
+        <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
+
+
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="{% static 'css/mdl_file.css' %}">
+
+    {#        <link rel="stylesheet" href="{% static 'css/fileUploader.css' %}">#}
+
+    {#        <link rel="stylesheet" href="{% static 'css/notification.css' %}">#}
+{#        <link rel="stylesheet/less" href="{% static 'css/_inputs.less' %}">#}
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Comfortaa" rel="stylesheet">
+        <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css">
+         <link rel="stylesheet" href="{% static 'css/main_page_btn.css' %}">
+<!-- Compiled and minified CSS -->
+{#  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">#}
+
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery.filer.js' %}"></script>
+
+        <script src="{% static 'js/mdb.js' %}"></script>
+
+
+{#        <script src="{% static 'js/less.js' %}"></script>#}
+
+    {% block links %}
+
+    {% endblock %}
+
+        <script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+</head>
+<body>
+	<header role="banner" id="fh5co-header">
+
+		<nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<!-- Mobile Toggle Menu Button -->
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+					<a class="navbar-brand" href="index.html" style="padding-top: 11px"><img class="media-object" src="{% static 'img/logo/logo1_white.png' %}" width="90" height="40"></a>
+{#				    <p class="display-inline"> 8 800-00-00</p>#}
+                </div>
+{#                <div class="nav navbar-nav mob-tel-style tel-style">#}
+{#				    <p class="display-inline"> 8 800-00-00</p>#}
+{##}
+{##}
+{#                </div>#}
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+{#						<li class="active"><a href="#" data-nav-section="home"><span>Home</span></a></li>#}
+{#						<li><a href="#" data-nav-section="about"><span>About</span></a></li>#}
+{#						<li><a href="#" data-nav-section="practice-areas"><span>Practice Areas</span></a></li>#}
+{#						<li><a href="#" data-nav-section="testimony"><span>Testimonial</span></a></li>#}
+                        {% if learn_more != 'trans' and learn_more != 'types' %}
+						<li><a href="#" data-nav-section="services" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Направления</span></a></li>
+						<li><a href="#" data-nav-section="types" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Виды</span></a></li>
+						<li><a href="#" data-nav-section="whyus" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Почему мы?</span></a></li>
+						<li><a href="#" data-nav-section="testimonials" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Отзывы</span></a></li>
+						<li><a href="#" data-nav-section="form" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Расчет стоимости</span></a></li>
+						<li><a href="#" data-nav-section="contacts" class="padding-right-5 padding-left-5"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Контакты</span></a></li>
+                        {% else %}
+                        <li><a href="{% url 'ru:index' %}" id="go_to_index" class="padding-right-0"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Назад</span></a></li>
+                        {% endif %}
+
+                        {% if user.is_authenticated %}
+
+						<li class="header_style"><a href="{% url 'ru:dashboard_ru:base_board' user_id=user.pk %}" id="settings"  data-toggle="tooltip" title="К панели управления" data-placement="bottom"><span>{{ user.first_name }} | <i class="mdi mdi-settings"></i></span></a></li>
+						<li class="header_style"><a href="{% url 'ru:logoutUser' %}" id="logout"><span class="font-weight-300 style="font-family: Roboto, Sans-Serif">Выйти</span></a></li>
+                        {% else %}
+						<li class="header_style"><a href="#" id="login"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Войти</span></a></li>
+
+                        {% endif %}
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+	</header>
+
+<!--modal auth page starts-->
+
+<!-- Trigger the modal with a button -->
+<button id="btn_login" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" style="display: none">Open Modal</button>
+
+
+
+<div id="myModal" class="modal fade in" role="dialog">
+  <div class="modal-dialog">
+        <form action="" method="post" name="auth_form" id="auth_form" class="bs-co">{% csrf_token %}
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                    <!--Form with header-->
+                <div class="card">
+                    <div class="card-block">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--Header-->
+                        <div class="text-xs-center" id="title_auth">
+                            <h3 class="comforta_font f_s_20 color_grey">Авторизация</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+                        <div class="text-xs-center" id="title_reg" style="display: none">
+                            <h3 class="comforta_font f_s_20 color_grey">Регистрация</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+                        <div id="message" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>
+                        <!--Body-->
+                        <div class="md-form" id="login_group">
+                            <i class="mdi mdi-at text_label prefix"></i>
+                            <input type="text" id="email" name="email" class="form-control">
+                            <label for="email">Email</label>
+                        </div>
+
+    {#                    <div class="md-form" id="email_group" style="display: none;">#}
+    {#                        <i class="mdi mdi-at text_label prefix"></i>#}
+    {#                        <input type="text" id="email_reg" name="email_reg" class="form-control">#}
+    {#                        <label for="login">Email</label>#}
+    {#                    </div>#}
+
+                        <div class="md-form" id="pass_group">
+                            <i class="mdi mdi-key text_label prefix"></i>
+                            <input type="password" id="password" name="password" class="form-control">
+                            <label for="password">Пароль</label>
+                        </div>
+
+                        <div class="md-form" id="pass_rep_group" style="display: none;">
+                            <i class="mdi mdi-key text_label prefix"></i>
+                            <input type="password" id="password_rep" name="password_rep" class="form-control">
+                            <label for="password_rep">Пароль (повторно)</label>
+                        </div>
+                        <div class="md-form" id="name_group" style="display: none">
+                            <i class="mdi mdi-account text_label prefix"></i>
+                            <input type="text" id="name" name="name" class="form-control">
+                            <label for="name">Имя</label>
+
+                        </div>
+                        <div class="row">
+                            <div class="text-xs-center col-lg-12" id="btn_submit_group">
+                                <button class="btn btn-deep-purple col-lg-12" id="btn_submit">Вход</button>
+                            </div>
+                        </div>
+                        <div class="row" id="reg_btns_group" style="display: none;">
+                            <div class="text-xs-center col-lg-6 col-xs-12">
+                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" id="btn_submit_reg">Отправить</button>
+                            </div>
+                            <div class="text-xs-center col-lg-6 col-xs-12">
+                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" data-dismiss="modal">Выход</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer" id="footer_group">
+                        <div class="options">
+                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>
+                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer" id="footer_group_reg" style="display: none;">
+                        <div class="options">
+                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/Form with header-->
+
+            </div>
+        </form>
+    </div>
+</div>
+<!--modal auth page ends-->
+
+<!--modal contact form-->
+
+    <button id="btn_contact_form_trigger" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal_contact_form" style="display: none">Open Modal</button>
+
+<div id="Modal_contact_form" class="modal fade in" role="dialog">
+  <div class="modal-dialog">
+        <form action="" method="post" name="contact_form" id="contact_form" class="bs-co">{% csrf_token %}
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                    <!--Form with header-->
+                <div class="card">
+                    <div class="card-block">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--Header-->
+                        <div class="text-xs-center" id="title_contact_form">
+                            <h3 id="contact_form_header_order_service" class="comforta_font f_s_20 color_grey">Запрос услуги</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+                        <div id="message_contact_form" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>
+                        <!--Body-->
+                        <div class="md-form" id="name_group">
+                            <i class="mdi mdi-account text_label prefix"></i>
+                            <input type="text" id="name_contact_form" name="name_contact_form" class="form-control">
+                            <label for="name_contact_form">Имя</label>
+                        </div>
+
+                        <div class="md-form" id="tel_group_contact_form">
+                            <i class="mdi mdi-cellphone-iphone text_label prefix"></i>
+                            <input type="text" id="tel_contact_form" name="tel_contact_form" class="form-control" value="{{ user_profile.tel }}">
+                            <label for="tel_contact_form">Телефон</label>
+                        </div>
+
+                        <div class="md-form" id="email_group_contact_form">
+                            <i class="mdi mdi-email text_label prefix"></i>
+                            <input type="text" id="email_contact_form" name="email_contact_form" class="form-control">
+                            <label for="name">Email</label>
+
+                        </div>
+
+                         <div class="md-form" id="text_contact_form_group">
+                            <i class="mdi mdi-pencil text_label prefix"></i>
+
+                            <textarea type="text" id="text_contact_form" class="md-textarea" name="text_contact_form"></textarea>
+                            <label for="text_contact_form">Сообщение</label>
+                        </div>
+
+                        <div class="row" id="btn_contact_form_group">
+                            <div class="text-xs-center col-lg-12 col-xs-12">
+                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" id="btn_submit_contact_form">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+{##}
+{#                    <!--Footer-->#}
+{#                    <div class="modal-footer" id="footer_group">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>#}
+{#                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="modal-footer" id="footer_group_reg" style="display: none;">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <!--/Form with header-->#}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--modal contact form ends-->
+
+<!--modal back call form-->
+
+    <button id="btn_back_call_form_trigger" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Modal_back_call_form" style="display: none">Open Modal</button>
+
+<div id="Modal_back_call_form" class="modal fade in" role="dialog">
+  <div class="modal-dialog">
+        <form action="" method="post" name="back_call_form" id="back_call_form" class="bs-co">{% csrf_token %}
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                    <!--Form with header-->
+                <div class="card">
+                    <div class="card-block">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--Header-->
+                        <div class="text-xs-center" id="title_back_call_form">
+                            <h3 id="contact_form_header_back_call" class="comforta_font f_s_20 color_grey">Обратный звонок</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+                        <div id="message_back_call_form" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>
+
+                        <!--Body-->
+                        <div class="md-form" id="name_group_back_call_form">
+                            <i class="mdi mdi-account text_label prefix"></i>
+                            <input type="text" id="name_back_call_form" name="name_back_call_form" class="form-control">
+                            <label for="name_back_call_form">Имя</label>
+                        </div>
+
+                        <div class="md-form" id="tel_group_back_call_form">
+                            <i class="mdi mdi-cellphone-iphone text_label prefix"></i>
+                            <input type="text" id="tel_back_call_form" name="tel_back_call_form" class="form-control" value="{{ user_profile.tel }}">
+                            <label for="tel_back_call_form">Телефон</label>
+                        </div>
+
+                        <div class="row" id="btn_back_call_form_group">
+                            <div class="text-xs-center col-lg-12 col-xs-12">
+                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" id="btn_submit_back_call_form">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+{##}
+{#                    <!--Footer-->#}
+{#                    <div class="modal-footer" id="footer_group">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>#}
+{#                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="modal-footer" id="footer_group_reg" style="display: none;">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <!--/Form with header-->#}
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<!--modal back call form ends-->
+
+
+<!--modal doc send page starts-->
+
+<!-- Trigger the modal with a button -->
+<button id="btn_doc_send" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalDocSend" style="display: none"></button>
+
+
+
+<div id="modalDocSend" class="modal fade in" role="dialog">
+  <div class="modal-dialog">
+        <form action="" method="post" name="doc_send_form" id="doc_send_form" class="bs-co">{% csrf_token %}
+        <!-- Modal content-->
+            <div class="modal-content">
+
+                    <!--Form with header-->
+                <div class="card">
+                    <div class="card-block">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!--Header-->
+                        <div class="text-xs-center" id="title_doc_send">
+                            <h3 class="comforta_font f_s_20 color_grey" id="doc_send_header">Расчет стоимости и сроков</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+                        <div id="message_doc_send" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>
+                        <!--Body-->
+
+                        <div class="md-form" id="name_group_doc_send">
+                            <i class="mdi mdi-account text_label prefix"></i>
+                            <input type="text" id="name_doc_send" name="name_doc_send" class="form-control" {% if user.is_authenticated %}value="{{ user.first_name }}" {% endif %}>
+                            <label for="name_doc_send">Имя</label>
+                        </div>
+
+                        <div class="md-form" id="login_group_doc_send">
+                            <i class="mdi mdi-at text_label prefix"></i>
+                            <input type="text" id="email_doc_send" name="email_doc_send" class="form-control" {% if user.is_authenticated %}value="{{ user.email }}" {% endif %}>
+                            <label for="email_doc_send">Email</label>
+                        </div>
+
+                        <div class="md-form" id="tel_group_doc_send">
+                            <i class="mdi mdi-cellphone-iphone text_label prefix"></i>
+                            <input type="text" id="tel_doc_send" name="tel_doc_send" class="form-control" value="{{ user_profile.tel }}">
+                            <label for="tel_doc_send">Телефон</label>
+                        </div>
+
+
+                        <div class="md-form">
+                            <i class="mdi mdi-format-horizontal-align-left text_label prefix"></i>
+{#                                            <div class="">#}
+                                <select class="form-control show-tick select_lang" id="trans_from" name="trans_from">
+                                    <option value="-- Перевод С --">-- Перевод С --</option>
+                                {% for lang in langs %}
+                                    <option value="{{ lang.name }}">{{ lang.name }}</option>
+                                {% endfor %}
+                                </select>
+
+                                <i class="mdi mdi-format-horizontal-align-right text_label prefix"></i>
+
+                                <select class="form-control show-tick select_lang" id="trans_to" name="trans_to">
+                                    <option value="-- Перевод НА --">-- Перевод НА --</option>
+                                {% for lang in langs %}
+                                    <option value="{{ lang.name }}">{{ lang.name }}</option>
+                                {% endfor %}
+                                </select>
+{#                                            </div>#}
+                        </div>
+                        <div class="md-form">
+                            <i class="mdi mdi-pencil text_label prefix"></i>
+
+                            <textarea type="text" id="text_doc_send" class="md-textarea" name="text_doc_send"></textarea>
+                            <label for="form76">Введите/вставьте текст</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="mdi mdi-paperclip text_label prefix"></i>
+                            <div class="fileUpload btn btn-primary file-upload-files" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
+                                <span>Загрузить файл(ы)</span>
+                                <input type="file" class="upload height-100" name="filesToUpload" id="filesToUpload" multiple="" onchange="makeFileList();">
+
+                            </div>
+                            <div>
+                                <i class="mdi mdi-close text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px; margin-top: 0px!important; font-size: 15px; margin-left: 7px"></i>
+                                <ul id="fileList" class="file-upload-files"></ul>
+
+                            </div>
+
+                        </div>
+
+{#                        <div id="content">#}
+{#                            <h2>Demo</h2>#}
+{##}
+{#                            <!-- Example 2 -->#}
+{#                            <input type="file" name="files[]" id="filer_input2" multiple="multiple">#}
+{#                            <!-- end of Example 2 -->#}
+{##}
+{#                        </div>#}
+
+{#                        <div class="file-field">#}
+{#                            <div class="btn btn-primary btn-sm">#}
+{#                                <span>Choose files</span>#}
+{#                                <input type="file" multiple >#}
+{#                            </div>#}
+{#                            <div class="file-path-wrapper">#}
+{#                                <input class="file-path validate file_" type="text" placeholder="Upload one or more files">#}
+{#                            </div>#}
+{#                        </div>#}
+
+
+
+
+                        <div class="row">
+                            <div class="text-xs-center col-lg-12" id="btn_submit_group_doc_send">
+                                <button class="btn btn-deep-purple col-lg-12 col-xs-12" id="btn_submit">Отправить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/Form with header-->
+
+            </div>
+        </form>
+    </div>
+</div>
+<!--modal doc send page ends-->
+
+<!-- Preloader starts-->
+
+<div class="page-loader-wrapper" style="display: none" id="preloader">
+    <div class="wrapper">
+	    <div class="cssload-loader"></div>
+    </div>
+</div>
+
+<!-- Preloader ends-->
+
+<!-- Кнопка обратного звонка-->
+    <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float main" data-toggle="tooltip" title="Обратный звонок" data-placement="right" id="btn_back_call" style="position: fixed; left: 10px; bottom: 10px; z-index: 100">
+        <i class="mdi mdi-phone" style="top:2px!important;"></i>
+    </button>
+
+{% block content %}
+{% endblock %}
+
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/respond.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+{#        <script src="{% static 'js/fileUploader.js' %}"></script>#}
+{#        <script src="{% static 'js/notification.js' %}"></script>#}
+{#        <script src="{% static 'js/material.js' %}"></script>#}
+{#        <script src="{% static 'js/ripples.js' %}"></script>#}
+        <script src="{% static 'js/mdb.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+        <script src="{% static 'js/mdl_file.js' %}"></script>
+{#        <script src="{% static 'js/mdb_dop.js' %}"></script>#}
+{#    <!-- Slimscroll Plugin Js -->#}
+{#    <script src="plugins/jquery-slimscroll/jquery.slimscroll.js"></script>#}
+    <script src="{% static 'dashboard/plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+{##}
+{#    <!-- Waves Effect Plugin Js -->#}
+{#    <script src="plugins/node-waves/waves.js"></script>#}
+    <script src="{% static 'dashboard/plugins/node-waves/waves.js' %}"></script>
+    <script src="{% static 'js/toastr.min.js' %}"></script>
+    <script src="{% static 'js/doc_send.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
+{#<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js">#}
+
+    <!-- Compiled and minified JavaScript -->
+{#  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>#}
+
+    <script>
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        }
+    });
+
+
+    function showMessage(msg) {
+        $('#message').append(msg);
+        $('#message').addClass('err_msg');
+        $('#message').slideDown('fast');
+
+    }
+
+    function hideMessage() {
+        $('#message').slideUp('fast');
+
+    }
+
+
+    function hide_reg_errors() {
+                $('#email').removeClass('invalid');
+                $('#password').removeClass('invalid');
+                $('#password_rep').removeClass('invalid');
+                $('#message').slideUp('fast');
+                $('#message').html('');
+
+    }
+
+
+        //обратный звонок
+        $('#btn_back_call').on('click', function () {
+            $('#btn_back_call_form_trigger').click();
+
+            //отправка формы
+            function hideMessageBackCallForm() {
+                $('#message_back_call_form').slideUp('slow');
+                $('#name_back_call_form').removeClass('invalid');
+                $('#tel_back_call_form').removeClass('invalid');
+            }
+
+            function showMessage_back_call_form(msg) {
+                $('#message_back_call_form').append(msg);
+                $('#message_back_call_form').addClass('err_msg');
+                $('#message_back_call_form').slideDown('fast');
+            }
+
+            $('#name_back_call_form').on('click', function () {
+                hideMessageBackCallForm();
+            });
+            $('#tel_back_call_form').on('click', function () {
+                hideMessageBackCallForm();
+            });
+
+            function clear_back_call() {
+                $('#name_back_call_form').val('');
+                $('#tel_back_call_form').val('');
+            }
+            $('#btn_submit_back_call_form').on('click', function (e) {
+                e.preventDefault();
+                //отправка формы обратного звонка
+                var tel_exp = new RegExp(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)
+
+                console.log('call')
+                var message_back_call_form = '';
+                var name_err_back_call_form = false;
+                var name_err_back_call_form_msg = '';
+                var tel_err_back_call_form = false;
+                var tel_err_back_call_form_msg = '';
+
+                //проверка имени
+                if ($('#name_back_call_form').val() == ''){
+                    name_err_back_call_form = true;
+                    name_err_back_call_form_msg = 'Введите свое имя </br>';
+                    $('#name_back_call_form').addClass('invalid');
+
+                }
+                //проверка телефона
+                if ($('#tel_back_call_form').val() == ''){
+                    tel_err_back_call_form = true;
+                    tel_err_back_call_form_msg = 'Введите свой номер телефона </br>';
+                    $('#tel_back_call_form').addClass('invalid');
+
+                }else {
+                    if (!tel_exp.test($('#tel_back_call_form').val())) {
+                        $('#tel_back_call_form').addClass('invalid');
+                        tel_err_back_call_form_msg = 'Проверьте правильность номера телефона<br/>';
+                        tel_err_back_call_form = true;
+                    }
+                }
+
+                if(name_err_back_call_form || tel_err_back_call_form){
+                    $('#message_back_call_form').html('');
+                    message_back_call_form = name_err_back_call_form_msg + tel_err_back_call_form_msg;
+                    showMessage_back_call_form(message_back_call_form);
+                    $('#Modal_back_call_form').animate({scrollTop: 0}, 'slow');
+
+                }else {
+                    showPreloader();
+                    var formdata = new FormData($('#back_call_form').get(0));
+                    formdata.append('back_call', '1');
+                    $.ajax({
+                        url: '{% url 'ru:save_files_trans' %}',
+                        type: 'POST',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            console.log(data);
+                        },
+                        success:function (data) {
+                            hidePreloader();
+
+                            if (data == 'ok'){
+                                $('.close').click();
+                                    swal({
+                                        title: 'Информация успешно отправлена',
+                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время с Вами свяжется наш Менеджер',
+                                        type: 'success',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    });
+
+{#                                        toastr.success('Заголовок', 'Текст все ок');#}
+                            }else {
+                                $('.close').click();
+
+                                if (data == 'user_exists'){
+                                    swal({
+                                        title: 'Информация успешно отправлена',
+                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                        type: 'success',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm){
+                                            swal({
+                                                title: 'Пользователь с таким email уже зарегистрирован',
+                                                text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',
+                                                type: 'warning'
+                                            })
+                                        }
+                                    });
+
+                                }
+                            }
+                            clear_back_call();
+                        }
+                    });
+
+
+                }
+
+            })
+
+
+
+
+
+        });
+
+
+
+
+
+        $(function () {
+
+
+{#            swal('ааааа');#}
+            //tooltip hover effect
+            $('[data-toggle="tooltip"]').tooltip({
+                trigger: 'hover'
+            });
+
+
+
+{#            $('#drop_file').fileUploader();#}
+
+            $('#settings').on('click', function () {
+                window.location.href = "{% url 'ru:dashboard_ru:base_board' user_id=user.pk %}";
+{#               $('#settings_btn')[0].click();#}
+            });
+
+
+
+            $('#register').on('click', function (e) {
+               hide_reg_errors();
+{#               $('#login_group').slideUp('fast');#}
+               $('#footer_group').slideUp('fast');
+               $('#btn_submit_group').slideUp('fast');
+                $('#title_auth').slideUp('fast');
+
+               $('#name_group').slideDown('fast');
+               $('#pass_rep_group').slideDown('fast');
+               $('#reg_btns_group').slideDown('fast');
+                $('#footer_group_reg').slideDown('fast');
+                $('#title_reg').slideDown('fast');
+
+            });
+
+            $('#footer_login').on('click', function (e) {
+               hide_reg_errors();
+               $('#name_group').slideUp('fast');
+               $('#pass_rep_group').slideUp('fast');
+               $('#reg_btns_group').slideUp('fast');
+                $('#footer_group_reg').slideUp('fast');
+                $('#title_reg').slideUp('fast');
+
+{#               $('#login_group').slideDown('fast');#}
+               $('#footer_group').slideDown('fast');
+               $('#btn_submit_group').slideDown('fast');
+               $('#title_auth').slideDown('fast');
+
+
+            });
+
+            $('#login_group').on('click', function () {
+                hide_reg_errors();
+            });
+            $('#pass_group').on('click', function () {
+                hide_reg_errors();
+            });
+            $('#pass_rep_group').on('click', function () {
+                hide_reg_errors();
+            });
+            $('#login').on('click', function () {
+                $('#btn_login').click();
+
+            });
+
+
+
+            var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
+            var tel_exp = new RegExp(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)
+
+            $('#btn_submit_reg').on('click', function (e) {
+               e.preventDefault();
+
+            });
+
+            $('#btn_submit_reg').on('click', function (e) {
+                var message = '';
+                var email_err = false;
+                e.preventDefault();
+                 //валидация email
+                if ($('#email').val() != '') {
+                         if(!email.test($('#email').val())) {
+                            $('#email').addClass('invalid');
+                             message = 'Проверьте правильность заполнения email';
+                             email_err = true;
+                         }
+                }else {
+                    email_err = true;
+                    message = 'Заполните поле email';
+                    $('#email').addClass('invalid');
+                }
+                //валидация пароля
+                var password_check = new RegExp(/^[a-zA-Z0-9_]{3,20}$/);
+                if ($('#password').val() != $('#password_rep').val() && $('#password_rep').val() != '' && $('#password').val() != ''){
+                    if (message != ''){
+                        message = message + '<br/>Пароли должны совпадать';
+                        $('#password').addClass('invalid');
+                        $('#password_rep').addClass('invalid');
+                        email_err = true;
+                    }else {
+                        message = 'Пароли должны совпадать';
+                        $('#password').addClass('invalid');
+                        $('#password_rep').addClass('invalid');
+                        email_err = true;
+
+                    }
+                }else {
+                    if ($('#password_rep').val() == '' || $('#password').val() == ''){
+                        if (message != ''){
+                            message = message + '<br/>Пароли не могут быть пустыми';
+                            $('#password').addClass('invalid');
+                            $('#password_rep').addClass('invalid');
+                            email_err = true;
+                        }else {
+                            message = 'Пароли не могут быть пустыми';
+                            $('#password').addClass('invalid');
+                            $('#password_rep').addClass('invalid');
+                            email_err = true;
+
+                        }
+
+                    }
+
+                }
+                if(email_err){
+                    showMessage(message);
+                }else {
+                    showPreloader();
+                    var formdata = new FormData($('#auth_form').get(0));
+                    $.ajax({
+                        url: '{% url 'ru:reg_user' %}',
+                        type: 'POST',
+
+                        data: formdata,
+
+
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            console.log(data);
+                        },
+                        success:function (data) {
+                            if (data == 'ok'){
+                                location.reload();
+                            }else {
+                                hidePreloader();
+                                $('#email').addClass('invalid');
+
+                                $('#message').html('Пользователь с таким email уже существует');
+                                $('#message').addClass('err_msg');
+                                $('#message').slideDown('fast');
+                            }
+    {#                        alert(data);#}
+
+                        }
+                    });
+
+                }
+            });
+
+//send documents starts
+{#            $('#btn_doc_send_open').on#}
+
+            $('#email_doc_send').on('click', function () {
+                hideMessage_doc_send();
+            });
+            $('#name_doc_send').on('click', function () {
+                hideMessage_doc_send();
+            });
+            $('#tel_doc_send').on('click', function () {
+                hideMessage_doc_send();
+            });
+            $('#text_doc_send').on('click', function () {
+                hideMessage_doc_send();
+            });
+            $('#filesToUpload').on('click', function () {
+                hideMessage_doc_send();
+            });
+
+            $('#btn_submit_group_doc_send').on('click', function (e) {
+                var message_doc_send = '';
+                var email_err_doc_send = false;
+                var email_err_doc_send_msg = '';
+                var name_err_doc_send = false;
+                var name_err_doc_send_msg = '';
+                var tel_err_doc_send = false;
+                var tel_err_doc_send_msg = '';
+                var file_err_doc_send = false;
+                var file_err_doc_send_msg = '';
+                e.preventDefault();
+                //валидация email
+                if ($('#email_doc_send').val() != '') {
+                    if (!email.test($('#email_doc_send').val())) {
+                        $('#email_doc_send').addClass('invalid');
+                        email_err_doc_send_msg = 'Проверьте правильность заполнения email<br/>';
+                        email_err_doc_send = true;
+                    }
+                } else {
+                    email_err_doc_send = true;
+                    email_err_doc_send_msg = 'Введите свой email<br/>';
+                    $('#email_doc_send').addClass('invalid');
+                }
+                //проверка имени
+                if ($('#name_doc_send').val() == ''){
+                    name_err_doc_send = true;
+                    name_err_doc_send_msg = 'Введите свое имя </br>';
+                    $('#name_doc_send').addClass('invalid');
+
+                }
+                //проверка телефона
+                if ($('#tel_doc_send').val() == ''){
+                    tel_err_doc_send = true;
+                    tel_err_doc_send_msg = 'Введите свой номер телефона </br>';
+                    $('#tel_doc_send').addClass('invalid');
+
+                }else {
+                    if (!tel_exp.test($('#tel_doc_send').val())) {
+                        $('#tel_doc_send').addClass('invalid');
+                        tel_err_doc_send_msg = 'Проверьте правильность номера телефона<br/>';
+                        tel_err_doc_send = true;
+                    }
+                }
+                //проверка файла
+                if ($('#text_doc_send').val() == '' && $('#fileList li').length == 0){
+                    file_err_doc_send = true;
+                    file_err_doc_send_msg = 'Добавьте текст или файл';
+                    $('#text_doc_send').addClass('invalid');
+
+                }
+
+
+                if(email_err_doc_send || name_err_doc_send || file_err_doc_send || tel_err_doc_send){
+                    $('#message_doc_send').html('');
+                    message_doc_send = name_err_doc_send_msg + email_err_doc_send_msg + tel_err_doc_send_msg + file_err_doc_send_msg;
+                    showMessage_doc_send(message_doc_send);
+                    $('#modalDocSend').animate({scrollTop: 0}, 'slow');
+
+{#                    console.log($('#trans_from').val() + ' ' + $('#trans_to').val());#}
+
+{#                    $('#modalDocSend').on('shown.bs.modal', function () {#}
+{#                        $('#modalDocSend .modal-content').animate({'scrollTop': $('#message_doc_send').offset().top}, 2000)#}
+{##}
+{#                    });#}
+
+                }else {
+                    showPreloader();
+                    var formdata = new FormData($('#doc_send_form').get(0));
+                    $.ajax({
+                        url: '{% url 'ru:save_files_trans' %}',
+                        type: 'POST',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            console.log(data);
+                        },
+                        success:function (data) {
+                            hidePreloader();
+
+                            if (data == 'ok'){
+                                $('.close').click();
+                                    swal({
+                                        title: 'Информация успешно отправлена',
+                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                        type: 'success',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    });
+
+{#                                toastr.success('Заголовок', 'Текст все ок');#}
+                            }else {
+                                $('.close').click();
+                                
+                                if (data == 'user_exists'){
+                                    swal({
+                                        title: 'Информация успешно отправлена',
+                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                        type: 'success',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm){
+                                            swal({
+                                                title: 'Пользователь с таким email уже зарегистрирован',
+                                                text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',
+                                                type: 'warning'
+                                            })
+                                        }
+                                    });
+
+                                }
+                            }
+    {#                        alert(data);#}
+                            clear_send_docs();
+                        }
+                    });
+
+                }
+            });
+
+//send documents ends
+
+
+            $('#btn_submit').on('click', function (e) {
+                showPreloader();
+                e.preventDefault();
+                var formdata = new FormData($('#auth_form').get(0));
+                $.ajax({
+                    url: '{% url 'ru:check_user' %}',
+                    type: 'POST',
+
+                    data: formdata,
+
+
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        console.log(data);
+                    },
+                    success:function (data) {
+                        if (data == 0){
+                            location.reload();
+                        }else {
+                            hidePreloader();
+                            $('#password').addClass('invalid');
+                            $('#email').addClass('invalid');
+
+                            $('#message').html('Email или пароль указаны не верно');
+                            $('#message').addClass('err_msg');
+                            $('#message').slideDown('fast');
+                        }
+{#                        alert(data);#}
+
+                    }
+                });
+
+            });
+            $('#logout').on('click', function () {
+                $.post("{% url 'ru:logoutUser' %}").done(function(data){
+                    showPreloader();
+                    location.reload();
+                })
+            });
+
+{#            $('#settings').on('click', function () {#}
+{#                showPreloader();#}
+{#                $.post("{% url 'ru:dashboard_ru:base_board' %}");#}
+{#            })#}
+        })
+    </script>
+    {% block script_footer %}
+    {% endblock %}
+
+</body>
+</html>

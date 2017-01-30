@@ -1,0 +1,515 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/multi-select/css/multi-select.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tokenize2.min.css' %}" rel="stylesheet" />
+{#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ru:dashboard_ru:get_clients_list' %}">
+                <i class="mdi mdi-account-multiple f_s_15"></i> Клиенты
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-account f_s_15"></i> Клиент № {{ client.id }}
+        </li>
+    </ol>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="card">
+        <div class="header bg-cyan">
+            <h2>
+                Клиент № {{ client.id }} <small>Дата регистрации: {{ client.registered|date:"d.m.Y, H:i" }}</small>{% if client.creator %}<small>Автор: {{ client.creator.id }}. {{ creator_role.role_name }} - {{ client.creator.first_name }} {{ client.creator.last_name }}</small>{% endif %}
+            </h2>
+        {% if user_profile.role.role_name == 'Суперадмин' %}
+            <ul class="header-dropdown">
+                <li class="dropdown">
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <i class="material-icons">more_vert</i>
+                    </a>
+                    <ul class="dropdown-menu pull-right">
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="del_client_btn">Удалить</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
+        </div>
+            <div class="body">
+
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#info" data-toggle="tab">ИНФО <span class="label-count background-transparent none" id="info_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    <li role="presentation"><a href="#payment" data-toggle="tab">ОПЛАТА</a></li>
+                    <li role="presentation"><a href="#orders" data-toggle="tab">ЗАЯВКИ</a></li>
+                    <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+                </ul>
+                    <div class="tab-content padding-top-30">
+                            <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                <form action="" method="post" id="form_info">{% csrf_token %}
+
+    {#                            <h2 class="card-inside-title">Клиент</h2>#}
+                                <div class="row clearfix">
+                                        <div class="col-md-3">
+                                            <div id="foto" class="foto" style="background-image: url('/static/photo/{{ client.photo.name }}'); ">
+
+                                                <div class="foto" >
+
+                                                <div id="upload_foto" class="foto" style="background: rgba(0, 0, 0,0.3); {% if client.photo.name %}display: none{% endif %}">
+                                                    <div>
+                                                        <i class="mdi mdi-cloud-upload font-30 centered pointer-pure" style="color: white" title="Загрузить фото (мин размер 150х200)" id="upload_icon"></i>
+                                                        <input type="file" id="client_foto" name="client_foto" class="opacity-0"/>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+        {#                                <div class="col-md-1">#}
+        {#                                    <i class="mdi mdi-rotate-left f_s_20" id="rotate"></i>#}
+        {#                                </div>#}
+
+                                    {#                            <div class="row clearfix">#}
+                                        <div class="col-md-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-account f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Имя" id="name_client" name="name_client" value="{{ client.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                                </div>
+                                            </div>
+        {#                                </div>#}
+
+
+        {#                                <div class="col-md-4">#}
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-email f_s_20"></i>
+                                                </span>
+
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Email" id="email_client" name="email_client" value="{{ client.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+        {#                                </div>#}
+        {#                                <div class="col-md-4">#}
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Телефон" id="tel_client" name="tel_client" value="{{ client.tel }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Введите дату рождения..." name="birthday" id="birthday" value="{% if client.date_birth %}{{ client.date_birth }}{% endif %}">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                </div>
+{#                                    <h2 class="card-inside-title">Владение языками</h2>#}
+                                    <div class="row clearfix">
+{#                                        <div class="body">#}
+{#                                            <div class="row clearfix">#}
+{#                                                <div class="col-sm-5">#}
+{#                                                    <select class="form-control show-tick" id="language" name="language">#}
+{#                                                        <option value="default">-- Выберите язык --</option>#}
+{#                                                        {% for lang in langs %}#}
+{#                                                                    <option value="{{ lang.name }}">{{ lang.name }}</option>#}
+{#                                                        {% endfor %}#}
+{#                                                    </select>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-2 text text_align_center f_s_20">#}
+{#                                                    <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>#}
+{#                                                    <i class="mdi mdi-arrow-right hidden-xs"></i>#}
+{#                                                </div>#}
+{#                                                <div class="col-sm-5">#}
+{#                                                    <ul class="list-group" id="language_select">#}
+{#                                                        {% for lang in langs_select %}#}
+{#                                                        <li class="list-group-item" style="" value="{{ lang.lang.name }}">{{ lang.lang.name }}<i class="mdi mdi-close float-right pointer-pure del-lang" data-toggle="tooltip" title="" data-placement="left" data-original-title=""></i></li>#}
+{#                                                        {% endfor %}#}
+        {#                                                <li class="list-group-item">Dapibus ac facilisis in <i class="mdi mdi-arrow-right hidden-xs"></i></li>#}
+        {#                                                <li class="list-group-item">Morbi leo risus</li>#}
+        {#                                                <li class="list-group-item">Porta ac consectetur ac</li>#}
+        {#                                                <li class="list-group-item">Vestibulum at eros</li>#}
+{#                                                    </ul>#}
+{#                                                </div>#}
+{#                                            </div>#}
+{##}
+{#                                        </div>#}
+                                        <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
+                                        </div>
+
+                                    </div>
+                                <input name="new_client" value="no" class="none"/>
+{#                                <input name="client_id" value="{{ client.id }}" class="none"/>#}
+
+                                </form>
+
+{#                            </div>#}
+                    </div>
+
+
+                        <div role="tabpanel" class="tab-pane fade" id="payment">
+
+                        </div>
+
+                            <div role="tabpanel" class="tab-pane fade" id="orders">
+                                <div class="body">
+
+                                    <table class="table table-bordered table-striped table-hover dataTable {% if user_profile.role.role_name == 'Суперадмин' %} js-exportable {% else %} js-basic-example {% endif %}">
+                                        <ul class="header-dropdown m-r--5">
+                                            <li class="dropdown pull-right">
+                                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="material-icons">more_vert</i>
+                                                </a>
+                                                <ul class="dropdown-menu pull-right">
+{#                                                    <li><a href="{% url 'ru:dashboard_ru:get_manager_complete_orders' manager.id %}">Выполненные</a></li>#}
+{#                                                    <li><a href="{% url 'ru:dashboard_ru:get_manager_details' manager.id %}">Все</a></li>#}
+                                                </ul>
+                                            </li>
+                                        </ul>
+
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Дата и время</th>
+                                                <th>Текст</th>
+                                                <th>Файлы</th>
+                                                <th>Статус</th>
+                                                <th>Цена</th>
+                                                {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+    {#                                            <th>Ответственный</th>#}
+                                                {% endif %}
+                                                <th>Заказчик</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                                <th>ID</th>
+                                                <th>Дата и время</th>
+                                                <th>Текст</th>
+                                                <th>Файлы</th>
+                                                <th class="">Статус</th>
+                                                <th>Цена</th>
+                                                {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+    {#                                            <th>Ответственный</th>#}
+                                                {% endif %}
+                                                <th>Заказчик</th>
+
+                                        </tfoot>
+                                        <tbody>
+
+                                        {% for sent_doc in sent_docs %}
+
+                                            <tr class="order pointer-pure" id="{{ sent_doc.id }}">
+
+                                                <td class="float-right border-0">
+
+                                                {% if user_profile.role.role_name == 'Админ' or user_profile.role.role_name == 'Суперадмин' %}
+                                                    {% if sent_doc.status.name == 'Новый' %}
+                                                        <i class="mdi mdi-download color-blue"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                                {% if user_profile.role.role_name == 'Менеджер' %}
+                                                    {% if sent_doc.status.name == 'Назначен менеджер' %}
+                                                        <i class="mdi mdi-download color-blue"></i>
+                                                    {% endif %}
+                                                {% endif %}
+                                                {{ sent_doc.id }}
+                                                </td>
+                                                <td >{{ sent_doc.timestamp|date:"d.m.Y, H:i" }}</td>
+                                                <td>{% if sent_doc.text_qnt > 0 %}
+                                                    {{ sent_doc.text_qnt }}
+                                                    {% else %}
+                                                    -
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if sent_doc.files_qnt > 0 %}
+                                                    {{ sent_doc.files_qnt }}
+                                                    {% else %}
+                                                    -
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <i class="mdi mdi-account {% if not sent_doc.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                                                    <i class="mdi mdi-currency-rub {% if not sent_doc.calc_sent_date %}opacity-0_5{% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отослан" data-placement="top"></i>
+                                                    <i class="mdi mdi-voice {% if not sent_doc.translator %}opacity-0_5{% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+                                                    <i class="mdi mdi-wallet {% if not sent_doc.payment_date %}opacity-0_5{% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+                                                    <i class="mdi mdi-note {% if not sent_doc.translation_files %}opacity-0_5{% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+
+                                                    <i class="mdi mdi-spellcheck {% if not sent_doc.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
+
+                                                </td>
+                                                <td>
+                                                    {% if sent_doc.price != None %}
+                                                    {{ sent_doc.price }}
+                                                    {% else %}-
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ sent_doc.email }}</td>
+
+                                            </tr>
+
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+{#    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/multi-select/js/jquery.multi-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/dropzone/dropzone.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/nouislider/nouislider.js' %}"></script>#}
+    <script src="{% static 'js/moment_ru.js' %}"></script>
+    <script src="{% static 'js/tokenize2.min.js' %}"></script>
+
+
+{#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
+    <script>
+
+
+        $('.datetimepicker').bootstrapMaterialDatePicker({
+            lang : 'ru',
+            format : 'DD.MM.YYYY',
+            time: false,
+            weekStart: 1
+        });
+
+    $('.order').on('click', function () {
+        window.location.href = "/ru/dashbrd/order_details/" + $(this).attr('id');
+    })
+
+{% if user_profile.role.role_name != 'Клиент' %}
+
+    function hide_save_info() {
+        $('#info_label').fadeOut('slow');
+        $('#btn_save_info').fadeOut('slow');
+
+    }
+
+    //отправка формы ИНФО
+
+    $('#save_info_btn').on('click', function () {
+        var formdata = new FormData($('#form_info').get(0));
+        formdata.append('client_id', {{ client.id }});
+
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_client_new' %}',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                console.log(data)
+                hide_save_info();
+                swal({
+                    title: 'Информация сохранена',
+                    text: 'Данные на сервере успешно обновлены',
+                    type: 'success'
+                });
+
+            }
+        });
+
+    });
+
+
+
+
+    {#    moment.locale("ru");#}
+{##}
+
+
+
+{#    var now = moment();#}
+{##}
+{#    console.log(now.format('dddd, MMMM DD YYYY, h:mm:ss'));#}
+{##}
+{#moment.locale('fr');#}
+{#console.log(moment(1316116057189).fromNow()); // il y a une heure#}
+{#moment.locale('en');#}
+{#console.log(moment(1316116057189).fromNow()); // an hour ago#}
+
+
+    //загрузка фото
+    $('#foto').on('mouseover', function () {
+        $('#upload_foto').fadeIn('fast');
+
+        {% if client.photo.name %}
+        $('#foto').on('mouseleave', function () {
+            $('#upload_foto').fadeOut('fast');
+        });
+        {% endif %}
+    });
+
+    $('#upload_icon').on('click', function () {
+        $('#client_foto').click();
+    });
+
+    $('#client_foto').on('change', function () {
+        var data = new FormData();
+        data.append('photo', $('#client_foto').prop('files')[0]);
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_client_photo' client.id %}',
+            type: 'POST',
+            data: data,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сожранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                $('#foto').css('background-image', 'url("/static/photo/' + data +'")');
+                $('#upload_foto').fadeOut('fast');
+                $('#foto').on('mouseleave', function () {
+                    $('#upload_foto').fadeOut('fast');
+                });
+            }
+        });
+
+    });
+    //загрузка фото конец
+
+$(document).ready(function () {
+
+    //удаление
+    $('#del_client_btn').on('click', function () {
+        swal({
+            title: 'Удаление клиента',
+            text: 'Вы уверены, что хотите удалить клиента?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'Да',
+            cancelButtonText: 'Нет',
+            closeOnConfirm: false,
+        },
+        function (isConfirm) {
+            if (isConfirm){
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:delete_client' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        'client_id': {{ client.id }}
+                    }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        console.log(data)
+                        swal({
+                            title: 'Клиент удален',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                window.location.href = '/ru/dashbrd/clients_list/';
+
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+    });
+
+    //отображение кнопки сохранения при изменениях ИНФО
+    function show_save_info() {
+        $('#info_label').fadeIn('slow');
+        $('#btn_save_info').fadeIn('slow');
+
+    }
+    $('#name_client').on('input', function () {
+        show_save_info();
+    });
+
+    $('#email_client').on('input', function () {
+        show_save_info();
+    });
+
+    $('#tel_client').on('input', function () {
+        show_save_info();
+    });
+    $('#birthday').on('change', function () {
+        show_save_info();
+    });
+
+
+
+
+
+
+
+
+
+    $('#tokenize').tokenize2();
+
+
+
+    {% endif %}
+
+
+});
+
+    </script>
+
+{% endblock %}
