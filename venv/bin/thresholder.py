@@ -1,4 +1,4 @@
-#!/home/1/trans/venv/bin/python
+#!/home/trans/venv/bin/python
 #
 # The Python Imaging Library
 # $Id$

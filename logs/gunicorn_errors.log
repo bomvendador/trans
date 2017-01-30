@@ -3385,3 +3385,769 @@ Traceback (most recent call last):
   File "/home/1/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
     raise HaltServer(reason, self.WORKER_BOOT_ERROR)
 gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+/home/trans/run/gunicorn.sh: 37: exec: /home/trans/venv/bin/gunicorn: not found
+[2017-01-31 00:43:59 +0000] [13691] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:43:59 +0000] [13691] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13691)
+[2017-01-31 00:43:59 +0000] [13691] [INFO] Using worker: sync
+[2017-01-31 00:43:59 +0000] [13697] [INFO] Booting worker with pid: 13697
+[2017-01-31 00:43:59 +0000] [13698] [INFO] Booting worker with pid: 13698
+[2017-01-31 00:43:59 +0000] [13701] [INFO] Booting worker with pid: 13701
+[2017-01-30 21:44:00 +0000] [13697] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:00 +0000] [13697] [INFO] Worker exiting (pid: 13697)
+[2017-01-30 21:44:00 +0000] [13698] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:00 +0000] [13698] [INFO] Worker exiting (pid: 13698)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:01 +0000] [13706] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:01 +0000] [13706] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13706)
+[2017-01-31 00:44:01 +0000] [13706] [INFO] Using worker: sync
+[2017-01-31 00:44:01 +0000] [13712] [INFO] Booting worker with pid: 13712
+[2017-01-31 00:44:01 +0000] [13715] [INFO] Booting worker with pid: 13715
+[2017-01-31 00:44:01 +0000] [13716] [INFO] Booting worker with pid: 13716
+[2017-01-30 21:44:01 +0000] [13712] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:01 +0000] [13712] [INFO] Worker exiting (pid: 13712)
+[2017-01-30 21:44:01 +0000] [13715] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:01 +0000] [13715] [INFO] Worker exiting (pid: 13715)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:04 +0000] [13723] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:04 +0000] [13723] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13723)
+[2017-01-31 00:44:04 +0000] [13723] [INFO] Using worker: sync
+[2017-01-31 00:44:04 +0000] [13729] [INFO] Booting worker with pid: 13729
+[2017-01-31 00:44:04 +0000] [13730] [INFO] Booting worker with pid: 13730
+[2017-01-31 00:44:04 +0000] [13732] [INFO] Booting worker with pid: 13732
+[2017-01-30 21:44:04 +0000] [13729] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:04 +0000] [13729] [INFO] Worker exiting (pid: 13729)
+[2017-01-30 21:44:04 +0000] [13730] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:04 +0000] [13730] [INFO] Worker exiting (pid: 13730)
+[2017-01-30 21:44:04 +0000] [13732] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:04 +0000] [13732] [INFO] Worker exiting (pid: 13732)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:08 +0000] [13741] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:08 +0000] [13741] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13741)
+[2017-01-31 00:44:08 +0000] [13741] [INFO] Using worker: sync
+[2017-01-31 00:44:08 +0000] [13747] [INFO] Booting worker with pid: 13747
+[2017-01-31 00:44:08 +0000] [13748] [INFO] Booting worker with pid: 13748
+[2017-01-31 00:44:08 +0000] [13751] [INFO] Booting worker with pid: 13751
+[2017-01-30 21:44:08 +0000] [13747] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:08 +0000] [13747] [INFO] Worker exiting (pid: 13747)
+[2017-01-30 21:44:08 +0000] [13748] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:08 +0000] [13748] [INFO] Worker exiting (pid: 13748)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:39 +0000] [13778] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:39 +0000] [13778] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13778)
+[2017-01-31 00:44:39 +0000] [13778] [INFO] Using worker: sync
+[2017-01-31 00:44:39 +0000] [13784] [INFO] Booting worker with pid: 13784
+[2017-01-31 00:44:39 +0000] [13787] [INFO] Booting worker with pid: 13787
+[2017-01-31 00:44:40 +0000] [13788] [INFO] Booting worker with pid: 13788
+[2017-01-30 21:44:40 +0000] [13784] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:40 +0000] [13784] [INFO] Worker exiting (pid: 13784)
+[2017-01-30 21:44:40 +0000] [13787] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:40 +0000] [13787] [INFO] Worker exiting (pid: 13787)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:41 +0000] [13793] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:41 +0000] [13793] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13793)
+[2017-01-31 00:44:41 +0000] [13793] [INFO] Using worker: sync
+[2017-01-31 00:44:41 +0000] [13799] [INFO] Booting worker with pid: 13799
+[2017-01-31 00:44:41 +0000] [13802] [INFO] Booting worker with pid: 13802
+[2017-01-31 00:44:41 +0000] [13803] [INFO] Booting worker with pid: 13803
+[2017-01-30 21:44:41 +0000] [13799] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:41 +0000] [13799] [INFO] Worker exiting (pid: 13799)
+[2017-01-30 21:44:41 +0000] [13802] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:41 +0000] [13802] [INFO] Worker exiting (pid: 13802)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:44 +0000] [13809] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:44 +0000] [13809] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13809)
+[2017-01-31 00:44:44 +0000] [13809] [INFO] Using worker: sync
+[2017-01-31 00:44:44 +0000] [13816] [INFO] Booting worker with pid: 13816
+[2017-01-31 00:44:44 +0000] [13817] [INFO] Booting worker with pid: 13817
+[2017-01-31 00:44:44 +0000] [13820] [INFO] Booting worker with pid: 13820
+[2017-01-30 21:44:44 +0000] [13816] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:44 +0000] [13816] [INFO] Worker exiting (pid: 13816)
+[2017-01-30 21:44:44 +0000] [13817] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:44 +0000] [13817] [INFO] Worker exiting (pid: 13817)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:44:47 +0000] [13825] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:44:47 +0000] [13825] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13825)
+[2017-01-31 00:44:47 +0000] [13825] [INFO] Using worker: sync
+[2017-01-31 00:44:47 +0000] [13831] [INFO] Booting worker with pid: 13831
+[2017-01-31 00:44:47 +0000] [13832] [INFO] Booting worker with pid: 13832
+[2017-01-31 00:44:47 +0000] [13833] [INFO] Booting worker with pid: 13833
+[2017-01-30 21:44:48 +0000] [13831] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:48 +0000] [13831] [INFO] Worker exiting (pid: 13831)
+[2017-01-30 21:44:48 +0000] [13832] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:48 +0000] [13832] [INFO] Worker exiting (pid: 13832)
+[2017-01-30 21:44:48 +0000] [13833] [ERROR] Exception in worker process
+Traceback (most recent call last):
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 557, in spawn_worker
+    worker.init_process()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 126, in init_process
+    self.load_wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 136, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/home/trans/trans/wsgi.py", line 16, in <module>
+    application = get_wsgi_application()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/core/wsgi.py", line 13, in get_wsgi_application
+    django.setup(set_prefix=False)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/__init__.py", line 22, in setup
+    configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/django/utils/log.py", line 75, in configure_logging
+    logging_config_func(logging_settings)
+  File "/usr/lib/python2.7/logging/config.py", line 794, in dictConfig
+    dictConfigClass(config).configure()
+  File "/usr/lib/python2.7/logging/config.py", line 576, in configure
+    '%r: %s' % (name, e))
+ValueError: Unable to configure handler 'error_file': Cannot resolve 'deferred_filelogger.DeferredFilehandler': No module named deferred_filelogger
+[2017-01-30 21:44:48 +0000] [13833] [INFO] Worker exiting (pid: 13833)
+Traceback (most recent call last):
+  File "/home/trans/venv/bin/gunicorn", line 11, in <module>
+    sys.exit(run())
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py", line 74, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 192, in run
+    super(Application, self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 218, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 331, in halt
+    self.stop()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 381, in stop
+    time.sleep(0.1)
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 231, in handle_chld
+    self.reap_workers()
+  File "/home/trans/venv/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 506, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: <HaltServer 'Worker failed to boot.' 3>
+[2017-01-31 00:45:40 +0000] [13881] [INFO] Starting gunicorn 19.6.0
+[2017-01-31 00:45:40 +0000] [13881] [INFO] Listening at: unix:/home/trans/proc/trans-gunicorn.sock (13881)
+[2017-01-31 00:45:40 +0000] [13881] [INFO] Using worker: sync
+[2017-01-31 00:45:40 +0000] [13889] [INFO] Booting worker with pid: 13889
+[2017-01-31 00:45:40 +0000] [13890] [INFO] Booting worker with pid: 13890
+[2017-01-31 00:45:40 +0000] [13893] [INFO] Booting worker with pid: 13893

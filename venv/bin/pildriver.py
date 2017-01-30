@@ -1,4 +1,4 @@
-#!/home/1/trans/venv/bin/python
+#!/home/trans/venv/bin/python
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine

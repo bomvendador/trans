@@ -176,23 +176,5 @@ LOCALE_PATHS = (
 
 DATE_INPUT_FORMATS = '%d-%m-%Y'
 
-LOGGING = {
-	'version': 1,
-    'handlers': {
-        'error_file': {
-            'level': 'INFO',
-            'class': 'deferred_filelogger.DeferredFilehandler',
-            'filename': 'errors.log',
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['error_file', 'mail_admins'],
-            'level': 'ERROR',
-            'propagate': False
-        }
-    }
-}
 
-LOG_ROOT = '/home/1/trans/logs/django'
 
