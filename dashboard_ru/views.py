@@ -554,6 +554,7 @@ def get_translators_list(request):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_translators_details(request, translator_id):
+    context = get_data_proc(request)
     translator = Translator.objects.get(id=translator_id)
     creator = User.objects.get(id=translator.creator.id)
     creator_profile = UserProfile.objects.get(user=creator)
@@ -564,15 +565,18 @@ def get_translators_details(request, translator_id):
         list.append(i.lang_id)
     print(list)
     langs = Language.objects.all().exclude(id__in=list)
-    birthday_db = translator.date_birth.strftime("%d.%m.%Y")
-    context = get_data_proc(request)
+    if translator.date_birth:
+        birthday_db = translator.date_birth.strftime("%d.%m.%Y")
+        context.update({
+            'birthday': birthday_db
+
+        })
     context.update({
         'creator_profile': creator_profile,
         'creator': creator,
         'translator': translator,
         'langs': langs,
         'langs_select': langs_select,
-        'birthday': birthday_db
 
     })
     return render(request, 'translator_details.html', context)
@@ -613,7 +617,10 @@ def create_translator(request):
         new = request.POST.get('new_translator')
         birthday = request.POST.get('birthday')
         birthday_split = birthday.split('.')
+        print(birthday)
         if birthday:
+            print('-----')
+
             birthday_str = birthday_split[2] + '-' + birthday_split[1] + '-' + birthday_split[0]
             translator.date_birth = parse_date(birthday_str)
 
