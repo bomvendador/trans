@@ -424,13 +424,13 @@ def order_details(request, order_id):
         files = SentFiles.objects.filter(sent_doc=order_det.id)
 
     except SentFiles.DoesNotExist:
-        print('f = none')
+        # print('f = none')
         files = None
     for f in files:
-        print('file = ' + str(f.file_name))
+        # print('file = ' + str(f.file_name))
     if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
         try:
-            new_count = SentDoc.objects.filter(status=1).count()
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
         except SentDoc.DoesNotExist:
             new_count = 0
     else:
