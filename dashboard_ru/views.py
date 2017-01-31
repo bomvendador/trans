@@ -166,7 +166,7 @@ def get_sent_docs(request):
     sent_docs = None
     context = {}
     new_count = 0
-    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         logger.debug('logger')
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
