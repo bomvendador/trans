@@ -421,7 +421,7 @@ def order_details(request, order_id):
     except UserProfile.DoesNotExist:
         user_role = None
     try:
-        files = SentFiles.objects.filter(sent_doc=order_det.id)
+        files = SentFiles.objects.filter(sent_doc=order_det)
 
     except SentFiles.DoesNotExist:
         # print('f = none')
@@ -439,8 +439,7 @@ def order_details(request, order_id):
             order_det.save()
             update_manager_statistics(user)
             try:
-                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(
-                    resp=user).count()
+                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(resp=user).count()
             except SentDoc.DoesNotExist:
                 sent_docs = None
 
