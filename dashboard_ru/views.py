@@ -1281,8 +1281,6 @@ def get_client_details(request, client_id):
     client = Client.objects.get(id=client_id)
     creator_role = UserProfile.objects.get(user=client.creator).role
     sent_docs = SentDoc.objects.filter(user=client.user)
-    # logging.debug(creator_role.role_name)
-    # print(translator.name)
     context = get_data_proc(request)
     context.update({
         'client': client,
