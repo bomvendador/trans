@@ -617,9 +617,7 @@ def create_translator(request):
         new = request.POST.get('new_translator')
         birthday = request.POST.get('birthday')
         birthday_split = birthday.split('.')
-        print(birthday)
         if birthday:
-            print('-----')
 
             birthday_str = birthday_split[2] + '-' + birthday_split[1] + '-' + birthday_split[0]
             translator.date_birth = parse_date(birthday_str)
