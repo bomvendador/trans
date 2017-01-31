@@ -90,7 +90,7 @@ class Manager(models.Model):
     date_birth = models.CharField(max_length=15, null=True, blank=True)
     registered = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now_add=False, auto_now=True, null=True)
-    photo = models.ImageField(upload_to='media/photo', default=None)
+    photo = models.ImageField(upload_to='/media/photo', default=None)
     photo_name = models.CharField(max_length=100, blank=True, null=True)
     user = models.OneToOneField(User, blank=True, null=True)
     init_password = models.CharField(max_length=50, blank=True, null=True)
