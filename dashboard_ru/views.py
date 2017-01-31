@@ -787,7 +787,7 @@ def update_order(request):
         user_id = request.POST.get('user_id')
         order_id = request.POST.get('order_id')
         sent_doc = SentDoc.objects.get(id=order_id)
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(id=request.user.id)
         user_profile = UserProfile.objects.get(user=user)
         user_account = User.objects.get(id=request.user.id)
         user_profile_account = UserProfile.objects.get(user=user_account)
