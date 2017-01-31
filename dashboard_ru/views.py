@@ -13,11 +13,11 @@ from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, Pa
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
     PayStatus, BackCall, BackCallComments
 
-from django.contrib.auth.hashers import make_password
-import django.contrib.auth.hashers
-
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
+
+import logging
+logger = logging.getLogger('django')
 
 
 def get_user_userprofile(request):
@@ -165,6 +165,7 @@ def get_sent_docs(request):
     context = {}
     new_count = 0
     if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
+        logger.debug('logger')
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
             'new_calls_count': new_calls_count
