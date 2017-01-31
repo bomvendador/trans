@@ -302,6 +302,26 @@
                             <span>Пользователи</span>
                         </a>
                         <ul class="ml-menu">
+                            <li class="" id="menu_admins">
+                                <a href="{% url 'ru:dashboard_ru:get_admins_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Админы</span>
+                                </a>
+                            </li>
+
+                            <li class="" id="menu_managers">
+                                <a href="{% url 'ru:dashboard_ru:get_managers_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Менеджеры</span>
+                                </a>
+                            </li>
+                            <li class="" id="menu_clients">
+                                <a href="{% url 'ru:dashboard_ru:get_clients_list' %}" class=" ">
+{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
+                                    <span>Клиенты</span>
+                                </a>
+                            </li>
+
                             <li class="" id="menu_translators">
                                 <a href="{% url 'ru:dashboard_ru:get_translators_list' %}" class="">
 {#                                    <i class="mdi mdi-voice f_s_15"></i>#}
@@ -309,25 +329,7 @@
                                 </a>
                             </li>
                             {% if user_profile.role.role_name != 'Менеджер' and user_profile.role.role_name != 'Клиент' %}
-                            <li class="" id="menu_managers">
-                                <a href="{% url 'ru:dashboard_ru:get_managers_list' %}" class=" ">
-{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
-                                    <span>Менеджеры</span>
-                                </a>
-                            </li>
-                            <li class="" id="menu_admins">
-                                <a href="{% url 'ru:dashboard_ru:get_admins_list' %}" class=" ">
-{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
-                                    <span>Админы</span>
-                                </a>
-                            </li>
                             {% endif %}
-                            <li class="" id="menu_clients">
-                                <a href="{% url 'ru:dashboard_ru:get_clients_list' %}" class=" ">
-{#                                    <i class="mdi mdi-voice f_s_15"></i>#}
-                                    <span>Клиенты</span>
-                                </a>
-                            </li>
 {#                            <li>#}
 {#                                <a href="javascript:void(0);" class="menu-toggle">#}
 {#                                    <span>Infobox</span>#}
