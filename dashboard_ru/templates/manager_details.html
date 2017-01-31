@@ -416,7 +416,7 @@
                 });
             },
             success:function (data) {
-                $('#foto').css('background-image', 'url("/media/photo/' + data +'")');
+                $('#foto').css('background-image', 'url("' + data +'")');
                 $('#upload_foto').fadeOut('fast');
                 $('#foto').on('mouseleave', function () {
                     $('#upload_foto').fadeOut('fast');

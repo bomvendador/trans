@@ -1101,8 +1101,8 @@ def save_manager_photo(request, manager_id):
         # print(translator_id)
         for file in files:
             manager.photo = file
-            manager.photo_name = file.name
-            manager.save()
+        manager.save()
+        print(manager.photo.name)
         return HttpResponse(manager.photo.name)
 
 
