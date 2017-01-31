@@ -1104,7 +1104,7 @@ def save_manager_photo(request, manager_id):
             manager.photo_name = file.name
         manager.save()
         print(manager.photo.name)
-        return HttpResponse(manager.photo.name)
+        return HttpResponse(manager.photo_name)
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
