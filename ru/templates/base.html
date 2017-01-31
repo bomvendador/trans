@@ -725,12 +725,12 @@
 
 
 {#            $('#drop_file').fileUploader();#}
-
+            {% if user.is_authenticated %}
             $('#settings').on('click', function () {
                 window.location.href = "{% url 'ru:dashboard_ru:base_board' user_id=user.pk %}";
 {#               $('#settings_btn')[0].click();#}
             });
-
+            {% endid %}
 
 
             $('#register').on('click', function (e) {
