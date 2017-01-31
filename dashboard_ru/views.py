@@ -614,7 +614,10 @@ def create_translator(request):
         birthday = request.POST.get('birthday')
         birthday_split = birthday.split('.')
         print(birthday_split[0])
-        birthday_str = birthday_split[2] + '-' + birthday_split[1] + '-' + birthday_split[0]
+        if birthday_split:
+            birthday_str = birthday_split[2] + '-' + birthday_split[1] + '-' + birthday_split[0]
+            translator.date_birth = parse_date(birthday_str)
+
         if new == 'no':
             translator.changed_by = request.user
         else:
@@ -627,7 +630,6 @@ def create_translator(request):
         user.save()
         translator.user = user
         translator.tel = tel
-        translator.date_birth = parse_date(birthday_str)
         # translator.author = request.user
 
         translator.save()
