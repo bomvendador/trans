@@ -426,7 +426,7 @@ def order_details(request, order_id):
     except SentFiles.DoesNotExist:
         # print('f = none')
         files = None
-    for f in files:
+    # for f in files:
         # print('file = ' + str(f.file_name))
     if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
         try:
