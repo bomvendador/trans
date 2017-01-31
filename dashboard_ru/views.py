@@ -787,7 +787,7 @@ def update_order(request):
         user_id = request.POST.get('user_id')
         order_id = request.POST.get('order_id')
         sent_doc = SentDoc.objects.get(id=order_id)
-        user = User.objects.get(id=request.user.id)
+        user = User.objects.get(id=user_id)
         user_profile = UserProfile.objects.get(user=user)
         user_account = User.objects.get(id=request.user.id)
         user_profile_account = UserProfile.objects.get(user=user_account)
@@ -795,14 +795,14 @@ def update_order(request):
         if user_profile_account.role.role_name != 'Менеджер':
 
             name = request.POST.get('name_doc_send')
-            print(name)
+            # print(name)
             email = request.POST.get('email_doc_send')
             tel = request.POST.get('tel_doc_send')
             text_doc_send = request.POST.get('text_doc_send')
             trans_theme = request.POST.get('trans_theme')
             trans_type = request.POST.get('trans_type')
-            print(trans_theme)
-            print(trans_type)
+            # print(trans_theme)
+            # print(trans_type)
             try:
                 sent_doc.translation_theme = TranslationTheme.objects.get(short_name=trans_theme)
             except TranslationTheme.DoesNotExist:
@@ -851,7 +851,7 @@ def update_order(request):
         sent_doc.trans_to = trans_to_inst
         sent_doc.trans_from = trans_from_inst
         sent_doc.save()
-        print(user_id + ' ' + order_id)
+        # print(user_id + ' ' + order_id)
         # json_data = json.loads(request.body.decode('utf-8'))
         # file_id = json_data['file_id']
         return HttpResponse()
