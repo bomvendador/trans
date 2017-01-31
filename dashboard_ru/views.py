@@ -35,25 +35,25 @@ def get_user_userprofile(request):
 def get_data_proc(request):
     user = User.objects.get(id=request.user.id)
     user_profile = UserProfile.objects.get(user=user)
-    new_orders = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый'))
+    new_orders = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый'))
     client = None
     context = {}
-    if user_profile.role.role_name != 'Клиент':
+    if user_profile.role.role_name != u'Клиент':
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
             'new_calls_count': new_calls_count
         })
-    if user_profile.role.role_name == 'Менеджер':
+    if user_profile.role.role_name == u'Менеджер':
         new_count = SentDoc.objects.filter(resp=user).filter(
-            status=OrderStatus.objects.get(name='Назначен менеджер')).count()
+            status=OrderStatus.objects.get(name=u'Назначен менеджер')).count()
         # print('Менеджер нов = ' + str(new_count))
     else:
         # print('role ' + str(user_profile.role.id))
-        if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
+        if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         else:
             new_count = 0
-        if user_profile.role.role_name == 'Клиент':
+        if user_profile.role.role_name == u'Клиент':
             try:
                 client = Client.objects.get(user=user)
             except Client.DoesNotExist:
