@@ -405,7 +405,7 @@ def order_details(request, order_id):
     user = User.objects.get(id=request.user.id)
     user_profile = UserProfile.objects.get(user=user)
     context = get_user_userprofile(request)
-    context = get_data_proc()
+    context = get_data_proc(request)
     new_count = 0
     order_det = SentDoc.objects.get(id=order_id)
     translation_files = TranslationFiles.objects.filter(order=order_det)
