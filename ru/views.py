@@ -205,6 +205,7 @@ def user_client_add(name, email, tel):
 
 
 def save_files_trans(request):
+    print('ddd');
     if request.method == 'POST':
         data = request.POST
         user_exists = False
