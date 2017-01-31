@@ -558,12 +558,12 @@ def get_translators_details(request, translator_id):
     translator = Translator.objects.get(id=translator_id)
     creator = User.objects.get(id=translator.creator.id)
     creator_profile = UserProfile.objects.get(user=creator)
-    print(translator.name)
+    # print(translator.name)
     langs_select = Translator_Lang.objects.filter(translator=translator)
     list = []
     for i in langs_select:
         list.append(i.lang_id)
-    print(list)
+    # print(list)
     langs = Language.objects.all().exclude(id__in=list)
     if translator.date_birth:
         birthday_db = translator.date_birth.strftime("%d.%m.%Y")
