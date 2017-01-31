@@ -66,7 +66,7 @@
     {#                            <h2 class="card-inside-title">Клиент</h2>#}
                                 <div class="row clearfix">
                                         <div class="col-md-3">
-                                            <div id="foto" class="foto" style="background-image: url('/media/photo/avatar-3.jpg'); ">
+                                            <div id="foto" class="foto" style="background-image: url('/media/photo/{{ manager.photo_name }}'); ">
 
                                                 <div class="foto" >
 
@@ -411,12 +411,12 @@
             error: function(data){
                 swal({
                     title: 'Ошибка сервера',
-                    text: 'Возникла ошибка при сожранении. Попробуйте позже.',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
                     type: 'warning'
                 });
             },
             success:function (data) {
-                $('#foto').css('background-image', 'url("/static/photo/' + data +'")')
+                $('#foto').css('background-image', 'url("/media/photo/' + data +'")');
                 $('#upload_foto').fadeOut('fast');
                 $('#foto').on('mouseleave', function () {
                     $('#upload_foto').fadeOut('fast');
