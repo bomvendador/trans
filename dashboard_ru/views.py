@@ -46,9 +46,9 @@ def get_data_proc(request):
     if user_profile.role.role_name == 'Менеджер':
         new_count = SentDoc.objects.filter(resp=user).filter(
             status=OrderStatus.objects.get(name='Назначен менеджер')).count()
-        print('Менеджер нов = ' + str(new_count))
+        # print('Менеджер нов = ' + str(new_count))
     else:
-        print('role ' + str(user_profile.role.id))
+        # print('role ' + str(user_profile.role.id))
         if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
         else:
@@ -70,7 +70,7 @@ def get_data_proc(request):
 
 def login_board(request):
     if request.user.is_authenticated():
-        print('not logged')
+        # print('not logged')
         return redirect('ru:dashboard_ru:base_board', user_id=request.user.id)
     if request.method == 'POST':
         email = request.POST['email']
