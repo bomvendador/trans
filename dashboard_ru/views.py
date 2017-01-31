@@ -1102,7 +1102,7 @@ def save_manager_photo(request, manager_id):
         for file in files:
             manager.photo = file
             manager.photo_name = file.name
-        manager.save()
+            manager.save()
         return HttpResponse(manager.photo.name)
 
 
