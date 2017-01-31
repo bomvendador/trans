@@ -38,7 +38,7 @@ def get_data_proc(request):
     new_orders = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый'))
     client = None
     context = {}
-    if user_profile.role.role_name.decode('utf-8') != 'Клиент':
+    if user_profile.role.role_name != 'Клиент':
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
             'new_calls_count': new_calls_count
