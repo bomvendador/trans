@@ -17,6 +17,7 @@ from django.utils.dateparse import parse_date
 from django.db.models import Sum
 
 from django.core.mail import EmailMessage, send_mail
+from django.template.loader import get_template
 
 from trans import settings
 
@@ -1405,6 +1406,9 @@ def get_back_call_details(request, back_call_id):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request):
-    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message='<i>Привет</i>')
+    template = get_template('mail/order_calculation.html')
+    context = {'user': request.user}
+
+    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
     return HttpResponse()
 
