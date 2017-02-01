@@ -251,3 +251,8 @@ LOGGING = {
         },
     },
 }
+
+EMAIL_HOST = 'mail.prolingva.ru'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'info@prolingva.ru'
+EMAIL_HOST_PASSWORD = 'L1i6C6b5'
