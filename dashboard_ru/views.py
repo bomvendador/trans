@@ -18,6 +18,7 @@ from django.db.models import Sum
 
 from django.core.mail import EmailMessage, send_mail
 from django.template.loader import get_template
+from templated_email import send_templated_mail, InlineImage
 
 from trans import settings
 
@@ -1406,9 +1407,17 @@ def get_back_call_details(request, back_call_id):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request):
-    template = get_template('mail/order_calculation.html')
-    context = {'user': request.user}
-
-    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
+    with open('/static/img/logo/logo_horiz_black_40.png', 'rb') as logo:
+        logo_img = logo.read()
+    logo = InlineImage(filename='logo', content=logo_img)
+    send_templated_mail(template_name='mail/order_calculation.html',
+                        from_email='info@prolingva.ru',
+                        recipient_list=['bomvendador@yandex.ru'],
+                        context={'logo': logo}
+                        )
+    # template = get_template('mail/order_calculation.html')
+    # context = {'user': request.user}
+    #
+    # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
     return HttpResponse()
 
