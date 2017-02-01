@@ -1407,7 +1407,7 @@ def get_back_call_details(request, back_call_id):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request):
-    with open('/static/img/logo/logo_horiz_black_40.png', 'rb') as logo:
+    with open('http://prolingva.ru/static/img/logo/logo_horiz_black_40.png', 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
     send_templated_mail(template_name='mail/order_calculation.html',
