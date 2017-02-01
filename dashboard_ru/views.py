@@ -1412,12 +1412,12 @@ def send_email(request):
     with open(file_path, 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
-    send_templated_mail(template_name='order_calculation.html',
+    send_templated_mail(template_name='order_calculation.email',
                         from_email='info@prolingva.ru',
                         recipient_list=['bomvendador@yandex.ru'],
                         context={'logo': logo}
                         )
-    # template = get_template('mail/order_calculation.html')
+    # template = get_template('mail/order_calculation.email')
     # context = {'user': request.user}
     #
     # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
