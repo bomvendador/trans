@@ -1063,6 +1063,10 @@
 {#                $.post("{% url 'ru:dashboard_ru:base_board' %}");#}
 {#            })#}
         })
+
+    $.get("http://ipinfo.io", function(response) {
+    console.log(response.ip);
+}, "jsonp");
     </script>
     {% block script_footer %}
     {% endblock %}
