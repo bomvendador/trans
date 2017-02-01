@@ -1,44 +1,40 @@
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-    {#    <!-- Bootstrap Core Css -->#}
-        <link href="{% static 'dashboard/plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
-    {##}
-{#    <!-- Waves Effect Css -->#}
-{#    <link href="plugins/node-waves/waves.css" rel="stylesheet" />#}
-    <link href="{% static 'dashboard/plugins/node-waves/waves.css' %}" rel="stylesheet" />
-{##}
-{#    <!-- Animation Css -->#}
-{#    <link href="plugins/animate-css/animate.css" rel="stylesheet" />#}
-    <link href="{% static 'dashboard/plugins/animate-css/animate.css' %}" rel="stylesheet" />
-{##}
-{#    <!-- Morris Chart Css-->#}
-{#    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />#}
-    <link href="{% static 'dashboard/plugins/morrisjs/morris.css' %}" rel="stylesheet" />
-
-    <!-- Custom Css -->
-    <link href="{% static 'css/dashboard/style.css' %}" rel="stylesheet">
-
-{#    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->#}
-{#    <link href="css/themes/all-themes.css" rel="stylesheet" />#}
-    <link rel="stylesheet" href="{% static 'dashboard/plugins/sweetalert/sweetalert.css' %}">
-
-    <link href="{% static 'css/dashboard/themes/all-themes.css' %}" rel="stylesheet" />
-
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css">
-
-    {% block links %}
-    {% endblock %}
-    <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
-
-</head>
 <body>
+
+<style>
+.m__hidden {
+    display: none !important; /* скрываем картинки, чтобы они не распирали блок */
+}
+.m__photo{ /* тянем картинку в зависимости от родителя */
+    width: 100%;
+    height: auto !important;
+}
+/* заменяем картинки на фоновые изображения */
+.m__photo-brd_l {
+    background: url(center-left.png);
+}
+.m__photo-brd_r {
+    background: url(center-right.png);
+}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" style="direction: ltr; line-height: 0;">
+<tr>
+    <td><img src="top-left.png" width="10" height="10" border="0"></td>
+    <td><img src="top-center.png" width="100%" height="10" border="0"></td>
+    <td><img src="top-right.png" width="10" height="10" border="0"></td>
+</tr>
+<tr>
+    <td class="m__photo-brd_l"><img src="center-left.png" class="m__hidden" width="10" height="{{height}}" border="0"></td>
+    <td style="background: #ffffff;"><img src="photo.png" class="m__photo" height="{{height}}" border="0"></td>
+    <td class="m__photo-brd_r"><img src="center-right.png" class="m__hidden" width="10" height="{{height}}" border="0"></td>
+</tr>
+<tr>
+    <td><img src="bottom-left.png" width="10" height="10" border="0"></td>
+    <td><img src="bottom-center.png" width="100%" height="10" border="0"></td>
+    <td><img src="bottom-right.png" width="10" height="10" border="0"></td>
+</tr>
+</table>
     <div class="margin-left--20 translation_file list-group-item row" style="padding: 10px; border: 1px solid grey">
         {{ user.id }}
         <img src="http://prolingva.ru/static/img/logo/logo_horiz_black_40.png">
