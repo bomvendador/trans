@@ -585,21 +585,6 @@
                 </div>
 
             </div>
-            <div>
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <i class="mdi mdi-email f_s_20"></i>
-                    </span>
-                    <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
-                        <a href="{% url 'ru:dashboard_ru:send_email' %}" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">ОТПРАВИТЬ</a>
-                    </div>
-
-                    <div class="form-line">
-                        <input type="text" class="form-control date" placeholder="Email" id="email_admin" name="email_admin" value="{{ admin.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
-                    </div>
-                </div>
-
-            </div>
 
 
     <!--модальное окно не оплаченные заявки-->
@@ -816,6 +801,23 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                    <a href="{% url 'ru:dashboard_ru:send_email' %}" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">ОТПРАВИТЬ</a>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="mdi mdi-email f_s_20"></i>
+                    </span>
+
+                    <div class="form-line">
+                        <input type="text" class="form-control date" placeholder="Email" id="email_admin" name="email_admin" value="{{ admin.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                    </div>
+                </div>
+
+            </div>
+
 
             {% endif %}
 
