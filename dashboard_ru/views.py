@@ -978,7 +978,8 @@ def create_manager(request):
             try:
                 payment_details_inst = PaymentDetails.objects.get(owner=user)
             except PaymentDetails.DoesNotExist:
-                payment_details_inst = PaymentDetails()
+                if payment_details:
+                    payment_details_inst = PaymentDetails()
         else:
             try:
                 user = User.objects.get(username=email)
@@ -1002,15 +1003,13 @@ def create_manager(request):
         user_profile.user = user
         if new == 'no':
             manager.changed_by = request.user
-            try:
+            if payment_details:
                 payment_details_inst.payment_method = PayMethod.objects.get(name=payment_method)
-            except PayMethod.DoesNotExist:
-                pass
-            payment_details_inst.owner = user
-            payment_details_inst.detail = payment_details
-            payment_details_inst.author = request.user
-            payment_details_inst.save()
-            manager.payment_details = payment_details_inst
+                payment_details_inst.owner = user
+                payment_details_inst.detail = payment_details
+                payment_details_inst.author = request.user
+                payment_details_inst.save()
+                manager.payment_details = payment_details_inst
 
         else:
             manager.creator = request.user
