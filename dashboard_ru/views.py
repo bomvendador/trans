@@ -242,20 +242,20 @@ def get_in_progress_sent_docs(request):
     user_profile = UserProfile.objects.get(user=user)
     # if superadmin
     new_count = 0
-    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
-        sent_docs = SentDoc.objects.all().exclude(status=OrderStatus.objects.get(name='Выполнен')).exclude(
-            status=OrderStatus.objects.get(name='Новый'))
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+        sent_docs = SentDoc.objects.all().exclude(status=OrderStatus.objects.get(name=u'Выполнен')).exclude(
+            status=OrderStatus.objects.get(name=u'Новый'))
         # sent_docs_files = SentFiles.
         try:
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         except SentDoc.DoesNotExist:
             new_count = 0
-    if user_profile.role.role_name == 'Менеджер':
+    if user_profile.role.role_name == u'Менеджер':
         sent_docs = SentDoc.objects.all().filter(resp=user).exclude(
-            status=OrderStatus.objects.get(name='Выполнен')).exclude(
-            status=OrderStatus.objects.get(name='Назначен менеджер'))
-    if user_profile.role.role_name == 'Клиент':
-        sent_docs = SentDoc.objects.all().filter(user=user).exclude(status=OrderStatus.objects.get(name='Выполнен'))
+            status=OrderStatus.objects.get(name=u'Выполнен')).exclude(
+            status=OrderStatus.objects.get(name=u'Назначен менеджер'))
+    if user_profile.role.role_name == u'Клиент':
+        sent_docs = SentDoc.objects.all().filter(user=user).exclude(status=OrderStatus.objects.get(name=u'Выполнен'))
 
     context = {
         'sent_docs': sent_docs,
@@ -273,11 +273,11 @@ def get_complete_sent_docs(request):
     user_profile = UserProfile.objects.get(user=user)
     # if superadmin
     new_count = 0
-    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
-        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name='Выполнен'))
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name=u'Выполнен'))
         # sent_docs_files = SentFiles.
         try:
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         except SentDoc.DoesNotExist:
             new_count = 0
         context = {
@@ -287,10 +287,10 @@ def get_complete_sent_docs(request):
             'orders_complete': 1
         }
         return render(request, 'sent_docs.html', context)
-    elif user_profile.role.role_name == 'Менеджер':
-        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name='Выполнен')).filter(resp=user)
+    elif user_profile.role.role_name == u'Менеджер':
+        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name=u'Выполнен')).filter(resp=user)
         try:
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(
                 resp=user).count()
         except SentDoc.DoesNotExist:
             new_count = 0
@@ -302,8 +302,8 @@ def get_complete_sent_docs(request):
             'orders_complete': 1
         }
         return render(request, 'sent_docs.html', context)
-    elif user_profile.role.role_name == 'Клиент':
-        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name='Выполнен')).filter(user=user)
+    elif user_profile.role.role_name == u'Клиент':
+        sent_docs = SentDoc.objects.all().filter(status=OrderStatus.objects.get(name=u'Выполнен')).filter(user=user)
         context = {
             'sent_docs': sent_docs,
             'user_profile': user_profile,
@@ -324,7 +324,7 @@ def logout_board(request):
 def get_new_orders(request):
     user = User.objects.get(id=request.user.id)
     user_profile = UserProfile.objects.get(user=user)
-    if user_profile.role.role_name == 'Суперадмин':
+    if user_profile.role.role_name == u'Суперадмин':
         context = get_data_proc(request)
         context.update({
             'new_orders': 1
@@ -345,13 +345,13 @@ def add_new_order(request):
     sent_docs = SentDoc.objects.all()
     user_profile = UserProfile.objects.get(user=request.user)
     clients = Client.objects.all()
-    if user_profile.role.role_name == 'Менеджер':
+    if user_profile.role.role_name == u'Менеджер':
         new_count = sent_docs.filter(status=1).filter(resp=request.user).count()
 
         context.update({'clients': clients})
     else:
         context.update({'clients': clients})
-        if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
+        if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
             new_count = sent_docs.filter(status=1).count()
         else:
             new_count = None
@@ -368,11 +368,11 @@ def add_new_order(request):
 def update_manager_statistics(user):
     try:
         manager = Manager.objects.get(user=user)
-        orders_in_progress_manager = SentDoc.objects.filter(status=OrderStatus.objects.get(name='В работе')).filter(
+        orders_in_progress_manager = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'В работе')).filter(
             resp=user).count()
-        orders_new = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(
+        orders_new = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(
             resp=user).count()
-        orders_complete = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Выполнен')).filter(
+        orders_complete = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Выполнен')).filter(
             resp=user).count()
         manager.orders_in_progress = orders_in_progress_manager
         manager.orders_new = orders_new
@@ -387,9 +387,9 @@ def update_client_statistics(user):
     client = Client.objects.get(user=user)
     user = User.objects.get(id=client.user.id)
     orders_in_progress_client = SentDoc.objects.filter(user=user).exclude(
-        status=OrderStatus.objects.get(name='Выполнен')).count()
+        status=OrderStatus.objects.get(name=u'Выполнен')).count()
     orders_complete_client = SentDoc.objects.filter(user=user).filter(
-        status=OrderStatus.objects.get(name='Выполнен')).count()
+        status=OrderStatus.objects.get(name=u'Выполнен')).count()
     orders_paid_client = SentDoc.objects.filter(user=user).filter(payment_date__isnull=False).count()
     # orders_new = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(resp=user).count()
     # orders_complete = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Выполнен')).filter(resp=user).count()
@@ -429,19 +429,19 @@ def order_details(request, order_id):
         files = None
     # for f in files:
         # print('file = ' + str(f.file_name))
-    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         a = 0
         # try:
         #     new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
         # except SentDoc.DoesNotExist:
         #     new_count = 0
     else:
-        if user_profile.role.role_name == 'Менеджер':
-            order_det.status = OrderStatus.objects.get(name='В работе')
+        if user_profile.role.role_name == u'Менеджер':
+            order_det.status = OrderStatus.objects.get(name=u'В работе')
             order_det.save()
             update_manager_statistics(user)
             try:
-                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(resp=user).count()
+                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(resp=user).count()
             except SentDoc.DoesNotExist:
                 sent_docs = None
 
@@ -503,10 +503,10 @@ def set_resp(request):
         print(resp_id[0])
         if resp_id[0] != '':
             sent_docs.resp = User.objects.get(id=resp_id[0])
-            sent_docs.status = OrderStatus.objects.get(name='Назначен менеджер')
+            sent_docs.status = OrderStatus.objects.get(name=u'Назначен менеджер')
         else:
             sent_docs.resp = None
-            sent_docs.status = OrderStatus.objects.get(name='Новый')
+            sent_docs.status = OrderStatus.objects.get(name=u'Новый')
 
         # try:
         #     sent_docs.resp = User.objects.get(id=resp_id[0])
@@ -517,11 +517,11 @@ def set_resp(request):
         sent_docs.save()
         manager = Manager.objects.get(user=User.objects.get(id=resp_id[0]))
         orders_new_manager = SentDoc.objects.filter(resp=User.objects.get(id=resp_id[0])).filter(
-            status=OrderStatus.objects.get(name='Назначен менеджер')).count()
+            status=OrderStatus.objects.get(name=u'Назначен менеджер')).count()
         manager.orders_new = orders_new_manager
         manager.save()
 
-        new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
+        new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         return HttpResponse(new_count)
 
 
@@ -530,7 +530,7 @@ def set_order_status(request):
     if request.method == 'POST':
         user = User.objects.get(id=request.user.id)
         user_profile = UserProfile.objects.get(user=user)
-        if user_profile.role.role_name != 'Клиент':
+        if user_profile.role.role_name != u'Клиент':
             json_data = json.loads(request.body.decode('utf-8'))
             order_id = json_data['order_id']
             order_status = json_data['order_status']
@@ -697,12 +697,12 @@ def set_translator_for_order(request):
             translator_id = translator_json.split('_')
             # print(str(translator_id[1]))
             translator = Translator.objects.get(id=translator_id[1])
-            order.status = OrderStatus.objects.get(name='Назначен переводчик')
+            order.status = OrderStatus.objects.get(name=u'Назначен переводчик')
             message = 'translator is set'
 
         else:
             translator = None
-            order.status = OrderStatus.objects.get(name='Расчет отослан')
+            order.status = OrderStatus.objects.get(name=u'Расчет отослан')
             message = 'translator is none'
 
         order.translator = translator
@@ -716,7 +716,7 @@ def add_file_to_order(request):
     if request.method == 'POST':
         # print(request.POST.get('order_id'))
         order = SentDoc.objects.get(id=request.POST.get('order_id'))
-        order.status = OrderStatus.objects.get(name='В работе')
+        order.status = OrderStatus.objects.get(name=u'В работе')
         files = request.FILES.getlist('file')
         f = SentFiles()
         print(order.id)
@@ -793,7 +793,7 @@ def update_order(request):
         user_account = User.objects.get(id=request.user.id)
         user_profile_account = UserProfile.objects.get(user=user_account)
 
-        if user_profile_account.role.role_name != 'Менеджер':
+        if user_profile_account.role.role_name != u'Менеджер':
 
             name = request.POST.get('name_doc_send')
             # print(name)
@@ -842,7 +842,7 @@ def update_order(request):
         price = request.POST.get('order_price')
         calc_sent_date = request.POST.get('calc_sent_date')
         # print(text_doc_send)
-        sent_doc.status = OrderStatus.objects.get(name='В работе')
+        sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         translation_sent_date = request.POST.get('translation_sent_date')
         sent_doc.translation_sent_date = translation_sent_date
         sent_doc.calc_sent_date = calc_sent_date
@@ -863,8 +863,8 @@ def update_order_payment(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
         sent_doc = SentDoc.objects.get(id=order_id)
-        if sent_doc.status.name != 'Выполнен':
-            sent_doc.status = OrderStatus.objects.get(name='В работе')
+        if sent_doc.status.name != u'Выполнен':
+            sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         payment_amount = request.POST.get('paid_amount')
         if payment_amount:
             sent_doc.paystatus = PayStatus.objects.get(name='Paid')
@@ -993,7 +993,7 @@ def create_manager(request):
                 manager.init_password = password
                 # payment_details_inst = PaymentDetails()
 
-        user_profile.role = Role.objects.get(role_name='Менеджер')
+        user_profile.role = Role.objects.get(role_name=u'Менеджер')
         manager.name = name
         user.first_name = name
         manager.email = email
@@ -1069,7 +1069,7 @@ def get_manager_complete_orders(request, manager_id):
     manager = Manager.objects.get(id=manager_id)
     payment_methods = PayMethod.objects.all()
     orders = SentDoc.objects.filter(resp=User.objects.get(id=manager.user.id)).filter(
-        status=OrderStatus.objects.get(name='Выполнен'))
+        status=OrderStatus.objects.get(name=u'Выполнен'))
     # print(translator.name)
     context = get_data_proc(request)
     context.update({
@@ -1372,8 +1372,8 @@ def help_dashboard(request):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_back_calls(request):
     back_calls = None
-    if UserProfile.objects.get(user=request.user).role.role_name == 'Суперадмин' or UserProfile.objects.get(
-            user=request.user).role.role_name == 'Админ':
+    if UserProfile.objects.get(user=request.user).role.role_name == u'Суперадмин' or UserProfile.objects.get(
+            user=request.user).role.role_name == u'Админ':
         back_calls = BackCall.objects.all()
     context = get_data_proc(request)
     context.update({
@@ -1384,8 +1384,8 @@ def get_back_calls(request):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_back_call_details(request, back_call_id):
-    if UserProfile.objects.get(user=request.user).role.role_name == 'Суперадмин' or UserProfile.objects.get(
-            user=request.user).role.role_name == 'Админ':
+    if UserProfile.objects.get(user=request.user).role.role_name == u'Суперадмин' or UserProfile.objects.get(
+            user=request.user).role.role_name == u'Админ':
         back_call = BackCall.objects.get(id=back_call_id)
         back_call.new = False
         back_call.viewed_by = request.user
