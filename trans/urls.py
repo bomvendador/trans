@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^payment_success', views_trans.payment_success, name='payment_success'),
     url(r'^ru/', include('ru.urls', namespace='ru')),
-    url(r'^paymaster/', include('paymaster.urls', namespace='paymaster')),
+    # url(r'^paymaster/', include('paymaster.urls', namespace='paymaster')),
 
 ]
 
