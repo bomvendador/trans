@@ -56,7 +56,7 @@ class IndexView (generic.TemplateView):
             user_profile = None
         context = {'login': self.request.POST.get('login'),
                    'password': self.request.POST.get('password'),
-                   'langs': Language.objects.all(),
+                   'langs': Language.objects.all().order_by('name'),
                    'user_profile': user_profile,
                    }
         # print(self.request.POST.get('login'))
@@ -68,12 +68,12 @@ class BaseView (generic.TemplateView):
     context_object_name = 'user'
 
     def get_queryset(self):
-        return {'user': User.objects.all(), 'lang': Language.objects.all()}
+        return {'user': User.objects.all(), 'lang': Language.objects.all().order_by('name')}
 
 
 def baseView (request):
     context = {'user': User.objects.all(),
-               'langs': Language.objects.all()
+               'langs': Language.objects.all().order_by('name')
                }
     return render(request, 'base.html', context)
 
@@ -173,7 +173,7 @@ def base_view_(request):
 
 
 def get_langs(request):
-    langs = Language.objects.all()
+    langs = Language.objects.all().order_by('name')
     return HttpResponse(langs)
 
 

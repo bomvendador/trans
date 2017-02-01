@@ -78,7 +78,7 @@ def login_board(request):
         user = authenticate(username=email, password=password)
         if user is not None:
             if user.is_active:
-                print('logged')
+                # print('logged')
                 login(request, user)
                 # return redirect('ru:dashboard_ru:base_board', user_id=user.id)
                 return HttpResponse(user.id)
@@ -89,7 +89,7 @@ def login_board(request):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def base_board(request, user_id):
-    print(user_id)
+    # print(user_id)
     user = User.objects.get(id=user_id)
     new_count = 0
     # user_role = UserProfile.objects.get(user=user)
@@ -99,12 +99,12 @@ def base_board(request, user_id):
         user_profile = UserProfile.objects.get(user=user)
     except UserProfile.DoesNotExist:
         user_profile = None
-    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
         # print('Супер')
         sent_docs = SentDoc.objects.all()
         try:
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
-            print(new_count)
+            # print(new_count)
         except SentDoc.DoesNotExist:
             new_count = 0
 
@@ -112,7 +112,7 @@ def base_board(request, user_id):
         try:
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(
                 resp=user).count()
-            print(new_count)
+            # print(new_count)
         except SentDoc.DoesNotExist:
             new_count = 0
         try:
@@ -166,7 +166,7 @@ def get_sent_docs(request):
     sent_docs = None
     context = {}
     new_count = 0
-    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
         logger.debug('logger')
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
@@ -448,7 +448,7 @@ def order_details(request, order_id):
     context.update({
         'order_details': order_det,
         'files': files,
-        'langs': Language.objects.all(),
+        'langs': Language.objects.all().order_by('name'),
         'managers': Manager.objects.all(),
         'new_count': new_count,
         'order_status': OrderStatus.objects.all(),
@@ -565,7 +565,7 @@ def get_translators_details(request, translator_id):
     for i in langs_select:
         list.append(i.lang_id)
     # print(list)
-    langs = Language.objects.all().exclude(id__in=list)
+    langs = Language.objects.all().exclude(id__in=list).order_by('name')
     if translator.date_birth:
         birthday_db = translator.date_birth.strftime("%d.%m.%Y")
         context.update({
@@ -655,7 +655,7 @@ def create_translator(request):
         else:
             return HttpResponse('ok')
 
-    langs = Language.objects.all()
+    langs = Language.objects.all().order_by('name')
     context = get_data_proc(request)
     context.update({
         'langs': langs,
