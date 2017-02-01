@@ -465,7 +465,7 @@ $(document).ready(function () {
     del_lang();
     function del_lang() {
         $('.del-lang').on('click', function () {
-
+            show_save_info();
             console.log($(this).closest('li').text());
             item = $(this).closest('li').text();
             $(this).parent().remove();
