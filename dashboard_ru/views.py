@@ -1002,7 +1002,10 @@ def create_manager(request):
         user_profile.user = user
         if new == 'no':
             manager.changed_by = request.user
-            payment_details_inst.payment_method = PayMethod.objects.get(name=payment_method)
+            try:
+                payment_details_inst.payment_method = PayMethod.objects.get(name=payment_method)
+            except PayMethod.DoesNotExist:
+                pass
             payment_details_inst.owner = user
             payment_details_inst.detail = payment_details
             payment_details_inst.author = request.user
