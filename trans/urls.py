@@ -17,6 +17,8 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from ru import views
+from trans import views_trans
+
 
 # urlpatterns = i18n_patterns('',
 #     url(r'^admin/', admin.site.urls),
@@ -25,5 +27,9 @@ from ru import views
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
+    url(r'^payment_success', views_trans.payment_success, name='payment_success'),
     url(r'^ru/', include('ru.urls', namespace='ru')),
+    url(r'^paymaster/', include('paymaster.urls', namespace='paymaster')),
+
 ]
+

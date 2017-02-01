@@ -202,6 +202,10 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': False,
         },
+        'paymaster': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     },
 }
 
@@ -260,6 +264,11 @@ EMAIL_HOST_PASSWORD = 'L1i6C6b5'
 TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'email/'
 TEMPLATED_EMAIL_FILE_EXTENSION = 'html'
+
+
+PAYMASTER_PASSWORD = '^4S!5N&X*j'
+PAYMASTER_MERCHANT_ID = 'caccd086-b240-4653-953d-3b7215e46ac8'
+
 
 # # You can use a shortcut version
 # TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django'

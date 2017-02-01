@@ -1419,6 +1419,7 @@ def send_email(request):
                                  'user': request.user
                                  },
                         )
+
     # template = get_template('mail/order_calculation.html')
     # context = {'user': request.user}
     #
