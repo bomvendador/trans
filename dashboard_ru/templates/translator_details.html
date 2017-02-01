@@ -143,11 +143,7 @@
                                                     <select class="form-control show-tick" id="language" name="language">
                                                         <option value="default">-- Выберите язык --</option>
                                                         {% for lang in langs %}
-                                                            {% for lang_select in langs_select %}
-                                                                {% if lang != lang_select %}
-                                                                    <option value="{{ lang.name }}">{{ lang.name }}</option>
-                                                                {% endif %}
-                                                            {% endfor %}
+                                                            <option value="{{ lang.name }}">{{ lang.name }}</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
@@ -463,8 +459,11 @@ $(document).ready(function () {
 {#            $('#language').selectpicker('refresh');#}
 {#        });#}
 
+        del_lang();
     });
 
+    del_lang();
+    function del_lang() {
         $('.del-lang').on('click', function () {
 
             console.log($(this).closest('li').text());
@@ -482,6 +481,8 @@ $(document).ready(function () {
             $('#language').val(1);
             $('#language').selectpicker('refresh');
         });
+
+    }
 
 
 
