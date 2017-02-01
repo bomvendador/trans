@@ -259,7 +259,7 @@ EMAIL_HOST_PASSWORD = 'L1i6C6b5'
 
 TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
 TEMPLATED_EMAIL_TEMPLATE_DIR = 'email/'
-TEMPLATED_EMAIL_FILE_EXTENSION = 'email'
+TEMPLATED_EMAIL_FILE_EXTENSION = 'html'
 
 # # You can use a shortcut version
 # TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django'
