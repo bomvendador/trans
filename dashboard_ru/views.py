@@ -594,7 +594,7 @@ def save_translator_photo(request, translator_id):
             translator.photo = file
             translator.photo_name = file.name
         translator.save()
-        return HttpResponse(translator.photo.name)
+        return HttpResponse(translator.photo_name)
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
