@@ -1,7 +1,6 @@
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
-import include
 
 app_name = 'dashboard_ru'
 
