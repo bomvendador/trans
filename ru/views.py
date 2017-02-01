@@ -228,7 +228,7 @@ def save_files_trans(request):
             doc_sent.name = name
             doc_sent.contact_form_message = data['message_contact_form_footer']
             doc_sent.status = OrderStatus.objects.get(name='Новый')
-            doc_sent.order_src = OrderSource.objects.get(name='Сайт - футер')
+            doc_sent.order_src = OrderSource.objects.get(name='Сайт-футер')
             doc_sent.text = ''
             doc_sent.save()
             update_client_statistics(user)
