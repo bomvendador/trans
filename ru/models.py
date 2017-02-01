@@ -76,7 +76,7 @@ class Translator(models.Model):
     registered = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     photo = models.ImageField(upload_to=settings.BASE_DIR + '/media/photo', null=True, blank=True)
-    photo_name = models.CharField(max_length=100)
+    photo_name = models.CharField(max_length=100, null = True, blank = True)
     password = models.CharField(max_length=50, null=True, blank=True)
     user = models.OneToOneField(User, blank=True, null=True)
     init_password = models.CharField(max_length=50, blank=True, null=True)
