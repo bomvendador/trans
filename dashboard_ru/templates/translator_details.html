@@ -445,6 +445,26 @@ $(document).ready(function () {
     {#        trigger: 'hover'#}
     {#    });#}
 
+{#        $('.del-lang').on('click', function () {#}
+{##}
+{#            console.log($(this).closest('li').text());#}
+{#            item = $(this).closest('li').text();#}
+{#            $(this).parent().remove();#}
+{#            $('#language').append('<option value="' + item + '">' + item + '</option>');#}
+{##}
+{#            var options = $("#language option");                    // Collect options#}
+{#            options.detach().sort(function(a,b) {               // Detach from select, then Sort#}
+{#                var at = $(a).text();#}
+{#                var bt = $(b).text();#}
+{#                return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order#}
+{#            });#}
+{#            options.appendTo("#language");#}
+{#            $('#language').val(1);#}
+{#            $('#language').selectpicker('refresh');#}
+{#        });#}
+
+    });
+
         $('.del-lang').on('click', function () {
 
             console.log($(this).closest('li').text());
@@ -462,9 +482,6 @@ $(document).ready(function () {
             $('#language').val(1);
             $('#language').selectpicker('refresh');
         });
-
-    });
-
 
 
 
