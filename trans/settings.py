@@ -258,6 +258,7 @@ EMAIL_HOST_USER = 'info@prolingva.ru'
 EMAIL_HOST_PASSWORD = 'L1i6C6b5'
 
 TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django.TemplateBackend'
+TEMPLATED_EMAIL_TEMPLATE_DIR = 'mail/'
 
 # # You can use a shortcut version
 # TEMPLATED_EMAIL_BACKEND = 'templated_email.backends.vanilla_django'
