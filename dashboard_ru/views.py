@@ -430,11 +430,10 @@ def order_details(request, order_id):
     # for f in files:
         # print('file = ' + str(f.file_name))
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
-        a = 0
-        # try:
-        #     new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
-        # except SentDoc.DoesNotExist:
-        #     new_count = 0
+        try:
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
+        except SentDoc.DoesNotExist:
+            new_count = 0
     else:
         if user_profile.role.role_name == u'Менеджер':
             order_det.status = OrderStatus.objects.get(name=u'В работе')
