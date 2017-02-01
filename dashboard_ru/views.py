@@ -1415,7 +1415,9 @@ def send_email(request):
     send_templated_mail(template_name='order_calculation.html',
                         from_email='info@prolingva.ru',
                         recipient_list=['bomvendador@yandex.ru'],
-                        context={'logo': logo},
+                        context={'logo': logo,
+                                 'user': request.user
+                                 },
                         subject='тема',
 
                         )
