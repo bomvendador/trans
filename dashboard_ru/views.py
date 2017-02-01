@@ -1405,8 +1405,7 @@ def get_back_call_details(request, back_call_id):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request):
-    # email = EmailMessage('Hello', 'World', to=['bomvendador@yandex.ru'])
-    # email.send()
-    send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'])
+    send_mail('Тема', 'Тело письма', 'service@prolingva,ru', ['bomvendador@yandex.ru'])
+    # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'])
     return HttpResponse()
 
