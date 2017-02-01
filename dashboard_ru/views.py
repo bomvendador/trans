@@ -16,6 +16,8 @@ from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, Pa
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
 
+from django.core.mail import EmailMessage
+
 import codecs
 
 import logging
@@ -1399,3 +1401,11 @@ def get_back_call_details(request, back_call_id):
         'back_call_comments': back_call_comments
     })
     return render(request, 'back_call_details.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def send_email(request):
+    email = EmailMessage('Hello', 'World', to=['bomvendador@yandex.ru'])
+    email.send()
+    return HttpResponse()
+

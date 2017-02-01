@@ -34,6 +34,8 @@ urlpatterns = [
     url(r'^download_translation_file/(?P<file_id>\d+)/$', views.download_translation_file,
         name='download_translation_file'),
 
+    url(r'^send_email/$', views.send_email, name='send_email'),
+
     url(r'^translator_details/(?P<translator_id>\d+)/$', views.get_translators_details, name='get_translators_details'),
     url(r'^translator_delete/$', views.delete_translator, name='delete_translator'),
     url(r'^translator_list/$', views.get_translators_list, name='get_translators_list'),
