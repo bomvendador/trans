@@ -16,12 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
+from ru import views
 
 # urlpatterns = i18n_patterns('',
 #     url(r'^admin/', admin.site.urls),
 #     url(r'^ru/', include('ru.urls')),
 # )
 urlpatterns = [
+    url(r'^$', views.IndexView.as_view(), name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^ru/', include('ru.urls', namespace='ru')),
 ]

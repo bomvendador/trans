@@ -985,7 +985,7 @@
 {#                                toastr.success('Заголовок', 'Текст все ок');#}
                             }else {
                                 $('.close').click();
-                                
+
                                 if (data == 'user_exists'){
                                     swal({
                                         title: 'Информация успешно отправлена',
@@ -1064,6 +1064,9 @@
 {#            })#}
         })
 
+    $.get("http://ipinfo.io", function(response) {
+    console.log(response.ip);
+}, "jsonp");
     </script>
     {% block script_footer %}
     {% endblock %}
