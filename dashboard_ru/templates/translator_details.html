@@ -143,7 +143,11 @@
                                                     <select class="form-control show-tick" id="language" name="language">
                                                         <option value="default">-- Выберите язык --</option>
                                                         {% for lang in langs %}
+                                                            {% for lang_select in langs_select %}
+                                                                {% if lang != lang_select %}
                                                                     <option value="{{ lang.name }}">{{ lang.name }}</option>
+                                                                {% endif %}
+                                                            {% endfor %}
                                                         {% endfor %}
                                                     </select>
                                                 </div>
@@ -153,8 +157,8 @@
                                                 </div>
                                                 <div class="col-sm-5">
                                                     <ul class="list-group" id="language_select">
-                                                        {% for lang in langs_select %}
-                                                        <li class="list-group-item" style="" value="{{ lang.lang.name }}">{{ lang.lang.name }}<i class="mdi mdi-close float-right pointer-pure del-lang" data-toggle="tooltip" title="" data-placement="left" data-original-title=""></i></li>
+                                                        {% for lang_select in langs_select %}
+                                                        <li class="list-group-item" style="" value="{{ lang_select.lang.name }}">{{ lang_select.lang.name }}<i class="mdi mdi-close float-right pointer-pure del-lang" data-toggle="tooltip" title="" data-placement="left" data-original-title=""></i></li>
                                                         {% endfor %}
         {#                                                <li class="list-group-item">Dapibus ac facilisis in <i class="mdi mdi-arrow-right hidden-xs"></i></li>#}
         {#                                                <li class="list-group-item">Morbi leo risus</li>#}
