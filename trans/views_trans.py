@@ -10,4 +10,4 @@ def payment_success(request):
         context = {
             'data': request.POST['LMI_SYS_PAYMENT_ID']
         }
-    return request(request, 'success.html', context)
+    return render(request, 'success.html', context)
