@@ -10,4 +10,4 @@ def payment_success(request):
         context = {
             'data': request.POST
         }
-    return HttpResponse(context)
+    return HttpResponse(request.POST)
