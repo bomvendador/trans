@@ -8,6 +8,6 @@ from django.views.decorators.csrf import csrf_exempt
 def payment_success(request):
     if request.method == 'POST':
         context = {
-            'data': request.POST
+            'data': request.POST['LMI_SYS_PAYMENT_ID']
         }
-    return HttpResponse(request.POST)
+    return request(request, 'success.html', context)
