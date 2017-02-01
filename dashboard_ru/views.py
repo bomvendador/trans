@@ -99,18 +99,18 @@ def base_board(request, user_id):
         user_profile = UserProfile.objects.get(user=user)
     except UserProfile.DoesNotExist:
         user_profile = None
-    if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ':
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         # print('Супер')
         sent_docs = SentDoc.objects.all()
         try:
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Новый')).count()
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
             # print(new_count)
         except SentDoc.DoesNotExist:
             new_count = 0
 
     elif user_profile.role.role_name == u'Менеджер':
         try:
-            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(
+            new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(
                 resp=user).count()
             # print(new_count)
         except SentDoc.DoesNotExist:
