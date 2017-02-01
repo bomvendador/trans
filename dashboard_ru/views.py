@@ -1418,8 +1418,6 @@ def send_email(request):
                         context={'logo': logo,
                                  'user': request.user
                                  },
-                        subject='тема',
-
                         )
     # template = get_template('mail/order_calculation.html')
     # context = {'user': request.user}
