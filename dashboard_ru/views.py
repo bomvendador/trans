@@ -1408,7 +1408,7 @@ def get_back_call_details(request, back_call_id):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request):
     curr_path = os.path.dirname(__file__)
-    file_path = os.path.join(curr_path, 'static/img/logo/logo_horiz_black_40.png')
+    file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_horiz_black_40.png')
     with open(file_path, 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
