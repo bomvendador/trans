@@ -592,7 +592,7 @@ def save_translator_photo(request, translator_id):
         # print(translator_id)
         for file in files:
             translator.photo = file
-            file_path = file.name
+            translator.photo_name = file.name
         translator.save()
         return HttpResponse(translator.photo.name)
 
