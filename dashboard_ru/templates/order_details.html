@@ -703,6 +703,7 @@
 {% block script %}
 
     <script src="{% static 'js/mdl_file.js' %}"></script>
+    <script src="{% static 'js/add_csrf.js' %}"></script>
     <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
 
 
@@ -1568,6 +1569,7 @@
     }
 
     {% if order_details.just_paid %}
+        add_csrf();
         $.ajax({
             url: '{% url 'ru:dashboard_ru:change_just_paid' %}',
             type: 'POST',
