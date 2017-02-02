@@ -1565,7 +1565,7 @@
         $('#order_payment_label').css('display', 'block')
     }
 
-    {% if payment_message %}
+    {% if payment_message == 'payment_success'%}
         swal({
             title: 'Оплата получена',
             text: 'Оплата была успешно получена. Когда перевод будет готов, Вы получите уведомление по электронной почте и будет доступен к скачиванию в разделе ПЕРЕВОД',
@@ -1573,7 +1573,7 @@
             confirmButtonText: 'Ok',
             closeOnConfirm: false
         });
-    console.log({{ payment_message }});
+    console.log('"' + {{ payment_message }} + '"');
     {% endif %}
 
 {% endif %}
