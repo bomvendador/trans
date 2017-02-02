@@ -430,7 +430,7 @@
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
                                             <div class="{% if order_details.payment_amount %}none{% endif %}" id="btn_pay">
-                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="save_order_payment_btn">ОПЛАТИТЬ</button>
+                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>
                                             </div>
                                         {% endif %}
 
@@ -442,6 +442,15 @@
                                     {% endif %}
                                 </form>
                             </div>
+                            <!--Форма оплаты-->
+                            <form action="https://paymaster.ru/Payment/Init" method="post" id="payment_form" name="payment_form" class="none">
+                                <input name="LMI_MERCHANT_ID" value="caccd086-b240-4653-953d-3b7215e46ac8">
+                                <input name="LMI_PAYMENT_AMOUNT" value="{{ order_details.payment_amount }}">
+                                <input name="LMI_CURRENCY" value="RUB">
+                                <input name="LMI_PAYMENT_NO" value="{{ order_details.id }}">
+                                <input name="LMI_SIM_MODE" value="0">
+                            </form>
+
 
     <!-- перевод -->
                             <div role="tabpanel" class="tab-pane fade" id="translate">
@@ -664,6 +673,7 @@
             </div>
 
     </div>
+
 {% endblock %}
 
 {% block script %}
@@ -842,6 +852,12 @@
 
         });
 
+
+        //отправка оплаты
+    $('#pay_order_btn').on('click', function (e) {
+        e.preventDefault();
+        $('#payment_form').submit()
+    });
 
         //сохранение комментария
     $('#save_order_comment_btn').on('click', function () {
