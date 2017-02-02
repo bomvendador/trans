@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 from ru.models import SentDoc, PayStatus, PayMethod
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -19,6 +20,7 @@ def payment_success(request):
         order.payment_date = payment_date
         order.paystatus = PayStatus.objects.get(name='Paid')
         order.paymethod = PayMethod.objects.get(name='PayMaster')
+        order.just_paid = True
         order.save()
 
         # request.ses
@@ -29,3 +31,11 @@ def payment_success(request):
             'data': request.POST
         }
         return HttpResponseRedirect(url)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def change_just_paid(request, order_id):
+    if request.method == 'POST':
+        order = SentDoc.objects.get(id=order_id)
+        order.just_paid = False
+        order.save()

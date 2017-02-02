@@ -423,8 +423,8 @@ def order_details(request, order_id):
     msgs = get_messages(request)
     # order_id_msg = None
     for msg in msgs:
-        order_id_msg = msg
-        context.update({'payment_message': order_id_msg})
+        payment_message = msg
+        context.update({'payment_message': payment_message})
         break
 
     try:

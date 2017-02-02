@@ -169,6 +169,7 @@ class SentDoc (models.Model):
     contact_form_message = models.CharField(max_length=150, blank=True, null=True)
     translation_type = models.ForeignKey(TranslationType, blank=True, null=True)
     translation_theme = models.ForeignKey(TranslationTheme, blank=True, null=True)
+    just_paid = models.BooleanField(default=False)
 
 
 class BackCall(models.Model):
