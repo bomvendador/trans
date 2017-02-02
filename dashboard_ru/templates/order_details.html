@@ -430,6 +430,7 @@
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
                                             <div class="{% if order_details.payment_amount %}none{% endif %}" id="btn_pay">
+                                            <img src="{% static 'img/payment_sys.png' %}">
                                                <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>
                                             </div>
                                         {% endif %}
@@ -442,7 +443,7 @@
                                     {% endif %}
                                 </form>
                             </div>
-                            <!--Форма оплаты-->
+                            <!--Форма для оплаты-->
                             <form action="https://paymaster.ru/Payment/Init" method="post" id="payment_form" name="payment_form" class="none">
                                 <input name="LMI_MERCHANT_ID" value="caccd086-b240-4653-953d-3b7215e46ac8">
                                 <input name="LMI_PAYMENT_AMOUNT" value="{{ order_details.price }}">
