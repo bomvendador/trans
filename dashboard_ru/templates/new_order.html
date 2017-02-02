@@ -375,6 +375,20 @@
                 processData: false,
                 contentType: false,
                 error: function(data){
+                    swal({
+                        title: 'Ошибка',
+                        text: 'Возникла ошибка на сервере при сохранении данных. Попытайтесь позже.',
+                        type: 'error',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: false
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+                            window.location.reload();
+
+                        }
+                    });
+
                     console.log(data);
                 },
                 success:function (data) {
