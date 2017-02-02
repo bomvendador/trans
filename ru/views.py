@@ -39,7 +39,7 @@ class IndexView (generic.TemplateView):
         else:
             # messages.error(self.request, 'fdfdfd')
 
-            message_ = 'Логин или пароль указаны не верно'
+            message_ = u'Логин или пароль указаны не верно'
             return HttpResponse(message_)
                 # return render(self.request, 'index.html', {'user': user})
         return render(self.request, 'index.html', {'user': User.objects.all()})
@@ -133,7 +133,7 @@ def reg_user(request):
         name = request.POST['name']
         try:
             user_exist = User.objects.get(username=email)
-        except:
+        except User.DoesNotExist:
             user_exist = None
         if user_exist is None:
             user_profile = UserProfile()
@@ -159,7 +159,7 @@ def reg_user(request):
             login(request, user_auth)
             message = 'ok'
         else:
-            message = ('user exists')
+            message = 'user exists'
         return HttpResponse(message)
 
 
@@ -199,7 +199,7 @@ def user_client_add(name, email, tel):
     user_profile = UserProfile()
     user_profile.tel = tel
     user_profile.user = user
-    user_profile.role = Role.objects.get(role_name='Клиент')
+    user_profile.role = Role.objects.get(role_name=u'Клиент')
     user_profile.save()
     return {'user': user, 'client': client, 'user_profile': user_profile}
 
@@ -227,7 +227,7 @@ def save_files_trans(request):
             doc_sent.user = user
             doc_sent.name = name
             doc_sent.contact_form_message = data['message_contact_form_footer']
-            doc_sent.status = OrderStatus.objects.get(name='Новый')
+            doc_sent.status = OrderStatus.objects.get(name=u'Новый')
             doc_sent.order_src = OrderSource.objects.get(name=u'Сайт - футер')
             doc_sent.text = ''
             doc_sent.save()
@@ -285,8 +285,8 @@ def save_files_trans(request):
             doc_sent.name = name
             doc_sent.tel = tel
             doc_sent.contact_form_message = data['text_contact_form']
-            doc_sent.status = OrderStatus.objects.get(name='Новый')
-            doc_sent.order_src = OrderSource.objects.get(name='Сайт')
+            doc_sent.status = OrderStatus.objects.get(name=u'Новый')
+            doc_sent.order_src = OrderSource.objects.get(name=u'Сайт')
             print(request.POST['learn_more'])
 
             if short_name_type:
@@ -302,7 +302,7 @@ def save_files_trans(request):
                 user_profile = UserProfile.objects.get(user=request.user)
                 doc_sent.author = request.user
 
-                if user_profile.role.role_name != 'Клиент':
+                if user_profile.role.role_name != u'Клиент':
 
                     name = request.POST['name_doc_send']
                     email = request.POST['email_doc_send']
@@ -365,7 +365,7 @@ def save_files_trans(request):
                         user_profile = UserProfile()
                         user_profile.tel = tel
                         user_profile.user = user
-                        user_profile.role = Role.objects.get(role_name='Клиент')
+                        user_profile.role = Role.objects.get(role_name=u'Клиент')
                         user_profile.save()
 
                 else:
@@ -408,7 +408,7 @@ def save_files_trans(request):
                     user_profile = UserProfile()
                     user_profile.tel = tel
                     user_profile.user = user
-                    user_profile.role = Role.objects.get(role_name='Клиент')
+                    user_profile.role = Role.objects.get(role_name=u'Клиент')
                     user_profile.save()
                 doc_sent.author = user
             text = request.POST['text_doc_send']
@@ -431,7 +431,7 @@ def save_files_trans(request):
             doc_sent.name = name
             doc_sent.tel = tel
             doc_sent.text = text
-            doc_sent.status = OrderStatus.objects.get(name='Новый')
+            doc_sent.status = OrderStatus.objects.get(name=u'Новый')
             # doc_sent.author = request.user
 
             # file = SentFiles()
@@ -449,15 +449,15 @@ def save_files_trans(request):
             if request.user.is_authenticated():
                 try:
                     user_profile = UserProfile.objects.get(user=request.user.id)
-                    if user_profile.role.role_name != 'Клиент':
-                        doc_sent.order_src = OrderSource.objects.get(name='Персонал')
+                    if user_profile.role.role_name != u'Клиент':
+                        doc_sent.order_src = OrderSource.objects.get(name=u'Персонал')
                     else:
                         print('client')
                         if request.POST.get('order_source') == 'dashboard':
                             print('clientwww')
-                            doc_sent.order_src = OrderSource.objects.get(name='Панель управления - Клиент')
+                            doc_sent.order_src = OrderSource.objects.get(name=u'Панель управления - Клиент')
                 except UserProfile.DoesNotExist:
-                    doc_sent.order_src = OrderSource.objects.get(name='Сайт')
+                    doc_sent.order_src = OrderSource.objects.get(name=u'Сайт')
             doc_sent.save()
 
             for f in request.FILES.getlist('filesToUpload'):
