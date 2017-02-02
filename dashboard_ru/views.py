@@ -852,6 +852,9 @@ def update_order(request):
         if price:
             sent_doc.price = price
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
+        else:
+            sent_doc.price = None
+            sent_doc.paystatus = None
         sent_doc.trans_to = trans_to_inst
         sent_doc.trans_from = trans_from_inst
         sent_doc.save()
