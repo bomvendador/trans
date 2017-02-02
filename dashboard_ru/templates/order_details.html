@@ -1484,8 +1484,8 @@
 
     console.log($('#translator').val())
     if ($('#translator').val() != ''){
-        $('#translator_details').removeClass('opacity-0_3').addClass('pointer-pure')
-        $('#translator_details').prop('title', 'Подробнее о переводчике')
+        $('#translator_details').removeClass('opacity-0_3').addClass('pointer-pure');
+        $('#translator_details').prop('title', 'Подробнее о переводчике');
 
     }
 
@@ -1560,9 +1560,21 @@
 
     });
 {% else %}
-        if ($('#order_price_div').find('p').text() != '-'){
-            $('#order_payment_label').css('display', 'block')
-        }
+
+    if ($('#order_price_div').find('p').text() != '-'){
+        $('#order_payment_label').css('display', 'block')
+    }
+
+    {% if payment_message %}
+        swal({
+            title: 'Оплата получена',
+            text: 'Оплата была успешно получена. Когда перевод будет готов, Вы получите уведомление по электронной почте и будет доступен к скачиванию в разделе ПЕРЕВОД',
+            type: 'success',
+            confirmButtonText: 'Ok',
+            closeOnConfirm: false
+        });
+
+    {% endif %}
 
 {% endif %}
 

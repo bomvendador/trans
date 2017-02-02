@@ -23,7 +23,7 @@ def payment_success(request):
 
         # request.ses
 
-        messages.add_message(request, messages.INFO, 'payment')
+        messages.add_message(request, messages.INFO, 'payment_success')
         url = '/ru/dashbrd/order_details/' + order_id
         context = {
             'data': request.POST

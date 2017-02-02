@@ -1,4 +1,4 @@
-#-*- encoding:utf-8-*-
+# -*- encoding:utf-8-*-
 import json
 import re, os
 from string import punctuation
@@ -23,6 +23,11 @@ from templated_email import send_templated_mail, InlineImage
 from trans import settings
 
 import logging
+
+from django.contrib.messages import get_messages
+from django.contrib import messages, sessions
+
+
 logger = logging.getLogger('django')
 
 
@@ -415,6 +420,13 @@ def order_details(request, order_id):
     translation_files = TranslationFiles.objects.filter(order=order_det)
     comments = OrderComments.objects.filter(order=order_det)
 
+    msgs = get_messages(request)
+    # order_id_msg = None
+    for msg in msgs:
+        order_id_msg = msg
+        context.update({'payment_message': order_id_msg})
+        break
+
     try:
         author_role = UserProfile.objects.get(user=order_det.author)
         # author = author_role.role.role_name + ' - ' + order_det.user.first_name + ' ' + order_det.user.last_name
@@ -431,7 +443,7 @@ def order_details(request, order_id):
     except SentFiles.DoesNotExist:
         # print('f = none')
         files = None
-    # for f in files:
+        # for f in files:
         # print('file = ' + str(f.file_name))
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         try:
@@ -444,7 +456,8 @@ def order_details(request, order_id):
             order_det.save()
             update_manager_statistics(user)
             try:
-                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(resp=user).count()
+                new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Назначен менеджер')).filter(
+                    resp=user).count()
             except SentDoc.DoesNotExist:
                 sent_docs = None
 
@@ -622,7 +635,6 @@ def create_translator(request):
         birthday = request.POST.get('birthday')
         birthday_split = birthday.split('.')
         if birthday:
-
             birthday_str = birthday_split[2] + '-' + birthday_split[1] + '-' + birthday_split[0]
             translator.date_birth = parse_date(birthday_str)
 
@@ -1428,4 +1440,3 @@ def send_email(request):
     #
     # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
     return HttpResponse()
-
