@@ -1569,7 +1569,7 @@
 
     {% if order_details.just_paid %}
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:change_just_paid' order_details.id %}',
+            url: '{% url 'ru:dashboard_ru:change_just_paid' %}',
             type: 'POST',
 
             data: JSON.stringify({
