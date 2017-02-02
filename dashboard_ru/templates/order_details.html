@@ -86,7 +86,7 @@
                 <ul class="nav nav-tabs tab-nav-right" role="tablist">
                     <li role="presentation" class="active"><a href="#order" data-toggle="tab">ЗАЯВКА <span class="label-count background-transparent none" id="order_label"><i class="mdi mdi-content-save"></i></span></a></li>
                     <li role="presentation"><a href="#translate" data-toggle="tab">ПЕРЕВОД <span class="label-count background-transparent none" id="order_translation_label"><i class="mdi mdi-content-save"></i></span></a></li>
-                    <li role="presentation"><a href="#payment" data-toggle="tab">ОПЛАТА <span class="label-count background-transparent none" id="order_payment_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                    <li role="presentation"><a href="#payment" data-toggle="tab">ОПЛАТА <span class="label-count background-transparent " id="order_payment_label"><i class="mdi {% if user_profile.role.role_name != 'Клиент' %}mdi-content-save {% else %} mdi-alert-circle-outline{% endif %}"></i></span></a></li>mdi-alert-circle-outline
                     {% if user_profile.role.role_name != 'Клиент' %}
                     <li role="presentation"><a href="#comments" data-toggle="tab">КОММЕНТАРИИ</a></li>
                     {% endif %}
