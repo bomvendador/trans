@@ -1562,6 +1562,8 @@
     });
 {% else %}
 
+        $('#payment_method').selectpicker('refresh');
+
     if ($('#order_price_div').find('p').text() != '-'){
         {% if order_details.paystatus.name != 'Paid' %}
         $('#order_payment_label').css('display', 'block')
