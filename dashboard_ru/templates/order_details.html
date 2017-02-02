@@ -429,8 +429,13 @@
                                     </div>
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
-                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-block btn-lg waves-effect text-align-left" id="btn_pay">
-                                            <img src="{% static 'img/payment_sys.png' %}">
+                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-block btn-lg waves-effect text-align-left row" id="btn_pay">
+                                            <div class="col-sm-2" >
+                                                <img src="{% static 'img/payment_sys.png' %}">
+                                            </div>
+                                            <div class="col-sm-10" >
+                                                <p class="color_white">Оплатить бакновской картой, электронными деньгами</p>
+                                            </div>
 {#                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>#}
                                             </div>
                                         {% endif %}
