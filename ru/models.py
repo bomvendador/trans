@@ -154,7 +154,7 @@ class SentDoc (models.Model):
     payment_amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     paystatus = models.ForeignKey(PayStatus, blank=True, null=True)
     paymethod = models.ForeignKey(PayMethod, blank=True, null=True)
-    payment_date = models.CharField(max_length=15, null=True, blank=True)
+    payment_date = models.DateTimeField(null=True, blank=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     calc_sent_date = models.CharField(max_length=15, null=True, blank=True)
     translation_sent_date = models.CharField(max_length=15, null=True, blank=True)
