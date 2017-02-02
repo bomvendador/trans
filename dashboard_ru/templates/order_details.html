@@ -429,14 +429,14 @@
                                     </div>
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
-                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-block btn-lg waves-effect text-align-left row" id="pay_order_btn">
+                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-lg waves-effect text-align-left row" id="pay_order_btn">
                                                 <div class="col-sm-2 margin-bottom-0 hidden-xs" >
                                                     <img src="{% static 'img/payment_sys.png' %}">
                                                 </div>
                                                 <div class="col-sm-10 hidden-xs" >
                                                     <p class="color_white margin-bottom-0 font-size-18 margin-top-18">Оплатить банковской картой, электронными деньгами</p>
                                                 </div>
-                                                <div class="col-xs-12 hidden-lg hidden-md hidden-sm wrap-text" >
+                                                <div class="col-xs-12 hidden-lg hidden-md hidden-sm wrap-text text_align_center" >
                                                     Оплатить банковской картой, электронными деньгами
                                                 </div>
 {#                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>#}
