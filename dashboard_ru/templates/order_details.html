@@ -691,6 +691,13 @@
 
     });
 
+    //отправка оплаты
+    $('#pay_order_btn').on('click', function () {
+        console.log('payyy')
+        $('#payment_form').submit()
+    });
+
+
     {% if user_profile.role.role_name != 'Клиент' %}
 {#    moment.locale("ru");#}
 {##}
@@ -853,11 +860,6 @@
         });
 
 
-        //отправка оплаты
-    $('#pay_order_btn').on('click', function () {
-        console.log('payyy')
-        $('#payment_form').submit()
-    });
 
         //сохранение комментария
     $('#save_order_comment_btn').on('click', function () {
