@@ -399,7 +399,7 @@
                                                 </span>
                                                 <div class="form-line">
 
-                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date" value="{% if order_details.payment_date %}{{ order_details.payment_date }}{% endif %}">
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date" value="{% if order_details.payment_date %}{{ order_details.payment_date|date:"d.m.Y, H:i" }}{% endif %}">
 
                                                 </div>
                                             </div>
