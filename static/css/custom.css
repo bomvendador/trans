@@ -348,7 +348,7 @@ ul{
 }
 
 .font-size-40{
-    font-size: 40px;
+    font-size: 40px!important;
 }
 
 .main-page-title{
