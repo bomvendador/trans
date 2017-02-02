@@ -143,19 +143,29 @@
                                                     {% endfor %}
                                                 </select>
                                             </div>
-                                        <div class="col-sm-6 col-xs-12">
-                                                <div class="input-group">
-                                                    <div class="form-line">
+                                            <div class="col-sm-6 col-xs-12">
+                                                    <div class="input-group">
+                                                        <div class="form-line">
 
-                                                        <input type="text" class="form-control date" placeholder="Реквизиты..." id="payment_details" name="payment_details" value="{{ manager.payment_details.detail }}">
+                                                            <input type="text" class="form-control date" placeholder="Реквизиты..." id="payment_details" name="payment_details" value="{{ manager.payment_details.detail }}">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                        </div>
+                                            </div>
+
                                             <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
                                                 <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
                                             </div>
 
                                         </div>
+                                            <h2 class="card-inside-title">Пароль</h2>
+
+                                        <div class="row clearfix">
+                                            <div class="col-sm-6 form-line">
+                                                {{ manager.init_password }}
+
+                                            </div>
+                                        </div>
+
 
                                     </div>
 {#                                </div>#}
