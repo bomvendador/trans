@@ -1566,6 +1566,22 @@
     }
 
     {% if order_details.just_paid %}
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:change_just_paid' order_details.id %}',
+            type: 'POST',
+
+            data: JSON.stringify({
+                'order_id': "{{ order_details.id }}"
+            }),
+
+            error: function(data){
+            },
+            success: function (data) {
+
+            }
+        });
+
+
         swal({
             title: 'Оплата получена',
             text: 'Оплата была успешно получена. Когда перевод будет готов, Вы получите уведомление по электронной почте и будет доступен к скачиванию в разделе ПЕРЕВОД',

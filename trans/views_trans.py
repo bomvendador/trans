@@ -6,7 +6,7 @@ from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 from ru.models import SentDoc, PayStatus, PayMethod
 from django.contrib.auth.decorators import login_required
-
+import json
 
 
 @csrf_exempt
@@ -34,8 +34,11 @@ def payment_success(request):
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
-def change_just_paid(request, order_id):
+def change_just_paid(request):
     if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+
         order = SentDoc.objects.get(id=order_id)
         order.just_paid = False
         order.save()
