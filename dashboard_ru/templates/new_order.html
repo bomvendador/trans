@@ -149,7 +149,7 @@
                                 </div>
                                 {% endif %}
 
-{#                                <input type="text" class="form-control none" id="order_source" name="order_source" >#}
+                                <input type="text" class="form-control none" id="order_source" name="order_source" >
 
                                 <h2 class="card-inside-title">Материал для перевода</h2>
                                 <div class="row clearfix">
@@ -366,6 +366,7 @@
             console.log('src = ' + $('#order_source').val());
 {#                    showPreloader();#}
             var formdata = new FormData($('#doc_send_form').get(0));
+            console.log(formdata)
             formdata.append('order_source', 'dashboard');
             $.ajax({
                 url: '{% url 'ru:save_files_trans' %}',
