@@ -429,7 +429,7 @@
                                     </div>
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
-                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-block btn-lg waves-effect text-align-left row margin-left-0 font-size-15" id="pay_order_btn">
+                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn btn-primary btn-block btn-lg waves-effect text-align-left row margin-left-0 font-size-15" id="pay_order_btn" style="padding: 0 0">
                                                 <div class="col-sm-2 margin-bottom-0 hidden-xs" >
                                                     <img src="{% static 'img/payment_sys.png' %}">
                                                 </div>
