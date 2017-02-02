@@ -518,7 +518,7 @@
     </section>
 
     <section class="content">
-    {% if user_profile.role.id == 1 or user_profile.role.id == 2 or user_profile.role.id == 3 %}
+    {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' or user_profile.role.role_name == 'Клиент' %}
 {#    round button#}
         {% if not new_order %}
             <a href="{% url 'ru:dashboard_ru:add_new_order' %}">
