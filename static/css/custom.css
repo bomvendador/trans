@@ -525,3 +525,11 @@ ul{
 .color-black{
     color: #000;
 }
+
+.font-family-roboto{
+    font-family: Roboto, Sans-Serif;
+}
+
+.font-weight-100{
+    font-weight: 100;
+}
