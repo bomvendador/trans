@@ -468,7 +468,7 @@ def save_files_trans(request):
             else:
                 message = 'ok'
             return HttpResponse(message)
-    return
+    return HttpResponse()
 
 
 def learn_more_trans(request):
