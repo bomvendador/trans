@@ -429,9 +429,9 @@
                                     </div>
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
-                                            <div class="{% if order_details.payment_amount %}none{% endif %}" id="btn_pay">
+                                            <div class="{% if order_details.payment_amount %}none{% endif %} btn bg-green btn-block btn-lg waves-effect" id="btn_pay">
                                             <img src="{% static 'img/payment_sys.png' %}">
-                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>
+{#                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>#}
                                             </div>
                                         {% endif %}
 
