@@ -127,7 +127,11 @@
         }
     });
 
-{#    if ($.cookie)#}
+    if ($.cookie('login') && $.cookie('password')){
+        $('#email').val($.cookie('login'));
+        $('#password').val($.cookie('password'));
+        $('#submit').click();
+    }
     $('#submit').on('click', function (e) {
         e.preventDefault();
         if ($('#email').val() == '' || $('#password').val() == ''){
@@ -142,6 +146,7 @@
         if ($('#rememberme').prop('checked')){
             $.cookie('login', $('#email').val());
             $.cookie('password', $('#password').val());
+
         }
         var formdata = new FormData($('#sign_in').get(0));
         $.ajax({
