@@ -910,8 +910,8 @@
     add_csrf();
 
     $('#exit').on('click', function () {
-        console.log('l = ' + $.cookie('login'));
-        console.log('p = ' + $.cookie('password'));
+        console.log('l = ' + $.cookie('login', {path: '/'}));
+        console.log('p = ' + $.cookie('password'), {path: '/'});
        if ($.cookie('login') && $.cookie('password')){
            $.removeCookie('login');
            $.removeCookie('password');

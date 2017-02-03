@@ -144,8 +144,8 @@
             });
         }else {
         if ($('#rememberme').prop('checked')){
-            $.cookie('login', $('#email').val());
-            $.cookie('password', $('#password').val());
+            $.cookie('login', $('#email').val(), {path: '/'});
+            $.cookie('password', $('#password').val(), {path: '/'});
 
         }
         var formdata = new FormData($('#sign_in').get(0));
