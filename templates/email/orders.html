@@ -42,15 +42,19 @@
         <div>
             Клиент: {{ client }}
         </div>
+        {% if email %}
         <div>
             Email: {{ email }}
         </div>
+       {% endif %}
         <div>
             Тип: {{ type }}
         </div>
+        {% if message %}
         <div>
             Сообщение: {{ message }}
         </div>
+        {% endif %}
 
         {#        <img src="/static/img/logo/logo1_white.png">#}
     </div>

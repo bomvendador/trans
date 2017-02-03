@@ -238,8 +238,7 @@ def save_files_trans(request):
             update_client_statistics(user)
             email_context = {'client': name, 'email': email, 'type': u'Сайт - футер', 'message': data[
                 'message_contact_form_footer']}
-            logger.debug('ru')
-            views.send_email(request, 'order_calculation.html', 'info@prolingva.ru', ['bomvendador@yandex.ru'], email_context)
+            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
 
@@ -251,6 +250,9 @@ def save_files_trans(request):
             back_call.tel = tel
             back_call.name = name
             back_call.save()
+            email_context = {'client': name, 'type': u'Обратный звонок'}
+            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+
             return HttpResponse('ok')
 
         if request.POST.get('learn_more'):
