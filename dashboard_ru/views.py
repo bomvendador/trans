@@ -1420,7 +1420,6 @@ def get_back_call_details(request, back_call_id):
     return render(request, 'back_call_details.html', context)
 
 
-@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request, template, from_, to, context):
     logger.debug('dash')
     curr_path = os.path.dirname(__file__)
