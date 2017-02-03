@@ -301,11 +301,14 @@ def save_files_trans(request):
 
             if short_name_type:
                 doc_sent.translation_type = TranslationType.objects.get(short_name=short_name_type)
+                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_type': short_name_type}
             if short_name_theme:
+                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_theme': short_name_theme}
                 doc_sent.translation_theme = TranslationTheme.objects.get(short_name=short_name_theme)
             doc_sent.text = ''
             doc_sent.save()
 
+            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
             return HttpResponse(message)
         else:
             if not request.user.is_anonymous():
