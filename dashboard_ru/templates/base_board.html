@@ -913,8 +913,9 @@
        if ($.cookie('login') && $.cookie('password')){
            $.removeCookie('login');
            $.removeCookie('password');
-           window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
        }
+       window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
+
     });
 
 
