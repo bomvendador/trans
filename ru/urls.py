@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^send_docs/$', views.save_files_trans, name='save_files_trans'),
     url(r'^learn_more_trans/$', views.learn_more_trans, name='learn_more_trans'),
     url(r'^learn_more_types/$', views.learn_more_types, name='learn_more_types'),
+    url(r'^confidentiality/$', views.confidentiality, name='confidentiality'),
     # url(r'^dashbrd/$', views.Base_view_.as_view(), name='base_board'),
     # url(r'^dashbrd/$', views.base_view_, name='base_board'),
     url(r'^dashbrd/', include('dashboard_ru.urls', namespace='dashboard_ru')),

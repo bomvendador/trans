@@ -1,0 +1,87 @@
+{% block subject %}{{ type }} {% endblock %}
+{% block html %}
+<html>
+<body>
+
+{#<style>#}
+{#.m__hidden {#}
+{#    display: none !important; /* скрываем картинки, чтобы они не распирали блок */#}
+{#}#}
+{#.m__photo{ /* тянем картинку в зависимости от родителя */#}
+{#    width: 100%;#}
+{#    height: auto !important;#}
+{#}#}
+{#/* заменяем картинки на фоновые изображения */#}
+{#.m__photo-brd_l {#}
+{#    background: url(center-left.png);#}
+{#}#}
+{#.m__photo-brd_r {#}
+{#    background: url(center-right.png);#}
+{#}#}
+{#</style>#}
+{#<table cellpadding="0" cellspacing="0" border="0" style="direction: ltr; line-height: 0;">#}
+{#<tr>#}
+{#    <td><img src="top-left.png" width="10" height="10" border="0"></td>#}
+{#    <td><img src="top-center.png" width="100%" height="10" border="0"></td>#}
+{#    <td><img src="top-right.png" width="10" height="10" border="0"></td>#}
+{#</tr>#}
+{#<tr>#}
+{#    <td class="m__photo-brd_l"><img src="center-left.png" class="m__hidden" width="10" height="{{height}}" border="0"></td>#}
+{#    <td style="background: #ffffff;"><img src="photo.png" class="m__photo" height="{{height}}" border="0"></td>#}
+{#    <td class="m__photo-brd_r"><img src="center-right.png" class="m__hidden" width="10" height="{{height}}" border="0"></td>#}
+{#</tr>#}
+{#<tr>#}
+{#    <td><img src="bottom-left.png" width="10" height="10" border="0"></td>#}
+{#    <td><img src="bottom-center.png" width="100%" height="10" border="0"></td>#}
+{#    <td><img src="bottom-right.png" width="10" height="10" border="0"></td>#}
+{#</tr>#}
+{#</table>#}
+    <div class="margin-left--20 translation_file list-group-item row" style="padding: 10px; border: 1px solid #ddd; font-family: Roboto, Sans-Serif">
+        <div style="border-bottom: 1px #ddd solid; margin-bottom: 10px">
+            <img src="{{ logo }}">
+
+        </div>
+        {% if ID %}
+        <div>
+            ID: {{ ID }}
+        </div>
+        {% endif %}
+        <div>
+            Тип: {{ type }}
+        </div>
+
+        <div>
+            Клиент: {{ client }}
+        </div>
+        {% if email %}
+        <div>
+            Email: {{ email }}
+        </div>
+       {% endif %}
+        {% if tel %}
+        <div>
+            Телефон: {{ tel }}
+        </div>
+        {% endif %}
+        {% if message %}
+        <div>
+            Сообщение: {{ message }}
+        </div>
+        {% endif %}
+        {% if order_type %}
+        <div>
+            Тип перевода: {{ order_type }}
+        </div>
+        {% endif %}
+        {% if order_theme %}
+        <div>
+            Тип перевода: {{ order_theme }}
+        </div>
+        {% endif %}
+
+
+        {#        <img src="/static/img/logo/logo1_white.png">#}
+    </div>
+</body>
+</html>
+{% endblock %}

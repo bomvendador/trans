@@ -1434,3 +1434,9 @@ def send_email(request, template, from_, to, context):
                         context=context,
                         )
     return HttpResponse()
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def send_calculation_to_client(request):
+    if request.method == 'POST':
+        return HttpResponse()

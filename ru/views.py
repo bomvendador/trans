@@ -510,3 +510,7 @@ def learn_more_types(request):
 
     }
     return render(request, 'learn_more_trans.html', context)
+
+
+def confidentiality(request):
+    return render(request, 'confidentiality.html')
