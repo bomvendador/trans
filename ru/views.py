@@ -513,4 +513,5 @@ def learn_more_types(request):
 
 
 def confidentiality(request):
-    return render(request, 'confidentiality.html')
+    context = {'confidentiality': 'yes'}
+    return render(request, 'confidentiality.html', context)
