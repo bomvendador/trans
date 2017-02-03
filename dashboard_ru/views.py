@@ -1428,7 +1428,7 @@ def send_email(request, template, from_, to, context):
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
     context.update({'logo': logo})
-    logger.debug(template + ' ' + from_ + ' ' + context)
+    # logger.debug(template + ' ' + from_ + ' ' + context)
     send_templated_mail(template_name=template,
                         from_email=from_,
                         recipient_list=to,
