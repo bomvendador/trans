@@ -1422,6 +1422,7 @@ def get_back_call_details(request, back_call_id):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_email(request, template, from_, to, context):
+    logger.debug('dash')
     curr_path = os.path.dirname(__file__)
     file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_35.png')
     with open(file_path, 'rb') as logo:
