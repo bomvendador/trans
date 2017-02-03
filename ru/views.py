@@ -465,13 +465,17 @@ def save_files_trans(request):
                     user_profile = UserProfile.objects.get(user=request.user.id)
                     if user_profile.role.role_name != u'Клиент':
                         doc_sent.order_src = OrderSource.objects.get(name=u'Персонал')
+                        email_source = u'Персонал'
                     else:
                         print('client')
                         if request.POST.get('order_source') == 'dashboard':
                             print('clientwww')
                             doc_sent.order_src = OrderSource.objects.get(name=u'Панель управления - Клиент')
+                            email_source = u'Панель управления - Клиент'
                 except UserProfile.DoesNotExist:
                     doc_sent.order_src = OrderSource.objects.get(name=u'Сайт')
+                    email_source = u'Сайт - заявка'
+
             doc_sent.save()
 
             for f in request.FILES.getlist('filesToUpload'):
@@ -482,7 +486,7 @@ def save_files_trans(request):
             else:
                 message = 'ok'
 
-            email_context = {'client': name, 'email': email, 'type': u'Сайт - заявка', 'ID': doc_sent.id}
+            email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel}
             views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
@@ -491,13 +495,17 @@ def save_files_trans(request):
 
 def learn_more_trans(request):
     context = {
-        'learn_more': 'trans'
+        'learn_more': 'trans',
+        'langs': Language.objects.all().order_by('name'),
+
     }
     return render(request, 'learn_more_trans.html', context)
 
 
 def learn_more_types(request):
     context = {
-        'learn_more': 'types'
+        'learn_more': 'types',
+        'langs': Language.objects.all().order_by('name'),
+
     }
     return render(request, 'learn_more_trans.html', context)
