@@ -192,9 +192,9 @@ LOGGING = {
         # Log to a text file
         'django-logfile': {
             'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': 'home/trans/logs/django.log',
-            # 'formatter': 'verbose',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR,  'logs/django.log'),
+            'formatter': 'verbose',
         },
     },
     'loggers': {
