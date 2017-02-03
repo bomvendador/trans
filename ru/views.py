@@ -482,8 +482,7 @@ def save_files_trans(request):
             else:
                 message = 'ok'
 
-            email_context = {'client': name, 'email': email, 'type': u'Сайт - заявка', 'message': data[
-                'message_contact_form_footer'], 'ID': doc_sent.id}
+            email_context = {'client': name, 'email': email, 'type': u'Сайт - заявка', 'ID': doc_sent.id}
             views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
