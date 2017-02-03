@@ -299,8 +299,6 @@ def save_files_trans(request):
             doc_sent.status = OrderStatus.objects.get(name=u'Новый')
             doc_sent.order_src = OrderSource.objects.get(name=u'Сайт')
 
-            print(request.POST['learn_more'])
-
             if short_name_type:
                 doc_sent.translation_type = TranslationType.objects.get(short_name=short_name_type)
                 email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_type': short_name_type, 'message': data['text_contact_form']}
@@ -483,6 +481,11 @@ def save_files_trans(request):
                 message = 'user_exists'
             else:
                 message = 'ok'
+
+            email_context = {'client': name, 'email': email, 'type': u'Сайт - заявка', 'message': data[
+                'message_contact_form_footer'], 'ID': doc_sent.id}
+            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+
             return HttpResponse(message)
     return HttpResponse()
 
