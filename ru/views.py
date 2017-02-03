@@ -210,7 +210,7 @@ def user_client_add(name, email, tel):
 
 def save_files_trans(request):
     if request.method == 'POST':
-        email_source = ''
+        email_source = u'Сайт - заявка'
         data = request.POST
         user_exists = False
         doc_sent = SentDoc()
