@@ -1421,7 +1421,7 @@ def get_back_call_details(request, back_call_id):
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
-def send_email(request, context):
+def send_email(request):
     template = 'order_calculation.html'
     from_ = 'info@prolingva.ru'
     to = 'orders@prolingva.ru'
@@ -1430,7 +1430,7 @@ def send_email(request, context):
     with open(file_path, 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
-    context.update({'logo': logo})
+    context = {'logo': logo}
     send_templated_mail(template_name=template,
                         from_email=from_,
                         recipient_list=to,
