@@ -1424,7 +1424,7 @@ def get_back_call_details(request, back_call_id):
 def send_email(request):
     template = 'order_calculation.html'
     from_ = 'info@prolingva.ru'
-    to = 'orders@prolingva.ru'
+    to = ['orders@prolingva.ru']
     curr_path = os.path.dirname(__file__)
     file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_35.png')
     with open(file_path, 'rb') as logo:
