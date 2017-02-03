@@ -1421,22 +1421,15 @@ def get_back_call_details(request, back_call_id):
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
-def send_email(request):
+def send_email(request, template, from_, to, context):
     curr_path = os.path.dirname(__file__)
     file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_35.png')
     with open(file_path, 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
-    send_templated_mail(template_name='order_calculation.html',
-                        from_email='info@prolingva.ru',
-                        recipient_list=['bomvendador@yandex.ru'],
-                        context={'logo': logo,
-                                 'user': request.user
-                                 },
+    context.update({'logo': logo})
+    send_templated_mail(template_name=template,
+                        from_email=from_,
+                        recipient_list=to,
+                        context=context,
                         )
-
-    # template = get_template('mail/order_calculation.html')
-    # context = {'user': request.user}
-    #
-    # send_mail('Тема', 'Тело письма', settings.EMAIL_HOST_USER, ['bomvendador@yandex.ru'], html_message=template.render(context))
-    return HttpResponse()

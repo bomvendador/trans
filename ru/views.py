@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 import re
 from string import punctuation
 from dashboard_ru.views import update_client_statistics
-
+from dashboard_ru import views
 
 class IndexView (generic.TemplateView):
     template_name = 'index.html'
@@ -232,6 +232,8 @@ def save_files_trans(request):
             doc_sent.text = ''
             doc_sent.save()
             update_client_statistics(user)
+            email_context = {'client': name, 'email': email, 'type': u'Сайт - футер'}
+            views.send_email(request, 'order_calculation.html', 'info@prolingva.ru', 'orders@prolingva.ru', email_context)
 
             return HttpResponse(message)
 
