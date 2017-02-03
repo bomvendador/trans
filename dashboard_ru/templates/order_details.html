@@ -398,7 +398,6 @@
 
                                                 </span>
                                                 <div class="form-line">
-
                                                     <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date" value="{% if order_details.payment_date %}{{ order_details.payment_date|date:"d.m.Y, H:i" }}{% endif %}">
 
                                                 </div>
@@ -471,7 +470,7 @@
                                 <input name="LMI_PAYMENT_AMOUNT" value="{{ order_details.price }}">
                                 <input name="LMI_CURRENCY" value="RUB">
                                 <input name="LMI_PAYMENT_NO" value="{{ order_details.id }}">
-                                <input name="LMI_SIM_MODE" value="0">
+                                <input name="LMI_SIM_MODE" value="1">
                                 <input name="LMI_PAYMENT_DESC" value="Оплата услуг по переводу">
                             </form>
 
@@ -1565,7 +1564,7 @@
 
     if ($('#order_price_div').find('p').text() != '-'){
         {% if order_details.paystatus.name != 'Paid' %}
-        $('#order_payment_label').css('display', 'block')
+        $('#order_payment_label').css('display', 'block');
         {% endif %}
     }
 

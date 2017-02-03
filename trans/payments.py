@@ -33,6 +33,15 @@ def payment_success(request):
         return HttpResponseRedirect(url)
 
 
+@csrf_exempt
+def payment_failure(request):
+    if request.method == 'POST':
+        context = {
+            'data': request.POST
+        }
+        return render(request, 'success.html', context)
+
+
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def change_just_paid(request):
     if request.method == 'POST':

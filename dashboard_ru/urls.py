@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
-from trans import views_trans
+from trans import payments
 
 app_name = 'dashboard_ru'
 
@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^set_resp/$', views.set_resp, name='set_resp'),
     url(r'^set_order_status/$', views.set_order_status, name='set_order_status'),
     url(r'^download_file/(?P<file_id>\d+)/$', views.download_file, name='download_file'),
-    url(r'^change_just_paid/$', views_trans.change_just_paid, name='change_just_paid'),
+    url(r'^change_just_paid/$', payments.change_just_paid, name='change_just_paid'),
     url(r'^download_translation_file/(?P<file_id>\d+)/$', views.download_translation_file,
         name='download_translation_file'),
 
