@@ -910,11 +910,16 @@
     add_csrf();
 
     $('#exit').on('click', function () {
+        console.log('l = ' + $.cookie('login'));
+        console.log('p = ' + $.cookie('password'));
        if ($.cookie('login') && $.cookie('password')){
            $.removeCookie('login');
            $.removeCookie('password');
        }
-       window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
+        console.log('l = ' + $.cookie('login'));
+        console.log('p = ' + $.cookie('password'));
+
+        {#       window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"#}
 
     });
 
