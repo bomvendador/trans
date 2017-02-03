@@ -235,7 +235,7 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="{% url 'ru:dashboard_ru:logout_board' %}" class="" role="button" data-toggle="tooltip" title="Выйти" data-placement="bottom">
+                        <a href="" class="" role="button" data-toggle="tooltip" title="Выйти" data-placement="bottom" id="exit">
 
                             <i class="mdi mdi-logout f_s_20"></i>
                             <span class="label-count"></span>
@@ -901,12 +901,23 @@
     <script src="{% static 'js/dashboard/admin.js' %}"></script>
 {#    <script src="{% static 'js/dashboard/demo.js' %}"></script>#}
     <script src="{% static 'js/moment_ru.js' %}"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}"></script>
 
 
     {% block script %}{% endblock %}
 <script>
 
     add_csrf();
+
+    $('#exit').on('click', function () {
+       if ($.cookie('login') && $.cookie('password')){
+           $.removeCookie('login');
+           $.removeCookie('password');
+           window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
+       }
+    });
+
+
     $('[data-toggle="tooltip"]').tooltip({
         trigger: 'hover'
     });
