@@ -1568,6 +1568,25 @@
         {% endif %}
     }
     {% if order_details.just_paid or order_details.payment_failure %}
+        {% if order_details.just_paid %}
+        $('#order_payment_label').css('display', 'none');
+            swal({
+                title: 'Оплата получена',
+                text: 'Оплата была успешно получена. Когда перевод будет готов, Вы получите уведомление по электронной почте и будет доступен к скачиванию в разделе ПЕРЕВОД',
+                type: 'success',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: false
+            });
+        {% else %}
+            swal({
+                title: 'Ошибка при оплате',
+                text: 'К сожалению, при оплате произошла ошибка',
+                type: 'error',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: false
+            });
+
+        {% endif %}
         add_csrf();
         $.ajax({
             url: '{% if order_details.just_paid %}{% url 'ru:dashboard_ru:change_just_paid' %}{% else %}{% url 'ru:dashboard_ru:change_payment_failre' %}{% endif %}',
@@ -1583,25 +1602,7 @@
 
             }
         });
-        {% if order_details.just_paid %}
-        $('#order_payment_label').css('display', 'none');
-        swal({
-            title: 'Оплата получена',
-            text: 'Оплата была успешно получена. Когда перевод будет готов, Вы получите уведомление по электронной почте и будет доступен к скачиванию в разделе ПЕРЕВОД',
-            type: 'success',
-            confirmButtonText: 'Ok',
-            closeOnConfirm: false
-        });
-        {% else %}
-            swal({
-                title: 'Ошибка при оплате',
-                text: 'К сожалени, при оплате произошла ошибка',
-                type: 'error',
-                confirmButtonText: 'Ok',
-                closeOnConfirm: false
-            });
 
-        {% endif %}
     console.log('"' + {{ payment_message }} + '"');
     {% endif %}
 
