@@ -17,7 +17,7 @@ from dashboard_ru.views import update_client_statistics
 from dashboard_ru import views
 
 import logging
-logger = logging.getLogger('django')
+logger = logging.getLogger('django-debug')
 
 
 class IndexView (generic.TemplateView):
