@@ -229,7 +229,7 @@ LOGFILE_SIZE = 1 * 1024
 LOGFILE_COUNT = 2
 
 LOGGING = {
-    'version': 2,
+    'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
