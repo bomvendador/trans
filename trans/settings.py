@@ -190,7 +190,7 @@ LOGGING = {
     },
     'handlers': {
         # Log to a text file
-        'logfile': {
+        'django-logfile': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'home/trans/logs/django.log',
@@ -199,7 +199,7 @@ LOGGING = {
     },
     'loggers': {
         'django-debug': {
-            'handlers': ['logfile'],
+            'handlers': ['django-logfile'],
             'level': 'DEBUG',
             'propagate': True,
         },
