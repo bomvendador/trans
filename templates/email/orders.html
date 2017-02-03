@@ -38,7 +38,8 @@
 {#</tr>#}
 {#</table>#}
     <div class="margin-left--20 translation_file list-group-item row" style="padding: 10px; border: 1px solid #ddd; font-family: Roboto, Sans-Serif">
-        <img src="{{ logo }}"><br/>
+        <img src="{{ logo }}" style="border-bottom: 1px #ddd solid"><br/>
+        <br>
         <div>
             Клиент: {{ client }}
         </div>
@@ -52,7 +53,7 @@
         </div>
         {% if tel %}
         <div>
-            Сообщение: {{ tel }}
+            Телефон: {{ tel }}
         </div>
         {% endif %}
         {% if message %}
