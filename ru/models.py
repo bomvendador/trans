@@ -170,6 +170,7 @@ class SentDoc (models.Model):
     translation_type = models.ForeignKey(TranslationType, blank=True, null=True)
     translation_theme = models.ForeignKey(TranslationTheme, blank=True, null=True)
     just_paid = models.BooleanField(default=False)
+    payment_failure = models.BooleanField(default=False)
 
 
 class BackCall(models.Model):

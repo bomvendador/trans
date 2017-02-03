@@ -36,10 +36,12 @@ def payment_success(request):
 @csrf_exempt
 def payment_failure(request):
     if request.method == 'POST':
-        context = {
-            'data': request.POST
-        }
-        return render(request, 'success.html', context)
+        order_id = request.POST.get('LMI_PAYMENT_NO')
+        order = SentDoc.objects.get(id=order_id)
+        order.payment_failure = True
+        url = '/ru/dashbrd/order_details/' + order_id
+
+        return HttpResponseRedirect(url)
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
@@ -50,4 +52,15 @@ def change_just_paid(request):
 
         order = SentDoc.objects.get(id=order_id)
         order.just_paid = False
+        order.save()
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def change_payment_failure(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+
+        order = SentDoc.objects.get(id=order_id)
+        order.payment_failure = False
         order.save()

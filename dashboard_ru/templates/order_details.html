@@ -1567,11 +1567,10 @@
         $('#order_payment_label').css('display', 'block');
         {% endif %}
     }
-
-    {% if order_details.just_paid %}
+    {% if order_details.just_paid or order_details.payment_failure %}
         add_csrf();
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:change_just_paid' %}',
+            url: '{% if order_details.just_paid %}{% url 'ru:dashboard_ru:change_just_paid' %}{% else %}{% url 'ru:dashboard_ru:change_payment_failre' %}{% endif %}',
             type: 'POST',
 
             data: JSON.stringify({
@@ -1584,7 +1583,7 @@
 
             }
         });
-
+        {% if order_details.just_paid %}
         $('#order_payment_label').css('display', 'none');
         swal({
             title: 'Оплата получена',
@@ -1593,6 +1592,16 @@
             confirmButtonText: 'Ok',
             closeOnConfirm: false
         });
+        {% else %}
+            swal({
+                title: 'Ошибка при оплате',
+                text: 'К сожалени, при оплате произошла ошибка',
+                type: 'error',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: false
+            });
+
+        {% endif %}
     console.log('"' + {{ payment_message }} + '"');
     {% endif %}
 
