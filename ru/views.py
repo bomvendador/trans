@@ -250,7 +250,7 @@ def save_files_trans(request):
             back_call.tel = tel
             back_call.name = name
             back_call.save()
-            email_context = {'client': name, 'type': u'Обратный звонок'}
+            email_context = {'client': name, 'type': u'Обратный звонок', 'tel': tel}
             views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse('ok')
