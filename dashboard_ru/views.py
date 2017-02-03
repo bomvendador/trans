@@ -28,7 +28,7 @@ from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 
 
-logger = logging.getLogger('django')
+logger = logging.getLogger('django-debug')
 
 
 def get_user_userprofile(request):
@@ -1428,6 +1428,7 @@ def send_email(request, template, from_, to, context):
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
     context.update({'logo': logo})
+    logger.debug(template + ' ' + from_ + ' ' + to + ' ' + context)
     send_templated_mail(template_name=template,
                         from_email=from_,
                         recipient_list=to,
