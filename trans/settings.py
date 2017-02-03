@@ -179,36 +179,36 @@ DATE_INPUT_FORMATS = '%d-%m-%Y'
 
 # Add this configuration to your Django settings.py file
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
-            'datefmt': "%d/%b/%Y %H:%M:%S",
-        },
-    },
-    'handlers': {
-        # Log to a text file
-        'django-logfile': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(BASE_DIR,  'logs/django.log'),
-            'formatter': 'verbose',
-        },
-    },
-    'loggers': {
-        'django-debug': {
-            'handlers': ['django-logfile'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'paymaster': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s',
+#             'datefmt': "%d/%b/%Y %H:%M:%S",
+#         },
+#     },
+#     'handlers': {
+#         # Log to a text file
+#         'django-logfile': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.RotatingFileHandler',
+#             'filename': os.path.join(BASE_DIR,  'logs/django.log'),
+#             'formatter': 'verbose',
+#         },
+#     },
+#     'loggers': {
+#         'django-debug': {
+#             'handlers': ['django-logfile'],
+#             'level': 'DEBUG',
+#             'propagate': True,
+#         },
+#         'paymaster': {
+#             'handlers': ['console'],
+#             'level': 'DEBUG',
+#         },
+#     },
+# }
 
 
 # This is logging configuration 'RotatingFileHandler'
@@ -247,6 +247,13 @@ LOGGING = {
             'maxBytes': LOGFILE_SIZE,
             'backupCount': LOGFILE_COUNT,
         },
+        'django-logfile': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/django.log'),
+            'formatter': 'verbose',
+        },
+
     },
     'loggers': {
         'django': {
@@ -254,6 +261,12 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'django-debug': {
+            'handlers': ['django-logfile'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+
     },
 }
 
