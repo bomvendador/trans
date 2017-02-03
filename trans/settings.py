@@ -191,16 +191,17 @@ LOGGING = {
     'handlers': {
         # Log to a text file
         'logfile': {
-            'class': 'logging.handlers.WatchedFileHandler',
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
             'filename': 'home/trans/logs/django.log',
-            'formatter': 'verbose',
+            # 'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
             'handlers': ['logfile'],
             'level': 'DEBUG',
-            'propagate': False,
+            'propagate': True,
         },
         'paymaster': {
             'handlers': ['console'],
