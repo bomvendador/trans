@@ -39,6 +39,7 @@ def payment_failure(request):
         order_id = request.POST.get('LMI_PAYMENT_NO')
         order = SentDoc.objects.get(id=order_id)
         order.payment_failure = True
+        order.save()
         url = '/ru/dashbrd/order_details/' + order_id
 
         return HttpResponseRedirect(url)
