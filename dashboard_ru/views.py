@@ -90,7 +90,7 @@ def login_board(request):
                 # print('logged')
                 login(request, user)
                 # return redirect('ru:dashboard_ru:base_board', user_id=user.id)
-                return redirect('ru:dashboard_ru:base_board', user_id=request.user.id)
+                return HttpResponse(user.id)
         else:
             return HttpResponse('error')
     return render(request, 'sign_in_board.html')
