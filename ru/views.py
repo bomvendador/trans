@@ -280,6 +280,7 @@ def save_files_trans(request):
             name = request.POST['name_contact_form']
             email = request.POST['email_contact_form']
             tel = request.POST['tel_contact_form']
+            text = request.POST['text_contact_form']
             try:
                 # id = request.POST['tel_doc_send']
                 client = Client.objects.get(email=email)
@@ -297,13 +298,15 @@ def save_files_trans(request):
             doc_sent.contact_form_message = data['text_contact_form']
             doc_sent.status = OrderStatus.objects.get(name=u'Новый')
             doc_sent.order_src = OrderSource.objects.get(name=u'Сайт')
+
             print(request.POST['learn_more'])
 
             if short_name_type:
                 doc_sent.translation_type = TranslationType.objects.get(short_name=short_name_type)
-                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_type': short_name_type}
+                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_type': short_name_type, 'message': data['text_contact_form']}
             if short_name_theme:
-                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_theme': short_name_theme}
+                email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_theme': short_name_theme,
+                                 'message': data['text_contact_form']}
                 doc_sent.translation_theme = TranslationTheme.objects.get(short_name=short_name_theme)
             doc_sent.text = ''
             doc_sent.save()
