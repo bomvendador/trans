@@ -102,21 +102,6 @@
     <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
 
 <script>
-    function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie !== '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                    break;
-                }
-            }
-        }
-        return cookieValue;
-    }
 
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
@@ -147,7 +132,7 @@
                 $.cookie('login', $('#email').val(), {path: '/'});
                 $.cookie('password', $('#password').val(), {path: '/'});
 
-        }
+            }
         var formdata = new FormData($('#sign_in').get(0));
         $.ajax({
             url: "{% url 'ru:dashboard_ru:login_board' %}",
