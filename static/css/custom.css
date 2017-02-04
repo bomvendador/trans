@@ -545,3 +545,11 @@ ul{
 .text-align-justify{
     text-align: justify;
 }
+
+.conf_div p{
+    margin-bottom: 10px!important;
+}
+
+.conf_div{
+    margin-bottom: 10px!important;
+}
