@@ -912,10 +912,10 @@
     $('#exit').on('click', function () {
         alert('l = ' + $.cookie('login', {path: '/'}) + 'p = ' + $.cookie('password'), {path: '/'});
         console.log('p = ' + $.cookie('password'), {path: '/'});
-       if ($.cookie('login') && $.cookie('password')){
-           $.removeCookie('login', {path: '/'});
-           $.removeCookie('password', {path: '/'});
-       }
+{#       if ($.cookie('login') && $.cookie('password')){#}
+{#           $.removeCookie('login', {path: '/'});#}
+{#           $.removeCookie('password', {path: '/'});#}
+{#       }#}
         console.log('l = ' + $.cookie('login'));
         console.log('p = ' + $.cookie('password'));
 
