@@ -147,36 +147,36 @@
                 $.cookie('login', $('#email').val(), {path: '/'});
                 $.cookie('password', $('#password').val(), {path: '/'});
 
-        }
-        var formdata = new FormData($('#sign_in').get(0));
-        $.ajax({
-            url: "{% url 'ru:dashboard_ru:login_board' %}",
-            type: 'POST',
-
-            data: formdata,
-
-
-            processData: false,
-            contentType: false,
-            error: function(data){
-                console.log('error' + data);
-            },
-            success:function (data) {
-{#                console.log(''data);#}
-                if (data == 'error'){
-                    swal({
-                        title: 'Ошибка',
-                        text: 'Email или пароль указаны не верно',
-                        type: 'error',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: false
-                    });
-
-                }else {
-                    window.location.href = '/ru/dashbrd/' + data;
-                }
             }
-        });
+            var formdata = new FormData($('#sign_in').get(0));
+            $.ajax({
+                url: "{% url 'ru:dashboard_ru:login_board' %}",
+                type: 'POST',
+
+                data: formdata,
+
+
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    console.log('error' + data);
+                },
+                success:function (data) {
+    {#                console.log(''data);#}
+                    if (data == 'error'){
+                        swal({
+                            title: 'Ошибка',
+                            text: 'Email или пароль указаны не верно',
+                            type: 'error',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        });
+
+                    }else {
+                        window.location.href = '/ru/dashbrd/' + data;
+                    }
+                }
+            });
 
         }
 
