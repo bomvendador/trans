@@ -143,11 +143,11 @@
                 closeOnConfirm: false
             });
         }else {
-{#            if ($('#rememberme').prop('checked')){#}
-{#                $.cookie('login', $('#email').val(), {path: '/'});#}
-{#                $.cookie('password', $('#password').val(), {path: '/'});#}
-{##}
-{#            }#}
+            if ($('#rememberme').prop('checked')){
+                $.cookie('login', $('#email').val(), {path: '/'});
+                $.cookie('password', $('#password').val(), {path: '/'});
+
+            }
             var formdata = new FormData($('#sign_in').get(0));
             $.ajax({
                 url: "{% url 'ru:dashboard_ru:login_board' %}",
