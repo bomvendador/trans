@@ -149,7 +149,7 @@
                 $.cookie('password', $('#password').val(), {path: '/'});
 
             }
-            alert($('#email').val() + $('#password').val())
+            alert('form ---- ' + $('#email').val() + $('#password').val())
             var formdata = new FormData($('#sign_in').get(0));
             $.ajax({
                 url: "{% url 'ru:dashboard_ru:login_board' %}",
