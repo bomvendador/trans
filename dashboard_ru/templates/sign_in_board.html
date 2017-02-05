@@ -131,7 +131,34 @@
         alert('cokk = ' + $.cookie('login') + $.cookie('password'))
         $('#email').val($.cookie('login'));
         $('#password').val($.cookie('password'));
-        $('.submit').click();
+            $.ajax({
+                url: "{% url 'ru:dashboard_ru:login_board' %}",
+                type: 'POST',
+
+                data: formdata,
+
+
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    console.log('error' + data);
+                },
+                success:function (data) {
+    {#                console.log(''data);#}
+                    if (data == 'error'){
+                        swal({
+                            title: 'Ошибка',
+                            text: 'Email или пароль указаны не верно',
+                            type: 'error',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        });
+
+                    }else {
+                        window.location.href = '/ru/dashbrd/' + data;
+                    }
+                }
+            });
     }
     $('#submit').on('click', function (e) {
         e.preventDefault();
