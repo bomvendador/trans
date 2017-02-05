@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Вход | PROLINGVA</title>
+    <title>Регистрация | PROLINGVA</title>
     <!-- Favicon-->
 {#    <link rel="icon" href="../../favicon.ico" type="image/x-icon">#}
 
@@ -32,22 +32,30 @@
 
 </head>
 
-<body class="login-page">
-    <div class="login-box">
+<body class="signup-page">
+    <div class="signup-box">
         <div class="logo">
-            <a href="{% url 'ru:index' %}" ><img class="margin-bottom-10" src="{% static 'img/logo/logo1_white.png' %}" width="90" height="40"></a>
-            <small>Система управления языковыми переводами</small>
+            <a href="javascript:void(0);">Admin<b>BSB</b></a>
+            <small>Admin BootStrap Based - Material Design</small>
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">{% csrf_token %}
-                    <div class="msg">Вход в систему</div>
+                <form id="sign_up" method="POST">
+                    <div class="msg">Register a new membership</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="email" placeholder="Email" id="email" autofocus>
+                            <input type="text" class="form-control" name="namesurname" placeholder="Name Surname" required autofocus>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">email</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address" required>
                         </div>
                     </div>
                     <div class="input-group">
@@ -55,25 +63,26 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Пароль" id="password">
+                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Password" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Запомнить меня</label>
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect submit" id="submit">Войти</button>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            <input type="password" class="form-control" name="confirm" minlength="6" placeholder="Confirm Password" required>
                         </div>
                     </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="{% url 'ru:dashboard_ru:sign_up_board' %}">Зарегистрироваться!</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Забыли пароль?</a>
-                        </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-pink">
+                        <label for="terms">I read and agree to the <a href="javascript:void(0);">terms of usage</a>.</label>
+                    </div>
+
+                    <button class="btn btn-block btn-lg bg-pink waves-effect" type="submit">SIGN UP</button>
+
+                    <div class="m-t-25 m-b--5 align-center">
+                        <a href="sign-in.html">You already have a membership?</a>
                     </div>
                 </form>
             </div>

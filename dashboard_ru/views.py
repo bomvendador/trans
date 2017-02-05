@@ -98,6 +98,9 @@ def login_board(request):
     return render(request, 'sign_in_board.html')
 
 
+def sign_up_board(request):
+    return render(request, 'sign_up_board.html')
+
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def base_board(request, user_id):
     # print(user_id)

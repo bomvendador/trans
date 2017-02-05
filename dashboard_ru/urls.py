@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^login/$', views.login_board, name='login_board'),
     url(r'^logout/$', views.logout_board, name='logout_board'),
     url(r'^help/$', views.help_dashboard, name='help_dashboard'),
+    url(r'^sign_up/$', views.sign_up_board, name='sign_up_board'),
 
     url(r'^order_details/(?P<order_id>\d+)/$', views.order_details, name='order_details'),
     url(r'^sent_docs/$', views.get_sent_docs, name='get_sent_docs'),
