@@ -64,7 +64,7 @@
                             <label for="rememberme">Запомнить меня</label>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" id="submit">Войти</button>
+                            <button class="btn btn-block bg-pink waves-effect submit" id="submit">Войти</button>
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
@@ -131,7 +131,7 @@
         alert('cokk = ' + $.cookie('login') + $.cookie('password'))
         $('#email').val($.cookie('login'));
         $('#password').val($.cookie('password'));
-        $('#submit').click();
+        $('.submit').click();
     }
     $('#submit').on('click', function (e) {
         e.preventDefault();
