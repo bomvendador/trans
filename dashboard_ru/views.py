@@ -90,7 +90,7 @@ def login_board(request):
             if user.is_active:
                 # print('logged')
                 login(request, user)
-                logger('id = ' + str(user.id))
+                logger.debug('id = ' + str(user.id))
                 return redirect('ru:dashboard_ru:base_board', user_id=user.id)
                 # return HttpResponse(user.id)
         else:
