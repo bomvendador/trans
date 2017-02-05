@@ -918,7 +918,9 @@
            $.removeCookie('login');
            $.removeCookie('password');
        }
-{#        console.log('l = ' + $.cookie('login'));#}
+           alert('exit  ' + $.cookie('login') + $.cookie('password'))
+
+        {#        console.log('l = ' + $.cookie('login'));#}
 {#        console.log('p = ' + $.cookie('password'));#}
 
                window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
