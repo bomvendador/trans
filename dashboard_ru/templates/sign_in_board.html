@@ -128,7 +128,6 @@
     });
 
     if ($.cookie('login') && $.cookie('password')){
-        alert('cokk = ' + $.cookie('login') + $.cookie('password'))
         $('#email').val($.cookie('login'));
         $('#password').val($.cookie('password'));
             var formdata = new FormData($('#sign_in').get(0));

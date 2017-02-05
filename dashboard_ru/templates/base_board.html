@@ -913,17 +913,12 @@
 {#        alert('l = ' + $.cookie('login', {path: '/'}) + 'p = ' + $.cookie('password'), {path: '/'});#}
 {#        console.log('p = ' + $.cookie('password'), {path: '/'});#}
        if ($.cookie('login') && $.cookie('password')){
-           alert('exit  ' + $.cookie('login') + $.cookie('password'))
 
            $.removeCookie('login', {path: '/'});
            $.removeCookie('password', {path: '/'});
        }
-           alert('exit  ' + $.cookie('login') + $.cookie('password'))
 
-        {#        console.log('l = ' + $.cookie('login'));#}
-{#        console.log('p = ' + $.cookie('password'));#}
-
-               window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
+           window.location.href = "{% url 'ru:dashboard_ru:logout_board' %}"
 
     });
 
