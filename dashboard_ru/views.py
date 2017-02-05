@@ -84,11 +84,13 @@ def login_board(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
+        logger.debug(email + password)
         user = authenticate(username=email, password=password)
         if user is not None:
             if user.is_active:
                 # print('logged')
                 login(request, user)
+                logger('id = ' + str(user.id))
                 return redirect('ru:dashboard_ru:base_board', user_id=user.id)
                 # return HttpResponse(user.id)
         else:
