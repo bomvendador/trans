@@ -912,7 +912,7 @@
     $('#exit').on('click', function () {
 {#        alert('l = ' + $.cookie('login', {path: '/'}) + 'p = ' + $.cookie('password'), {path: '/'});#}
 {#        console.log('p = ' + $.cookie('password'), {path: '/'});#}
-       if ($.cookie('login', {path: '/'}) && $.cookie('password', {path: '/'})){
+       if ($.cookie('login') && $.cookie('password')){
            $.removeCookie('login');
            $.removeCookie('password');
        }
