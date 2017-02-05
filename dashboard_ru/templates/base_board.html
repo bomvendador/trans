@@ -915,8 +915,8 @@
        if ($.cookie('login') && $.cookie('password')){
            alert('exit  ' + $.cookie('login') + $.cookie('password'))
 
-           $.removeCookie('login');
-           $.removeCookie('password');
+           $.removeCookie('login', {path: '/'});
+           $.removeCookie('password', {path: '/'});
        }
            alert('exit  ' + $.cookie('login') + $.cookie('password'))
 
