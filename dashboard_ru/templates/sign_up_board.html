@@ -198,7 +198,7 @@
 
                             var formdata = new FormData($('#sign_up').get(0));
                             $.ajax({
-                                url: "{% url 'ru:dashboard_ru:login_board' %}",
+                                url: "{% url 'ru:reg_user' %}",
                                 type: 'POST',
 
                                 data: formdata,
@@ -207,14 +207,20 @@
                                 processData: false,
                                 contentType: false,
                                 error: function(data){
-                                    console.log('error' + data);
+                                    swal({
+                                        title: 'Ошибка',
+                                        text: 'На сервере произошла ошибка. Попробуйте позже.',
+                                        type: 'error',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    });
                                 },
                                 success:function (data) {
                     {#                console.log(''data);#}
-                                    if (data == 'error'){
+                                    if (data == 'user_exists'){
                                         swal({
                                             title: 'Ошибка',
-                                            text: 'Email или пароль указаны не верно',
+                                            text: 'Пользователь с такой электронной почтой уже существует',
                                             type: 'error',
                                             confirmButtonText: 'Ok',
                                             closeOnConfirm: false

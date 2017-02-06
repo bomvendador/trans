@@ -161,7 +161,7 @@ def reg_user(request):
             # hashed_password = hashlib.md5(password)
             user_auth = authenticate(username=email, password=password)
             login(request, user_auth)
-            message = 'ok'
+            message = user.id
         else:
             message = 'user exists'
         return HttpResponse(message)
