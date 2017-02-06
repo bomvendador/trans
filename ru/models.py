@@ -133,6 +133,7 @@ class Client(models.Model):
     orders_in_progress = models.IntegerField(null=True, blank=True, default=0)
     orders_complete = models.IntegerField(null=True, blank=True, default=0)
     orders_paid = models.IntegerField(null=True, blank=True, default=0)
+    visited_times = models.IntegerField(default=0)
 
 
 class SentDoc (models.Model):

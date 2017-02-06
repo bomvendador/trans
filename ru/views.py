@@ -153,6 +153,7 @@ def reg_user(request):
                 client.creator = user
                 client.name = name
                 client.email = email
+                client.visited_times = 1
                 client.save()
                 user_profile.role = Role.objects.get(role_name=request.POST['role'])
             # else:

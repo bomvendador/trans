@@ -90,7 +90,11 @@ def login_board(request):
             if user.is_active:
                 # print('logged')
                 login(request, user)
-                logger.debug('id = ' + str(user.id))
+                user_profile = UserProfile.objects.get(user=user)
+                if user_profile.role.role_name == u'Клиент':
+                    client = Client.objects.get(user=user)
+                    client.visited_times += 1
+                # logger.debug('id = ' + str(user.id))
                 # return redirect('ru:dashboard_ru:base_board', user_id=user.id)
                 return HttpResponse(user.id)
         else:
@@ -100,6 +104,7 @@ def login_board(request):
 
 def sign_up_board(request):
     return render(request, 'sign_up_board.html')
+
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def base_board(request, user_id):
