@@ -149,6 +149,8 @@
             });
         }else {
             if(!password_check.test($('#password').val())){
+                $('#password').focus();
+
                 swal({
                     title: 'Ошибка',
                     text: 'Пароль должен содержать только цифры и латинские символы в количестве от 3 до 20',
@@ -156,10 +158,10 @@
                     confirmButtonText: 'Ok',
                     closeOnConfirm: false
                 });
-                $('#password').focus();
 
             }else {
                 if ($('#password').val() != $('#password_rep').val()){
+                    console.log($('#password').val() + ' ' + $('#password_rep').val())
                     swal({
                         title: 'Ошибка',
                         text: 'Пароли должны совпадать',
