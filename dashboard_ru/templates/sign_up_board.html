@@ -47,7 +47,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="name" placeholder="Имя" autofocus>
+                            <input id="name" type="text" class="form-control" name="name" placeholder="Имя" autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -55,7 +55,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <input id="email" type="email" class="form-control" name="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="input-group">
@@ -63,7 +63,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Пароль">
+                            <input id="password" type="password" class="form-control" name="password" minlength="6" placeholder="Пароль">
                         </div>
                     </div>
                     <div class="input-group">
@@ -71,7 +71,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password_rep" minlength="6" placeholder="Пароль повторно">
+                            <input id="password_rep" type="password" class="form-control" name="password_rep" minlength="6" placeholder="Пароль повторно">
                         </div>
                     </div>
                     <div class="form-group">
@@ -133,7 +133,7 @@
         console.log('sub')
         console.log('name = ' + $('#name'))
         e.preventDefault();
-        if ($('#email').val() == '' || $('#password').val() == '' || $('#password_rep').val() == '' || $('#name').val() == ''){
+        if ($('#emal').val() == '' || $('#password').val() == '' || $('#password_rep').val() == '' || $('#name').val() == ''){
             swal({
                 title: 'Ошибка',
                 text: 'Все поля должны быть заполнены',
