@@ -930,7 +930,9 @@
     add_csrf();
 
     {% if client %}
+        console.log('клиент')
         {% if client.visited_times == 1 %}
+            console.log('посещений = ' + {{ client.visited_times }})
             $('#show_first_info_btn').click();
         {% endif %}
     {% endif %}
