@@ -142,18 +142,23 @@ def reg_user(request):
         if user_exist is None:
             user_profile = UserProfile()
             user = User()
-
-            if request.POST.get('role', False):
-                user_profile.role = Role.objects.get(role_name=request.POST['role'])
-            # else:
-            #     user_profile.role = Role.objects.get(id=3)
-            # user = User.objects.create(username=email, email=email, password=password, first_name=name)
-
             user.username = email
             user.set_password(password)
             user.first_name = name
             user.email = email
             user.save()
+            if request.POST.get('role', False) == u'Клиент':
+                client = Client()
+                client.user = user
+                client.creator = user
+                client.name = name
+                client.email = email
+                client.save()
+                user_profile.role = Role.objects.get(role_name=request.POST['role'])
+            # else:
+            #     user_profile.role = Role.objects.get(id=3)
+            # user = User.objects.create(username=email, email=email, password=password, first_name=name)
+
             user_profile.user = user
             user_profile.tel = request.POST.get('tel', False)
 
