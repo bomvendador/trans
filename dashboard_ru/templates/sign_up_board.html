@@ -131,6 +131,7 @@
 
     $('#submit_sign_up').on('click', function (e) {
         console.log('sub')
+        console.log('name = ' + $('#name'))
         e.preventDefault();
         if ($('#email').val() == '' || $('#password').val() == '' || $('#password_rep').val() == '' || $('#name').val() == ''){
             swal({
@@ -152,7 +153,7 @@
 {#                $('#password').#}
 
             }
-            var formdata = new FormData($('#sign_in').get(0));
+            var formdata = new FormData($('#sign_up').get(0));
             $.ajax({
                 url: "{% url 'ru:dashboard_ru:login_board' %}",
                 type: 'POST',
