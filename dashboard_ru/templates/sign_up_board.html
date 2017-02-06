@@ -65,7 +65,7 @@
                         <div class="form-line">
                             <input id="password" type="password" class="form-control" name="password" minlength="6" placeholder="Пароль">
                         </div>
-                        <div class="help-info">
+                        <div class="help-info font-size-11">
                             Цифры и символы латиницей, кол-во: 3-20
 
                         </div>
@@ -148,47 +148,75 @@
                 closeOnConfirm: false
             });
         }else {
-            if()
-            if ($('#password').val() != $('#password_rep').val()){
+            if(!password_check.test($('#password').val())){
                 swal({
                     title: 'Ошибка',
-                    text: 'Пароли должны совпадать',
+                    text: 'Пароль должен содержать только цифры и латинские символы в количестве от 3 до 20',
                     type: 'error',
                     confirmButtonText: 'Ok',
                     closeOnConfirm: false
                 });
-{#                $('#password').#}
+                $('#password').focus();
 
-            }
-            var formdata = new FormData($('#sign_up').get(0));
-            $.ajax({
-                url: "{% url 'ru:dashboard_ru:login_board' %}",
-                type: 'POST',
+            }else {
+                if ($('#password').val() != $('#password_rep').val()){
+                    swal({
+                        title: 'Ошибка',
+                        text: 'Пароли должны совпадать',
+                        type: 'error',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: false
+                    });
+                    $('#password').focus();
 
-                data: formdata,
-
-
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    console.log('error' + data);
-                },
-                success:function (data) {
-    {#                console.log(''data);#}
-                    if (data == 'error'){
+                }else{
+                    if (!email.test($('#email').val())){
                         swal({
                             title: 'Ошибка',
-                            text: 'Email или пароль указаны не верно',
+                            text: 'Пароли должны совпадать',
                             type: 'error',
                             confirmButtonText: 'Ok',
                             closeOnConfirm: false
                         });
+                        $('#email').focus();
 
                     }else {
-                        window.location.href = '/ru/dashbrd/' + data;
+
+                        var formdata = new FormData($('#sign_up').get(0));
+                        $.ajax({
+                            url: "{% url 'ru:dashboard_ru:login_board' %}",
+                            type: 'POST',
+
+                            data: formdata,
+
+
+                            processData: false,
+                            contentType: false,
+                            error: function(data){
+                                console.log('error' + data);
+                            },
+                            success:function (data) {
+                {#                console.log(''data);#}
+                                if (data == 'error'){
+                                    swal({
+                                        title: 'Ошибка',
+                                        text: 'Email или пароль указаны не верно',
+                                        type: 'error',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    });
+
+                                }else {
+                                    window.location.href = '/ru/dashbrd/' + data;
+                                }
+                            }
+                        });
+
+
                     }
                 }
-            });
+
+            }
 
         }
 
