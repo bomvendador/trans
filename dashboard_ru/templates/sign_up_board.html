@@ -154,6 +154,7 @@
     });
 
     $('#submit_sign_up').on('click', function (e) {
+        console.log('sub')
         e.preventDefault();
         if ($('#email').val() == '' || $('#password').val() == '' || $('#password_rep').val() == '' || $('#name').val() == ''){
             swal({
