@@ -94,6 +94,7 @@ def login_board(request):
                 if user_profile.role.role_name == u'Клиент':
                     client = Client.objects.get(user=user)
                     client.visited_times += 1
+                    client.save()
                 # logger.debug('id = ' + str(user.id))
                 # return redirect('ru:dashboard_ru:base_board', user_id=user.id)
                 return HttpResponse(user.id)
