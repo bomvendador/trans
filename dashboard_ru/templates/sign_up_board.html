@@ -47,7 +47,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="name" placeholder="Имя" required autofocus>
+                            <input type="text" class="form-control" name="name" placeholder="Имя" autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -55,7 +55,7 @@
                             <i class="material-icons">email</i>
                         </span>
                         <div class="form-line">
-                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                            <input type="email" class="form-control" name="email" placeholder="Email">
                         </div>
                     </div>
                     <div class="input-group">
@@ -63,7 +63,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Пароль" required>
+                            <input type="password" class="form-control" name="password" minlength="6" placeholder="Пароль">
                         </div>
                     </div>
                     <div class="input-group">
@@ -71,7 +71,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password_rep" minlength="6" placeholder="Пароль повторно" required>
+                            <input type="password" class="form-control" name="password_rep" minlength="6" placeholder="Пароль повторно">
                         </div>
                     </div>
                     <div class="form-group">
@@ -153,54 +153,26 @@
         }
     });
 
-    if ($.cookie('login') && $.cookie('password')){
-        $('#email').val($.cookie('login'));
-        $('#password').val($.cookie('password'));
-            var formdata = new FormData($('#sign_in').get(0));
-
-            $.ajax({
-                url: "{% url 'ru:dashboard_ru:login_board' %}",
-                type: 'POST',
-
-                data: formdata,
-
-
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    console.log('error' + data);
-                },
-                success:function (data) {
-    {#                console.log(''data);#}
-                    if (data == 'error'){
-                        swal({
-                            title: 'Ошибка',
-                            text: 'Email или пароль указаны не верно',
-                            type: 'error',
-                            confirmButtonText: 'Ok',
-                            closeOnConfirm: false
-                        });
-
-                    }else {
-                        window.location.href = '/ru/dashbrd/' + data;
-                    }
-                }
-            });
-    }
     $('#submit').on('click', function (e) {
         e.preventDefault();
-        if ($('#email').val() == '' || $('#password').val() == ''){
+        if ($('#email').val() == '' || $('#password').val() == '' || $('#password_rep').val() == '' || $('#name').val() == ''){
             swal({
                 title: 'Ошибка',
-                text: 'Email и пароль должны быть указаны',
+                text: 'Все поля должны быть заполнены',
                 type: 'error',
                 confirmButtonText: 'Ok',
                 closeOnConfirm: false
             });
         }else {
-            if ($('#rememberme').prop('checked')){
-                $.cookie('login', $('#email').val(), {path: '/'});
-                $.cookie('password', $('#password').val(), {path: '/'});
+            if ($('#password').val() != $('#password_rep').val()){
+                swal({
+                    title: 'Ошибка',
+                    text: 'Пароли должны совпадать',
+                    type: 'error',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: false
+                });
+                $('#password').
 
             }
             var formdata = new FormData($('#sign_in').get(0));
