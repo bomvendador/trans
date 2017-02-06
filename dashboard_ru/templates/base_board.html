@@ -659,12 +659,34 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="first_info_modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-col-blue">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="show_first_info_btn" type="button" class="btn btn-default waves-effect m-r-20 none" data-toggle="modal" data-target="#first_info_modal"></button>
+
 
 
     {% endif %}
 
 
-            {% elif user_profile.role.role_name == 'Менеджер' %}
+        {% elif user_profile.role.role_name == 'Менеджер' %}
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-teal hover-expand-effect">
@@ -821,27 +843,6 @@
                 </div>
 
             </div>
-            <div class="modal fade" id="first_info_modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
-                        </div>
-                        <div class="modal-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>
-                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button id="show_first_info_btn" type="button" class="btn btn-default waves-effect m-r-20 none" data-toggle="modal" data-target="#first_info_modal"></button>
 
             {% endif %}
 
