@@ -197,6 +197,7 @@
                         }else{
 
                             var formdata = new FormData($('#sign_up').get(0));
+                            formdata.append('role', 'Клиент');
                             $.ajax({
                                 url: "{% url 'ru:reg_user' %}",
                                 type: 'POST',

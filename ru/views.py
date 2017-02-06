@@ -145,8 +145,8 @@ def reg_user(request):
 
             if request.POST.get('role', False):
                 user_profile.role = Role.objects.get(role_name=request.POST['role'])
-            else:
-                user_profile.role = Role.objects.get(id=3)
+            # else:
+            #     user_profile.role = Role.objects.get(id=3)
             # user = User.objects.create(username=email, email=email, password=password, first_name=name)
 
             user.username = email
