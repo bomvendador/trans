@@ -162,6 +162,8 @@
             }else {
                 if ($('#password').val() != $('#password_rep').val()){
                     console.log($('#password').val() + ' -- ' + $('#password_rep').val())
+                    $('#password').focus();
+
                     swal({
                         title: 'Ошибка',
                         text: 'Пароли должны совпадать',
@@ -169,10 +171,11 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: false
                     });
-                    $('#password').focus();
 
                 }else{
                     if (!email.test($('#email').val())){
+                        $('#email').focus();
+
                         swal({
                             title: 'Ошибка',
                             text: 'Проверьте правильность заполнения email',
@@ -180,39 +183,52 @@
                             confirmButtonText: 'Ok',
                             closeOnConfirm: false
                         });
-                        $('#email').focus();
 
                     }else {
+                        if(!$('#terms').prop('checked')){
+                            swal({
+                                title: 'Ошибка',
+                                text: 'Согласитесь, пожалуйста, с Политикой конфиденциальности',
+                                type: 'error',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            });
 
-                        var formdata = new FormData($('#sign_up').get(0));
-                        $.ajax({
-                            url: "{% url 'ru:dashboard_ru:login_board' %}",
-                            type: 'POST',
+                        }else{
 
-                            data: formdata,
+                            var formdata = new FormData($('#sign_up').get(0));
+                            $.ajax({
+                                url: "{% url 'ru:dashboard_ru:login_board' %}",
+                                type: 'POST',
+
+                                data: formdata,
 
 
-                            processData: false,
-                            contentType: false,
-                            error: function(data){
-                                console.log('error' + data);
-                            },
-                            success:function (data) {
-                {#                console.log(''data);#}
-                                if (data == 'error'){
-                                    swal({
-                                        title: 'Ошибка',
-                                        text: 'Email или пароль указаны не верно',
-                                        type: 'error',
-                                        confirmButtonText: 'Ok',
-                                        closeOnConfirm: false
-                                    });
+                                processData: false,
+                                contentType: false,
+                                error: function(data){
+                                    console.log('error' + data);
+                                },
+                                success:function (data) {
+                    {#                console.log(''data);#}
+                                    if (data == 'error'){
+                                        swal({
+                                            title: 'Ошибка',
+                                            text: 'Email или пароль указаны не верно',
+                                            type: 'error',
+                                            confirmButtonText: 'Ok',
+                                            closeOnConfirm: false
+                                        });
 
-                                }else {
-                                    window.location.href = '/ru/dashbrd/' + data;
+                                    }else {
+                                        window.location.href = '/ru/dashbrd/' + data;
+                                    }
                                 }
-                            }
-                        });
+                            });
+
+
+                        }
+
 
 
                     }
