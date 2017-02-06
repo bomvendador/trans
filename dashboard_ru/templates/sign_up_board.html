@@ -65,6 +65,10 @@
                         <div class="form-line">
                             <input id="password" type="password" class="form-control" name="password" minlength="6" placeholder="Пароль">
                         </div>
+                        <div class="help-info">
+                            Цифры и символы латиницей, кол-во: 3-20
+
+                        </div>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -128,6 +132,8 @@
     <script src="{% static 'dashboard/plugins/sweetalert/sweetalert.min.js' %}"></script>
 
 <script>
+    var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
+    var password_check = new RegExp(/^[a-zA-Z0-9_]{3,20}$/);
 
     $('#submit_sign_up').on('click', function (e) {
         console.log('sub')
@@ -142,6 +148,7 @@
                 closeOnConfirm: false
             });
         }else {
+            if()
             if ($('#password').val() != $('#password_rep').val()){
                 swal({
                     title: 'Ошибка',
