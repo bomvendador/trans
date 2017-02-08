@@ -45,7 +45,7 @@ Main components
   /* quotation mark */
   content: '\201C';
   position: absolute;
-  top: 110px;
+  top: 10px;
   left: 0;
   width: 50px;
   height: 70px;
