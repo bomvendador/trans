@@ -178,7 +178,7 @@
 }
 
 .pointer-pure{
-    cursor: pointer;
+    cursor: pointer!important;
 }
 
 .round_btn{
