@@ -39,7 +39,7 @@
         </td>
     </tr>
     <tr>
-       <td colspan="2">
+       <td colspan="2" style="padding-bottom: 10px">
            <table border="1"  cellpadding='0' cellspacing='0' width="100%" class="calc">
 {#               <tr>#}
 {#                   <td align="left" valign="center" colspan="2" style="font-size: 13px; padding-bottom: 5px">#}
@@ -52,6 +52,14 @@
                    </td>
                    <td align="left" valign="center" style="font-size: 13px; padding: 5px">
                        {{ manager.first_name }}, <a href="emailto:{{ manager.email }}">{{ manager.email }}</a>
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Заявка №: {{ order.id }}
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ order.price }} руб.
                    </td>
                </tr>
                <tr style="font-size: 13px">
@@ -74,7 +82,12 @@
        </td>
     </tr>
     <tr>
-        <td style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #9d9d9d; text-align: justify" colspan="2">
+        <td style="padding-bottom: 10px; padding-top: 10px; font-size: 12px; text-align: justify" colspan="2">
+            Для подтверждения заявки и дальнейшей работы над ней, необходимо произвести оплату. Вы это можете сделать, войдя в свой личный кабинет <a href="http://prolingva.ru/ru/dashbrd/login/">http://prolingva.ru/ru/dashbrd/login/</a> и произвести оплату, используя доступные способы.
+        </td>
+    </tr>
+    <tr>
+        <td style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding-bottom: 10px; padding-top: 5px; font-size: 12px; color: #9d9d9d; text-align: justify" colspan="2">
             Мы постоянно работаем над функциональным расширением портала. О всех изменениях мы будем Вам сообщать дополнительно. Если у Вас имеются пожелания по расширению функционала или замечания по существующему, будем рады их получить на почту <a href="mailto:support@prolingva.ru">support@prolingva.ru</a>. Для нас важно Ваше мнение!
         </td>
     </tr>
