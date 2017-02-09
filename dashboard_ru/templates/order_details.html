@@ -338,14 +338,14 @@
                                                 <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
                                             </div>
 
-                                            <div class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
+                                            <div id="calc_sent_date_div" class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
                                                 <span class="input-group-addon">
                                                     <i class="mdi mdi-calendar-today font-24"></i>
 
                                                 </span>
                                                 <div class="form-line">
 
-                                                    <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date }}</p>
+                                                    <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date|date:'d-m-Y H:i' }}</p>
 
                                                 </div>
                                             </div>
@@ -917,7 +917,7 @@
                 },
                 function (isConfirm) {
                     $('#btn_send_calc').addClass('none');
-                    $('#calc_sent_date').removeClass('none').val(data)
+                    $('#calc_sent_date_div').removeClass('none').val(data)
                 });
             }
         });
