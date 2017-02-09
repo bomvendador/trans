@@ -893,7 +893,7 @@
     //отправка расчета
     $('#btn_send_calc').on('click', function () {
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:save_order_comment' %}',
+            url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
             type: 'POST',
             data: JSON.stringify({
                         'order_price': $('#order_price').val(),
