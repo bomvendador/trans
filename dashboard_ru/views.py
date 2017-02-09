@@ -1455,7 +1455,7 @@ def send_email_test(request):
                'password': 'password',
                 'login': 'login'}
     curr_path = os.path.dirname(__file__)
-    file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_33.png')
+    file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_30.png')
     with open(file_path, 'rb') as logo:
         logo_img = logo.read()
     logo = InlineImage(filename='logo', content=logo_img)
