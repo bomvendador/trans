@@ -30,7 +30,7 @@
         </td>
     </tr>
     <tr>
-       <td style="padding-bottom: 10px" colspan="2">
+       <td colspan="2">
            <table style="padding-top: 10px;" bordercolor="lightgrey" border="1"  cellpadding='0' cellspacing='0' width="100%">
 {#               <tr>#}
 {#                   <td align="left" valign="center" colspan="2" style="font-size: 13px; padding-bottom: 5px">#}
@@ -41,7 +41,7 @@
                    <td align="left" valign="center" style="background: #DDDDDD; font-size: 13px; padding:5px">
                        Менеджер:
                    </td>
-                   <td align="left" valign="center" style="font-size: 13px">
+                   <td align="left" valign="center" style="font-size: 13px; padding: 5px">
                        {{ manager.first_name }}, <a href="emailto:{{ manager.email }}">{{ manager.email }}</a>
                    </td>
                </tr>
@@ -49,7 +49,7 @@
                    <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
                        Стоимость:
                    </td>
-                   <td align="left" valign="center">
+                   <td align="left" valign="center" style="padding: 5px">
                        {{ order.price }} руб.
                    </td>
                </tr>
