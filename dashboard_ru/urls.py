@@ -40,7 +40,7 @@ urlpatterns = [
 
 
     url(r'^send_email/$', views.send_email, name='send_email'),
-    url(r'^send_email_test/$', views.send_email_test(), name='send_email_test'),
+    url(r'^send_email_test/$', views.send_email_test, name='send_email_test'),
 
     url(r'^translator_details/(?P<translator_id>\d+)/$', views.get_translators_details, name='get_translators_details'),
     url(r'^translator_delete/$', views.delete_translator, name='delete_translator'),
