@@ -156,7 +156,7 @@ def reg_user(request):
                 client.visited_times = 1
                 client.save()
                 user_profile.role = Role.objects.get(role_name=request.POST['role'])
-                email_context = {'user': user, 'email': email, 'password': password}
+                email_context = {'user': user, 'login': email, 'password': password}
                 dash_views.send_email(request, 'welcome.html', 'info@prolingva.ru', [email], email_context)
             # else:
             #     user_profile.role = Role.objects.get(id=3)
