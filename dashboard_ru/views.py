@@ -1447,7 +1447,7 @@ def send_email(request, template, from_, to, context):
     return HttpResponse()
 
 
-def send_email_test(request, template, from_, to, context):
+def send_email_test(request):
     template = 'welcome.html'
     from_ = 'info@prolingva.ru'
     to = ['bomvendador@yandex.ru', 'orders@proingva.ru']
