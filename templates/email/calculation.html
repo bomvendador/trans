@@ -20,7 +20,7 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px">
-            Уважаемый {{ user.first_name }},
+            Уважаемый(ая) {{ order.user.first_name }},
         </td>
     </tr>
     <tr>
@@ -30,8 +30,8 @@
         </td>
     </tr>
     <tr>
-       <td style="border-bottom: 1px solid #ddd; padding-bottom: 10px" colspan="2">
-           <table style="padding-top: 10px;" border="1">
+       <td style="padding-bottom: 10px" colspan="2">
+           <table style="padding-top: 10px;" bordercolor="#ddd" border="1"  cellpadding='0' cellspacing='0'>
 {#               <tr>#}
 {#                   <td align="left" valign="center" colspan="2" style="font-size: 13px; padding-bottom: 5px">#}
 {#                       <b>Данные для входа:</b>#}
@@ -42,7 +42,7 @@
                        Менеджер:
                    </td>
                    <td align="left" valign="center" style="font-size: 13px">
-                       {{ manager.email }}, <a href="emailto:{{ manager.email }}"></a>
+                       {{ manager.first_name }}, <a href="emailto:{{ manager.email }}">{{ manager.email }}</a>
                    </td>
                </tr>
                <tr style="font-size: 13px">

@@ -1448,12 +1448,18 @@ def send_email(request, template, from_, to, context):
 
 
 def send_email_test(request):
-    template = 'welcome.html'
+    template = 'calculation.html'
     from_ = 'info@prolingva.ru'
     to = ['bomvendador@yandex.ru', 'orders@prolingva.ru']
-    context = {'user': request.user,
-               'password': 'password',
-                'login': 'login'}
+    json_data = json.loads(request.body.decode('utf-8'))
+    order_id = json_data['order_id']
+    order_price = json_data['order_price']
+    order = SentDoc.objects.get(id=order_id)
+    manager = User.objects.get(id=order.resp_id)
+    context = {'order': order,
+               'manager': manager,
+               'order_price': order_price
+             }
     curr_path = os.path.dirname(__file__)
     file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_30.png')
     with open(file_path, 'rb') as logo:
