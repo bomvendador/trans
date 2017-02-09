@@ -744,7 +744,6 @@
         }else {
             $('#manager_assigned').css('opacity', 0.5)
         }
-        console.log('цена = ' + $('#calc_sent_date').val())
         if ($('#calc_sent_date').val() != ''){
             $('#calc_sent').css('opacity', 1)
         }else {
@@ -893,7 +892,7 @@
     //отправка расчета
     $('#btn_send_calc').on('click', function () {
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:send_email_test' %}',
+            url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
             type: 'POST',
             data: JSON.stringify({
                         'order_price': $('#order_price').val(),
@@ -917,7 +916,8 @@
                     closeOnConfirm: true
                 },
                 function (isConfirm) {
-
+                    $('#btn_send_calc').addClass('none');
+                    $('#calc_sent_date').removeClass('none').val(data)
                 });
             }
         });
