@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^change_payment_failre/$', payments.change_payment_failure, name='change_payment_failre'),
     url(r'^download_translation_file/(?P<file_id>\d+)/$', views.download_translation_file,
         name='download_translation_file'),
+    url(r'^send_calc_to_client/$', views.send_calculation_to_client, name='send_calculation_to_client'),
 
 
     url(r'^send_email/$', views.send_email, name='send_email'),

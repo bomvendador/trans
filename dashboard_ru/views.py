@@ -1472,4 +1472,9 @@ def send_email_test(request):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_calculation_to_client(request):
     if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+        order_price = json_data['order_id']
+        logger.debug('id = ' + str(order_id))
+        logger.debug('price = ' + str(order_price))
         return HttpResponse()
