@@ -1474,7 +1474,7 @@ def send_calculation_to_client(request):
     if request.method == 'POST':
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
-        order_price = json_data['order_id']
+        order_price = json_data['order_price']
         logger.debug('id = ' + str(order_id))
         logger.debug('price = ' + str(order_price))
         return HttpResponse()
