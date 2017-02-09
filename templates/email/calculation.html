@@ -1,8 +1,17 @@
 {% load staticfiles %}
 {% block subject %}Расчет стоимости PROLINGVA{% endblock %}
 {% block html %}
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
 <html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<style>
+    .calc{
+    border-collapse: collapse;
+    border: 1px solid #9d9d9d;
+    width: 100%;
+    }
+</style>
+</head>
 <body>
 
 <table cellpadding='0' cellspacing='0' id='iphone-table' style='padding:10px 0px 15px 0px; width: 80%; font-family: Roboto, Sans-Serif;' align="center">
@@ -31,7 +40,7 @@
     </tr>
     <tr>
        <td colspan="2">
-           <table border="1"  cellpadding='0' cellspacing='0' width="100%">
+           <table border="1"  cellpadding='0' cellspacing='0' width="100%" class="calc">
 {#               <tr>#}
 {#                   <td align="left" valign="center" colspan="2" style="font-size: 13px; padding-bottom: 5px">#}
 {#                       <b>Данные для входа:</b>#}
