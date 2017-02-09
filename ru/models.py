@@ -128,7 +128,7 @@ class Client(models.Model):
     registered = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now_add=False, auto_now=True, null=True)
     photo = models.ImageField(upload_to=settings.BASE_DIR + '/media/photo', null=True, blank=True)
-    user = models.OneToOneField(User, blank=True, null=True)
+    user = models.OneToOneField(User, blank=True, null=True, on_delete=models.CASCADE)
     init_password = models.CharField(max_length=50, blank=True, null=True)
     orders_in_progress = models.IntegerField(null=True, blank=True, default=0)
     orders_complete = models.IntegerField(null=True, blank=True, default=0)
