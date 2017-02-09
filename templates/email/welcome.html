@@ -51,12 +51,43 @@
             </div>
         </td>
     </tr>
-    <tr style="margin-bottom: 10px">
+    <tr>
         <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px">
             Уважаемый {{ user.first_name }}
-
         </td>
-
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 13px; padding-top: 10px">
+            <p>Вы прошли регистрацию в системе управления переводами PROLINGVA.RU. С ее помощью Вы можете создавать заявки, а также управлять ими, отслеживать их статус, оплачивать и скачивать готовые переводы.</p><br/>
+            <p>Мы постоянной занимаемся расширением функционала. О всех изменениях мы будем Вам сообщать дополнительно.</p>
+        </td>
+    </tr>
+    <tr>
+       <td>
+           <table>
+               <tr>
+                   <td align="left" valign="center" colspan="2">
+                       Данные для входа:
+                   </td>
+               </tr>
+               <tr>
+                   <td align="left" valign="center" style="background: #DDDDDD">
+                       Логин:
+                   </td>
+                   <td align="left" valign="center">
+                       {{ login }}
+                   </td>
+               </tr>
+               <tr>
+                   <td align="left" valign="center" style="background: #DDDDDD">
+                       Пароль:
+                   </td>
+                   <td align="left" valign="center">
+                       {{ password }}
+                   </td>
+               </tr>
+           </table>
+       </td>
     </tr>
 
 </table>
