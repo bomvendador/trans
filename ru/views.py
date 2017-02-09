@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 import re
 from string import punctuation
 from dashboard_ru.views import update_client_statistics
-from dashboard_ru import views
+from dashboard_ru import views as dash_views
 
 import logging
 logger = logging.getLogger('django-debug')
@@ -156,6 +156,8 @@ def reg_user(request):
                 client.visited_times = 1
                 client.save()
                 user_profile.role = Role.objects.get(role_name=request.POST['role'])
+                email_context = {'user': user}
+                dash_views.send_email(request, 'welcome.html', 'info@prolingva.ru', [email], email_context)
             # else:
             #     user_profile.role = Role.objects.get(id=3)
             # user = User.objects.create(username=email, email=email, password=password, first_name=name)
@@ -245,7 +247,7 @@ def save_files_trans(request):
             update_client_statistics(user)
             email_context = {'client': name, 'email': email, 'type': u'Сайт - футер', 'message': data[
                 'message_contact_form_footer']}
-            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+            dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
 
@@ -258,7 +260,7 @@ def save_files_trans(request):
             back_call.name = name
             back_call.save()
             email_context = {'client': name, 'type': u'Обратный звонок', 'tel': tel}
-            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+            dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse('ok')
 
@@ -316,7 +318,7 @@ def save_files_trans(request):
             doc_sent.text = ''
             doc_sent.save()
 
-            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+            dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
             return HttpResponse(message)
         else:
             if not request.user.is_anonymous():
@@ -494,7 +496,7 @@ def save_files_trans(request):
                 message = 'ok'
 
             email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel}
-            views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
+            dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
     return HttpResponse()

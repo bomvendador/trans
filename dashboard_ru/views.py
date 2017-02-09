@@ -1447,6 +1447,26 @@ def send_email(request, template, from_, to, context):
     return HttpResponse()
 
 
+def send_email_test(request, template, from_, to, context):
+    template = 'welcome.html'
+    from_ = 'info@prolingva.ru'
+    to = ['bomvendador@yandex.ru', 'orders@proingva.ru']
+    context = {'user': request.user}
+    curr_path = os.path.dirname(__file__)
+    file_path = os.path.join(os.path.join(curr_path, '..'), 'static/img/logo/logo_vert_35.png')
+    with open(file_path, 'rb') as logo:
+        logo_img = logo.read()
+    logo = InlineImage(filename='logo', content=logo_img)
+    context.update({'logo': logo})
+    # logger.debug(template + ' ' + from_ + ' ' + context)
+    send_templated_mail(template_name=template,
+                        from_email=from_,
+                        recipient_list=to,
+                        context=context,
+                        )
+    return HttpResponse()
+
+
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def send_calculation_to_client(request):
     if request.method == 'POST':
