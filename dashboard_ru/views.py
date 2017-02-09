@@ -1475,6 +1475,12 @@ def send_calculation_to_client(request):
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
         order_price = json_data['order_price']
+        order = SentDoc.objects.get(id=order_id)
+        manager = User.objects.get(id=order.resp_id)
+        email_context = {'order': order,
+                         'manager': manager
+                         }
+        send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         logger.debug('id = ' + str(order_id))
         logger.debug('price = ' + str(order_price))
         return HttpResponse()
