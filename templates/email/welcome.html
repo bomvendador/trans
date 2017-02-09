@@ -38,18 +38,25 @@
 {#    <td><img src="bottom-right.png" width="10" height="10" border="0"></td>#}
 {#</tr>#}
 {#</table>#}
-<table cellpadding='0' cellspacing='0' id='iphone-table' style='padding:10px 0px 15px 0px; width: 80%' align="center">
+<table cellpadding='0' cellspacing='0' id='iphone-table' style='padding:10px 0px 15px 0px; width: 80%; font-family: Roboto, Sans-Serif;' align="center">
     <tr style="margin-bottom: 10px">
         <td align="left" valign="middle" style="border-bottom: 1px solid #ddd;">
-            <div style="margin-bottom: 10px">
+            <div style="margin-bottom: 5px">
                 <img src="{{ logo }}">
             </div>
         </td>
         <td align="right" valign="bottom" style="text-align: right; border-bottom: 1px solid #ddd;" >
-            <div style="text-align: right; font-family: Roboto, Sans-Serif; color: #9d9d9d; font-size: 15px; margin-bottom: 10px">
-                    8 800 000 00 00
+            <div style="text-align: right; color: #9d9d9d; font-size: 15px; margin-bottom: 5px">
+                    +7 800 000 00 00
             </div>
         </td>
+    </tr>
+    <tr style="margin-bottom: 10px">
+        <td colspan="2" style="text-align: center; font-size: 20px">
+            Уважаемый {{ user.first_name }}
+
+        </td>
+
     </tr>
 
 </table>
