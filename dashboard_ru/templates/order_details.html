@@ -1052,14 +1052,14 @@
     //сохранение ИНФО
     $('#save_order_info_btn').on('click', function () {
         console.log('user_id ' + {{ order_details.user.id }})
-        if ($('#calc_sent_date').val() != '' && $('#order_price').val() == ''){
-            swal({
-                title: 'Ошибка вода',
-                text: 'Введите стоимость заказа',
-                type: 'warning'
-            });
-
-        }else {
+{#        if ($('#calc_sent_date').val() != '' && $('#order_price').val() == ''){#}
+{#            swal({#}
+{#                title: 'Ошибка вода',#}
+{#                text: 'Введите стоимость заказа',#}
+{#                type: 'warning'#}
+{#            });#}
+{##}
+{#        }else {#}
             var data_ = new FormData($('#form').get(0));
             data_.append('user_id', {{ order_details.user.id }});
             data_.append('order_id', {{ order_details.id }});
@@ -1101,7 +1101,7 @@
                 }
             });
 
-        }
+{#        }#}
 
 
 
