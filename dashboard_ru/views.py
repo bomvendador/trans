@@ -27,6 +27,7 @@ import logging
 from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 
+import datetime
 
 logger = logging.getLogger('django-debug')
 
@@ -1484,9 +1485,12 @@ def send_calculation_to_client(request):
         order_id = json_data['order_id']
         order_price = json_data['order_price']
         order = SentDoc.objects.get(id=order_id)
+        order.calc_sent_date = datetime.datetime.now()
+        order.save()
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
-                         'manager': manager
+                         'manager': manager,
+                         'order_price': order_price
                          }
         send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         logger.debug('id = ' + str(order_id))
