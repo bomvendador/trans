@@ -334,7 +334,7 @@
                                         <div class="col-sm-4 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
                                             {% if not order_details.calc_sent_date %}
-                                            <div {% if order_details.price %}id="btn_send_calc" {% endif %} class="btn btn-primary btn-lg col-sm-12 padding-top-5 {% if not order_details.price %} opacity-0_5 cursor-default{% endif %}">
+                                            <div {% if order_details.price %}id="btn_send_calc" {% endif %} class="btn btn-primary btn-lg col-sm-12 padding-top-5 {% if not order_details.price %} opacity-0_5 cursor-default{% endif %} btn_send_calc_class">
                                                 <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
                                             </div>
                                             {% else %}
@@ -982,6 +982,9 @@
                         if (isConfirm){
                             hide_save_order_translation();
                             updateIcons();
+                            if ($('#order_price').val() != ''){
+                                $('.btn_send_calc_class').attr('id', 'btn_send_calc').removeClass('opacity-0_5').addClass('pointer-pure')
+                            }
                         }
                     });
                 }
@@ -1089,6 +1092,7 @@
                         if (isConfirm){
                             hide_save_order();
                             updateIcons();
+
                         }
                     });
                 }

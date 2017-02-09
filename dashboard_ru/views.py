@@ -866,12 +866,12 @@ def update_order(request):
             trans_to = None
             trans_to_inst = None
         price = request.POST.get('order_price')
-        calc_sent_date = request.POST.get('calc_sent_date')
+        # calc_sent_date = request.POST.get('calc_sent_date')
         # print(text_doc_send)
         sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         translation_sent_date = request.POST.get('translation_sent_date')
         sent_doc.translation_sent_date = translation_sent_date
-        sent_doc.calc_sent_date = calc_sent_date
+        # sent_doc.calc_sent_date = calc_sent_date
         if price:
             sent_doc.price = price
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
