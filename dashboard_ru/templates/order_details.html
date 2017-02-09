@@ -983,7 +983,10 @@
                             hide_save_order_translation();
                             updateIcons();
                             if ($('#order_price').val() != ''){
+                                console.log('есть цена')
                                 $('.btn_send_calc_class').attr('id', 'btn_send_calc').removeClass('opacity-0_5').addClass('pointer-pure')
+                            }else {
+                                console.log('нет цены')
                             }
                         }
                     });
