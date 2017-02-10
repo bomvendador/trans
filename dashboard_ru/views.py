@@ -807,7 +807,10 @@ def delete_translation_file_from_order(request):
         json_data = json.loads(request.body.decode('utf-8'))
         file_id = json_data['file_id']
         order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order.id)
+        order_files_qnt = TranslationFiles.objects.filter(order=order)
         order.translation_downloaded = False
+        if order_files_qnt == 0:
+            order.translation_files = False
         order.save()
         TranslationFiles.objects.get(id=file_id).delete()
         print(file_id)
