@@ -1204,6 +1204,9 @@
                                 $('.btn_send_calc_class').attr('id', 'btn_send_calc').removeClass('opacity-0_5').addClass('pointer-pure')
                                 send_calc_func();
                             }else {
+                                console.log('нет цены')
+                                send_calc_func();
+
                                 $('.btn_send_calc_class').attr('id', '').removeClass('pointer-pure').addClass('opacity-0_5').addClass('cursor-default')
                             }
 
