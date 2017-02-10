@@ -816,7 +816,7 @@ def delete_translation_file_from_order(request):
         if order_files_qnt == 0:
             order.translation_files = False
 
-        logger.debug('file qnt = ' + str(order_files_qnt))
+            logger.debug('file qnt = ' + str(order_files_qnt))
         return HttpResponse(file_id)
 
 
