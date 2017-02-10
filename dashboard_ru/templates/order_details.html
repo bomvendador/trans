@@ -740,6 +740,7 @@
     <script src="{% static 'js/mdl_file.js' %}"></script>
     <script src="{% static 'js/add_csrf.js' %}"></script>
     <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
 
 
 {#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
@@ -750,7 +751,7 @@
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         send_calc_func();
         send_trans_files_func();
-        $('#payment_method').selectpicker('refresh');
+{#        $('#payment_method').selectpicker('refresh');#}
 
 
     });
