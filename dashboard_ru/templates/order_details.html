@@ -1323,6 +1323,9 @@
                                 var file_id = 'translation_file_' + data;
                                 $('#translation_file_' + data).fadeOut('slow');
                                 $('#translation_file_' + data).remove();
+                                $('#btn_send_trans_files').addClass('opacity-0_5').addClass('cursor-default');
+                                send_trans_files_func();
+
                             }
                         });
                     }
