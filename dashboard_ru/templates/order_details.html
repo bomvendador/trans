@@ -987,11 +987,14 @@
 
 
     }
-
+    $('#resp').on('change', function () {
+        console.log($('#resp').val());
+    })
     //отправка расчета
     function send_calc_func () {
         console.log('send calcl');
         console.log('цена = ' + $('#order_price').val());
+
         if ($('#order_price').val() != ''){
 
             $('#btn_send_calc_active').on('click', function () {
