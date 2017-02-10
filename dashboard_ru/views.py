@@ -778,13 +778,14 @@ def add_translation_file_to_order(request):
         print(order.id)
         print(files)
         for file in files:
-            f = TranslationFiles(file=file, order=order, file_name=file.name)
+            f = TranslationFiles(file=file, order=order, file_name=file.name, uploaded_by=request.user)
             f.save()
             print(f.file_name)
             file_name = f.file_name
             file_id = f.id
-        files_qnt = TranslationFiles.objects.filter(order=order).count()
+        # trans_array = TranslationFiles.objects.filter(order=order)
         # order.files_qnt = files_qnt
+
         order.save()
 
         return HttpResponse(json.dumps({'file_name': file_name, 'file_id': file_id}))
@@ -807,12 +808,12 @@ def delete_translation_file_from_order(request):
         json_data = json.loads(request.body.decode('utf-8'))
         file_id = json_data['file_id']
         order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order.id)
-        order_files_qnt = TranslationFiles.objects.filter(order=order).count()
-        logger.debug('file qnt = ' + str(order_files_qnt))
         order.translation_downloaded = False
+        order.save()
+        order_files_qnt = TranslationFiles.objects.filter(order=order).count()
         if order_files_qnt == 0:
             order.translation_files = False
-        order.save()
+
         TranslationFiles.objects.get(id=file_id).delete()
         print(file_id)
         return HttpResponse(file_id)
