@@ -719,6 +719,7 @@
     $(document).ready(function () {
         //скролл до конца комментариев
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+        send_calc_func();
 
     });
 
@@ -890,41 +891,45 @@
         });
 
     //отправка расчета
-    if ($('#order_price').val() != ''){
+    function send_calc_func () {
+        if ($('#order_price').val() != ''){
 
-        $('#btn_send_calc').on('click', function () {
+            $('#btn_send_calc').on('click', function () {
 
-            $.ajax({
-                url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
-                type: 'POST',
-                data: JSON.stringify({
-                            'order_price': $('#order_price').val(),
-                            'order_id': {{ order_details.id }}
-                        }),
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    swal({
-                        title: 'Ошибка сервера',
-                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                        type: 'warning'
-                    });
-                },
-                success:function (data) {
-                    swal({
-                        title: 'Расчет отправлен',
-                        text: 'Расчет успешно отправлен.',
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: true
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                                'order_price': $('#order_price').val(),
+                                'order_id': {{ order_details.id }}
+                            }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
                     },
-                    function (isConfirm) {
-                        $('#btn_send_calc').addClass('none');
-                        $('#calc_sent_date_div').removeClass('none').text(data)
-                    });
-                }
+                    success:function (data) {
+                        swal({
+                            title: 'Расчет отправлен',
+                            text: 'Расчет успешно отправлен.',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            $('#btn_send_calc').addClass('none');
+                            $('#calc_sent_date_div').removeClass('none');
+                            $('#calc_sent_date').text(data);
+                        });
+                    }
+                });
             });
-        });
+        }
+
     }
 
         //сохранение комментария
@@ -1127,6 +1132,7 @@
                             if ($('#order_price').val() != ''){
                                 console.log('есть цена')
                                 $('.btn_send_calc_class').attr('id', 'btn_send_calc').removeClass('opacity-0_5').addClass('pointer-pure')
+                                send_calc_func();
                             }else {
                                 $('.btn_send_calc_class').attr('id', '').removeClass('pointer-pure').addClass('opacity-0_5').addClass('cursor-default')
                             }
