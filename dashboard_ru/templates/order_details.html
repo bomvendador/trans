@@ -916,6 +916,7 @@
     //отправка файлов перевода
 
     function send_trans_files_func () {
+        console.log('length func = ' + $('#translations_fileList').children().length)
         if ($('#translations_fileList').children().length > 0){
             $('#btn_send_trans_files').on('click', function () {
 
@@ -1328,7 +1329,7 @@
                                 $('#translation_file_' + data).remove();
                                 $('#btn_send_trans_files').removeClass('pointer-pure').addClass('opacity-0_5').addClass('cursor-default');
                                 console.log('length =' + $('#translations_fileList').children().length)
-{#                                send_trans_files_func();#}
+                                send_trans_files_func();
 
                             }
                         });
