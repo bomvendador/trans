@@ -995,54 +995,56 @@
     function send_calc_func () {
         console.log('send calcl');
         console.log('цена = ' + $('#order_price').val());
-        if ($('#resp').val() == ''){
-            swal({
-                title: 'Ошибка',
-                text: 'Выберите ответственного для заявки',
-                type: 'error'
-            });
-
-        }else{
             if ($('#order_price').val() != ''){
 
                 $('#btn_send_calc_active').on('click', function () {
+                    if ($('#resp').val() == ''){
+                        swal({
+                            title: 'Ошибка',
+                            text: 'Выберите ответственного для заявки',
+                            type: 'error'
+                        });
 
-                    $.ajax({
-                        url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
-                        type: 'POST',
-                        data: JSON.stringify({
-                                    'order_price': $('#order_price').val(),
-                                    'order_id': {{ order_details.id }}
-                                }),
-                        processData: false,
-                        contentType: false,
-                        error: function(data){
-                            swal({
-                                title: 'Ошибка сервера',
-                                text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                                type: 'warning'
-                            });
-                        },
-                        success:function (data) {
-                            swal({
-                                title: 'Расчет отправлен',
-                                text: 'Расчет успешно отправлен.',
-                                type: 'success',
-                                confirmButtonText: 'Ok',
-                                closeOnConfirm: true
+                    }else{
+                        $.ajax({
+                            url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
+                            type: 'POST',
+                            data: JSON.stringify({
+                                        'order_price': $('#order_price').val(),
+                                        'order_id': {{ order_details.id }}
+                                    }),
+                            processData: false,
+                            contentType: false,
+                            error: function(data){
+                                swal({
+                                    title: 'Ошибка сервера',
+                                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                                    type: 'warning'
+                                });
                             },
-                            function (isConfirm) {
-                                $('#btn_send_calc_active').addClass('none');
-                                $('#calc_sent_date_div').removeClass('none');
-                                $('#calc_sent_date').text(data);
-                                updateIcons();
-                            });
-                        }
-                    });
+                            success:function (data) {
+                                swal({
+                                    title: 'Расчет отправлен',
+                                    text: 'Расчет успешно отправлен.',
+                                    type: 'success',
+                                    confirmButtonText: 'Ok',
+                                    closeOnConfirm: true
+                                },
+                                function (isConfirm) {
+                                    $('#btn_send_calc_active').addClass('none');
+                                    $('#calc_sent_date_div').removeClass('none');
+                                    $('#calc_sent_date').text(data);
+                                    updateIcons();
+                                });
+                            }
+                        });
+
+                    }
+
                 });
             }
 
-        }
+
 
     }
 
