@@ -810,11 +810,12 @@ def delete_translation_file_from_order(request):
         order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order.id)
         order.translation_downloaded = False
         order.save()
+        TranslationFiles.objects.get(id=file_id).delete()
+
         order_files_qnt = TranslationFiles.objects.filter(order=order).count()
         if order_files_qnt == 0:
             order.translation_files = False
 
-        TranslationFiles.objects.get(id=file_id).delete()
         print(file_id)
         return HttpResponse(file_id)
 
