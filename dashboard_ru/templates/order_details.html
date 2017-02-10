@@ -605,7 +605,7 @@
 {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
                                                                 </div>
                                                                 <div class="col-sm-4 margin-bottom-0 padding-top-3">
-                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.id }}</p>
+                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.first_name }}</p>
                                                                 </div>
                                                             </div>
                                                         {% endfor %}
