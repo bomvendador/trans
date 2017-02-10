@@ -1327,7 +1327,8 @@
                                 $('#translation_file_' + data).fadeOut('slow');
                                 $('#translation_file_' + data).remove();
                                 $('#btn_send_trans_files').removeClass('pointer-pure').addClass('opacity-0_5').addClass('cursor-default');
-                                send_trans_files_func();
+                                console.log('length =' + $('#translations_fileList').children().length)
+{#                                send_trans_files_func();#}
 
                             }
                         });
