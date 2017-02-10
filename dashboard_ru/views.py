@@ -1495,5 +1495,5 @@ def send_calculation_to_client(request):
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
         logger.debug('id = ' + str(order_id))
-        logger.debug('price = ' + str(order_price))
+        logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
         return HttpResponse(order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
