@@ -740,12 +740,12 @@
         //скролл до конца комментариев
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         send_calc_func();
+        send_trans_files_func();
 
     });
 
     //отправка оплаты
     $('#pay_order_btn').on('click', function () {
-        console.log('payyy')
         $('#payment_form').submit()
     });
 
@@ -913,41 +913,44 @@
     //отправка файлов перевода
 
     function send_trans_files_func () {
+        if ($('#translations_fileList').children().length > 0){
+            $('#btn_send_trans_files').on('click', function () {
 
-        $('#btn_send_trans_files').on('click', function () {
-
-            $.ajax({
-                url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
-                type: 'POST',
-                data: JSON.stringify({
-                            'order_id': {{ order_details.id }}
-                        }),
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    swal({
-                        title: 'Ошибка сервера',
-                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                        type: 'warning'
-                    });
-                },
-                success:function (data) {
-                    swal({
-                        title: 'Уведомление отправлено',
-                        text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: true
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                                'order_id': {{ order_details.id }}
+                            }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
                     },
-                    function (isConfirm) {
-                        $('#btn_send_trans_files').addClass('none');
-                        $('#translation_sent_date_div').removeClass('none');
-                        $('#translation_sent_date').text(data);
-                        updateIcons();
-                    });
-                }
+                    success:function (data) {
+                        swal({
+                            title: 'Уведомление отправлено',
+                            text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            $('#btn_send_trans_files').addClass('none');
+                            $('#translation_sent_date_div').removeClass('none');
+                            $('#translation_sent_date').text(data);
+                            updateIcons();
+                        });
+                    }
+                });
             });
-        });
+
+        }
+
 
     }
 
@@ -1417,6 +1420,7 @@
                 console.log(json['file_name']);
 
                 $('#translations_fileList').append('<div class="margin-left--20 translation_file list-group-item row" id="translation_file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');
+                send_trans_files_func();
 
 
 {#                li class="margin-left--20" id="file_{{ file.id }}">#}
