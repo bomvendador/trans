@@ -507,7 +507,7 @@ def download_file(request, file_id):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def download_translation_file(request, file_id):
     path = TranslationFiles.objects.get(id=file_id)
-    if UserProfile.objects.get(user=request.user).role.role_name == 'Клиент':
+    if UserProfile.objects.get(user=request.user).role.role_name == u'Клиент':
         order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order_id)
         order.translation_downloaded = True
         order.save()
