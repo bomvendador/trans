@@ -511,18 +511,38 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-6 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Дата отправки заказчику</h2>
-                                            <div class="form-group input-group">
+                                            <h2 class="card-inside-title mrg-bottom-33">Отправка заказчику</h2>
+
+
+                                            <div id="btn_send_calc" class="btn btn-primary btn-lg col-sm-12 padding-top-5 {% if not order_details.price %} opacity-0_5 cursor-default{% endif %} {% if order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
+                                                <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
+                                            </div>
+
+                                            <div id="translation_sent_date_div" class="form-group input-group {% if not order_details.translation_sent_date %} none {% endif %}">
                                                 <span class="input-group-addon">
                                                     <i class="mdi mdi-calendar-today font-24"></i>
 
                                                 </span>
                                                 <div class="form-line">
 
-                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="translation_sent_date" name="translation_sent_date" value="{% if order_details.translation_sent_date %}{{ order_details.translation_sent_date }}{% endif %}">
+                                                    <p class="form-control" id="translation_sent_date">{{ order_details.translation_sent_date|date:"d.m.Y, H:i" }}</p>
 
                                                 </div>
                                             </div>
+
+
+
+{#                                            <div class="form-group input-group">#}
+{#                                                <span class="input-group-addon">#}
+{#                                                    <i class="mdi mdi-calendar-today font-24"></i>#}
+{##}
+{#                                                </span>#}
+{#                                                <div class="form-line">#}
+{##}
+{#                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="translation_sent_date" name="translation_sent_date" value="{% if order_details.translation_sent_date %}{{ order_details.translation_sent_date }}{% endif %}">#}
+{##}
+{#                                                </div>#}
+{#                                            </div>#}
                                         </div>
 
 
