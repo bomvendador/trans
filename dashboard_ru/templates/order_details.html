@@ -1420,6 +1420,7 @@
                 console.log(json['file_name']);
 
                 $('#translations_fileList').append('<div class="margin-left--20 translation_file list-group-item row" id="translation_file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');
+                $('#btn_send_trans_files').removeClass('opacity-0_5').addClass('pointer-pure');
                 send_trans_files_func();
 
 

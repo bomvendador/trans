@@ -1497,6 +1497,7 @@ def send_calculation_to_client(request):
                          'manager': manager,
                          'order_price': order_price
                          }
+        # TODO изменить адрес отправки
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
         logger.debug('id = ' + str(order_id))
@@ -1518,6 +1519,7 @@ def send_trans_files_to_client(request):
         email_context = {'order': order,
                          'manager': manager,
                          }
+        # TODO изменить адрес отправки
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'translation_is_ready.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
         logger.debug('id = ' + str(order_id))
