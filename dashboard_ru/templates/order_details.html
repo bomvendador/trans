@@ -740,7 +740,6 @@
     <script src="{% static 'js/mdl_file.js' %}"></script>
     <script src="{% static 'js/add_csrf.js' %}"></script>
     <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
-    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
 
 
 {#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
@@ -751,10 +750,12 @@
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         send_calc_func();
         send_trans_files_func();
-        $('#payment_method').selectpicker();
+        $('#payment_method').selectpicker('refresh');
 
 
     });
+        $('#payment_method').selectpicker('refresh');
+
 
     //отправка оплаты
     $('#pay_order_btn').on('click', function () {
@@ -961,7 +962,6 @@
     }
 
     function send_trans_files_func () {
-        console.log('length func = ' + $('#translations_fileList').children().length)
         if ($('#translations_fileList').children().length > 0){
             $('#btn_send_trans_files_active').on('click', function () {
                 if ($('#paid_amount').val() == ''){
@@ -990,14 +990,8 @@
 
 
     }
-    $('#resp').on('change', function () {
-        console.log($('#resp').val());
-    })
-        console.log($('#resp').val())
     //отправка расчета
     function send_calc_func () {
-        console.log('send calcl');
-        console.log('цена = ' + $('#order_price').val());
 {#            if ($('#order_price').val() != ''){#}
 
                 $('#btn_send_calc_active').on('click', function () {
