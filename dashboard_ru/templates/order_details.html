@@ -514,7 +514,7 @@
                                             <h2 class="card-inside-title mrg-bottom-33">Отправка заказчику</h2>
 
 
-                                            <div id="btn_send_calc" class="btn btn-primary btn-lg col-sm-12 padding-top-5 {% if not order_details.price %} opacity-0_5 cursor-default{% endif %} {% if order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
+                                            <div id="btn_send_trans_files" class="btn btn-primary btn-lg col-sm-12 padding-top-5 {% if not order_details.price %} opacity-0_5 cursor-default{% endif %} {% if order_details.calc_sent_date %} none {% endif %}">
                                                 <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
                                             </div>
 
@@ -909,6 +909,47 @@
 
 
         });
+
+    //отправка файлов перевода
+
+    function send_trans_files_func () {
+
+        $('#btn_send_trans_files').on('click', function () {
+
+            $.ajax({
+                url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
+                type: 'POST',
+                data: JSON.stringify({
+                            'order_id': {{ order_details.id }}
+                        }),
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    swal({
+                        title: 'Ошибка сервера',
+                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                        type: 'warning'
+                    });
+                },
+                success:function (data) {
+                    swal({
+                        title: 'Уведомление отправлено',
+                        text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
+                        type: 'success',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: true
+                    },
+                    function (isConfirm) {
+                        $('#btn_send_trans_files').addClass('none');
+                        $('#translation_sent_date_div').removeClass('none');
+                        $('#translation_sent_date').text(data);
+                        updateIcons();
+                    });
+                }
+            });
+        });
+
+    }
 
     //отправка расчета
     function send_calc_func () {
@@ -1350,6 +1391,8 @@
         });
 
     }
+
+
 
     //добавление файлов перевода
     function add_translation_files(order_id) {
