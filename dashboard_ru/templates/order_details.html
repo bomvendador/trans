@@ -921,43 +921,66 @@
 
     //отправка файлов перевода
 
+    function send_trans_files_ajax() {
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
+            type: 'POST',
+            data: JSON.stringify({
+                        'order_id': {{ order_details.id }}
+                    }),
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                swal({
+                    title: 'Уведомление отправлено',
+                    text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    $('#btn_send_trans_files_active').addClass('none');
+                    $('#btn_send_trans_files_deactivated').addClass('none');
+                    $('#translation_sent_date_div').removeClass('none');
+                    $('#translation_sent_date').text(data);
+                    updateIcons();
+                });
+            }
+        });
+
+    }
+
     function send_trans_files_func () {
         console.log('length func = ' + $('#translations_fileList').children().length)
         if ($('#translations_fileList').children().length > 0){
             $('#btn_send_trans_files_active').on('click', function () {
-
-                $.ajax({
-                    url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
-                    type: 'POST',
-                    data: JSON.stringify({
-                                'order_id': {{ order_details.id }}
-                            }),
-                    processData: false,
-                    contentType: false,
-                    error: function(data){
-                        swal({
-                            title: 'Ошибка сервера',
-                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                            type: 'warning'
-                        });
+                if ($('#paid_amount').val() == ''){
+                    swal({
+                        title: 'Оплата отсутствует',
+                        text: 'Оплата по данной заявке отсутствует. Отправить уведомление о файлах перевода?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Да',
+                        cancelButtonText: 'Нет',
+                        closeOnConfirm: false,
                     },
-                    success:function (data) {
-                        swal({
-                            title: 'Уведомление отправлено',
-                            text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
-                            type: 'success',
-                            confirmButtonText: 'Ok',
-                            closeOnConfirm: true
-                        },
-                        function (isConfirm) {
-                            $('#btn_send_trans_files_active').addClass('none');
-                            $('#btn_send_trans_files_deactivated').addClass('none');
-                            $('#translation_sent_date_div').removeClass('none');
-                            $('#translation_sent_date').text(data);
-                            updateIcons();
-                        });
-                    }
-                });
+                    function (isConfirm) {
+                        if (isConfirm){
+                            send_trans_files_ajax();
+                        }
+
+                    });
+
+                }
+
             });
 
         }
