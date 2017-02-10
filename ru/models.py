@@ -159,7 +159,7 @@ class SentDoc (models.Model):
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     calc_sent_date = models.DateTimeField(null=True, blank=True)
     translation_sent_date = models.DateTimeField(null=True, blank=True)
-    translation_files = models.NullBooleanField(default=False)
+    translation_files = models.BooleanField(default=False)
     translation_downloaded = models.BooleanField(default=False)
     author = models.ForeignKey(User, related_name='author', blank=True, null=True)
     comments = models.NullBooleanField(default=False, blank=True, null=True)
