@@ -1502,3 +1502,24 @@ def send_calculation_to_client(request):
         logger.debug('id = ' + str(order_id))
         logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
         return HttpResponse(order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def send_trans_files_to_client(request):
+    if request.method == 'POST':
+        logger.debug('start = ')
+
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+        order = SentDoc.objects.get(id=order_id)
+        order.translation_sent_date = datetime.datetime.now()
+        order.save()
+        manager = User.objects.get(id=order.resp_id)
+        email_context = {'order': order,
+                         'manager': manager,
+                         }
+        # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
+        send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
+        logger.debug('id = ' + str(order_id))
+        logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
+        return HttpResponse(order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
