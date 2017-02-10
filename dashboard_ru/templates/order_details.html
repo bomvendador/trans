@@ -1342,7 +1342,10 @@
                                 var file_id = 'translation_file_' + data;
                                 $('#translation_file_' + data).fadeOut('slow');
                                 $('#translation_file_' + data).remove();
-                                $('#btn_send_trans_files').removeClass('pointer-pure').addClass('opacity-0_5').addClass('cursor-default');
+                                if ($('#translations_fileList').children().length == 0){
+                                    $('#btn_send_trans_files_active').addClass('none');
+                                    $('#btn_send_trans_files_deactivated').removeClass('none');
+                                }
                                 console.log('length =' + $('#translations_fileList').children().length)
                                 send_trans_files_func();
 
