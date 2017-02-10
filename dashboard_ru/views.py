@@ -507,15 +507,20 @@ def download_file(request, file_id):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def download_translation_file(request, file_id):
     path = TranslationFiles.objects.get(id=file_id)
-    if UserProfile.objects.get(user=request.user).role.role_name == u'Клиент':
-        order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order_id)
-        order.translation_downloaded = True
-        order.save()
     with open(path.file.path, 'rb') as f:
         data = f.read()
 
     response = HttpResponse(data, content_type='application/force-download')
     response['Content-Disposition'] = 'attachment; filename=%s' % path.file_name
+
+    if UserProfile.objects.get(user=request.user).role.role_name == u'Клиент':
+        order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order_id)
+        if order.paystatus.name != 'Paid':
+            return HttpResponse(u'Заявка не оплачена')
+        else:
+            order.translation_downloaded = True
+            order.save()
+            return response
     return response
 
 

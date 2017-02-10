@@ -1674,6 +1674,7 @@
         var id = id_raw.split('_')[2];
         {% if user_profile.role.role_name == 'Клиент' %}
         $('#close_translation_message').click();
+
         {% endif %}
         window.location.href = '/ru/dashbrd/download_translation_file/' + id;
     });
