@@ -750,7 +750,6 @@
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         send_calc_func();
         send_trans_files_func();
-        $('#payment_method').selectpicker('refresh');
 
 
     });
@@ -1791,6 +1790,8 @@
         });
 
     console.log('"' + {{ payment_message }} + '"');
+                $('#payment_method').selectpicker('refresh');
+
     {% endif %}
 
 {% endif %}
