@@ -627,7 +627,7 @@
                                         <td>{{ order_for_payment.id }}</td>
                                         <td>{{ order_for_payment.price }}</td>
                                         <td>
-                                            <i class="mdi mdi-account {% if not sent_doc.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                                            <i class="mdi mdi-account {% if not order_for_payment.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
                                             {% if user_profile.role.role_name != 'Клиент' %}
                                             <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
                                             {% endif %}
