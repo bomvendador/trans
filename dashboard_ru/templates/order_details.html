@@ -805,9 +805,10 @@
     }
 
     function send_trans_files_func () {
-        console.log('send file')
         if ($('#translations_fileList').children().length > 0){
             $('#btn_send_trans_files_active').on('click', function () {
+                console.log('send file click')
+
                 if ($('#paid_amount').val() == ''){
                     swal({
                         title: 'Оплата отсутствует',
