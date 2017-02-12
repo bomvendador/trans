@@ -46,7 +46,7 @@
             <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
             <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
             <i class="mdi mdi-note cursor-default {% if translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
-            <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="left"></i>
+            <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
 
         </div>
             {% if user_profile.role.role_name == 'Суперадмин' %}
@@ -896,7 +896,6 @@
 
         //отображение кнопки сохранения при изменениях
     function show_save_order() {
-        console.log('dddd')
         $('#order_label').fadeIn('slow');
         $('#save_order_info_div').fadeIn('slow');
     }
@@ -923,7 +922,6 @@
 
     /////заявка
     $('#name_doc_send').on('input', function () {
-        console.log('inpt')
         show_save_order();
     });
 
@@ -1760,11 +1758,11 @@
 {% else %}
 
 
-    if ($('#order_price_div').find('p').text() != '-'){
-        {% if order_details.paystatus.name != 'Paid' %}
-        $('#order_payment_label').css('display', 'block');
-        {% endif %}
-    }
+{#    if ($('#order_price_div').find('p').text() != '-'){#}
+{#        {% if order_details.paystatus.name != 'Paid' %}#}
+{#        $('#order_payment_label').css('display', 'block');#}
+{#        {% endif %}#}
+{#    }#}
     {% if order_details.just_paid or order_details.payment_failure %}
         {% if order_details.just_paid %}
         $('#order_payment_label').css('display', 'none');
@@ -1805,11 +1803,9 @@
                 $('#payment_method').selectpicker('refresh');
 
     {% endif %}
-        $('#payment_method').selectpicker('refresh');
 
 {% endif %}
 
-        $('#payment_method').selectpicker('refresh');
 
 
     //скачивание файла перевода и закрытие сообщения после
