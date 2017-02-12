@@ -771,7 +771,9 @@ def add_translation_file_to_order(request):
     if request.method == 'POST':
         # print(request.POST.get('order_id'))
         order = SentDoc.objects.get(id=request.POST.get('order_id'))
-        # order.status = OrderStatus.objects.get(name='Выполнен')
+        if order.paystatus.name == 'Paid':
+            order.status = OrderStatus.objects.get(name=u'Выполнен')
+
         order.translation_files = True
         files = request.FILES.getlist('file')
         f = SentFiles()
