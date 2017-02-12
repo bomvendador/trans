@@ -427,12 +427,18 @@
                                                             <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
                                                             {% endfor %}
                                                         </select>
-{#                                                        <select class="form-control show-tick" id="ddd" name="payment_method">#}
-{#                                                            <option value="">-- Выберите способ --</option>#}
-{#                                                            {% for paymethod in paymethods %}#}
-{#                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>#}
-{#                                                            {% endfor %}#}
-{#                                                        </select>#}
+                                                        <select class="form-control show-tick" id="ddd" name="payment_method_">
+                                                            <option value="">-- Выберите способ --</option>
+                                                            {% for paymethod in paymethods %}
+                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <select class="form-control show-tick" id="ddd" name="payment_method_">
+                                                            <option value="">-- Выберите способ --</option>
+                                                            {% for paymethod in paymethods %}
+                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
