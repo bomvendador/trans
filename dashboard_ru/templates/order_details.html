@@ -749,7 +749,6 @@
         //скролл до конца комментариев
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         send_calc_func();
-        send_trans_files_func();
 
 
     });
@@ -765,6 +764,77 @@
     {% if user_profile.role.role_name != 'Клиент' %}
 {#    moment.locale("ru");#}
 {##}
+
+
+    //отправка файлов перевода
+
+    function send_trans_files_ajax() {
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
+            type: 'POST',
+            data: JSON.stringify({
+                        'order_id': {{ order_details.id }}
+                    }),
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                swal({
+                    title: 'Уведомление отправлено',
+                    text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    $('#btn_send_trans_files_active').addClass('none');
+                    $('#btn_send_trans_files_deactivated').addClass('none');
+                    $('#translation_sent_date_div').removeClass('none');
+                    $('#translation_sent_date').text(data);
+                    updateIcons();
+                });
+            }
+        });
+
+    }
+
+    function send_trans_files_func () {
+        console.log('send file')
+        if ($('#translations_fileList').children().length > 0){
+            $('#btn_send_trans_files_active').on('click', function () {
+                if ($('#paid_amount').val() == ''){
+                    swal({
+                        title: 'Оплата отсутствует',
+                        text: 'Оплата по данной заявке отсутствует. Отправить уведомление о файлах перевода?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Да',
+                        cancelButtonText: 'Нет',
+                        closeOnConfirm: false,
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+                            send_trans_files_ajax();
+                        }
+
+                    });
+
+                }
+
+            });
+
+        }
+
+
+    }
+        send_trans_files_func();
 
     
     //иконки состояния заказа
@@ -922,74 +992,6 @@
 
         });
 
-    //отправка файлов перевода
-
-    function send_trans_files_ajax() {
-        $.ajax({
-            url: '{% url 'ru:dashboard_ru:send_trans_files_to_client' %}',
-            type: 'POST',
-            data: JSON.stringify({
-                        'order_id': {{ order_details.id }}
-                    }),
-            processData: false,
-            contentType: false,
-            error: function(data){
-                swal({
-                    title: 'Ошибка сервера',
-                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                    type: 'warning'
-                });
-            },
-            success:function (data) {
-                swal({
-                    title: 'Уведомление отправлено',
-                    text: 'Уведомление клиенту о файлах перевода успешно отправлено.',
-                    type: 'success',
-                    confirmButtonText: 'Ok',
-                    closeOnConfirm: true
-                },
-                function (isConfirm) {
-                    $('#btn_send_trans_files_active').addClass('none');
-                    $('#btn_send_trans_files_deactivated').addClass('none');
-                    $('#translation_sent_date_div').removeClass('none');
-                    $('#translation_sent_date').text(data);
-                    updateIcons();
-                });
-            }
-        });
-
-    }
-
-{#    function send_trans_files_func () {#}
-        console.log('send file')
-        if ($('#translations_fileList').children().length > 0){
-            $('#btn_send_trans_files_active').on('click', function () {
-                if ($('#paid_amount').val() == ''){
-                    swal({
-                        title: 'Оплата отсутствует',
-                        text: 'Оплата по данной заявке отсутствует. Отправить уведомление о файлах перевода?',
-                        type: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Да',
-                        cancelButtonText: 'Нет',
-                        closeOnConfirm: false,
-                    },
-                    function (isConfirm) {
-                        if (isConfirm){
-                            send_trans_files_ajax();
-                        }
-
-                    });
-
-                }
-
-            });
-
-        }
-
-
-{#    }#}
     //отправка расчета
     function send_calc_func () {
 {#            if ($('#order_price').val() != ''){#}
