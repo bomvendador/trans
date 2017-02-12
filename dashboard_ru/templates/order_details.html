@@ -421,18 +421,18 @@
                                                         <i class="mdi mdi-wallet font-24"></i>
                                                     </div>
                                                     <div class="col-sm-10">
-{#                                                        <select class="form-control show-tick" id="payment_method" name="payment_method">#}
-{#                                                            <option value="">-- Выберите способ --</option>#}
-{#                                                            {% for paymethod in paymethods %}#}
-{#                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>#}
-{#                                                            {% endfor %}#}
-{#                                                        </select>#}
-                                                        <select class="form-control show-tick" id="ddd" name="payment_method">
+                                                        <select class="form-control show-tick" id="payment_method" name="payment_method">
                                                             <option value="">-- Выберите способ --</option>
                                                             {% for paymethod in paymethods %}
                                                             <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
                                                             {% endfor %}
                                                         </select>
+{#                                                        <select class="form-control show-tick" id="ddd" name="payment_method">#}
+{#                                                            <option value="">-- Выберите способ --</option>#}
+{#                                                            {% for paymethod in paymethods %}#}
+{#                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>#}
+{#                                                            {% endfor %}#}
+{#                                                        </select>#}
                                                     </div>
                                                 </div>
                                             </div>
@@ -758,7 +758,7 @@
 
 
     });
-        $('#payment_method').selectpicker('refresh');
+{#        $('#payment_method').selectpicker('refresh');#}
 
 
     //отправка оплаты
@@ -1806,7 +1806,7 @@
         });
 
     console.log('"' + {{ payment_message }} + '"');
-                $('#payment_method').selectpicker('refresh');
+{#                $('#payment_method').selectpicker('refresh');#}
 
     {% endif %}
 
