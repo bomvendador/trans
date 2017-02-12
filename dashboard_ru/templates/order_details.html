@@ -427,6 +427,12 @@
                                                             <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
                                                             {% endfor %}
                                                         </select>
+                                                        <select class="form-control" id="payment_method" name="payment_method">
+                                                            <option value="">-- Выберите способ --</option>
+                                                            {% for paymethod in paymethods %}
+                                                            <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1758,11 +1764,11 @@
 {% else %}
 
 
-{#    if ($('#order_price_div').find('p').text() != '-'){#}
-{#        {% if order_details.paystatus.name != 'Paid' %}#}
-{#        $('#order_payment_label').css('display', 'block');#}
-{#        {% endif %}#}
-{#    }#}
+    if ($('#order_price_div').find('p').text() != '-'){
+        {% if order_details.paystatus.name != 'Paid' %}
+        $('#order_payment_label').css('display', 'block');
+        {% endif %}
+    }
     {% if order_details.just_paid or order_details.payment_failure %}
         {% if order_details.just_paid %}
         $('#order_payment_label').css('display', 'none');
