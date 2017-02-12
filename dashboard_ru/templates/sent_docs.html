@@ -15,6 +15,13 @@
                 <i class="material-icons">home</i> Домой
             </a>
         </li>
+        {% if new_orders or in_progress_orders or orders_complete %}
+        <li>
+            <a href="{% url 'ru:dashboard_ru:get_sent_docs' %}">
+                <i class="material-icons">library_books</i> Заявки
+            </a>
+        </li>
+        {% endif %}
         <li class="active">
             <i class="material-icons">library_books</i> {% if new_orders %} Новые заявки {% elif in_progress_orders %} Заявки в работе {% elif orders_complete %}Выполненные заявки{% else %}Заявки{% endif %}
         </li>
