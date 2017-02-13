@@ -25,7 +25,7 @@
             </a>
         </li>
         <li class="active">
-            <i class="mdi mdi-account-plus f_s_15"></i> Отзыв № {{ testimonial.id }}
+            <i class="mdi mdi-account-plus f_s_15"></i> {% if new %}Добавление отзыва{% else %}Отзыв № {{ testimonial.id }}{% endif %}
         </li>
     </ol>
 
@@ -37,7 +37,7 @@
     <div class="card">
         <div class="header bg-cyan">
             <h2>
-                Отзыв № {{ testimonial.id }}
+                {% if new %}Добавление отзыва{% else %}Отзыв № {{ testimonial.id }}{% endif %}
             </h2>
         </div>
             <div class="body">
@@ -56,7 +56,7 @@
                                                 <i class="mdi mdi-account f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Имя" id="name_testimonial" name="name_testimonial" value="{{ testimonial.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_testimonial" name="name_testimonial" value="{% if not new %}{{ testimonial.name }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                                 <i class="mdi mdi-tie f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{{ testimonial.company }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{% if not new %}{{ testimonial.company }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                                 <i class="mdi mdi-comment-processing f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_testimonial" name="text_testimonial">{{ testimonial.text }}</textarea>
+                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_testimonial" name="text_testimonial">{% if not new %}{{ testimonial.text }}{% endif %}</textarea>
                                             </div>
                                         </div>
 
@@ -101,7 +101,7 @@
                                             </span>
 
 
-                                            <input type="checkbox" id="testimonial_approved" class="" {% if testimonial.is_approved %} checked {% endif %}/>
+                                            <input type="checkbox" id="testimonial_approved" class="" {% if not new %}{% if testimonial.is_approved %} checked {% endif %}{% endif %}/>
                                             <label for="testimonial_approved" style="height: 5px"></label>
 
                                         </div>
@@ -119,7 +119,8 @@
                                     </div>
                             </div>
 {#                            <input name="new_manager" value="yes" class="none"/>#}
-                            <input name="manager_id" value="{{ manager.id }}" class="none"/>
+
+{#                            <input name="testimonial_id" value="{{ testimonial.id }}" class="none"/>#}
 
                         </form>
 
@@ -147,13 +148,6 @@
 {#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
     <script>
 
-        $('.datetimepicker').bootstrapMaterialDatePicker({
-            lang : 'ru',
-            format : 'DD.MM.YYYY',
-            time: false,
-            weekStart: 1
-        });
-
 
 {% if user_profile.role.role_name != 'Клиент' %}
 
@@ -163,7 +157,11 @@
 
 
         var formdata = new FormData($('#form_info').get(0));
+        {% if new %}
+        formdata.append('new_testimonial', 'yes');
+        {% else %}
         formdata.append('new_testimonial', 'no');
+        {% endif %}
         formdata.append('testimonial_id', {{ testimonial.id }});
         if ($('#testimonial_approved').prop('checked')){
             formdata.append('approved', '1');

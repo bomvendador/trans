@@ -1570,3 +1570,12 @@ def save_testimonial(request):
         testimonial_inst.save()
         # if request.method == 'POST':
         return HttpResponse('ok')
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def add_testimonial(request):
+    context = get_data_proc(request)
+    context.update({
+        'new': 1
+    })
+    return render(request, 'testimonial_details.html', context)
