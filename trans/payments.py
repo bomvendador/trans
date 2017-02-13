@@ -28,7 +28,7 @@ def payment_success(request):
             'order': order
         }
         # TODO изменить почту достваки
-        dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', 'orders@prolingva.ru', email_context)
+        dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
         # dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', order.user.email, email_context)
 
         # request.ses
