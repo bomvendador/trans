@@ -55,7 +55,7 @@
                                             <select class="form-control show-tick" id="properties" name="properties">
                                                 <option value="">--  --</option>
                                                 {% for property in properties %}
-                                                <option value="property_{{ property.id }}" {% if comp == translator.id %} selected {% endif %}{% if user_profile.role.role_name == 'Клиент' %} disabled {% endif %}>{{ translator.id }}. {{ translator.name }}</option>
+                                                <option value="property_{{ property.id }}">{{ property.name }}</option>
                                                 {% endfor %}
                                             </select>
 
