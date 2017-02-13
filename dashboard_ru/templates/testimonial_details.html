@@ -167,7 +167,7 @@
         formdata.append('testimonial_id', {{ testimonial.id }});
 
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:save_manager_new' %}',
+            url: '{% url 'ru:dashboard_ru:save_testimonial' %}',
             type: 'POST',
             data: formdata,
             processData: false,
