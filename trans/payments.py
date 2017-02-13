@@ -24,7 +24,7 @@ def payment_success(request):
         order.just_paid = True
         order.save()
         email_context = {
-            'manager': order.resp.first_name,
+            'manager': order.resp,
             'order': order
         }
         # TODO изменить почту достваки
