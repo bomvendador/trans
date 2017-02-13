@@ -55,42 +55,56 @@
                                             <select class="form-control show-tick" id="properties" name="properties">
                                                 <option value="">--  --</option>
                                                 {% for property in properties %}
-                                                <option value="property_{{ property.id }}">{{ property.name }}</option>
+                                                <option value="property_{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
                                                 {% endfor %}
                                             </select>
 
                                     </div>
                                     <div class="col-md-6">
-                                        <h2 class="card-inside-title">Имя</h2>
+                                        <h2 class="card-inside-title">Название</h2>
 
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                <i class="mdi mdi-account f_s_20"></i>
+                                                <i class="mdi mdi-format-color-text f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Имя" id="name_testimonial" name="name_testimonial" value="{% if not new %}{{ testimonial.name }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Название" id="name_company" name="name_company" value="{% if not new %}{{ company.name }}{% endif %}">
 
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title">Компания</h2>
                                 <div class="row clearfix">
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
+                                    <h2 class="card-inside-title">ИНН</h2>
                                         <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-tie f_s_20"></i>
-                                            </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{% if not new %}{{ testimonial.company }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="ИНН" id="inn_company" name="inn_company" value="{% if not new %}{{ company.inn }}{% endif %}">
 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <h2 class="card-inside-title">КПП</h2>
+                                        <div class="input-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="КПП" id="kpp_company" name="kpp_company" value="{% if not new %}{{ company.kpp }}{% endif %}">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                    <h2 class="card-inside-title">ОГРН</h2>
+                                        <div class="input-group">
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="ОГРН" id="ogrn_company" name="ogrn_company" value="{% if not new %}{{ company.ogrn }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title">Текст</h2>
+                                <h2 class="card-inside-title">Адрес</h2>
                                 <div class="row clearfix">
                                     <div class="col-md-12">
                                         <div class="input-group">
@@ -98,37 +112,21 @@
                                                 <i class="mdi mdi-comment-processing f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_testimonial" name="text_testimonial">{% if not new %}{{ testimonial.text }}{% endif %}</textarea>
+                                                <textarea rows="4" class="form-control" placeholder="Адрес..." id="address_company" name="address_company">{% if not new %}{{ company.address }}{% endif %}</textarea>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <h2 class="card-inside-title">Одобрено</h2>
                                 <div class="row clearfix">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-check-circle f_s_20"></i>
-                                            </span>
-
-
-                                            <input type="checkbox" id="testimonial_approved" class="" {% if not new %}{% if testimonial.is_approved %} checked {% endif %}{% endif %}/>
-                                            <label for="testimonial_approved" style="height: 5px"></label>
-
-                                        </div>
+                                    <div class="body">
 
                                     </div>
+                                    <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                                        <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
+                                    </div>
+
                                 </div>
-                                    <div class="row clearfix">
-                                        <div class="body">
-
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
-                                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
-                                        </div>
-
-                                    </div>
                             </div>
 {#                            <input name="new_manager" value="yes" class="none"/>#}
 
