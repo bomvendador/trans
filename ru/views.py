@@ -526,8 +526,11 @@ def confidentiality(request):
 
 
 def get_testimonials_list(request):
+    context = dash_views.get_data_proc(request)
     testimonials = Testimonials.objects.all()
-    context = {
-        'testimonials': testimonials
-    }
+    context.update(
+        {
+            'testimonials': testimonials
+
+        })
     return render(request, 'testimonials_list.html', context)
