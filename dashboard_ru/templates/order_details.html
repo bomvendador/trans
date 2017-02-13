@@ -379,21 +379,19 @@
                                                 <span class="input-group-addon">
                                                     <i class="mdi mdi-currency-rub font-24"></i>
                                                 </span>
-                                                <div class="col-sm-10">
-                                                    {% if user_profile.role.role_name == 'Клиент' %}
-                                                    <div class="form-line" id="order_price_div">
-                                                        <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
-                                                    </div>
-                                                    {% if order_details.paystatus.name == 'Paid' %}
-                                                    <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
-                                                    {% endif %}
-                                                    {% else %}
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
-                                                    </div>
-
-                                                    {% endif %}
+                                                {% if user_profile.role.role_name == 'Клиент' %}
+                                                <div class="form-line" id="order_price_div">
+                                                    <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
                                                 </div>
+                                                {% if order_details.paystatus.name == 'Paid' %}
+                                                <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
+                                                {% endif %}
+                                                {% else %}
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
+                                                </div>
+
+                                                {% endif %}
                                             </div>
 
                                         </div>
