@@ -1617,4 +1617,10 @@ def company(request, company_id):
     return render(request, 'company_details.html', context)
 
 
-
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def add_company(request):
+    context = get_data_proc(request)
+    context.update({
+        'new': 1
+    })
+    return render(request, 'company_details.html', context)
