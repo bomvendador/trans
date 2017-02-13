@@ -431,7 +431,7 @@
 
                                         </div>
                                         {% else %}
-                                            {% if order_details.paystatus.name != 'Paid' %}
+                                            {% if order_details.paystatus.name == 'Paid' %}
                                             <div class="col-sm-4 col-xs-12">
                                                 <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
