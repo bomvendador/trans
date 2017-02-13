@@ -375,26 +375,24 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">{% if user_profile.role.role_name == 'Клиент' %}Сумма к оплате{% else %}Сумма оплаты{% endif %}</h2>
-                                            <div class="input-group">
-                                                <div class="row">
-                                                    <div class="col-sm-2">
-                                                        <i class="mdi mdi-currency-rub font-24"></i>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-currency-rub font-24"></i>
+                                                </span>
+                                                <div class="col-sm-10">
+                                                    {% if user_profile.role.role_name == 'Клиент' %}
+                                                    <div class="form-line" id="order_price_div">
+                                                        <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
                                                     </div>
-                                                    <div class="col-sm-10">
-                                                        {% if user_profile.role.role_name == 'Клиент' %}
-                                                        <div class="form-line" id="order_price_div">
-                                                            <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
-                                                        </div>
-                                                        {% if order_details.paystatus.name == 'Paid' %}
-                                                        <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
-                                                        {% endif %}
-                                                        {% else %}
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
-                                                        </div>
+                                                    {% if order_details.paystatus.name == 'Paid' %}
+                                                    <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
+                                                    {% endif %}
+                                                    {% else %}
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
+                                                    </div>
 
-                                                        {% endif %}
-                                                    </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
 
