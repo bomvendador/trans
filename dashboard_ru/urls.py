@@ -82,6 +82,7 @@ urlpatterns = [
     url(r'^save_testimonial/$', views.save_testimonial, name='save_testimonial'),
     url(r'^testimonial/(?P<testimonial_id>\d+)/$', views.testimonial, name='testimonial'),
 
+    url(r'^save_company/$', views.save_company, name='save_company'),
     url(r'^companies_list/$', views.companies_list, name='companies_list'),
     url(r'^add_companiy/$', views.add_company, name='add_company'),
     url(r'^company/(?P<company_id>\d+)/$', views.company, name='company'),

@@ -1628,3 +1628,35 @@ def add_company(request):
 
     })
     return render(request, 'company_details.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def save_company(request):
+    if request.method == 'POST':
+        name = request.POST.get('name_company', None)
+        property_ = request.POST.get('property', None)
+        inn = request.POST.get('inn_company', None)
+        kpp = request.POST.get('kpp_company', None)
+        ogrn = request.POST.get('ogrn_company', None)
+        address = request.POST.get('address_company', None)
+        new = request.POST.get('new', None)
+        client_id = request.POST.get('client_id', None)
+        company_id = request.POST.get('company_id', None)
+        property_inst = Property.objects.get(name=property_)
+        if new == 'yes':
+            company_inst = Company()
+        else:
+            company_inst = Company.objects.get(id=company_id)
+        if client_id:
+            company_inst.user = User.objects.get(id=client_id)
+        else:
+            company_inst.user = request.user
+        company_inst.name = name
+        company_inst.property = property_inst
+        company_inst.inn = inn
+        company_inst.kpp = kpp
+        company_inst.ogrn = ogrn
+        company_inst.address = address
+        company_inst.save()
+        # if request.method == 'POST':
+        return HttpResponse('ok')

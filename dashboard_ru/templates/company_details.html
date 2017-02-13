@@ -49,7 +49,7 @@
                         <form action="" method="post" id="form_info">{% csrf_token %}
                             <div role="tabpanel" class="tab-pane fade in active" id="info">
                                 <div class="row clearfix">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 col-xs-12">
                                         <h2 class="card-inside-title">Название</h2>
 
                                         <div class="input-group">
@@ -64,10 +64,10 @@
 
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6  col-xs-12">
                                         <h2 class="card-inside-title">Форма собственности</h2>
 
-                                            <select class="form-control show-tick" id="properties" name="properties">
+                                            <select class="form-control show-tick" id="property" name="property">
                                                 <option value="">--  --</option>
                                                 {% for property in properties %}
                                                 <option value="property_{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
@@ -77,7 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="row clearfix">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-12">
                                     <h2 class="card-inside-title">ИНН</h2>
                                         <div class="input-group">
                                             <div class="form-line">
@@ -86,7 +86,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-12">
                                     <h2 class="card-inside-title">КПП</h2>
                                         <div class="input-group">
                                             <div class="form-line">
@@ -95,7 +95,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-xs-12">
                                     <h2 class="card-inside-title">ОГРН</h2>
                                         <div class="input-group">
                                             <div class="form-line">
@@ -107,7 +107,7 @@
                                 </div>
                                 <h2 class="card-inside-title">Адрес</h2>
                                 <div class="row clearfix">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12 col-xs-12">
                                         <div class="input-group">
                                             <div class="form-line">
                                                 <textarea rows="4" class="form-control" placeholder="Адрес..." id="address_company" name="address_company">{% if not new %}{{ company.address }}{% endif %}</textarea>
@@ -157,7 +157,6 @@
     <script>
 
 
-{% if user_profile.role.role_name != 'Клиент' %}
 
     //отправка формы ИНФО
 
@@ -166,20 +165,15 @@
 
         var formdata = new FormData($('#form_info').get(0));
         {% if new %}
-        formdata.append('new_testimonial', 'yes');
+        formdata.append('new', 'yes');
         {% else %}
-        formdata.append('new_testimonial', 'no');
-        formdata.append('testimonial_id', {{ testimonial.id }});
+        formdata.append('new', 'no');
+        formdata.append('company_id', {{ company.id }});
 
         {% endif %}
-        if ($('#testimonial_approved').prop('checked')){
-            formdata.append('approved', '1');
-        }else {
-            formdata.append('approved', '0');
-        }
 
         $.ajax({
-            url: '{% url 'ru:dashboard_ru:save_testimonial' %}',
+            url: '{% url 'ru:dashboard_ru:save_company' %}',
             type: 'POST',
             data: formdata,
             processData: false,
@@ -192,7 +186,6 @@
                 });
             },
             success:function (data) {
-                console.log(data)
                 if (data == 'ok'){
                     swal({
                         title: 'Информация сохранена',
@@ -203,7 +196,7 @@
                     },
                     function (isConfirm) {
                         if (isConfirm){
-                                window.location.href = '/ru/dashbrd/testimonials_list/';
+                                window.location.href = '/ru/dashbrd/companies_list/';
 
                         }
                     });
@@ -236,7 +229,6 @@ $(document).ready(function () {
     $('#testimonial_approved').on('change', function () {
         show_save_info();
     });
-    {% endif %}
 
 });
 
