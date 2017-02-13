@@ -56,7 +56,7 @@
                                                 <i class="mdi mdi-account f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Имя" id="name_manager" name="name_manager" value="{{ testimonial.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_testimonial" name="name_testimonial" value="{{ testimonial.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                                 <i class="mdi mdi-tie f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Имя" id="name_manager" name="name_manager" value="{{ testimonial.company }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{{ testimonial.company }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                                 <i class="mdi mdi-comment-processing f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_doc_send" name="text_doc_send">{{ testimonial.text }}</textarea>
+                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_testimonial" name="text_testimonial">{{ testimonial.text }}</textarea>
                                             </div>
                                         </div>
 
@@ -101,8 +101,8 @@
                                             </span>
 
 
-                                            <input type="checkbox" id="md_checkbox_5" class="" {% if testimonial.is_approved %} checked {% endif %}/>
-                                            <label for="md_checkbox_5" style="height: 5px"></label>
+                                            <input type="checkbox" id="testimonial_approved" class="" {% if testimonial.is_approved %} checked {% endif %}/>
+                                            <label for="testimonial_approved" style="height: 5px"></label>
 
                                         </div>
 
@@ -161,182 +161,46 @@
 
     $('#save_info_btn').on('click', function () {
 
-            var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
-            var tel_exp = new RegExp(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)
 
-            var message_manager = '';
-            var email_err_manager = false;
-            var email_err_manager_msg = '';
-            var name_err_manager = false;
-            var name_err_manager_msg = '';
-            var tel_err_manager = false;
-            var tel_err_manager_msg = '';
-            //валидация email
-            if ($('#email_manager').val() != '') {
-                if (!email.test($('#email_manager').val())) {
-                    $('#email_doc_send').addClass('invalid');
-                    email_err_manager_msg = 'Проверьте правильность заполнения email<br/>';
-                    email_err_manager = true;
-                }
-            } else {
-                email_err_manager = true;
-                email_err_manager_msg = 'Введите email<br/>';
-{#                $('#email_doc_send').addClass('invalid');#}
-            }
-            //проверка имени
-            if ($('#name_manager').val() == ''){
-                name_err_manager = true;
-                name_err_manager_msg = 'Введите имя </br>';
-{#                $('#name_doc_send').addClass('invalid');#}
+        var formdata = new FormData($('#form_info').get(0));
+        formdata.append('new_testimonial', 'no');
+        formdata.append('testimonial_id', {{ testimonial.id }});
 
-            }
-            //проверка телефона
-            if ($('#tel_manager').val() == ''){
-                tel_err_manager = true;
-                tel_err_manager_msg = 'Введите номер телефона </br>';
-{#                $('#tel_doc_send').addClass('invalid');#}
-
-            }else {
-                if (!tel_exp.test($('#tel_manager').val())) {
-{#                    $('#tel_doc_send').addClass('invalid');#}
-                    tel_err_manager_msg = 'Проверьте правильность номера телефона<br/>';
-                    tel_err_manager = true;
-                }
-            }
-{#            //проверка файла#}
-{#            if ($('#text_doc_send').val() == '' && $('#fileList li').length == 0){#}
-{#                file_err_doc_send = true;#}
-{#                file_err_doc_send_msg = 'Добавьте текст или файл';#}
-{#                $('#text_doc_send').addClass('invalid');#}
-{##}
-{#            }#}
-
-
-            if(email_err_manager || name_err_manager || tel_err_manager) {
-                    message_manager = name_err_manager_msg + email_err_manager_msg + tel_err_manager_msg;
-                swal({
-                    html: true,
-                    title: 'Ошибка',
-                    text: message_manager,
-                    type: 'warning'
-                });
-
-
-            }else {
-{#                var i = 0;#}
-{#                var langs_item = {};#}
-                var formdata = new FormData($('#form_info').get(0));
-{#                $('#language_select li').each(function () {#}
-{#                    i += 1;#}
-{#                    langs_item[ $(this).attr('value') ] = $(this).attr('value');#}
-{#                    console.log(langs_item[ $(this).attr('value') ]);#}
-{#                    formdata.append('lang_' + i, $(this).attr('value'))#}
-{#                });#}
-                formdata.append('new_manager', 'yes');
-
-                $.ajax({
-                    url: '{% url 'ru:dashboard_ru:save_manager_new' %}',
-                    type: 'POST',
-                    data: formdata,
-                    processData: false,
-                    contentType: false,
-                    error: function(data){
-                        swal({
-                            title: 'Ошибка сервера',
-                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                            type: 'error'
-                        });
-                    },
-                    success:function (data) {
-                        console.log(data)
-                        if (data == 'user exists'){
-                            swal({
-                                title: 'Ошибка',
-                                text: 'Менеджер с указанным e-mail уже существует. E-mail должен быть уникальным',
-                                type: 'error',
-                                confirmButtonText: 'Ok'
-                            })
-
-                        }else {
-                            swal({
-                                title: 'Информация сохранена',
-                                text: 'Данные на сервере успешно обновлены',
-                                type: 'success',
-                                confirmButtonText: 'Ok',
-                                closeOnConfirm: false
-                            },
-                            function (isConfirm) {
-                                if (isConfirm){
-                                    window.location.href = '/ru/dashbrd/manager_details/' + data;
-
-                                }
-                            });
-
-                        }
-                    }
-                });
-
-            }
-
-
-
-
-
-
-    });
-
-
-
-
-
-
-    //загрузка фото
-    $('#foto').on('mouseover', function () {
-        $('#upload_foto').fadeIn('fast');
-
-        {% if manager.photo.name %}
-        $('#foto').on('mouseleave', function () {
-            $('#upload_foto').fadeOut('fast');
-        });
-        {% endif %}
-    });
-
-    $('#upload_icon').on('click', function () {
-            swal({
-                title: 'Загрузка не возможна',
-                text: 'После заполнения полей: Имя, Телефон, Email и сохранения данных возможность добавления фотографии будет открыта',
-                type: 'error'
-            });
-
-    });
-
-    $('#manager_foto').on('change', function () {
-        var data = new FormData();
-        data.append('photo', $('#manager_foto').prop('files')[0]);
         $.ajax({
-{#            url: '{% url 'ru:dashboard_ru:save_manager_photo' translator.id %}',#}
+            url: '{% url 'ru:dashboard_ru:save_manager_new' %}',
             type: 'POST',
-            data: data,
+            data: formdata,
             processData: false,
             contentType: false,
             error: function(data){
                 swal({
                     title: 'Ошибка сервера',
-                    text: 'Возникла ошибка при сожранении. Попробуйте позже.',
-                    type: 'warning'
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'error'
                 });
             },
             success:function (data) {
-                $('#foto').css('background-image', 'url("/static/photo/' + data +'")')
-                $('#upload_foto').fadeOut('fast');
-                $('#foto').on('mouseleave', function () {
-                    $('#upload_foto').fadeOut('fast');
-                });
+                console.log(data)
+                if (data == 'ok'){
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Данные на сервере успешно обновлены',
+                        type: 'success',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: false
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+{#                                window.location.href = '/ru/dashbrd/manager_details/' + data;#}
+
+                        }
+                    });
+
+                }
             }
         });
 
     });
-    //загрузка фото конец
 
 $(document).ready(function () {
 
@@ -346,61 +210,16 @@ $(document).ready(function () {
         $('#btn_save_info').fadeIn('slow');
 
     }
-    $('#name_manager').on('input', function () {
+    $('#name_testimonial').on('input', function () {
         show_save_info();
     });
 
-    $('#email_manager').on('input', function () {
+    $('#text_testimonial').on('input', function () {
         show_save_info();
     });
 
-    $('#tel_manager').on('input', function () {
+    $('#company_testimonial').on('input', function () {
         show_save_info();
-    });
-
-
-
-
-        //обработка добавления и удаления языка
-        var first_time = false;
-        var str = '';
-        var item = '';
-    $('#language').on('change', function () {
-
-        show_save_info();
-    {#    e.stopPropagation();#}
-       $('#language_select').append('<li class="list-group-item" style="" value="' + $(this).val() + '">' + $(this).val() + '<i class="mdi mdi-close float-right pointer-pure del-lang" data-toggle="tooltip" title="" data-placement="left" data-original-title=""></i></li>');
-        str = $(this).val();
-
-    {#    $('#language li:last').show();#}
-        $('#language option').each(function () {
-            if ($(this).val() == str){
-                $(this).remove();
-                $('#language').selectpicker('refresh');
-            }
-        });
-    {#    $('[data-toggle="tooltip"]').tooltip({#}
-    {#        trigger: 'hover'#}
-    {#    });#}
-
-        $('.del-lang').on('click', function () {
-
-            console.log($(this).closest('li').text());
-            item = $(this).closest('li').text();
-            $(this).parent().remove();
-            $('#language').append('<option value="' + item + '">' + item + '</option>');
-
-            var options = $("#language option");                    // Collect options
-            options.detach().sort(function(a,b) {               // Detach from select, then Sort
-                var at = $(a).text();
-                var bt = $(b).text();
-                return (at > bt)?1:((at < bt)?-1:0);            // Tell the sort function how to order
-            });
-            options.appendTo("#language");
-            $('#language').val(1);
-            $('#language').selectpicker('refresh');
-        });
-
     });
 
     {% endif %}

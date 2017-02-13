@@ -1543,5 +1543,26 @@ def testimonial(request, testimonial_id):
     context.update({
         'testimonial': testimonial_
     })
-    # if request.method == 'POST':
     return render(request, 'testimonial_details.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def save_testimonial(request):
+    if request.method == 'POST':
+        name = request.POST.get('name_testimonial', None)
+        company = request.POST.get('company_testimonial', None)
+        text = request.POST.get('text_testimonial', None)
+        approved = request.POST.get('testimonial_approved', None)
+        logger.debug('appr = ' + str(approved))
+        new_testimonial = request.POST.get('new_testimonial', None)
+        testimonial_id = request.POST.get('testimonial_id', None)
+        if new_testimonial:
+            testimonial_inst = Testimonials()
+        else:
+            testimonial_inst = Testimonials.objects.get(id=testimonial_id)
+
+        testimonial_inst.name = name
+        testimonial_inst.company = company
+        testimonial_inst.text = text
+        # if request.method == 'POST':
+        return HttpResponse('ok')
