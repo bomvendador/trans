@@ -145,8 +145,8 @@ class Client(models.Model):
 
 
 class Property(models.Model):
-    name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    short_name = models.CharField(max_length=100, null=True, blank=True)
 
 
 class Company(models.Model):
