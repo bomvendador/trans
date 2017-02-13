@@ -445,12 +445,14 @@
 {#                                    {% if user_profile.role.role_name != 'Клиент' %}#}
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
-                                                <select class="form-control show-tick" id="company" name="company">
-                                                    <option value="">--  --</option>
-                                                    {% for company in companies %}
-                                                    <option value="{{ company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
-                                                    {% endfor %}
-                                                </select>
+                                            <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
+
+                                            <select class="form-control show-tick" id="company" name="company">
+                                                <option value="">--  --</option>
+                                                {% for company in companies %}
+                                                <option value="{{ company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
+                                                {% endfor %}
+                                            </select>
 
 
                                         </div>
