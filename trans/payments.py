@@ -7,6 +7,7 @@ from django.contrib import messages, sessions
 from ru.models import SentDoc, PayStatus, PayMethod
 from django.contrib.auth.decorators import login_required
 import json
+from dashboard_ru import views as dashboard_views
 
 
 @csrf_exempt
@@ -22,6 +23,13 @@ def payment_success(request):
         order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
         order.save()
+        email_context = {
+            'manager': order.resp.first_name,
+            'order': order
+        }
+        # TODO изменить почту достваки
+        dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', 'orders@prolingva.ru', email_context)
+        # dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', order.user.email, email_context)
 
         # request.ses
 
