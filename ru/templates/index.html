@@ -433,7 +433,7 @@
                                 <div class="cd-author">
                                     <ul class="cd-author-info">
                                         <li>{{ testimonial.name }}</li>
-                                        <li>{{ testimonial.company }}</li>
+                                        <li>{% if testimonial.company %}{{ testimonial.company }}{% else %}Частное лицо{% endif %}</li>
                                     </ul>
                                 </div> <!-- cd-author -->
                             </li>
