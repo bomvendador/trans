@@ -192,7 +192,11 @@ def get_sent_docs(request):
     context = {}
     new_count = 0
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
-        logger.debug('logger')
+        new_testimonials = Testimonials.objects.filter(new=True).count()
+        context.update({
+            'new_testimonials': new_testimonials
+        })
+
         new_calls_count = BackCall.objects.filter(new=True).count()
         context.update({
             'new_calls_count': new_calls_count
