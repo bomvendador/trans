@@ -1556,7 +1556,7 @@ def save_testimonial(request):
         logger.debug('appr = ' + str(approved))
         new_testimonial = request.POST.get('new_testimonial', None)
         testimonial_id = request.POST.get('testimonial_id', None)
-        if new_testimonial:
+        if new_testimonial == 'yes':
             testimonial_inst = Testimonials()
         else:
             testimonial_inst = Testimonials.objects.get(id=testimonial_id)
