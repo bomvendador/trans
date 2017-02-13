@@ -569,3 +569,7 @@ ul{
 .padding-left-0{
     padding-left: 0px!important;
 }
+
+.hover-white :hover{
+    color: white;
+}
