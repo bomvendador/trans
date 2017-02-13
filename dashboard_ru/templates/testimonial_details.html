@@ -161,8 +161,9 @@
         formdata.append('new_testimonial', 'yes');
         {% else %}
         formdata.append('new_testimonial', 'no');
-        {% endif %}
         formdata.append('testimonial_id', {{ testimonial.id }});
+
+        {% endif %}
         if ($('#testimonial_approved').prop('checked')){
             formdata.append('approved', '1');
         }else {
