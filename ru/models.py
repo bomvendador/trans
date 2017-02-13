@@ -144,6 +144,20 @@ class Client(models.Model):
     visited_times = models.IntegerField(default=0)
 
 
+class Property(models.Model):
+    name = models.CharField(max_length=100)
+
+
+class Company(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True)
+    name = models.CharField(max_length=100)
+    property = models.ForeignKey(Property, null=True, blank=True)
+    inn = models.IntegerField(max_length=20)
+    kpp = models.IntegerField(max_length=20)
+    address = models.CharField(max_length=100)
+    ogrn = models.IntegerField(max_length=20)
+
+
 class SentDoc (models.Model):
     user = models.ForeignKey(User, blank=True, null=True, related_name='user')
     name = models.CharField(max_length=50, blank=True, null=True)
@@ -180,6 +194,7 @@ class SentDoc (models.Model):
     translation_theme = models.ForeignKey(TranslationTheme, blank=True, null=True)
     just_paid = models.BooleanField(default=False)
     payment_failure = models.BooleanField(default=False)
+    company = models.ForeignKey(Company, null=True, blank=True)
 
 
 class BackCall(models.Model):
