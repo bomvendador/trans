@@ -426,16 +426,18 @@
             <div class="cd-testimonials-all-wrapper" style="background: #39393C">
                 <ul>
                     {% for testimonial in testimonials %}
-                    <li class="cd-testimonials-item">
-                        <p>{{ testimonial.text }}</p>
+                        {% if testimonial.is_approved %}
+                            <li class="cd-testimonials-item">
+                                <p>{{ testimonial.text }}</p>
 
-                        <div class="cd-author">
-                            <ul class="cd-author-info">
-                                <li>{{ testimonial.name }}</li>
-                                <li>{{ testimonial.company }}</li>
-                            </ul>
-                        </div> <!-- cd-author -->
-                    </li>
+                                <div class="cd-author">
+                                    <ul class="cd-author-info">
+                                        <li>{{ testimonial.name }}</li>
+                                        <li>{{ testimonial.company }}</li>
+                                    </ul>
+                                </div> <!-- cd-author -->
+                            </li>
+                        {% endif %}
                     {% endfor %}
 {##}
 {#                    <li class="cd-testimonials-item">#}
