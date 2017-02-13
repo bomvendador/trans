@@ -1634,8 +1634,7 @@ def add_company(request):
 def save_company(request):
     if request.method == 'POST':
         name = request.POST.get('name_company', None)
-        property_ = request.POST.get('property', None)
-        logger.debug('property = ' + str(property_))
+        property_id = request.POST.get('property', None)
         inn = request.POST.get('inn_company', None)
         kpp = request.POST.get('kpp_company', None)
         ogrn = request.POST.get('ogrn_company', None)
@@ -1643,7 +1642,7 @@ def save_company(request):
         new = request.POST.get('new', None)
         client_id = request.POST.get('client_id', None)
         company_id = request.POST.get('company_id', None)
-        property_inst = Property.objects.get(name=property_)
+        property_inst = Property.objects.get(id=property_id)
         if new == 'yes':
             company_inst = Company()
         else:

@@ -70,7 +70,7 @@
                                             <select class="form-control show-tick" id="property" name="property">
                                                 <option value="">--  --</option>
                                                 {% for property in properties %}
-                                                <option value="property_{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
+                                                <option value="{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
                                                 {% endfor %}
                                             </select>
 
