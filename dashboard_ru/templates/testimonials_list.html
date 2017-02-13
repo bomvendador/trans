@@ -83,8 +83,9 @@
                                         </td>
                                         <td>{{ testimonial.name }}</td>
                                         <td>{{ testimonial.text }}</td>
-                                        <td><form>
-                                            <input type="checkbox" id="md_checkbox_5" class="" {% if testimonial.is_approved %} checked {% endif %}/></form>
+                                        <td>
+                                            <input type="checkbox" id="md_checkbox_5" class="" {% if testimonial.is_approved %} checked {% endif %}/>
+                                            <label for="md_checkbox_5">INDIGO</label>
                                         </td>
 
                                     </tr>
