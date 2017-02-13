@@ -78,5 +78,6 @@ urlpatterns = [
     # url(r'^reg/$', views.reg_user, name='reg_user'),
 
     url(r'^testimonials_list/$', ru_views.get_testimonials_list, name='testimonials_list'),
+    url(r'^testimonial/(?P<testimonial_id>\d+)/$', views.testimonial, name='testimonial'),
 
 ]

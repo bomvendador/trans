@@ -77,7 +77,7 @@
                                 <tbody>
                                 {% for testimonial in testimonials %}
 
-                                    <tr class="admin pointer-pure" id="{{ testimonial.id }}">
+                                    <tr class="testimonial pointer-pure" id="{{ testimonial.id }}">
                                         <td>
                                             {{ testimonial.id }}
                                         </td>
@@ -130,8 +130,8 @@
     $('#menu_users').addClass('toggled');
 
 
-    $('.admin').on('click', function () {
-        window.location.href = "/ru/dashbrd/client_details/" + $(this).attr('id');
+    $('.testimonial').on('click', function () {
+        window.location.href = "/ru/dashbrd/testimonial/" + $(this).attr('id');
     })
 
 

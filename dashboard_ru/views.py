@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments
+    PayStatus, BackCall, BackCallComments, Testimonials
 
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
@@ -1534,3 +1534,14 @@ def send_trans_files_to_client(request):
         # logger.debug('id = ' + str(order_id))
         # logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
         return HttpResponse(order.translation_sent_date.strftime("%d.%m.%Y, %H:%M"))
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def testimonial(request, testimonial_id):
+    context = get_data_proc(request)
+    testimonial_ = Testimonials.objects.get(id=testimonial_id)
+    context.update({
+        'testimonial': testimonial_
+    })
+    # if request.method == 'POST':
+    return render(request, 'testimonial_details.html', context)
