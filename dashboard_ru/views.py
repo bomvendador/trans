@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property
 
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
@@ -1600,8 +1600,21 @@ def companies_list(request):
     if user_profile.role.role_name == u'Клиент':
         companies = Company.objects.filter(user=request.user)
     context.update({
-        'companies': companies
+        'companies': companies,
     })
     return render(request, 'companies_list.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def company(request, company_id):
+    context = get_data_proc(request)
+    company_ = Company.objects.get(id=company_id)
+    properties = Property.objects.all()
+    context.update({
+        'company': company_,
+        'properties': properties
+    })
+    return render(request, 'company_details.html', context)
+
 
 

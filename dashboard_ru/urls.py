@@ -83,5 +83,6 @@ urlpatterns = [
     url(r'^testimonial/(?P<testimonial_id>\d+)/$', views.testimonial, name='testimonial'),
 
     url(r'^companies_list/$', views.companies_list, name='companies_list'),
+    url(r'^company/(?P<company_id>\d+)/$', views.company, name='company'),
 
 ]

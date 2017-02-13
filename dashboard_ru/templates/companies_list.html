@@ -62,7 +62,7 @@
                                         <td>
                                             {{ company.id }}
                                         </td>
-                                        <td>{{ company.short_name }} "{{ company.name }}"</td>
+                                        <td>{{ company.property.short_name }} "{{ company.name }}"</td>
                                         <td>{{ testimonial.text }}</td>
 
                                     </tr>
@@ -101,11 +101,11 @@
     $('#menu_list li a').each(function () {
         $(this).remove('toggled');
     });
-    $('#menu_testimonials').addClass('active');
+    $('#menu_companies').addClass('active');
 
 
-    $('.testimonial').on('click', function () {
-        window.location.href = "/ru/dashbrd/testimonial/" + $(this).attr('id');
+    $('.company').on('click', function () {
+        window.location.href = "/ru/dashbrd/company/" + $(this).attr('id');
     })
 
 

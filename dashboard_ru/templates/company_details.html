@@ -1,0 +1,249 @@
+{% extends 'base_board.html' %}
+{% load static %}
+
+{% block links %}
+    <link href="{% static 'dashboard/plugins/multi-select/css/multi-select.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tokenize2.min.css' %}" rel="stylesheet" />
+{#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
+    <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ol class="breadcrumb">
+        <li>
+            <a href="{% url 'ru:dashboard_ru:base_board' user.id %}">
+                <i class="mdi mdi-home f_s_15"></i> Домой
+            </a>
+        </li>
+        <li class="active">
+            <a href="{% url 'ru:dashboard_ru:testimonials_list' %}">
+                <i class="mdi mdi-account-multiple f_s_15"></i> Юр. лица
+            </a>
+        </li>
+        <li class="active">
+            <i class="mdi mdi-account-plus f_s_15"></i> {% if new %}Добавление юр. лица{% else %}{{ company.property.short_name }} "{{ company.name }}"{% endif %}
+        </li>
+    </ol>
+
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="card">
+        <div class="header bg-cyan">
+            <h2>
+                {% if new %}Добавление юр. лица{% else %}{{ company.property.short_name }} "{{ company.name }}"{% endif %}
+            </h2>
+        </div>
+            <div class="body">
+
+                <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                    <li role="presentation" class="active"><a href="#info" data-toggle="tab">ИНФО <span class="label-count background-transparent none" id="info_label"><i class="mdi mdi-content-save"></i></span></a></li>
+                </ul>
+                    <div class="tab-content padding-top-30">
+                        <form action="" method="post" id="form_info">{% csrf_token %}
+                            <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                <div class="row clearfix">
+                                    <div class="col-md-6">
+                                        <h2 class="card-inside-title">Форма собственности</h2>
+
+                                            <select class="form-control show-tick" id="properties" name="properties">
+                                                <option value="">--  --</option>
+                                                {% for property in properties %}
+                                                <option value="property_{{ property.id }}" {% if comp == translator.id %} selected {% endif %}{% if user_profile.role.role_name == 'Клиент' %} disabled {% endif %}>{{ translator.id }}. {{ translator.name }}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2 class="card-inside-title">Имя</h2>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-account f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_testimonial" name="name_testimonial" value="{% if not new %}{{ testimonial.name }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <h2 class="card-inside-title">Компания</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-tie f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{% if not new %}{{ testimonial.company }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <h2 class="card-inside-title">Текст</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-comment-processing f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_testimonial" name="text_testimonial">{% if not new %}{{ testimonial.text }}{% endif %}</textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <h2 class="card-inside-title">Одобрено</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-check-circle f_s_20"></i>
+                                            </span>
+
+
+                                            <input type="checkbox" id="testimonial_approved" class="" {% if not new %}{% if testimonial.is_approved %} checked {% endif %}{% endif %}/>
+                                            <label for="testimonial_approved" style="height: 5px"></label>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                    <div class="row clearfix">
+                                        <div class="body">
+
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
+                                        </div>
+
+                                    </div>
+                            </div>
+{#                            <input name="new_manager" value="yes" class="none"/>#}
+
+{#                            <input name="testimonial_id" value="{{ testimonial.id }}" class="none"/>#}
+
+                        </form>
+
+                    </div>
+
+
+            </div>
+
+    </div>
+{% endblock %}
+
+{% block script %}
+
+    <script src="{% static 'js/mdl_file.js' %}"></script>
+{#    <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/multi-select/js/jquery.multi-select.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/dropzone/dropzone.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/jquery-inputmask/jquery.inputmask.bundle.js' %}"></script>#}
+{#    <script src="{% static 'dashboard/plugins/nouislider/nouislider.js' %}"></script>#}
+    <script src="{% static 'js/moment_ru.js' %}"></script>
+    <script src="{% static 'js/tokenize2.min.js' %}"></script>
+
+
+{#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
+    <script>
+
+
+{% if user_profile.role.role_name != 'Клиент' %}
+
+    //отправка формы ИНФО
+
+    $('#save_info_btn').on('click', function () {
+
+
+        var formdata = new FormData($('#form_info').get(0));
+        {% if new %}
+        formdata.append('new_testimonial', 'yes');
+        {% else %}
+        formdata.append('new_testimonial', 'no');
+        formdata.append('testimonial_id', {{ testimonial.id }});
+
+        {% endif %}
+        if ($('#testimonial_approved').prop('checked')){
+            formdata.append('approved', '1');
+        }else {
+            formdata.append('approved', '0');
+        }
+
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:save_testimonial' %}',
+            type: 'POST',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'error'
+                });
+            },
+            success:function (data) {
+                console.log(data)
+                if (data == 'ok'){
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Данные на сервере успешно обновлены',
+                        type: 'success',
+                        confirmButtonText: 'Ok',
+                        closeOnConfirm: false
+                    },
+                    function (isConfirm) {
+                        if (isConfirm){
+                                window.location.href = '/ru/dashbrd/testimonials_list/';
+
+                        }
+                    });
+
+                }
+            }
+        });
+
+    });
+
+$(document).ready(function () {
+
+    //отображение кнопки сохранения при изменениях
+    function show_save_info() {
+        $('#info_label').fadeIn('slow');
+        $('#btn_save_info').fadeIn('slow');
+
+    }
+    $('#name_testimonial').on('input', function () {
+        show_save_info();
+    });
+
+    $('#text_testimonial').on('input', function () {
+        show_save_info();
+    });
+
+    $('#company_testimonial').on('input', function () {
+        show_save_info();
+    });
+    $('#testimonial_approved').on('change', function () {
+        show_save_info();
+    });
+    {% endif %}
+
+});
+
+    </script>
+
+{% endblock %}
