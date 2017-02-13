@@ -1620,7 +1620,11 @@ def company(request, company_id):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def add_company(request):
     context = get_data_proc(request)
+    properties = Property.objects.all()
+
     context.update({
-        'new': 1
+        'new': 1,
+        'properties': properties
+
     })
     return render(request, 'company_details.html', context)
