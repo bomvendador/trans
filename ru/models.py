@@ -10,6 +10,7 @@ class Testimonials(models.Model):
     name = models.CharField(max_length=50)
     company = models.CharField(max_length=50)
     is_approved = models.BooleanField(default=False)
+    new = models.BooleanField(default=True)
 
 
 class Language (models.Model):
