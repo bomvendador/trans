@@ -487,7 +487,7 @@
                                                     </div>
     {#                                               <button type="button" class="btn bg-green btn-block btn-lg waves-effect" id="pay_order_btn">ОПЛАТИТЬ</button>#}
                                                 </div>
-                                                <div class=" btn btn-primary btn-block btn-lg waves-effect text-align-left row margin-left-0 font-size-15" id="pay_order_btn" style="padding: 0 0">
+                                                <div class=" btn btn-primary btn-block btn-lg waves-effect text-align-left row margin-left-0 font-size-15" id="pay_order_btn" style="padding: 0 0" data-toggle="modal" data-target="#companies_list_modal">
                                                     <div class="col-sm-2 margin-bottom-0 hidden-xs" >
                                                         <i class="mdi mdi-note-outline font-size-40 margin-left-15"></i>
                                                     </div>
@@ -519,6 +519,66 @@
                                 <input name="LMI_SIM_MODE" value="0">
                                 <input name="LMI_PAYMENT_DESC" value="Оплата услуг по переводу">
                             </form>
+
+                            <!-- Default Size modal список существующих клиентов-->
+                                <div class="modal fade" id="companies_list_modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="defaultModalLabel">Выберите клиента</h4>
+                                            </div>
+                                            <div class="modal-body">
+                    {#                            {% for client in clients %}#}
+                                                <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Имя</th>
+                                                            <th>Телефон</th>
+                                                            <th>Email</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                            <th>ID</th>
+                                                            <th>Имя</th>
+                                                            <th>Телефон</th>
+                                                            <th>Email</th>
+
+                                                    </tfoot>
+                                                    <tbody>
+                                                    {% for client in clients %}
+
+                                                        <tr class="client_existing pointer-pure" id="{{ client.id }}">
+                                                            <td>
+                                                                {{ client.id }}
+                                                            </td>
+                                                            <td>{{ client.name }}</td>
+                                                            <td>{{ client.tel }}</td>
+                                                            <td>{{ client.email }}</td>
+
+                                                        </tr>
+
+                                                    {% endfor %}
+
+                                                    </tbody>
+                                                </table>
+
+
+
+
+                    {#                                {{ client.name }}#}
+                    {#                            {% endfor %}#}
+                                            </div>
+                                            <div class="modal-footer">
+                    {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
+                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- modal end-->
+
+
 
 
     <!-- перевод -->
