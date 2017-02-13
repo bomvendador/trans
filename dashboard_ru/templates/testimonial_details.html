@@ -71,7 +71,7 @@
                                                 <i class="mdi mdi-tie f_s_20"></i>
                                             </span>
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{% if not new %}{{ testimonial.company }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="Компания" id="company_testimonial" name="company_testimonial" value="{% if not new %}{% if testimonial.company %}{{ testimonial.company }}{% else %}Частное лицо{% endif %}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                             </div>
                                         </div>
