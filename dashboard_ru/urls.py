@@ -82,4 +82,6 @@ urlpatterns = [
     url(r'^save_testimonial/$', views.save_testimonial, name='save_testimonial'),
     url(r'^testimonial/(?P<testimonial_id>\d+)/$', views.testimonial, name='testimonial'),
 
+    url(r'^companies_list/$', views.companies_list, name='companies_list'),
+
 ]

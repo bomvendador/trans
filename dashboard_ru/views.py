@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials
+    PayStatus, BackCall, BackCallComments, Testimonials, Company
 
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
@@ -1591,3 +1591,17 @@ def add_testimonial(request):
         'new': 1
     })
     return render(request, 'testimonial_details.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def companies_list(request):
+    context = get_data_proc(request)
+    user_profile = UserProfile.objects.get(user=request.user)
+    if user_profile.role.role_name == u'Клиент':
+        companies = Company.objects.filter(user=request.user)
+    context.update({
+        'companies': companies
+    })
+    return render(request, 'companies_list.html', context)
+
+
