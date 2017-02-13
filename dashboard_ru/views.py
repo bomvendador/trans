@@ -433,12 +433,13 @@ def update_client_statistics(user):
 def order_details(request, order_id):
     user = User.objects.get(id=request.user.id)
     user_profile = UserProfile.objects.get(user=user)
-    context = get_user_userprofile(request)
+    # context = get_user_userprofile(request)
     context = get_data_proc(request)
     new_count = 0
     order_det = SentDoc.objects.get(id=order_id)
     translation_files = TranslationFiles.objects.filter(order=order_det)
     comments = OrderComments.objects.filter(order=order_det)
+    companies = Company.objects.filter(user=order_det.user)
 
     msgs = get_messages(request)
     # order_id_msg = None
@@ -495,7 +496,8 @@ def order_details(request, order_id):
         'comments': comments,
         'user_role': user_role,
         'trans_themes': TranslationTheme.objects.all(),
-        'trans_types': TranslationType.objects.all()
+        'trans_types': TranslationType.objects.all(),
+        'companies': companies
     })
     return render(request, 'order_details.html', context)
 
