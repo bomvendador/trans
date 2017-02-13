@@ -165,6 +165,11 @@
         var formdata = new FormData($('#form_info').get(0));
         formdata.append('new_testimonial', 'no');
         formdata.append('testimonial_id', {{ testimonial.id }});
+        if ($('#testimonial_approved').prop('checked')){
+            formdata.append('approved', '1');
+        }else {
+            formdata.append('approved', '0');
+        }
 
         $.ajax({
             url: '{% url 'ru:dashboard_ru:save_testimonial' %}',

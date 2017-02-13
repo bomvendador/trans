@@ -1552,7 +1552,7 @@ def save_testimonial(request):
         name = request.POST.get('name_testimonial', None)
         company = request.POST.get('company_testimonial', None)
         text = request.POST.get('text_testimonial', None)
-        approved = request.POST.get('testimonial_approved', None)
+        approved = request.POST.get('approved', None)
         logger.debug('appr = ' + str(approved))
         new_testimonial = request.POST.get('new_testimonial', None)
         testimonial_id = request.POST.get('testimonial_id', None)
@@ -1560,9 +1560,13 @@ def save_testimonial(request):
             testimonial_inst = Testimonials()
         else:
             testimonial_inst = Testimonials.objects.get(id=testimonial_id)
-
+        if approved == '1':
+            testimonial_inst.is_approved = True
+        else:
+            testimonial_inst.is_approved = False
         testimonial_inst.name = name
         testimonial_inst.company = company
         testimonial_inst.text = text
+        testimonial_inst.save()
         # if request.method == 'POST':
         return HttpResponse('ok')
