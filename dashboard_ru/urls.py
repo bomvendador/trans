@@ -2,6 +2,7 @@ from django.conf.urls import url
 from django.contrib import admin
 from . import views
 from trans import payments
+from ru import views as ru_views
 
 app_name = 'dashboard_ru'
 
@@ -76,5 +77,6 @@ urlpatterns = [
     # url(r'^ckusr/$', views.check_user, name='check_user'),
     # url(r'^reg/$', views.reg_user, name='reg_user'),
 
+    url(r'^testimonials_list/$', ru_views.get_testimonials_list, name='testimonials_list'),
 
 ]

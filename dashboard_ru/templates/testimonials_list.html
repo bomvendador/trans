@@ -16,7 +16,7 @@
             </a>
         </li>
         <li class="active">
-            <i class="mdi mdi-account-multiple f_s_15"></i> Клиенты
+            <i class="mdi mdi-comment-account f_s_15"></i> Отзывы
         </li>
     </ol>
 
@@ -45,7 +45,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                СПИСОК КЛИЕНТОВ
+                                ОТЗЫВЫ
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -53,7 +53,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="{% url 'ru:dashboard_ru:save_client_new' %}">Добавить клиента</a></li>
+                                        <li><a href="{% url 'ru:dashboard_ru:save_client_new' %}">Добавить отзыв</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -64,29 +64,28 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Имя</th>
-                                        <th>Телефон</th>
-                                        <th>Email</th>
-                                        <th>Заявки(в работе/оплаченные/выполненные)</th>
+                                        <th>Текст</th>
+                                        <th>Одобрено</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                         <th>ID</th>
                                         <th>Имя</th>
-                                        <th>Телефон</th>
-                                        <th>Email</th>
-                                        <th>Заявки(в работе/оплаченные/выполненные)</th>
+                                        <th>Текст</th>
+                                        <th>Одобрено</th>
                                 </tfoot>
                                 <tbody>
-                                {% for client in clients %}
+                                {% for testimonial in testimonials %}
 
-                                    <tr class="admin pointer-pure" id="{{ client.id }}">
+                                    <tr class="admin pointer-pure" id="{{ testimonial.id }}">
                                         <td>
-                                            {{ client.id }}
+                                            {{ testimonial.id }}
                                         </td>
-                                        <td>{{ client.name }}</td>
-                                        <td>{{ client.tel }}</td>
-                                        <td>{{ client.email }}</td>
-                                        <td>{{ client.orders_in_progress }}/{{ client.orders_paid }}/{{ client.orders_complete }}</td>
+                                        <td>{{ testimonial.name }}</td>
+                                        <td>{{ testimonial.text }}</td>
+                                        <td>
+                                            <input type="checkbox" id="md_checkbox_5" class="chk-col-indigo" {% if testimonial.is_approved %}checked="" {% endif %} disabled>
+                                        </td>
 
                                     </tr>
 
