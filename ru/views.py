@@ -62,6 +62,7 @@ class IndexView (generic.TemplateView):
                    'password': self.request.POST.get('password'),
                    'langs': Language.objects.all().order_by('name'),
                    'user_profile': user_profile,
+                   'testimonials': Testimonials.objects.all()
                    }
         # print(self.request.POST.get('login'))
         return context
