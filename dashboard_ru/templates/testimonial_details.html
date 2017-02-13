@@ -50,19 +50,33 @@
                             <div role="tabpanel" class="tab-pane fade in active" id="info">
                                 <h2 class="card-inside-title">Имя</h2>
                                 <div class="row clearfix">
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-account f_s_20"></i>
-                                                </span>
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" placeholder="Имя" id="name_manager" name="name_manager" value="{{ testimonial.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-account f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <input type="text" class="form-control" placeholder="Имя" id="name_manager" name="name_manager" value="{{ testimonial.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
-                                                </div>
                                             </div>
-
                                         </div>
+
                                     </div>
+                                </div>
+                                <h2 class="card-inside-title">Текст</h2>
+                                <div class="row clearfix">
+                                    <div class="col-md-12">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-comment-processing f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <textarea rows="4" class="form-control" placeholder="Текст ..." id="text_doc_send" name="text_doc_send">{{ testimonial.text }}</textarea>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                                     <div class="row clearfix">
                                         <div class="body">
 
