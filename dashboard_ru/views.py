@@ -1635,6 +1635,7 @@ def save_company(request):
     if request.method == 'POST':
         name = request.POST.get('name_company', None)
         property_ = request.POST.get('property', None)
+        logger.debug('property = ' + str(property_))
         inn = request.POST.get('inn_company', None)
         kpp = request.POST.get('kpp_company', None)
         ogrn = request.POST.get('ogrn_company', None)
