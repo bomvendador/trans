@@ -1571,9 +1571,9 @@ def save_testimonial(request):
         try:
             userprofile = UserProfile.objects.get(user=request.user)
             if userprofile.role.role_name != u'Суперадмин' or userprofile.role.role_name != u'Админ':
-                testimonial_inst.new = True
-            else:
                 testimonial_inst.new = False
+            else:
+                testimonial_inst.new = True
         except UserProfile.DoesNotExist:
             testimonial_inst.new = True
         testimonial_inst.name = name
