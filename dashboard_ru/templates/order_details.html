@@ -529,32 +529,28 @@
                                             </div>
                                             <div class="modal-body">
                     {#                            {% for client in clients %}#}
-                                                <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                                                <table class="table table-hover">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th>Имя</th>
-                                                            <th>Телефон</th>
-                                                            <th>Email</th>
+                                                            <th>Название</th>
+                                                            <th>ИНН</th>
                                                         </tr>
                                                     </thead>
-                                                    <tfoot>
-                                                            <th>ID</th>
-                                                            <th>Имя</th>
-                                                            <th>Телефон</th>
-                                                            <th>Email</th>
-
-                                                    </tfoot>
+{#                                                    <tfoot>#}
+{#                                                            <th>ID</th>#}
+{#                                                            <th>Имя</th>#}
+{#                                                            <th>Телефон</th>#}
+{#                                                            <th>Email</th>#}
+{##}
+{#                                                    </tfoot>#}
                                                     <tbody>
-                                                    {% for client in clients %}
+                                                    {% for company in companies %}
 
-                                                        <tr class="client_existing pointer-pure" id="{{ client.id }}">
+                                                        <tr class="client_existing pointer-pure" id="{{ company.id }}">
                                                             <td>
-                                                                {{ client.id }}
+                                                                {{ company.property.short_name }} "{{ company.name }}"
                                                             </td>
-                                                            <td>{{ client.name }}</td>
-                                                            <td>{{ client.tel }}</td>
-                                                            <td>{{ client.email }}</td>
+                                                            <td>{{ company.inn }}</td>
 
                                                         </tr>
 
