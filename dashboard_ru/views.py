@@ -61,6 +61,10 @@ def get_data_proc(request):
         # print('role ' + str(user_profile.role.id))
         if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
+            new_testimonials = Testimonials.objects.filter(new=True).count()
+            context.update({
+                'new_testimonials': new_testimonials
+            })
         else:
             new_count = 0
         if user_profile.role.role_name == u'Клиент':
@@ -1564,6 +1568,14 @@ def save_testimonial(request):
             testimonial_inst.is_approved = True
         else:
             testimonial_inst.is_approved = False
+        try:
+            userprofile = UserProfile.objects.get(user=request.user)
+            if userprofile.role.role_name != u'Суперадмин' or userprofile.role.role_name != u'Админ':
+                testimonial_inst.new = True
+            else:
+                testimonial_inst.new = False
+        except UserProfile.DoesNotExist:
+            testimonial_inst.new = True
         testimonial_inst.name = name
         testimonial_inst.company = company
         testimonial_inst.text = text
