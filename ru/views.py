@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall
+from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall, Testimonials
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -523,3 +523,11 @@ def learn_more_types(request):
 def confidentiality(request):
     context = {'confidentiality': 'yes'}
     return render(request, 'confidentiality.html', context)
+
+
+def get_testimonials_list(request):
+    testimonials = Testimonials.objects.all()
+    context = {
+        'testimonials': testimonials
+    }
+    return render(request, 'testimonials_list.html', context)

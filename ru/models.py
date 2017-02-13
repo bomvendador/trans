@@ -5,6 +5,13 @@ import positions
 import os
 
 
+class Testimonials(models.Model):
+    text = models.CharField(max_length=3000)
+    name = models.CharField(max_length=50)
+    company = models.CharField(max_length=50)
+    is_approved = models.BooleanField(default=False)
+
+
 class Language (models.Model):
     name = models.CharField(max_length=50)
 

@@ -355,7 +355,16 @@
 {#                            </li>#}
                         </ul>
                     </li>
+                    {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                        <li class="" id="menu_testimonials">
+                            <a href="{% url 'ru:dashboard_ru:get_back_calls' %}" class="padding_menu">
+                                <i class="mdi mdi-comment-account f_s_20"></i>
+                                <span>Отзывы</span>
+                            </a>
+                        </li>
+
                     {% endif %}
+                {% endif %}
                 </ul>
             </div>
 
