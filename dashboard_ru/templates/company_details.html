@@ -98,7 +98,7 @@
                                     <h2 class="card-inside-title">ОГРН</h2>
                                         <div class="input-group">
                                             <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="ОГРН" id="ogrn_company" name="ogrn_company" value="{% if not new %}{{ company.ogrn }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                <input type="text" class="form-control" placeholder="ОГРН" id="ogrn_company" name="ogrn_company" value="{% if not new %}{{ company.ogrn }}{% endif %}">
                                             </div>
                                         </div>
 
@@ -108,9 +108,6 @@
                                 <div class="row clearfix">
                                     <div class="col-md-12">
                                         <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-comment-processing f_s_20"></i>
-                                            </span>
                                             <div class="form-line">
                                                 <textarea rows="4" class="form-control" placeholder="Адрес..." id="address_company" name="address_company">{% if not new %}{{ company.address }}{% endif %}</textarea>
                                             </div>
