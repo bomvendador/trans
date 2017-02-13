@@ -534,3 +534,4 @@ def get_testimonials_list(request):
 
         })
     return render(request, 'testimonials_list.html', context)
+
