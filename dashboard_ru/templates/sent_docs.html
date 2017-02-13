@@ -114,6 +114,9 @@
 
                                         <td class="">
 
+                                        {% if user_profile.role.role_name == 'Клиент' and sent_doc.price and sent_doc.paystatus != 'Paid'%}
+                                            <i class="mdi mdi-alert-circle color-red"></i>
+                                        {% endif %}
                                         {% if user_profile.role.role_name == 'Админ' or user_profile.role.role_name == 'Суперадмин' %}
                                             {% if sent_doc.status.name == 'Новый' %}
                                                 <i class="mdi mdi-download color-blue"></i>
