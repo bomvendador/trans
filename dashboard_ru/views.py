@@ -1232,7 +1232,6 @@ def get_admins_list(request):
 def get_admin_details(request, admin_id):
     admin = Admin.objects.get(id=admin_id)
     creator_role = Role.objects.get(id=admin.creator.id)
-    print(creator_role.role_name)
     # print(translator.name)
     context = get_data_proc(request)
     context.update({
