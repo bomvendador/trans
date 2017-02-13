@@ -754,7 +754,9 @@
     $(document).ready(function () {
         //скролл до конца комментариев
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+        {% if user_profile.role.role_name != 'Клиент' %}
         send_calc_func();
+        {% endif %}
 
 
     });
