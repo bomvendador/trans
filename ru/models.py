@@ -152,10 +152,10 @@ class Company(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     name = models.CharField(max_length=100)
     property = models.ForeignKey(Property, null=True, blank=True)
-    inn = models.IntegerField(max_length=20)
-    kpp = models.IntegerField(max_length=20)
+    inn = models.IntegerField()
+    kpp = models.IntegerField()
     address = models.CharField(max_length=100)
-    ogrn = models.IntegerField(max_length=20)
+    ogrn = models.IntegerField()
 
 
 class SentDoc (models.Model):
