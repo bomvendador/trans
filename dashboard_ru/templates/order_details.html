@@ -893,7 +893,7 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company_from_client').text(data);
+                    $('#company_from_client').text(data + '<i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal"></i>');
                     $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
