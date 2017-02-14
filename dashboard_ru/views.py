@@ -1687,3 +1687,19 @@ def set_company_for_payment(request):
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
         response = company_inst.property.short_name + ' "' + company_inst.name + '"'
         return HttpResponse(response)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def del_company_from_payment(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+        order_inst = SentDoc.objects.get(id=order_id)
+        order_inst.company = None
+        order_inst.save()
+        Invoice.objects.get(order=order_inst).delete()
+        email_context = {
+            'order': order_inst
+        }
+        send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
+        return HttpResponse('ok')

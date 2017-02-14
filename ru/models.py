@@ -202,6 +202,7 @@ class Invoice(models.Model):
     order = models.ForeignKey(SentDoc, null=True, blank=True)
     new = models.BooleanField(default=True)
     added = models.DateTimeField(auto_now_add=True, auto_now=False)
+    changed = models.DateTimeField(auto_now_add=False, auto_now=True)
     number = models.CharField(max_length=15, null=True, blank=True)
     issue_date = models.DateField(null=True, blank=True)
 

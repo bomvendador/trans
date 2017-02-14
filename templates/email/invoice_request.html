@@ -29,7 +29,11 @@
     </tr>
     <tr>
         <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px">
+            {% if company %}
             Запрос на выпуск счета
+            {% else %}
+            Юр. лицо более не является плательщиком
+            {% endif %}
         </td>
     </tr>
 {#    <tr>#}
@@ -46,6 +50,7 @@
 {#                       <b>Данные для входа:</b>#}
 {#                   </td>#}
 {#               </tr>#}
+
                <tr>
                    <td align="left" valign="center" style="background: #DDDDDD; font-size: 13px; padding:5px">
                        Заявка:
@@ -54,6 +59,7 @@
                        <a href="http://prolingva.ru/ru/dashbrd/order_details/{{ order.id }}">{{ order.id }}</a>
                    </td>
                </tr>
+               {% if company %}
                <tr style="font-size: 13px">
                    <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
                        Контрагент:
@@ -86,6 +92,7 @@
                        {{ company.address }}
                    </td>
                </tr>
+               {% endif %}
 {#               <tr style="font-size: 13px">#}
 {#                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">#}
 {#                       Ссылка для входа:#}
