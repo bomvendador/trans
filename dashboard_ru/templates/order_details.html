@@ -432,7 +432,7 @@
                                         </div>
                                         {% else %}
                                             {% if order_details.company %}
-                                            <div class="col-sm-4 col-xs-12">
+                                            <div class="col-sm-4 col-xs-12" id="company_div">
                                                 <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
@@ -899,7 +899,7 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ data + '<i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
+                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ data + '<i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" title="Удалить"></i><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
                     $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
@@ -908,7 +908,42 @@
 
         });
 
+        //удаление юр лица
+        $('#delete_company').on('click', function () {
+            $.ajax({
+                url: '{% url 'ru:dashboard_ru:del_company_from_payment' %}',
+                type: 'POST',
+                data: JSON.stringify({
+                            'order_id': {{ order_details.id }},
+                        }),
+                processData: false,
+                contentType: false,
+                error: function(data){
+                    swal({
+                        title: 'Ошибка сервера',
+                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                        type: 'warning'
+                    });
+                },
+                success:function (data) {
+{#                    swal({#}
+{#                        {% if user_profile.role.role_name != 'Клиент' %}#}
+{#                        title: 'Информация сохранена',#}
+{#                        text: 'Заявке успешно присвоено юридическое лицо',#}
+{#                        {% else %}#}
+{#                        title: 'Информация сохранена',#}
+{#                        text: 'Информация о плательщике успешно сохранена. В ближайшее время на Вашу электронную почту будет выслан счет на оплату. Спасибо за оказанное доверие нашей компании!',#}
+{#                        {% endif %}#}
+{#                        type: 'success',#}
+{#                        confirmButtonText: 'Ok',#}
+{#                        closeOnConfirm: true#}
+{#                    });#}
+                    $('#company_div').fadeOut('slow');
+                    $('#payment_methods').fadeIn('slow');
+                }
+            });
 
+        })
 
 
 
