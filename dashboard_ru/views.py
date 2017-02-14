@@ -1680,11 +1680,11 @@ def set_company_for_payment(request):
         invoice = Invoice()
         invoice.order = order_inst
         invoice.save()
-        email_context = {
+        email_context_ = {
             'order': order_inst,
             'company': company_inst
         }
-        send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
+        send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context_)
         response = company_inst.property.short_name + ' "' + company_inst.name + '"'
         return HttpResponse(response)
 
