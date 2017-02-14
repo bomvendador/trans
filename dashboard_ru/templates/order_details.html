@@ -583,7 +583,7 @@
                                                 <a href="{% url 'ru:dashboard_ru:add_company' %}" class="text-decoration-none color_white hover-white">
                                                 <button type="button" class="btn btn-link waves-effect">ДОБАВИТЬ ЮР. ЛИЦО</button>
                                                     </a>
-                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_company_btn">ЗАКРЫТЬ</button>
                                             </div>
                                         </div>
                                     </div>
@@ -894,6 +894,7 @@
                     $('#company').text($(this).children('td:first').text());
                     $('#company').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
+                    $('#close_modal_select_company_btn').click();
                 }
             });
 
