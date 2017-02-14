@@ -1676,5 +1676,5 @@ def set_company_for_payment(request):
         order_inst = SentDoc.objects.get(id=order_id)
         company_inst = Company.objects.get(id=company_id)
         order_inst.company = company_inst
-        order_inst.save()
+        # order_inst.save()
         return HttpResponse('ok')
