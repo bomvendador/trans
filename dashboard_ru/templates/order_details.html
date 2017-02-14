@@ -440,7 +440,7 @@
                                                     </span>
                                                     <p class="form-control form-line" id="company_from_client" name="company_from_client">
                                                         {{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
-                                                        <i class="mdi mdi-pencil f_s_20 float-right pointer-pure" data-toggle="tooltip" title="Изменить" data-placement="left"></i>
+                                                        <i class="mdi mdi-pencil f_s_20 float-right pointer-pure" data-toggle="tooltip" title="Изменить" data-placement="left" id="change_company"></i>
                                                     </p>
                                                 </div>
 
@@ -861,8 +861,10 @@
         send_calc_func();
         {% endif %}
 
+
+
     //выбор юр лица
-        $('.company').on('click', function () {
+    function set_company_func() {
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:set_company_for_payment' %}',
                 type: 'POST',
@@ -899,7 +901,15 @@
                 }
             });
 
+    }
+
+        $('.company').on('click', function () {
+            set_company_func();
         });
+
+        $('#change_company').on('click', function () {
+            set_company_func();
+        })
 
 
     });
