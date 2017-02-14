@@ -1684,6 +1684,6 @@ def set_company_for_payment(request):
             'order': order_inst,
             'company': company_inst
         }
-        send_email(request, 'invoice_request.html', 'info@prolingva.ru', 'invoices@prolingva.ru', email_context)
+        send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
         response = company_inst.property.short_name + ' "' + company_inst.name + '"'
         return HttpResponse(response)
