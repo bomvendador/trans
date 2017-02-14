@@ -1,5 +1,11 @@
 {% load staticfiles %}
-{% block subject %}Запрос счета{% endblock %}
+{% block subject %}
+    {% if company %}
+    Запрос счета
+    {% else %}
+    Удаление контрагента из оплаты
+    {% endif %}
+{% endblock %}
 {% block html %}
 <html>
 <head>
@@ -28,7 +34,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px">
+        <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px; padding-bottom: 10px">
             {% if company %}
             Запрос на выпуск счета
             {% else %}
