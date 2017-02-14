@@ -439,7 +439,7 @@
                                                         <i class="mdi mdi-tie font-24"></i>
                                                     </span>
                                                     <p class="form-control show-tick" id="company_from_client" name="company_from_client">
-                                                        {{ company.property.short_name }} "{{ company.name }}"
+                                                        {{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
                                                     </p>
                                                 </div>
 
@@ -471,12 +471,12 @@
                                             <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="mdi mdi-tie font-24 {% if not order_det.company %} opacity-0_5 {% endif %}"></i>
+                                                        <i class="mdi mdi-tie font-24 {% if not order_details.company %} opacity-0_5 {% endif %}"></i>
                                                     </span>
                                                     <select class="form-control show-tick" id="company" name="company">
                                                         <option value="">--  --</option>
                                                         {% for company in companies %}
-                                                        <option value="{{ company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
+                                                        <option value="{{ order_details.company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
