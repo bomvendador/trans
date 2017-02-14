@@ -892,6 +892,8 @@
                         closeOnConfirm: true
                     });
                     $('#company_from_client').text($(this).find('td:first').text());
+                    console.log($(this).find('td:first').text())
+                    console.log($(this).text())
                     $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
