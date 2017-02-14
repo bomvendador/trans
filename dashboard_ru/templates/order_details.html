@@ -861,10 +861,12 @@
         send_calc_func();
         {% endif %}
 
+        $('#change_company').on('click', function () {
+            $('#payment_form').submit()
+        });
 
-
-    //выбор юр лица
-    function set_company_func() {
+        //выбор юр лица
+        $('.company').on('click', function () {
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:set_company_for_payment' %}',
                 type: 'POST',
@@ -901,15 +903,10 @@
                 }
             });
 
-    }
-
-        $('.company').on('click', function () {
-            set_company_func();
         });
 
-        $('#change_company').on('click', function () {
-            set_company_func();
-        })
+
+
 
 
     });
