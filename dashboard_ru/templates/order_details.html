@@ -885,14 +885,14 @@
                         text: 'Заявке успешно присвоено юридическое лицо',
                         {% else %}
                         title: 'Информация сохранена',
-                        text: 'Информация о плательщике успешно сохранена. В ближайшее время на Вашу электронную. почту будет выслан счет на оплату.',
+                        text: 'Информация о плательщике успешно сохранена. В ближайшее время на Вашу электронную почту будет выслан счет на оплату. Спасибо за оказанное доверие нашей компании!',
                         {% endif %}
                         type: 'success',
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company').text($(this).children('td:first').text());
-                    $('#company').fadeIn('slow');
+                    $('#company_from_client').text($(this).children('td:first').text());
+                    $('#company_from_client').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
                 }
