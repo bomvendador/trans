@@ -436,18 +436,31 @@
                                                 <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="mdi mdi-tie font-24 {% if not order_det.company %} opacity-0_5 {% endif %}"></i>
+                                                        <i class="mdi mdi-tie font-24"></i>
                                                     </span>
-                                                    <select class="form-control show-tick" id="company" name="company">
-                                                        <option value="">--  --</option>
-                                                        {% for company in companies %}
-                                                        <option value="{{ company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
-                                                        {% endfor %}
-                                                    </select>
+                                                    <p class="form-control show-tick" id="company_from_client" name="company_from_client">
+                                                        {{ company.property.short_name }} "{{ company.name }}"
+                                                    </p>
                                                 </div>
 
                                             </div>
+                                            {% else %}
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-tie font-24"></i>
+                                                    </span>
+                                                    <p class="form-control show-tick" id="company_from_client" name="company_from_client">
+                                                        {{ company.property.short_name }} "{{ company.name }}"
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
                                             {% endif %}
+
+
 
                                         {% endif %}
 
@@ -471,6 +484,7 @@
                                         </div>
 
                                     </div>
+
                                     {% endif %}
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
                                         {% if order_details.paystatus.name != 'Paid' %}
