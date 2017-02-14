@@ -1677,4 +1677,5 @@ def set_company_for_payment(request):
         company_inst = Company.objects.get(id=company_id)
         order_inst.company = company_inst
         # order_inst.save()
-        return HttpResponse('ok')
+        response = company_inst.property.short_name + ' "' + company_inst.name + '"'
+        return HttpResponse(response)

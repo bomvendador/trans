@@ -891,9 +891,9 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company_from_client').text($(this).find('td:first').text());
+                    $('#company_from_client').text(data);
                     console.log($(this).find('td:first').text())
-                    console.log($(this))
+                    console.log(data)
                     $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
