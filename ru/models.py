@@ -198,6 +198,14 @@ class SentDoc (models.Model):
     company = models.ForeignKey(Company, null=True, blank=True)
 
 
+class Invoice(models.Model):
+    order = models.ForeignKey(SentDoc, null=True, blank=True)
+    new = models.BooleanField(default=True)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False)
+    number = models.CharField(max_length=15, null=True, blank=True)
+    issue_date = models.DateField(null=True, blank=True)
+
+
 class BackCall(models.Model):
     tel = models.CharField(max_length=25)
     name = models.CharField(max_length=100)

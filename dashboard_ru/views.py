@@ -11,7 +11,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice
 
 from django.utils.dateparse import parse_date
 from django.db.models import Sum
@@ -1676,6 +1676,14 @@ def set_company_for_payment(request):
         order_inst = SentDoc.objects.get(id=order_id)
         company_inst = Company.objects.get(id=company_id)
         order_inst.company = company_inst
-        # order_inst.save()
+        order_inst.save()
+        invoice = Invoice()
+        invoice.order = order_inst
+        invoice.save()
+        email_context = {
+            'order': order_inst,
+            'company': company_inst
+        }
+        send_email(request, 'invoice_request.html', 'info@prolingva.ru', 'invoices@prolingva.ru', email_context)
         response = company_inst.property.short_name + ' "' + company_inst.name + '"'
         return HttpResponse(response)
