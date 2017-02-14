@@ -31,7 +31,7 @@ SECRET_KEY = '(88!z$t1e&bb+yg5dxh2#q74j+i4+q&_l4sjg(+w@q4%g=y4w@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['prolingva.ru']
+ALLOWED_HOSTS = ['prolingva.ru', 'www.prolingva.ru']
 
 # язык сайта по умолчанию, если не удалось определить язык другими способами
 # LANGUAGE_CODE = 'ru'
