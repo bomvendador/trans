@@ -445,7 +445,7 @@
 
                                             </div>
                                             {% else %}
-                                            <div class="col-sm-4 col-xs-12 company_from_client_div none">
+                                            <div class="col-sm-4 col-xs-12 none" id="company_from_client_div">
                                                 <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
@@ -892,7 +892,7 @@
                         closeOnConfirm: true
                     });
                     $('#company_from_client').text($(this).children('td:first').text());
-                    $('#company_from_client').fadeIn('slow');
+                    $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
                 }
