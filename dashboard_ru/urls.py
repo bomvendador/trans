@@ -40,6 +40,7 @@ urlpatterns = [
         name='download_translation_file'),
     url(r'^send_calc_to_client/$', views.send_calculation_to_client, name='send_calculation_to_client'),
     url(r'^send_trans_files_to_client/$', views.send_trans_files_to_client, name='send_trans_files_to_client'),
+    url(r'^set_company_for_payment/$', views.set_company_for_payment, name='set_company_for_payment'),
 
 
     url(r'^send_email/$', views.send_email, name='send_email'),

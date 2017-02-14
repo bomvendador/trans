@@ -1665,3 +1665,16 @@ def save_company(request):
         company_inst.save()
         # if request.method == 'POST':
         return HttpResponse('ok')
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def set_company_for_payment(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        order_id = json_data['order_id']
+        company_id = json_data['company_id']
+        order_inst = SentDoc.objects.get(id=order_id)
+        company_inst = Company.objects.get(id=company_id)
+        order_inst.company = company_inst
+        order_inst.save()
+        return HttpResponse('ok')
