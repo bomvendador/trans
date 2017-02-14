@@ -1697,7 +1697,7 @@ def del_company_from_payment(request):
         order_inst = SentDoc.objects.get(id=order_id)
         order_inst.company = None
         order_inst.save()
-        Invoice.objects.get(order=order_inst).delete()
+        Invoice.objects.filter(order=order_inst).delete()
         email_context = {
             'order': order_inst
         }
