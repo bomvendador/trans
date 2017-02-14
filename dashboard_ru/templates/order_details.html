@@ -441,8 +441,9 @@
                                                     <div class="form-line" id="company_div_content">
                                                         <p class="form-control display-inline" id="company_from_client" name="company_from_client">
                                                             {{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
+                                                            <i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal"></i>
                                                         </p>
-                                                        <i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal"></i>
+
 
 
                                                     </div>
@@ -897,7 +898,7 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ data + '</p><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal"></i>');
+                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ data + '<i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal"></i></p>');
                     $('#company_from_client_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
