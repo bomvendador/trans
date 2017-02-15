@@ -900,7 +900,7 @@
                 type: 'POST',
                 data: JSON.stringify({
                             'order_id': {{ order_details.id }},
-                            'company_id': $(this).attr('id')
+                            'company_id': $(this).attr('data-company-id')
                         }),
                 processData: false,
                 contentType: false,
