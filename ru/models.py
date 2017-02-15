@@ -157,6 +157,7 @@ class Company(models.Model):
     kpp = models.IntegerField()
     address = models.CharField(max_length=100)
     ogrn = models.IntegerField()
+    orders_qnt = models.IntegerField()
 
 
 class SentDoc (models.Model):

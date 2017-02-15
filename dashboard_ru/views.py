@@ -1677,6 +1677,9 @@ def set_company_for_payment(request):
         company_inst = Company.objects.get(id=company_id)
         order_inst.company = company_inst
         order_inst.save()
+        orders_qnt = SentDoc.objects.filter(company=company_inst).count()
+        company_inst.orders_qnt = orders_qnt
+        company_inst.save()
         invoice = Invoice()
         invoice.order = order_inst
         invoice.save()
