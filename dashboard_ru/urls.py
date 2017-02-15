@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^sent_docs/$', views.get_sent_docs, name='get_sent_docs'),
     url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),
     url(r'^back_call_details/(?P<back_call_id>\d+)/$', views.get_back_call_details, name='get_back_call_details'),
+    url(r'^save_order_comment_client/$', views.save_order_comment_client, name='save_order_comment_client'),
     url(r'^save_order_comment/$', views.save_order_comment, name='save_order_comment'),
     url(r'^new_orders/$', views.get_new_sent_docs, name='get_new_orders'),
     url(r'^in_progress_orders/$', views.get_in_progress_sent_docs, name='get_in_progress_sent_docs'),
