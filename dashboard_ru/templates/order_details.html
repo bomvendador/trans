@@ -878,7 +878,7 @@
             })
         });
         $('.comment_item').on('click', function () {
-            $('#comment_id').val($(this).attr('data-comment-id'));
+            $('#comment_id').val($.trim($(this).attr('data-comment-id')));
             console.log($('#comment_id').val())
         });
         $('#save_order_comment_client_btn').on('click', function () {
