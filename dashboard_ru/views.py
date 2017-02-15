@@ -1608,6 +1608,8 @@ def companies_list(request):
     user_profile = UserProfile.objects.get(user=request.user)
     if user_profile.role.role_name == u'Клиент':
         companies = Company.objects.filter(user=request.user)
+    else:
+        companies = Company.objects.all()
     context.update({
         'companies': companies,
     })
