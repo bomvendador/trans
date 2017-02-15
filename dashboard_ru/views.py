@@ -1622,12 +1622,10 @@ def companies_list(request):
 def company(request, company_id):
     context = get_data_proc(request)
     company_ = Company.objects.get(id=company_id)
-    clients = Client.objects.all()
     properties = Property.objects.all()
     context.update({
         'company': company_,
         'properties': properties,
-        'clients': clients
     })
     return render(request, 'company_details.html', context)
 
@@ -1636,10 +1634,12 @@ def company(request, company_id):
 def add_company(request):
     context = get_data_proc(request)
     properties = Property.objects.all()
+    clients = Client.objects.all()
 
     context.update({
         'new': 1,
-        'properties': properties
+        'properties': properties,
+        'clients': clients
 
     })
     return render(request, 'company_details.html', context)
