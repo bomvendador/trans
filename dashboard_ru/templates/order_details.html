@@ -812,7 +812,7 @@
 
                                             {% endfor %}
                                         {% else %}
-                                            <p class="color-ddd">Записи отсутствуют</p>
+                                            <p class="color-ddd" id="no_clients_comments">Записи отсутствуют</p>
                                         {% endif %}
                                     </div>
 
@@ -909,6 +909,7 @@
                         },
                         function (isConfirm) {
                             if (isConfirm){
+                                $('#no_clients_comments').delete();
                                 var data_json = $.parseJSON(data);
                                 var comment_text = data_json['comment_text'];
                                 var added = data_json['added'];
