@@ -273,6 +273,7 @@
         var formdata = new FormData($('#form_info').get(0));
         {% if new %}
         formdata.append('new', 'yes');
+        formdata.append('client_id', $('#client').attr('data-client-id'));
         {% else %}
         formdata.append('new', 'no');
         formdata.append('company_id', {{ company.id }});
