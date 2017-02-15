@@ -458,7 +458,7 @@
                                         {% endif %}
 
                                     </div>
-                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                    {% if user_profile.role.role_name != 'Клиент' and order_details.paymethod.name != 'PayMaster' %}
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
