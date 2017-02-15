@@ -865,7 +865,7 @@
     $(document).ready(function () {
         //отправка комментариев клиента
         $('#comment_client_text').on('input', function () {
-            $('#save_order_comment_client_btn').prop('disabled', false);
+            $('#save_order_comment_client_btn').removeAttr('disabled');
             $(this).blur(function () {
                 if ($(this).val() == ''){
                     $('#save_order_comment_client_btn').prop('disabled', true);
