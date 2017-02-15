@@ -926,15 +926,13 @@ def update_order_payment(request):
             sent_doc.paystatus = PayStatus.objects.get(name='Paid')
         payment_date = request.POST.get('payment_date')
         payment_method = request.POST.get('payment_method_')
-        if ',' in payment_date:
-            payment_date_to_store = payment_date
-        else:
-            payment_date_to_store = parse_date(parse_date_as_datetime(payment_date))
-        # parsed_datetime = parse_date_as_datetime(payment_date)
+        if not ',' in payment_date:
+            parsed_datetime = parse_date_as_datetime(payment_date)
+            sent_doc.payment_date = parsed_datetime(parsed_datetime)
+
         sent_doc.payment_amount = payment_amount
         # logger.debug('date = ' + str(parsed_datetime))
 
-        sent_doc.payment_date = payment_date_to_store
         # print(str(payment_date) + str(payment_method) + str(payment_amount))
         sent_doc.paymethod = PayMethod.objects.get(name=payment_method)
         # logger.debug('method = ' + str(payment_method).decode('utf-8'))
