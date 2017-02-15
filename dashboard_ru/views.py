@@ -1688,7 +1688,12 @@ def set_company_for_payment(request):
             'company': company_inst
         }
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context_)
-        response = company_inst.property.short_name + ' "' + company_inst.name + '"'
+        name = company_inst.property.short_name + ' "' + company_inst.name + '"'
+        company_id = company_inst.id
+        response = {
+            'name': name,
+            'company_id': company_id
+        }
         return HttpResponse(response)
 
 
