@@ -235,12 +235,18 @@ class OrderComments(models.Model):
 
 class OrderCommentsClients(models.Model):
     order = models.ForeignKey(SentDoc)
-    comment = models.CharField(max_length=200)
-    answer = models.CharField(max_length=200, null=True, blank=True)
+    text = models.CharField(max_length=300)
     added = models.DateTimeField(auto_now=False, auto_now_add=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False)
-    answer_author = models.ForeignKey(User, null=True, blank=True)
-    answer_author_role = models.ForeignKey(Role, null=True, blank=True)
+
+
+class OrderCommentsClientsAnswer(models.Model):
+    order = models.ForeignKey(SentDoc)
+    comment = models.ForeignKey(OrderCommentsClients, null=True, blank=True)
+    text = models.CharField(max_length=300)
+    added = models.DateTimeField(auto_now=False, auto_now_add=True)
+    author = models.ForeignKey(User, null=True, blank=True)
+    author_role = models.ForeignKey(Role, null=True, blank=True)
 
 
 class TranslationFiles(models.Model):

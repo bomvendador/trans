@@ -13,7 +13,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer
 
 from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Sum
@@ -473,6 +473,15 @@ def order_details(request, order_id):
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         except SentDoc.DoesNotExist:
             new_count = 0
+        try:
+            client_comments = OrderCommentsClients.objects.filter(order=order_det.id)
+            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det.id)
+            context.update({
+                'client_comments': client_comments,
+                'client_comments_answers': client_comments_answers
+            })
+        except OrderCommentsClients.DoesNotExist:
+            pass
     else:
         if user_profile.role.role_name == u'Менеджер':
             order_det.status = OrderStatus.objects.get(name=u'В работе')
@@ -1419,6 +1428,23 @@ def save_order_comment(request):
         return HttpResponse(json.dumps(
             {'date': comment_inst.added.strftime("%d.%m.%Y, %H:%M"), 'comment': comment_inst.comment,
              'author_firstname': request.user.first_name, 'author_lastname': request.user.last_name, 'role': role}))
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def save_order_comment_client(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        comment_text = request.POST.get('comment_client_text')
+        order = SentDoc.objects.get(id=order_id)
+        comment = OrderCommentsClients()
+        comment.text = comment_text
+        comment.order = order
+        comment.save()
+        response = json.dumps(
+            {'added': comment.added,
+             'comment_text': comment.text
+             })
+        return HttpResponse(response)
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')

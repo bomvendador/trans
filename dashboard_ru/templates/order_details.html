@@ -781,19 +781,32 @@
                                         <small class="mrg-bottom-33">В этом разделе Вы можете оставить свои комментарии или вопросы к заявке. Ответы Вы получите по электронной почте, а также сможете их увидеть в этой вкладке</small>
                                         {% endif %}
                                     </div>
-                                    <div class="list-group-item" id="comments_div">
-                                        {% for comment in comments %}
-                                        <div class="comments-style">
+                                    <div class="list-group-item margin-bottom-10" id="comments_div">
+                                        {% for client_comment in client_comments %}
+                                        <div class="comments-style" id="client_comments">
                                             <div style="">
                                                 <div>
-                                                    <small>{{ comment.added|date:"d.m.Y, H:i" }}</small>
+                                                    <small>{{ client_comment.added|date:"d.m.Y, H:i" }}</small>
                                                 </div>
+                                            </div>
+                                            <div class="mrg-bot-20" style="margin-left: 10px">
+                                                {{ client_comment.text }}
+                                            </div>
 
-                                                <small>{{ comment.author_role.role_name }},{{ comment.author.first_name }} {{ comment.author.last_name }}</small>
+                                        </div>
+                                        <div  id="client_comments">
+                                        {% for client_comment_answer in client_comments_answers %}
+                                        <div class="comments-style" id="client_comments_answers">
+                                            <div style="">
+                                                <div>
+                                                    <small>{{ client_comment_answer.added|date:"d.m.Y, H:i" }}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mrg-bot-20" style="margin-left: 10px">
+                                                {{ client_comment_answer.text }}
                                             </div>
                                         </div>
-                                        <div class="mrg-bot-20" style="margin-left: 10px">
-                                            {{ comment.comment }}
+                                        {% endfor %}
                                         </div>
 
                                         {% endfor %}
@@ -804,12 +817,12 @@
 
                                         <div class="input-group">
                                             <div class="form-line">
-                                                <textarea rows="4" class="form-control" placeholder="Текст..." id="comment_text" name="comment_text"></textarea>
+                                                <textarea rows="4" class="form-control" placeholder="Текст..." id="comment_client_text" name="comment_client_text"></textarea>
                                             </div>
                                         </div>
                                         <div class="">
-                                            <div class="" id="save_order_translation_div">
-                                                <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_comment_btn">ОТПРАВИТЬ</button>
+                                            <div class="" id="save_comment_client_div">
+                                                <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_comment_client_btn" disabled>ОТПРАВИТЬ</button>
                                             </div>
                                         </div>
                                     </div>
