@@ -1678,6 +1678,7 @@ def set_company_for_payment(request):
         order_inst.company = company_inst
         order_inst.save()
         orders_qnt = SentDoc.objects.filter(company=company_inst).count()
+        logger.debug(u'кол-во заказов = ' + str(orders_qnt))
         company_inst.orders_qnt = orders_qnt
         company_inst.save()
         invoice = Invoice()
