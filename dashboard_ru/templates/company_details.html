@@ -48,6 +48,7 @@
                     <div class="tab-content padding-top-30">
                         <form action="" method="post" id="form_info">{% csrf_token %}
                             <div role="tabpanel" class="tab-pane fade in active" id="info">
+                            {% if user_profile.role.role_name != 'Клиент' %}
                                 <div class="row clearfix">
                                     <div class="col-md-6 col-xs-12">
                                         <h2 class="card-inside-title">Клиент</h2>
@@ -123,7 +124,7 @@
                                             </div>
                                             <!-- modal end-->
 
-
+                                {% endif %}
 
 
                                 <div class="row clearfix">
