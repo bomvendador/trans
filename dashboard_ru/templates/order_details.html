@@ -863,6 +863,10 @@
     <script>
 
     $(document).ready(function () {
+        //отправка комментариев клиента
+        $('#comment_client_text').on('input', function () {
+            $('#save_order_comment_client_btn').removeAttrs('disabled');
+        });
         //скролл до конца комментариев
         $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
         {% if user_profile.role.role_name != 'Клиент' %}
