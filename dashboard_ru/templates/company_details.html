@@ -54,7 +54,12 @@
 
                                         <div class="input-group">
                                             <span class="input-group-addon">
+                                                {% if company.user %}
                                                 <i class="mdi mdi-account f_s_20"></i>
+                                                {% else %}
+                                                <i class="mdi mdi-account-plus f_s_20" id="add_client"></i>
+
+                                                {% endif %}
                                             </span>
                                             <div class="form-line">
                                                 <p id="client" class="form-control">{{ company.user.first_name }}, {{ company.user.username }}</p>
