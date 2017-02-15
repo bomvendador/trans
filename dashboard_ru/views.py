@@ -928,8 +928,9 @@ def update_order_payment(request):
         sent_doc.payment_amount = payment_amount
         sent_doc.payment_date = payment_date
         # print(str(payment_date) + str(payment_method) + str(payment_amount))
-        sent_doc.paymethod = PayMethod.objects.get(name=payment_method)
+        # sent_doc.paymethod = PayMethod.objects.get(name=payment_method)
         print('date = ' + str(payment_date))
+        print('method = ' + str(payment_method))
         # update_client_statistics(sent_doc.user)
         # sent_doc.save()
         return HttpResponse('')
