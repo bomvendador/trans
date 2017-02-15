@@ -884,7 +884,7 @@
                 });
 
            }else {
-                var formated_text = $('#comment_client_text').val().replace('\n'/g,'<br />');
+                var formated_text = $('#comment_client_text').val().replace(/\n/g,'<br />');
                 var formdata = new FormData($('#form_clients_comments').get(0));
                 {#            data_.append('user_id', {{ order_details.user.id }});#}
                 formdata.append('order_id', {{ order_details.id }});
