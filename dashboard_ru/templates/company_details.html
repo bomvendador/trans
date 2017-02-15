@@ -274,10 +274,10 @@
 
     $('#save_info_btn').on('click', function () {
 
-        if ($('#inn_company').val() == '' || $('#kpp_company').val() == '' || $('#ogrn_company').val() == '' || $('#name_company').val() == '' || $('#property').val() == ''){
+        if ($('#inn_company').val() == '' || $('#kpp_company').val() == '' || $('#ogrn_company').val() == '' || $('#name_company').val() == '' || $('#property').val() == '' || $('#address_company').val() == ''){
             swal({
                 title: 'Ошибка ввода',
-                text: 'Поля ИНН, КПП и ОГРН должны быть заполнены ',
+                text: 'Поля ИНН, КПП, ОГРН и адрес должны быть заполнены ',
                 type: 'error'
             });
 
