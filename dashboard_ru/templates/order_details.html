@@ -872,6 +872,10 @@
                     });
                 },
                 success:function (data) {
+                    var data_json = $.parseJSON(data);
+                    var name = data_json['name'];
+                    var company_id = data_json['company_id'];
+
                     swal({
                         {% if user_profile.role.role_name != 'Клиент' %}
                         title: 'Информация сохранена',
@@ -884,7 +888,7 @@
                         confirmButtonText: 'Ok',
                         closeOnConfirm: true
                     });
-                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ data['name'] + '<i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="' + data['company_id'] + '" title="Удалить"></i><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
+                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ name + '<i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="' + company_id + '" title="Удалить"></i><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
                     $('#company_div').fadeIn('slow');
                     $('#payment_methods').fadeOut('slow');
                     $('#close_modal_select_company_btn').click();
