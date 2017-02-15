@@ -57,7 +57,7 @@
                                             <span class="input-group-addon">
                                                 <i class="mdi mdi-account f_s_20 pointer-pure"></i>
                                             </span>
-                                            <div class="form-line {% if company.user %}color-ddd{% endif %}" id="client_div">
+                                            <div class="form-line {% if not company.user %}color-ddd{% endif %}" id="client_div">
                                                 <p id="client" class="form-control pointer-pure " data-toggle="modal" data-target="#clients_modal">{% if company.user %}{{ company.user.first_name }}, {{ company.user.username }}{% else %}Выберите клиента...{% endif %}</p>
 
                                             </div>
