@@ -930,14 +930,13 @@
 
 
         //скролл до конца комментариев
-        if ($('#comments_div').html() != ''){
+        {% if comments %}
             $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
             {% if user_profile.role.role_name != 'Клиент' %}
             send_calc_func();
             {% endif %}
 
-        }
-
+        {% endif %}
 
         //выбор юр лица
         $('.company').on('click', function () {
