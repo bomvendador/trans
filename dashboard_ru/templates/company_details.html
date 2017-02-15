@@ -249,7 +249,7 @@
     //выбор существующего клиента
 
     $('.client_existing').on('click', function () {
-{#        var row = $(this).parent().children().index($(this).parent());#}
+        var row = $(this).parent().children().index($(this).parent());
         var name = $(this).eq(row).find('td').eq(1).text();
         var id = $(this).eq(row).find('td').eq(0).text();
 {#        var tel = $(this).eq(row).find('td').eq(2).text();#}
