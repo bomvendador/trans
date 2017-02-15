@@ -235,7 +235,7 @@ class OrderComments(models.Model):
 
 class OrderCommentsClients(models.Model):
     order = models.ForeignKey(SentDoc)
-    text = models.CharField(max_length=300)
+    text = models.CharField(max_length=300, null=True, blank=True)
     added = models.DateTimeField(auto_now=False, auto_now_add=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False)
 
@@ -243,7 +243,7 @@ class OrderCommentsClients(models.Model):
 class OrderCommentsClientsAnswer(models.Model):
     order = models.ForeignKey(SentDoc)
     comment = models.ForeignKey(OrderCommentsClients, null=True, blank=True)
-    text = models.CharField(max_length=300)
+    text = models.CharField(max_length=300, null=True, blank=True)
     added = models.DateTimeField(auto_now=False, auto_now_add=True)
     author = models.ForeignKey(User, null=True, blank=True)
     author_role = models.ForeignKey(Role, null=True, blank=True)
