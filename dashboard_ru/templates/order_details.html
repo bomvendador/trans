@@ -909,7 +909,7 @@
                         },
                         function (isConfirm) {
                             if (isConfirm){
-                                $('#no_clients_comments').delete();
+                                $('#no_clients_comments').remove();
                                 var data_json = $.parseJSON(data);
                                 var comment_text = data_json['comment_text'];
                                 var added = data_json['added'];
