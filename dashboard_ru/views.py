@@ -1698,6 +1698,7 @@ def del_company_from_payment(request):
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
         company_id = json_data['company_id']
+        logger.debug('company id=' + str())
         company_inst = Company.objects.get(id=company_id)
         order_inst = SentDoc.objects.get(id=order_id)
         order_inst.company = None
