@@ -930,10 +930,13 @@
 
 
         //скролл до конца комментариев
-        $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
-        {% if user_profile.role.role_name != 'Клиент' %}
-        send_calc_func();
-        {% endif %}
+        if ($('#comments_div').html() != ''){
+            $('#comments_div').animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+            {% if user_profile.role.role_name != 'Клиент' %}
+            send_calc_func();
+            {% endif %}
+
+        }
 
 
         //выбор юр лица
