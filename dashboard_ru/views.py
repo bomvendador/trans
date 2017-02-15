@@ -923,7 +923,7 @@ def update_order_payment(request):
         if payment_amount:
             sent_doc.paystatus = PayStatus.objects.get(name='Paid')
         payment_date = request.POST.get('payment_date')
-        payment_method = request.POST.get('payment_method')
+        payment_method = request.POST.get('payment_method_')
 
         sent_doc.payment_amount = payment_amount
         sent_doc.payment_date = payment_date
