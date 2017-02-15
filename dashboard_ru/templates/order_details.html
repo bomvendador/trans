@@ -870,47 +870,6 @@
                 if ($(this).val() == ''){
                     $('#save_order_comment_client_btn').prop('disabled', true);
 
-                }else {
-                    var formdata = new FormData($('#form_comments').get(0));
-            {#            data_.append('user_id', {{ order_details.user.id }});#}
-                    formdata.append('order_id', {{ order_details.id }});
-
-                    $.ajax({
-                        url: '{% url 'ru:dashboard_ru:save_order_comment_client' %}',
-                        type: 'POST',
-                        data: formdata,
-                        processData: false,
-                        contentType: false,
-                        error: function(data){
-                            swal({
-                                title: 'Ошибка сервера',
-                                text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                                type: 'error'
-                            });
-                        },
-                        success:function (data) {
-                            swal({
-                                title: 'Информация сохранена',
-                                text: 'Данные на сервере успешно обновлены',
-                                type: 'success',
-                                confirmButtonText: 'Ok',
-                                closeOnConfirm: true
-                            },
-                            function (isConfirm) {
-                                if (isConfirm){
-                                    var data_json = $.parseJSON(data);
-                                    var comment_text = data_json['comment_text'];
-                                    var added = data_json['added'];
-                                    $('#client_comments_div').append('<div class="comments-style" id="client_comments_answers">                 <div style=""><div><small>' + added + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment_text + '</div></div>');
-{#                                    $("#client_comments").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');#}
-                                    $('#comment_client_text').val('');
-                                    $('#save_order_comment_client_btn').prop('disabled', true);
-
-                                }
-                            });
-                        }
-                    });
-
                 }
             })
         });
@@ -923,6 +882,45 @@
                 });
 
            }else {
+                var formdata = new FormData($('#form_clients_comments').get(0));
+                {#            data_.append('user_id', {{ order_details.user.id }});#}
+                formdata.append('order_id', {{ order_details.id }});
+
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:save_order_comment_client' %}',
+                    type: 'POST',
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'error'
+                        });
+                    },
+                    success:function (data) {
+                        swal({
+                            title: 'Информация сохранена',
+                            text: 'Данные на сервере успешно обновлены',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                var data_json = $.parseJSON(data);
+                                var comment_text = data_json['comment_text'];
+                                var added = data_json['added'];
+                                $('#client_comments_div').append('<div class="comments-style" id="client_comments_answers">                 <div style=""><div><small>' + added + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment_text + '</div></div>');
+                {#                                    $("#client_comments").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');#}
+                                $('#comment_client_text').val('');
+                                $('#save_order_comment_client_btn').prop('disabled', true);
+
+                            }
+                        });
+                    }
+                });
 
            }
         });
