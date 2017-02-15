@@ -556,15 +556,18 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-green hover-expand-effect">
-                        <div class="icon">
-                            <i class="mdi mdi-check"></i>
+                    <a href="{% url 'ru:dashboard_ru:get_complete_sent_docs' %}" class=" text-decoration-none">
+
+                        <div class="info-box bg-green hover-expand-effect">
+                            <div class="icon">
+                                <i class="mdi mdi-check"></i>
+                            </div>
+                            <div class="content">
+                                <div class="text">Выполненные</div>
+                                <div class="number">{{ client.orders_complete }}</div>
+                            </div>
                         </div>
-                        <div class="content">
-                            <div class="text">Выполненные</div>
-                            <div class="number">{{ client.orders_complete }}</div>
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box bg-teal hover-expand-effect">
@@ -596,99 +599,100 @@
             </div>
 
 
-    <!--модальное окно не оплаченные заявки-->
-    {% if orders_for_payment %}
-        <div class="modal fade" id="orders_for_payment_Modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-col-pink">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="defaultModalLabel">Заказы к оплате</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Уважаемый {{ user.first_name }},</p>
-                        <p>В Вашем кабинете имеются заявки, ожидающие оплаты</p>
-    {#                            {% for client in clients %}#}
-                        <div class="body table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Цена</th>
-                                        <th>Статус</th>
-                                    </tr>
-                                </thead>
-{#                                <tfoot>#}
-{#                                        <th>ID</th>#}
-{#                                        <th>Имя</th>#}
-{#                                        <th>Телефон</th>#}
-{#                                        <th>Email</th>#}
-{##}
-{#                                </tfoot>#}
-                                <tbody>
-                                {% for order_for_payment in orders_for_payment %}
+            <!--модальное окно не оплаченные заявки-->
+            {% if orders_for_payment %}
+                <div class="modal fade" id="orders_for_payment_Modal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content modal-col-pink">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="defaultModalLabel">Заказы к оплате</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Уважаемый {{ user.first_name }},</p>
+                                <p>В Вашем кабинете имеются заявки, ожидающие оплаты</p>
+            {#                            {% for client in clients %}#}
+                                <div class="body table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Цена</th>
+                                                <th>Статус</th>
+                                            </tr>
+                                        </thead>
+        {#                                <tfoot>#}
+        {#                                        <th>ID</th>#}
+        {#                                        <th>Имя</th>#}
+        {#                                        <th>Телефон</th>#}
+        {#                                        <th>Email</th>#}
+        {##}
+        {#                                </tfoot>#}
+                                        <tbody>
+                                        {% for order_for_payment in orders_for_payment %}
 
-                                    <tr class="order_for_payment pointer-pure" id="{{ order_for_payment.id }}" >
-                                        <td>{{ order_for_payment.id }}</td>
-                                        <td>{{ order_for_payment.price }}</td>
-                                        <td>
-                                            <i class="mdi mdi-account {% if not order_for_payment.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
-                                            {% if user_profile.role.role_name != 'Клиент' %}
-                                            <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
-                                            {% endif %}
-                                            <i class="mdi mdi-currency-rub {% if not order_for_payment.calc_sent_date %}opacity-0_5 {% else %} opacity-1 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отослан" data-placement="top"></i>
-                                            <i class="mdi mdi-voice {% if not order_for_payment.translator %}opacity-0_5{% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
-                                            <i class="mdi mdi-wallet {% if not order_for_payment.payment_date %}opacity-0_5{% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
-                                            <i class="mdi mdi-note {% if not order_for_payment.translation_files %}opacity-0_5{% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+                                            <tr class="order_for_payment pointer-pure" id="{{ order_for_payment.id }}" >
+                                                <td>{{ order_for_payment.id }}</td>
+                                                <td>{{ order_for_payment.price }}</td>
+                                                <td>
+                                                    <i class="mdi mdi-account {% if not order_for_payment.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                                    <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
+                                                    {% endif %}
+                                                    <i class="mdi mdi-currency-rub {% if not order_for_payment.calc_sent_date %}opacity-0_5 {% else %} opacity-1 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отослан" data-placement="top"></i>
+                                                    <i class="mdi mdi-voice {% if not order_for_payment.translator %}opacity-0_5{% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+                                                    <i class="mdi mdi-wallet {% if not order_for_payment.payment_date %}opacity-0_5{% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+                                                    <i class="mdi mdi-note {% if not order_for_payment.translation_files %}opacity-0_5{% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
 
-                                            <i class="mdi mdi-spellcheck {% if not order_for_payment.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
+                                                    <i class="mdi mdi-spellcheck {% if not order_for_payment.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
 
-                                        </td>
+                                                </td>
 
-                                    </tr>
+                                            </tr>
 
-                                {% endfor %}
+                                        {% endfor %}
 
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+            {#                                {{ client.name }}#}
+            {#                            {% endfor %}#}
+                            </div>
+                            <div class="modal-footer">
+            {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                            </div>
                         </div>
-
-
-
-    {#                                {{ client.name }}#}
-    {#                            {% endfor %}#}
                     </div>
-                    <div class="modal-footer">
-    {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                </div>
+
+
+
+            {% endif %}
+{#                приветственное сообщение#}
+            <div class="modal fade" id="first_info_modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content modal-col-blue">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
+                            vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
+                            Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
+                            nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
+                            Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGESff</button>
+                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-
-
-    {% endif %}
-        <div class="modal fade" id="first_info_modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-col-blue">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="defaultModalLabel">Modal title</h4>
-                    </div>
-                    <div class="modal-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan
-                        vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper.
-                        Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus
-                        nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla.
-                        Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-link waves-effect">SAVE CHANGESff</button>
-                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button id="show_first_info_btn" type="button" class="btn btn-default waves-effect m-r-20 none" data-toggle="modal" data-target="#first_info_modal"></button>
+            <button id="show_first_info_btn" type="button" class="btn btn-default waves-effect m-r-20 none" data-toggle="modal" data-target="#first_info_modal"></button>
 
 
         {% elif user_profile.role.role_name == 'Менеджер' %}
