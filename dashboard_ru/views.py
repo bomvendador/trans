@@ -1663,7 +1663,7 @@ def save_company(request):
         else:
             company_inst = Company.objects.get(id=company_id)
         if client_id:
-            company_inst.user = User.objects.get(id=client_id)
+            company_inst.user = User.objects.get(id=Client.objects.get(id=client_id))
         else:
             company_inst.user = request.user
         company_inst.name = name
