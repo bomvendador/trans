@@ -57,8 +57,8 @@
                                             <span class="input-group-addon">
                                                 <i class="mdi mdi-account f_s_20 pointer-pure"></i>
                                             </span>
-                                            <div class="form-line">
-                                                <p id="client" class="form-control pointer-pure" data-toggle="modal" data-target="#clients_modal">{{ company.user.first_name }}, {{ company.user.username }}</p>
+                                            <div class="form-line {% if company.user %}color-ddd{% endif %}" id="client_div">
+                                                <p id="client" class="form-control pointer-pure " data-toggle="modal" data-target="#clients_modal">{% if company.user %}{{ company.user.first_name }}, {{ company.user.username }}{% else %}Выберите клиента...{% endif %}</p>
 
                                             </div>
                                         </div>
@@ -259,6 +259,7 @@
         var email = $(this).eq(row).find('td').eq(3).text();
         console.log($.trim(id))
         $('#client').text(name + ', ' + email).attr('data-client-id', id);
+        $('#client_div').css('color', 'black');
 {#        $('#email_doc_send').val(email);#}
 {#        $('#tel_doc_send').val(tel);#}
 {#        $('#client_id_doc_send').val(id);#}

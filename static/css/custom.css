@@ -573,3 +573,7 @@ ul{
 .hover-white :hover{
     color: white;
 }
+
+.color-ddd{
+    color: #DDDDDD;
+}
