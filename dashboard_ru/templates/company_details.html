@@ -54,21 +54,78 @@
 
                                         <div class="input-group">
                                             <span class="input-group-addon">
-                                                {% if company.user %}
-                                                <i class="mdi mdi-account f_s_20 pointer-pure" id="add_client"></i>
-                                                {% else %}
-                                                <i class="mdi mdi-account-plus f_s_20 pointer-pure" id="add_client"></i>
-
-                                                {% endif %}
+                                                <i class="mdi mdi-account f_s_20 pointer-pure"></i>
                                             </span>
                                             <div class="form-line">
-                                                <p id="client" class="form-control">{{ company.user.first_name }}, {{ company.user.username }}</p>
+                                                <p id="client" class="form-control pointer-pure" data-target="#clients_modal">{{ company.user.first_name }}, {{ company.user.username }}</p>
 
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
+
+                                        <!-- Default Size modal список существующих клиентов-->
+                                            <div class="modal fade" id="clients_modal" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="defaultModalLabel">Выберите клиента</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                {#                            {% for client in clients %}#}
+                                                            <table class="table table-bordered table-striped table-hover dataTable js-basic-example">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>ID</th>
+                                                                        <th>Имя</th>
+                                                                        <th>Телефон</th>
+                                                                        <th>Email</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tfoot>
+                                                                        <th>ID</th>
+                                                                        <th>Имя</th>
+                                                                        <th>Телефон</th>
+                                                                        <th>Email</th>
+
+                                                                </tfoot>
+                                                                <tbody>
+                                                                {% for client in clients %}
+
+                                                                    <tr class="client_existing pointer-pure" id="{{ client.id }}">
+                                                                        <td>
+                                                                            {{ client.id }}
+                                                                        </td>
+                                                                        <td>{{ client.name }}</td>
+                                                                        <td>{{ client.tel }}</td>
+                                                                        <td>{{ client.email }}</td>
+
+                                                                    </tr>
+
+                                                                {% endfor %}
+
+                                                                </tbody>
+                                                            </table>
+
+
+
+
+                                {#                                {{ client.name }}#}
+                                {#                            {% endfor %}#}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                {#                            <button type="button" class="btn btn-link waves-effect">SAVE CHANGES</button>#}
+                                                            <button type="button" class="btn btn-link waves-effect" data-dismiss="modal" id="close_modal_select_client_btn">ЗАКРЫТЬ</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- modal end-->
+
+
+
+
                                 <div class="row clearfix">
                                     <div class="col-md-6 col-xs-12">
                                         <h2 class="card-inside-title">Название</h2>
