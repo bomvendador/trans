@@ -475,12 +475,17 @@ def order_details(request, order_id):
             new_count = 0
         try:
             client_comments = OrderCommentsClients.objects.filter(order=order_det.id)
-            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det.id)
             context.update({
                 'client_comments': client_comments,
-                'client_comments_answers': client_comments_answers
             })
         except OrderCommentsClients.DoesNotExist:
+            pass
+        try:
+            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det.id)
+            context.update({
+                'client_comments_answers': client_comments_answers
+            })
+        except OrderCommentsClientsAnswer.DoesNotExist:
             pass
     else:
         if user_profile.role.role_name == u'Менеджер':
