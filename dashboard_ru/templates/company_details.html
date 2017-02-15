@@ -20,7 +20,7 @@
             </a>
         </li>
         <li class="active">
-            <a href="{% url 'ru:dashboard_ru:testimonials_list' %}">
+            <a href="{% url 'ru:dashboard_ru:companies_list' %}">
                 <i class="mdi mdi-account-multiple f_s_15"></i> Юр. лица
             </a>
         </li>
@@ -48,6 +48,22 @@
                     <div class="tab-content padding-top-30">
                         <form action="" method="post" id="form_info">{% csrf_token %}
                             <div role="tabpanel" class="tab-pane fade in active" id="info">
+                                <div class="row clearfix">
+                                    <div class="col-md-6 col-xs-12">
+                                        <h2 class="card-inside-title">Клиент</h2>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon">
+                                                <i class="mdi mdi-format-color-text f_s_20"></i>
+                                            </span>
+                                            <div class="form-line">
+                                                <p id="client">{{ company.user.first_name }}, {{ company.user.username }}</p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                                 <div class="row clearfix">
                                     <div class="col-md-6 col-xs-12">
                                         <h2 class="card-inside-title">Название</h2>
