@@ -169,6 +169,10 @@
         {% else %}
         formdata.append('new', 'no');
         formdata.append('company_id', {{ company.id }});
+            {% if user_profile.role.role_name != 'Клиент' %}
+                formdata.append('client_id', {{ company.user.id }});
+
+            {% endif %}
 
         {% endif %}
 
