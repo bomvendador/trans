@@ -126,84 +126,87 @@
 
                                 {% endif %}
 
+                                <div id="company_block_div" class="{% if user_profile.role.role_name != 'Клиент' %}none{% endif %}">
+                                    <div class="row clearfix">
+                                        <div class="col-md-6 col-xs-12">
+                                            <h2 class="card-inside-title">Название</h2>
 
-                                <div class="row clearfix">
-                                    <div class="col-md-6 col-xs-12">
-                                        <h2 class="card-inside-title">Название</h2>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-format-color-text f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="Название" id="name_company" name="name_company" value="{% if not new %}{{ company.name }}{% endif %}">
 
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-format-color-text f_s_20"></i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Название" id="name_company" name="name_company" value="{% if not new %}{{ company.name }}{% endif %}">
-
+                                                </div>
                                             </div>
+
                                         </div>
 
+                                        <div class="col-md-6  col-xs-12">
+                                            <h2 class="card-inside-title">Форма собственности</h2>
+
+                                                <select class="form-control show-tick" id="property" name="property">
+                                                    <option value="">--  --</option>
+                                                    {% for property in properties %}
+                                                    <option value="{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
+                                                    {% endfor %}
+                                                </select>
+
+                                        </div>
                                     </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-4 col-xs-12">
+                                        <h2 class="card-inside-title">ИНН</h2>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="ИНН" id="inn_company" name="inn_company" value="{% if not new %}{{ company.inn }}{% endif %}">
 
-                                    <div class="col-md-6  col-xs-12">
-                                        <h2 class="card-inside-title">Форма собственности</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                        <h2 class="card-inside-title">КПП</h2>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="КПП" id="kpp_company" name="kpp_company" value="{% if not new %}{{ company.kpp }}{% endif %}">
 
-                                            <select class="form-control show-tick" id="property" name="property">
-                                                <option value="">--  --</option>
-                                                {% for property in properties %}
-                                                <option value="{{ property.id }}" {% if company.property == property %} selected {% endif %}>{{ property.name }}</option>
-                                                {% endfor %}
-                                            </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-xs-12">
+                                        <h2 class="card-inside-title">ОГРН</h2>
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control" placeholder="ОГРН" id="ogrn_company" name="ogrn_company" value="{% if not new %}{{ company.ogrn }}{% endif %}">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <h2 class="card-inside-title">Адрес</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 col-xs-12">
+                                            <div class="input-group">
+                                                <div class="form-line">
+                                                    <textarea rows="4" class="form-control" placeholder="Адрес..." id="address_company" name="address_company">{% if not new %}{{ company.address }}{% endif %}</textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="body">
+
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
+                                            <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
+                                        </div>
 
                                     </div>
                                 </div>
-                                <div class="row clearfix">
-                                    <div class="col-md-4 col-xs-12">
-                                    <h2 class="card-inside-title">ИНН</h2>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="ИНН" id="inn_company" name="inn_company" value="{% if not new %}{{ company.inn }}{% endif %}">
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-xs-12">
-                                    <h2 class="card-inside-title">КПП</h2>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="КПП" id="kpp_company" name="kpp_company" value="{% if not new %}{{ company.kpp }}{% endif %}">
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 col-xs-12">
-                                    <h2 class="card-inside-title">ОГРН</h2>
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="ОГРН" id="ogrn_company" name="ogrn_company" value="{% if not new %}{{ company.ogrn }}{% endif %}">
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <h2 class="card-inside-title">Адрес</h2>
-                                <div class="row clearfix">
-                                    <div class="col-md-12 col-xs-12">
-                                        <div class="input-group">
-                                            <div class="form-line">
-                                                <textarea rows="4" class="form-control" placeholder="Адрес..." id="address_company" name="address_company">{% if not new %}{{ company.address }}{% endif %}</textarea>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="row clearfix">
-                                    <div class="body">
-
-                                    </div>
-                                    <div class="col-sm-12 col-xs-12 none" id="btn_save_info">
-                                        <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_info_btn">СОХРАНИТЬ</button>
-                                    </div>
-
-                                </div>
                             </div>
 {#                            <input name="new_manager" value="yes" class="none"/>#}
 
@@ -260,6 +263,7 @@
 {#        $('#tel_doc_send').val(tel);#}
 {#        $('#client_id_doc_send').val(id);#}
         $('#close_modal_select_client_btn').click();
+        $('#company_block_div').slideDown('slow');
 
 
     });
