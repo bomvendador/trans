@@ -439,10 +439,11 @@
                                                         <i class="mdi mdi-tie font-24"></i>
                                                     </span>
                                                     <div class="form-line" id="company_div_content">
-                                                        <p class="form-control display-inline" id="company_from_client" name="company_from_client">
-                                                            {{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
+                                                        <p class="form-control display-inline" id="company_from_client" name="company_from_client">{{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
+                                                            {% if order_details.paystatus.name != 'Paid' and user_profile.role.role_name == 'Клиент'%}
                                                             <i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="{{ order_details.company.id }}" title="Удалить"></i>
                                                             <i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i>
+                                                            {% endif %}
                                                         </p>
 
 
