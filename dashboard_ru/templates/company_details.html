@@ -254,7 +254,7 @@
         var id = $(this).eq(row).find('td').eq(0).text();
 {#        var tel = $(this).eq(row).find('td').eq(2).text();#}
         var email = $(this).eq(row).find('td').eq(3).text();
-        console.log(id)
+        console.log($.trim(id))
         $('#client').text(name + ', ' + email).attr('data-client-id', id);
 {#        $('#email_doc_send').val(email);#}
 {#        $('#tel_doc_send').val(tel);#}
