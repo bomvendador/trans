@@ -1678,7 +1678,6 @@ def set_company_for_payment(request):
         order_inst.company = company_inst
         order_inst.save()
         orders_qnt = SentDoc.objects.filter(company=company_inst).count()
-        logger.debug(u'кол-во заказов = ' + str(orders_qnt))
         company_inst.orders_qnt = orders_qnt
         company_inst.save()
         invoice = Invoice()
@@ -1698,9 +1697,15 @@ def del_company_from_payment(request):
     if request.method == 'POST':
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
+        company_id = json_data['company_id']
+        company_inst = Company.objects.get(id=company_id)
         order_inst = SentDoc.objects.get(id=order_id)
         order_inst.company = None
         order_inst.save()
+        orders_qnt = SentDoc.objects.filter(company=company_inst).count()
+        company_inst.orders_qnt = orders_qnt
+        company_inst.save()
+
         Invoice.objects.filter(order=order_inst).delete()
         email_context = {
             'order': order_inst
