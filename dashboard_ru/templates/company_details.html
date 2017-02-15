@@ -251,7 +251,7 @@
     $('.client_existing').on('click', function () {
         var row = $(this).parent().children().index($(this).parent());
         var name = $(this).eq(row).find('td').eq(1).text();
-        var id = $(this).eq(row).find('td').eq(0).text();
+        var id = $.trim($(this).eq(row).find('td').eq(0).text());
 {#        var tel = $(this).eq(row).find('td').eq(2).text();#}
         var email = $(this).eq(row).find('td').eq(3).text();
         console.log($.trim(id))
