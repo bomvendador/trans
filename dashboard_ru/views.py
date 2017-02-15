@@ -1441,7 +1441,7 @@ def save_order_comment(request):
 def save_order_comment_client(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
-        comment_text = request.POST.get('comment_client_text')
+        comment_text = request.POST.get('formated_text')
         order = SentDoc.objects.get(id=order_id)
         comment = OrderCommentsClients()
         comment.text = comment_text
@@ -1450,6 +1450,31 @@ def save_order_comment_client(request):
         response = json.dumps(
             {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
              'comment_text': comment.text
+             })
+        return HttpResponse(response)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def save_order_comment_client_answer(request):
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        comment_id = request.POST.get('comment_client_id')
+        answer_text = request.POST.get('comment_client_answer_text')
+        comment = OrderCommentsClients.objects.get(id=comment_id)
+        order = SentDoc.objects.get(id=order_id)
+        answer = OrderCommentsClientsAnswer()
+        answer.text = answer_text
+        answer.order = order
+        user = User.objects.get(id=request.user.id)
+        answer.author = user
+        user_profile = UserProfile.objects.get(user=user)
+        answer.author_role = user_profile.role
+        answer.comment = comment
+        answer.save()
+        response = json.dumps(
+            {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
+             'comment_text': answer.text,
+             'author_role': answer.author_role.role_name
              })
         return HttpResponse(response)
 
