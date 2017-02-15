@@ -3,6 +3,8 @@ import json
 import re, os
 from string import punctuation
 
+from custom_def import *
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -13,7 +15,7 @@ from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, Pa
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
     PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice
 
-from django.utils.dateparse import parse_date
+from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Sum
 
 from django.core.mail import EmailMessage, send_mail
@@ -924,15 +926,15 @@ def update_order_payment(request):
             sent_doc.paystatus = PayStatus.objects.get(name='Paid')
         payment_date = request.POST.get('payment_date')
         payment_method = request.POST.get('payment_method_')
-
+        parsed_datetime = parse_date_as_datetime(payment_date)
         sent_doc.payment_amount = payment_amount
-        sent_doc.payment_date = payment_date
+        sent_doc.payment_date = parsed_datetime
         # print(str(payment_date) + str(payment_method) + str(payment_amount))
-        # sent_doc.paymethod = PayMethod.objects.get(name=payment_method)
+        sent_doc.paymethod = PayMethod.objects.get(name=payment_method)
         logger.debug('date = ' + str(payment_date))
         # logger.debug('method = ' + str(payment_method).decode('utf-8'))
-        # update_client_statistics(sent_doc.user)
-        # sent_doc.save()
+        update_client_statistics(sent_doc.user)
+        sent_doc.save()
         return HttpResponse('')
 
 
