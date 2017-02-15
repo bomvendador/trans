@@ -928,7 +928,7 @@ def update_order_payment(request):
         payment_method = request.POST.get('payment_method_')
         if not ',' in payment_date:
             parsed_datetime = parse_date_as_datetime(payment_date)
-            sent_doc.payment_date = parsed_datetime(parsed_datetime)
+            sent_doc.payment_date = parse_datetime(parsed_datetime)
 
         sent_doc.payment_amount = payment_amount
         # logger.debug('date = ' + str(parsed_datetime))
