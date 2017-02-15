@@ -269,53 +269,73 @@
 
     $('#save_info_btn').on('click', function () {
 
+        if ($('#inn_company').val() == '' || $('#kpp_company').val() == '' || $('#ogrn_company').val() == ''){
+            swal({
+                title: 'Ошибка ввода',
+                text: 'Поля ИНН, КПП и ОГРН должны быть заполнены ',
+                type: 'error'
+            });
 
-        var formdata = new FormData($('#form_info').get(0));
-        {% if new %}
-        formdata.append('new', 'yes');
-        formdata.append('client_id', $('#client').attr('data-client-id'));
-        {% else %}
-        formdata.append('new', 'no');
-        formdata.append('company_id', {{ company.id }});
-            {% if user_profile.role.role_name != 'Клиент' %}
-                formdata.append('client_id', {{ company.user.id }});
-
-            {% endif %}
-
-        {% endif %}
-
-        $.ajax({
-            url: '{% url 'ru:dashboard_ru:save_company' %}',
-            type: 'POST',
-            data: formdata,
-            processData: false,
-            contentType: false,
-            error: function(data){
+        }else {
+            var numbers_only = new RegExp(/^[0-9]+$/);
+            if (!numbers_only.test($('#inn_company').val()) || !numbers_only.test($('#kpp_company').val()) || !numbers_only.test($('#ogrn_company').val())) {
                 swal({
-                    title: 'Ошибка сервера',
-                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    title: 'Ошибка ввода',
+                    text: 'Проверьте ',
                     type: 'error'
                 });
-            },
-            success:function (data) {
-                if (data == 'ok'){
-                    swal({
-                        title: 'Информация сохранена',
-                        text: 'Данные на сервере успешно обновлены',
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: false
+
+            }else {
+                var formdata = new FormData($('#form_info').get(0));
+                {% if new %}
+                formdata.append('new', 'yes');
+                formdata.append('client_id', $('#client').attr('data-client-id'));
+                {% else %}
+                formdata.append('new', 'no');
+                formdata.append('company_id', {{ company.id }});
+                    {% if user_profile.role.role_name != 'Клиент' %}
+                        formdata.append('client_id', {{ company.user.id }});
+
+                    {% endif %}
+
+                {% endif %}
+
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:save_company' %}',
+                    type: 'POST',
+                    data: formdata,
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'error'
+                        });
                     },
-                    function (isConfirm) {
-                        if (isConfirm){
-                                window.location.href = '/ru/dashbrd/companies_list/';
+                    success:function (data) {
+                        if (data == 'ok'){
+                            swal({
+                                title: 'Информация сохранена',
+                                text: 'Данные на сервере успешно обновлены',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                        window.location.href = '/ru/dashbrd/companies_list/';
+
+                                }
+                            });
 
                         }
-                    });
+                    }
+                });
 
-                }
             }
-        });
+
+        }
 
     });
 
