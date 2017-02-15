@@ -474,14 +474,14 @@ def order_details(request, order_id):
         except SentDoc.DoesNotExist:
             new_count = 0
         try:
-            client_comments = OrderCommentsClients.objects.filter(order=order_det.id)
+            client_comments = OrderCommentsClients.objects.filter(order=order_det)
             context.update({
                 'client_comments': client_comments,
             })
         except OrderCommentsClients.DoesNotExist:
             pass
         try:
-            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det.id)
+            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det)
             context.update({
                 'client_comments_answers': client_comments_answers
             })
