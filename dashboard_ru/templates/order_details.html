@@ -784,7 +784,7 @@
                                     <div class="list-group-item margin-bottom-10" id="client_comments_div">
                                         {% if client_comments %}
                                             {% for client_comment in client_comments %}
-                                            <div class="comments-style" id="client_comments">
+                                            <div class="comments-style" id="client_comments" data-comment-id="{{ client_comment.id }}">
                                                 <div style="">
                                                     <div class="border-bottom-1-grey">
                                                         <small>{{ client_comment.added|date:"d.m.Y, H:i" }}</small>
@@ -865,6 +865,7 @@
     <script>
 
     $(document).ready(function () {
+
         //отправка комментариев клиента
         $('#comment_client_text').on('input', function () {
             $('#save_order_comment_client_btn').removeAttr('disabled');
