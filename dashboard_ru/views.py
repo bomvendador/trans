@@ -476,7 +476,7 @@ def order_details(request, order_id):
         try:
             client_comments = OrderCommentsClients.objects.filter(order=order_det)
             context.update({
-                'client_comments': client_comments,
+                'client_comments': client_comments
             })
         except OrderCommentsClients.DoesNotExist:
             pass
