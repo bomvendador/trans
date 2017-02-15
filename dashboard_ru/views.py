@@ -468,25 +468,27 @@ def order_details(request, order_id):
         files = None
         # for f in files:
         # print('file = ' + str(f.file_name))
+
+    try:
+        client_comments = OrderCommentsClients.objects.filter(order=order_det)
+        context.update({
+            'client_comments': client_comments
+        })
+    except OrderCommentsClients.DoesNotExist:
+        pass
+    try:
+        client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det)
+        context.update({
+            'client_comments_answers': client_comments_answers
+        })
+    except OrderCommentsClientsAnswer.DoesNotExist:
+        pass
+
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         try:
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
         except SentDoc.DoesNotExist:
             new_count = 0
-        try:
-            client_comments = OrderCommentsClients.objects.filter(order=order_det)
-            context.update({
-                'client_comments': client_comments
-            })
-        except OrderCommentsClients.DoesNotExist:
-            pass
-        try:
-            client_comments_answers = OrderCommentsClientsAnswer.objects.filter(order=order_det)
-            context.update({
-                'client_comments_answers': client_comments_answers
-            })
-        except OrderCommentsClientsAnswer.DoesNotExist:
-            pass
     else:
         if user_profile.role.role_name == u'Менеджер':
             order_det.status = OrderStatus.objects.get(name=u'В работе')
