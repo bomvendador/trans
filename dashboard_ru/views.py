@@ -1441,7 +1441,7 @@ def save_order_comment_client(request):
         comment.order = order
         comment.save()
         response = json.dumps(
-            {'added': comment.added,
+            {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
              'comment_text': comment.text
              })
         return HttpResponse(response)
