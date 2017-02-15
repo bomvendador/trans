@@ -782,35 +782,38 @@
                                         {% endif %}
                                     </div>
                                     <div class="list-group-item margin-bottom-10" id="comments_div">
-                                        {% for client_comment in client_comments %}
-                                        <div class="comments-style" id="client_comments">
-                                            <div style="">
-                                                <div>
-                                                    <small>{{ client_comment.added|date:"d.m.Y, H:i" }}</small>
+                                        {% if client_comments %}
+                                            {% for client_comment in client_comments %}
+                                            <div class="comments-style" id="client_comments">
+                                                <div style="">
+                                                    <div>
+                                                        <small>{{ client_comment.added|date:"d.m.Y, H:i" }}</small>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="mrg-bot-20" style="margin-left: 10px">
-                                                {{ client_comment.text }}
-                                            </div>
-
-                                        </div>
-                                        <div  id="client_comments">
-                                        {% for client_comment_answer in client_comments_answers %}
-                                        <div class="comments-style" id="client_comments_answers">
-                                            <div style="">
-                                                <div>
-                                                    <small>{{ client_comment_answer.added|date:"d.m.Y, H:i" }}</small>
+                                                <div class="mrg-bot-20" style="margin-left: 10px">
+                                                    {{ client_comment.text }}
                                                 </div>
-                                            </div>
-                                            <div class="mrg-bot-20" style="margin-left: 10px">
-                                                {{ client_comment_answer.text }}
-                                            </div>
-                                        </div>
-                                        {% endfor %}
-                                        </div>
 
-                                        {% endfor %}
+                                            </div>
+                                            <div  id="client_comments">
+                                                {% for client_comment_answer in client_comments_answers %}
+                                                <div class="comments-style" id="client_comments_answers">
+                                                    <div style="">
+                                                        <div>
+                                                            <small>{{ client_comment_answer.added|date:"d.m.Y, H:i" }}</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mrg-bot-20" style="margin-left: 10px">
+                                                        {{ client_comment_answer.text }}
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                            </div>
 
+                                            {% endfor %}
+                                        {% else %}
+                                            <p class="color-ddd">Записи отсутствуют</p>
+                                        {% endif %}
                                     </div>
 
                                     <div class="">
