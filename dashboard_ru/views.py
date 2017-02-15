@@ -943,7 +943,7 @@ def update_order_translation(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
         sent_doc = SentDoc.objects.get(id=order_id)
-        sent_doc.status = OrderStatus.objects.get(name='Выполнен')
+        sent_doc.status = OrderStatus.objects.get(name=u'Выполнен')
         translation_sent_date = request.POST.get('translation_sent_date')
         sent_doc.translation_sent_date = translation_sent_date
         sent_doc.save()
