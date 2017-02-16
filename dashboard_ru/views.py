@@ -1453,6 +1453,10 @@ def save_order_comment_client(request):
             comment.author_role = user_profile.role
             comment.comment.done = True
             comment.comment.save()
+            context.update({
+                'user_name': user.first_name,
+                'role': user_profile.role.role_name
+            })
             answer = 1
         else:
             comment = OrderCommentsClients()
@@ -1461,14 +1465,13 @@ def save_order_comment_client(request):
         comment.text = comment_text
         comment.order = order
         comment.save()
-        response = json.dumps(
-            {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
-             'comment_text': comment.text,
-             'answer': answer,
-             'comment_id': comment_id,
-             'user_name': user.first_name,
-             'role': user_profile.role.role_name
-             })
+        context.update({
+            'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
+            'comment_text': comment.text,
+            'answer': answer,
+            'comment_id': comment_id,
+            })
+        response = json.dumps(context)
         return HttpResponse(response)
 
 
