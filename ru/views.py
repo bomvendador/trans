@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import sys
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
@@ -490,7 +491,7 @@ def save_files_trans(request):
                     email_source = u'Сайт - заявка'
 
             doc_sent.save()
-
+            logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
                 s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name.encode("utf-8"))
                 s.save()
