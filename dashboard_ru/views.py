@@ -1453,6 +1453,7 @@ def save_order_comment_client(request):
             comment = OrderCommentsClientsAnswer()
             comment.comment = OrderCommentsClients.objects.get(id=comment_id)
             user = User.objects.get(id=request.user.id)
+            context.update(get_data_proc(request))
             comment.author = user
             user_profile = UserProfile.objects.get(user=user)
             comment.author_role = user_profile.role
