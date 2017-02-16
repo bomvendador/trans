@@ -501,7 +501,7 @@ def save_files_trans(request):
                 file_name = f.name.split('.')
                 logger.debug(unicode(f.name))
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicode(f.name))
-                s = SentFiles(file=f.encode('utf-8'), sent_doc=doc_sent)
+                s = SentFiles(file=f, sent_doc=doc_sent)
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicodedata.normalize('NFKD', f.name).encode('utf-8', 'ignore'))
                 s.save()
             if user_exists:
