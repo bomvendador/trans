@@ -40,9 +40,12 @@ def view_locale(request):
         "<br/>getdefaultlocale(): " + str(locale.getdefaultlocale()) + \
         "<br/>fs_encoding: " + str(sys.getfilesystemencoding()) + \
         "<br/>sys default encoding: " + str(sys.getdefaultencoding()) + \
-        'datetime now = ' + str(datetime.now()) + \
-        'date = ' + str(date.today()) + \
-        'time = ' + str(datetime.now().time())
+        '<br/>sdatetime now = ' + str(datetime.now()) + \
+        '<br/>sdate = ' + str(date.today()) + \
+        '<br/>stime = ' + str(datetime.now().time())
+    dt = datetime.now()
+    for i in dt:
+        logger.debug(i)
     return HttpResponse(loc_info)
 
 
