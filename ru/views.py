@@ -498,6 +498,7 @@ def save_files_trans(request):
             logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
                 file_name = f.name.split('.')
+                logger.debug(unicode(f.name))
                 s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicode(f.name))
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicodedata.normalize('NFKD', f.name).encode('utf-8', 'ignore'))
                 s.save()
