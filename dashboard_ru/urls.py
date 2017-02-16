@@ -45,6 +45,10 @@ urlpatterns = [
     url(r'^get_new_comments_client/$', views.get_new_comments_client, name='get_new_comments_client'),
 
 
+    url(r'^locale/$', views.view_locale, name='locale'),
+
+
+
     url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),
     url(r'^new_back_calls/$', views.get_new_back_calls, name='get_new_back_calls'),
     url(r'^back_call_details/(?P<back_call_id>\d+)/$', views.get_back_call_details, name='get_back_call_details'),

@@ -1,6 +1,7 @@
 # -*- encoding:utf-8-*-
 import json
 import re, os
+import locale, sys
 from string import punctuation
 
 from custom_def import *
@@ -32,6 +33,15 @@ from django.contrib import messages, sessions
 import datetime
 
 logger = logging.getLogger('django-debug')
+
+
+def view_locale(request):
+    loc_info = "getlocale: " + str(locale.getlocale()) + \
+        "<br/>getdefaultlocale(): " + str(locale.getdefaultlocale()) + \
+        "<br/>fs_encoding: " + str(sys.getfilesystemencoding()) + \
+        "<br/>sys default encoding: " + str(sys.getdefaultencoding()) +\
+        "<br/>sys default encoding: " + str(sys.getdefaultencoding())
+    return HttpResponse(loc_info)
 
 
 def get_user_userprofile(request):
