@@ -590,3 +590,9 @@ ul{
     background: white!important;
 }
 
+.comments-style-no-border {
+    background: #f9f9f9;
+    padding: 3px 12px;
+    margin-bottom: 5px;
+    font-size: 13px;
+}
