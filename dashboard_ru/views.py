@@ -36,16 +36,16 @@ logger = logging.getLogger('django-debug')
 
 
 def view_locale(request):
+    dt = datetime.now().timetuple()
+
     loc_info = "getlocale: " + str(locale.getlocale()) + \
         "<br/>getdefaultlocale(): " + str(locale.getdefaultlocale()) + \
         "<br/>fs_encoding: " + str(sys.getfilesystemencoding()) + \
         "<br/>sys default encoding: " + str(sys.getdefaultencoding()) + \
         '<br/>sdatetime now = ' + str(datetime.now()) + \
         '<br/>sdate = ' + str(date.today()) + \
-        '<br/>stime = ' + str(datetime.now().time())
-    dt = datetime.now().timetuple()
-    for i in dt:
-        logger.debug(i)
+        '<br/>stime = ' + str(datetime.now().time()) + \
+        u'<br/>год = ' + str(dt[1]) + u' день = ' + str(dt[2])
     return HttpResponse(loc_info)
 
 
