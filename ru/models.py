@@ -256,12 +256,15 @@ class OrderCommentsClientsAnswer(models.Model):
 
 
 class TranslationFiles(models.Model):
-    file = models.FileField(upload_to=settings.BASE_DIR + '/media/translation_files', blank=True, null=True)
+    file = models.FileField(upload_to=UploadToPathAndRename(settings.BASE_DIR + '/media/translation_files'), blank=True, null=True)
     file_name = models.CharField(max_length=100, null=True, blank=True)
     order = models.ForeignKey(SentDoc, blank=True, null=True)
     added = models.DateTimeField(auto_now_add=True, auto_now=False)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     uploaded_by = models.ForeignKey(User, null=True, blank=True)
+
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 
 @deconstructible
