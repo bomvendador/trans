@@ -62,6 +62,14 @@
                        <a href="http://prolingva.ru/ru/dashbrd/order_details/{{ order.id }}">{{ order.id }}</a>
                    </td>
                </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Текст:
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ comment_text|safe }}
+                   </td>
+               </tr>
 {#               <tr style="font-size: 13px">#}
 {#                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">#}
 {#                       Ссылка для входа:#}
