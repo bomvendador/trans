@@ -25,7 +25,8 @@ def payment_success(request):
         order.save()
         email_context = {
             'manager': order.resp,
-            'order': order
+            'order': order,
+            'payment_date': order.payment_date.strftime("%d.%m.%Y, %H:%M")
         }
         # TODO изменить почту достваки
         dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
