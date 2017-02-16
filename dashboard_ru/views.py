@@ -1447,6 +1447,10 @@ def save_order_comment_client(request):
         if comment_id:
             comment = OrderCommentsClientsAnswer()
             comment.comment = OrderCommentsClients.objects.get(id=comment_id)
+            user = User.objects.get(id=request.user.id)
+            comment.author = user
+            user_profile = UserProfile.objects.get(user=user)
+            comment.author_role = user_profile.role
             answer = 1
         else:
             comment = OrderCommentsClients()
