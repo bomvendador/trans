@@ -7,6 +7,8 @@ import positions
 import os
 from uuid import uuid4
 from django.utils.deconstruct import deconstructible
+from datetime import datetime, date, time
+
 
 class Testimonials(models.Model):
     text = models.CharField(max_length=3000)
@@ -271,11 +273,12 @@ class UploadToPathAndRename(object):
     def __call__(self, instance, filename):
         ext = filename.split('.')[-1]
         # get filename
+        dt = datetime.now().timetuple()
         if instance.pk:
             filename = '{}.{}'.format(instance.pk, ext)
         else:
             # set filename as random string
-            filename = '{}.{}'.format(uuid4().hex, ext)
+            filename = '{}.{}'.format(dt[2] + '-' + dt[1] + '-' + dt[0], ext)
         # return the whole path to the file
         return os.path.join(self.sub_path, filename)
 
