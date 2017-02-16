@@ -45,7 +45,7 @@ def view_locale(request):
         '<br/>sdatetime now = ' + str(datetime.now()) + \
         '<br/>sdate = ' + str(date.today()) + \
         '<br/>stime = ' + str(datetime.now().time()) + \
-        u'<br/>год = ' + str(dt[1]) + u' день = ' + str(dt[2])
+        u'<br/>год = ' + str(dt[0]) + u' день = ' + str(dt[1]) + u' день = ' + str(dt[2]) + ' ' + str(dt[3]) + ' ' + str(dt[4])
     return HttpResponse(loc_info)
 
 
