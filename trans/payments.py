@@ -8,6 +8,7 @@ from ru.models import SentDoc, PayStatus, PayMethod
 from django.contrib.auth.decorators import login_required
 import json
 from dashboard_ru import views as dashboard_views
+from datetime import datetime
 
 
 @csrf_exempt
@@ -23,7 +24,8 @@ def payment_success(request):
         order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
         order.save()
-        date = order.payment_date.strftime("%d.%m.%Y, %H:%M")
+        # date = order.payment_date.strftime("%d.%m.%Y, %H:%M")
+        date = datetime.strptime(order.payment_date, "%d.%m.%Y, %H:%M")
 
         email_context = {
             'manager': order.resp,
