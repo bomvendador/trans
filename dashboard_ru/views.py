@@ -1454,6 +1454,7 @@ def save_order_comment_client(request):
             comment.comment = OrderCommentsClients.objects.get(id=comment_id)
             user = User.objects.get(id=request.user.id)
             new_client_comments_count = get_data_proc(request).get('new_client_comments_count')
+            logger.debug('new comment = ' + str(new_client_comments_count))
             comment.author = user
             user_profile = UserProfile.objects.get(user=user)
             comment.author_role = user_profile.role
