@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# from views import path_and_rename
+from views import path_and_rename
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -262,8 +262,8 @@ class TranslationFiles(models.Model):
 
 
 class SentFiles (models.Model):
-    file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
-    # file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
+    # file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
+    file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
     file_name = models.CharField(max_length=150, null=True)
     sent_doc = models.ForeignKey(SentDoc)
 
