@@ -1486,17 +1486,16 @@ def get_new_comments_client(request):
     user_profile = UserProfile.objects.get(user=request.user)
     new_client_comments = OrderCommentsClients.objects.filter(done=False)
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
-        orders = SentDoc.objects.filter(id__in=new_client_comments)
+        orders = SentDoc.objects.filter(id__in=new_client_comments.values('order'))
         # orders = SentDoc.objects.filter(id__in=new_client_comments.values('id', id()))
     elif user_profile.role.role_name == u'Менеджер':
         orders = SentDoc.objects.filter(id=new_client_comments.order.id).filter(resp=request.user)
     else:
         return HttpResponse(u'Нет прав доступа')
     context.update({
-        'sent_docs': orders,
-        'user_profile': user_profile,
-        'new_client_comment': 1
-       })
+                   'sent_docs': orders,
+                   'user_profile': user_profile,
+                   })
     return render(request, 'sent_docs.html', context)
                        # @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 # def save_order_comment_client_answer(request):
