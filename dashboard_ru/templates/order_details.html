@@ -882,9 +882,9 @@
             $('#comment_id').val($.trim($(this).attr('data-comment-id')));
             console.log($('#comment_id').val())
             $('#client_comments_div .comment_item').each(function () {
-               $(this).removeClass('border-2px');
+               $(this).removeClass('background-yellow');
             });
-            $(this).addClass('border-2px');
+            $(this).addClass('background-yellow');
         });
         {% endif %}
 
