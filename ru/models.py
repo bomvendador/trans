@@ -278,7 +278,7 @@ class UploadToPathAndRename(object):
             filename = '{}.{}'.format(instance.pk, ext)
         else:
             # set filename as random string
-            filename = '{}.{}'.format(dt[2] + '-' + dt[1] + '-' + dt[0], ext)
+            filename = '{}.{}'.format(str(dt[2]) + '-' + str(dt[1]) + '-' + str(dt[0]), ext)
         # return the whole path to the file
         return os.path.join(self.sub_path, filename)
 
