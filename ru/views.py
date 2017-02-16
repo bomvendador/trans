@@ -496,11 +496,11 @@ def save_files_trans(request):
                     email_source = u'Сайт - заявка'
 
             doc_sent.save()
-            sys.getdefaultencoding = lambda : 'UTF-8'
+            # sys.getdefaultencoding = lambda : 'UTF-8'
             logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
                 file_name = f.name.split('.')
-                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
+                # s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
                 s = SentFiles(file=f, sent_doc=doc_sent)
                 # new_file_name = update_filename(s, f.name)
                 # logger.debug(str(new_file_name))
