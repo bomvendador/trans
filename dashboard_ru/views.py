@@ -1662,7 +1662,7 @@ def send_calculation_to_client(request):
         order_id = json_data['order_id']
         order_price = json_data['order_price']
         order = SentDoc.objects.get(id=order_id)
-        order.calc_sent_date = datetime.datetime.now()
+        order.calc_sent_date = datetime.now()
         order.save()
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
