@@ -1453,7 +1453,7 @@ def save_order_comment_client(request):
             comment = OrderCommentsClientsAnswer()
             comment.comment = OrderCommentsClients.objects.get(id=comment_id)
             user = User.objects.get(id=request.user.id)
-            context.update(get_data_proc(request))
+            new_client_comments_count = get_data_proc(request)['new_client_comments_count']
             comment.author = user
             user_profile = UserProfile.objects.get(user=user)
             comment.author_role = user_profile.role
@@ -1461,7 +1461,8 @@ def save_order_comment_client(request):
             comment.comment.save()
             context.update({
                 'user_name': user.first_name,
-                'role': user_profile.role.role_name
+                'role': user_profile.role.role_name,
+                'new_client_comments_count': new_client_comments_count
             })
             answer = 1
         else:
