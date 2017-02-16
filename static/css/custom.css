@@ -585,3 +585,7 @@ ul{
 .background-yellow{
     background: #FFCD22;
 }
+
+.background-white{
+    background: white!important;
+}
