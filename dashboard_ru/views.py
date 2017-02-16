@@ -47,7 +47,7 @@ def view_locale(request):
         '<br/>stime = ' + str(datetime.now().time()) + \
         u'<br/>год = ' + str(dt[0]) + u' день = ' + str(dt[1]) + u' день = ' + str(dt[2]) + ' ' + str(dt[3]) + ' ' + str(dt[4]) + \
         '<br/>stime = ' + str(order.payment_date.strftime("%d.%m.%Y, %H:%M")) + \
-        '<br/>timezone = ' + str(timezone.now())
+        '<br/>timezone = ' + str(timezone.localtime(timezone.now()))
     return HttpResponse(loc_info)
 
 
