@@ -596,3 +596,7 @@ ul{
     margin-bottom: 5px;
     font-size: 13px;
 }
+
+.border-comment{
+    border: 1px solid rgba(204, 204, 204, 0.35);
+}
