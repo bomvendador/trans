@@ -1470,7 +1470,7 @@ def save_order_comment_client(request):
                 'answer': comment_text
             }
             # TODO изменить имейл на имейл клиента
-            send_email(request, 'comments.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
+            send_email(request, 'answer_to_client_comment.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
 
         else:
             comment = OrderCommentsClients()
