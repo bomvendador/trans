@@ -278,7 +278,7 @@ class UploadToPathAndRename(object):
             filename = '{}.{}'.format(instance.pk, ext)
         else:
             # set filename as random string
-            filename = '{}.{}'.format(str(dt[2]) + '-' + str(dt[1]) + '-' + str(dt[0]), ext)
+            filename = '{}.{}'.format(str(dt[2]) + '-' + str(dt[1]) + '-' + str(dt[0]) + '_' + str(dt[3]) + '-' + str(dt[4]) + '-' + str(dt[5]), ext)
         # return the whole path to the file
         return os.path.join(self.sub_path, filename)
 
@@ -289,6 +289,9 @@ class SentFiles (models.Model):
     # file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
     file_name = models.CharField(max_length=150, null=True)
     sent_doc = models.ForeignKey(SentDoc)
+
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 
 class Translator_Lang(models.Model):
