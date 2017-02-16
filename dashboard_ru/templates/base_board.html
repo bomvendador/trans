@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 <!DOCTYPE html>
 <html>
 
@@ -47,7 +48,7 @@
 
 </head>
 
-
+{% timezone 'Europe/Moscow' %}
 <body class="theme-red">
     <!-- Page Loader -->
     <div class="page-loader-wrapper">
@@ -876,6 +877,7 @@
         </div>
     </section>
 
+
 {#    <!-- Jquery Core Js -->#}
 {#    <script src="plugins/jquery/jquery.min.js"></script>#}
     <script src="{% static 'dashboard/plugins/jquery/jquery.min.js' %}"></script>
@@ -1008,5 +1010,5 @@
     })
 </script>
 </body>
-
+{% endtimezone %}
 </html>

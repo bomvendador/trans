@@ -174,7 +174,7 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
 
-DATE_INPUT_FORMATS = '%d-%m-%Y'
+# DATE_INPUT_FORMATS = '%d-%m-%Y'
 
 
 # Add this configuration to your Django settings.py file
