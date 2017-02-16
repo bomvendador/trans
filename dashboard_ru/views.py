@@ -196,7 +196,7 @@ def get_sent_docs(request):
     user_profile = UserProfile.objects.get(user=user)
     # if superadmin
     sent_docs = None
-    context = {}
+    context = get_data_proc(request)
     new_count = 0
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         new_testimonials = Testimonials.objects.filter(new=True).count()
