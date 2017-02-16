@@ -1,0 +1,152 @@
+{% load staticfiles %}
+{% block subject %}Расчет стоимости PROLINGVA{% endblock %}
+{% block html %}
+<html>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<style>
+    .calc{
+    border-collapse: collapse;
+    border: 1px solid #9d9d9d;
+    width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<table cellpadding='0' cellspacing='0' id='iphone-table' style='padding:10px 0px 15px 0px; width: 80%; font-family: Roboto, Sans-Serif;' align="center">
+    <tr>
+        <td align="left" valign="middle" style="border-bottom: 1px solid #ddd; margin-bottom: 10px">
+            <div style="padding-bottom: 5px">
+                <img src="{{ logo }}">
+            </div>
+        </td>
+        <td align="right" valign="bottom" style="text-align: right; border-bottom: 1px solid #ddd; margin-bottom: 10px" >
+            <div style="text-align: right; color: #9d9d9d; font-size: 13px; padding-bottom: 5px">
+                    +7 800 000 00 00
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="text-align: center; font-size: 15px; padding-top: 10px">
+            Уважаемый(ая) {{ order.user.first_name }},
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="font-size: 13px; padding-top: 10px; border-bottom: 1px solid #ddd; text-align: justify; padding-bottom: 10px">
+            <p>Это письмо является ответом на Вами ранее созданный вопрос по заявке. Его Вы также можете посмотреть в разделе КОММЕНТАРИИ в детализации по заявке.</p>
+{#            <p>Мы постоянной занимаемся расширением функционала. О всех изменениях мы будем Вам сообщать дополнительно.</p>#}
+        </td>
+    </tr>
+    <tr>
+       <td colspan="2" style="padding-bottom: 10px">
+           <table border="1"  cellpadding='0' cellspacing='0' width="100%" class="calc">
+{#               <tr>#}
+{#                   <td align="left" valign="center" colspan="2" style="font-size: 13px; padding-bottom: 5px">#}
+{#                       <b>Данные для входа:</b>#}
+{#                   </td>#}
+{#               </tr>#}
+               <tr>
+                   <td align="left" valign="center" style="background: #DDDDDD; font-size: 13px; padding:5px">
+                       Менеджер:
+                   </td>
+                   <td align="left" valign="center" style="font-size: 13px; padding: 5px">
+                       {{ manager.first_name }}, <a href="emailto:{{ manager.email }}">{{ manager.email }}</a>
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Заявка №:
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       <a href="http://prolingva.ru/ru/dashbrd/order_details/{{ order.id }}">{{ order.id }}</a>
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Вопрос:
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ comment_text|safe }}
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Ответ:
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ answer|safe }}
+                   </td>
+               </tr>
+{#               <tr style="font-size: 13px">#}
+{#                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">#}
+{#                       Ссылка для входа:#}
+{#                   </td>#}
+{#                   <td align="left" valign="center">#}
+{#                       <a href="http://prolingva.ru/ru/dashbrd/login/">http://prolingva.ru/ru/dashbrd/login/</a>#}
+{#                   </td>#}
+{#               </tr>#}
+           </table>
+       </td>
+    </tr>
+    <tr>
+        <td style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding-bottom: 10px; padding-top: 5px; font-size: 12px; color: #9d9d9d; text-align: justify" colspan="2">
+            Мы постоянно работаем над функциональным расширением портала. О всех изменениях мы будем Вам сообщать дополнительно. Если у Вас имеются пожелания по расширению функционала или замечания по существующему, будем рады их получить на почту <a href="mailto:support@prolingva.ru">support@prolingva.ru</a>. Для нас важно Ваше мнение!
+        </td>
+    </tr>
+    <tr style="font-size: 13px">
+        <td align="left" style="padding-top: 10px">
+            С уважением,<br/>
+            Команда PROLINGVA
+        </td>
+        <td align="right" style="padding-top: 10px" valign="top">
+            <a href="mailto:info@prolingva.ru">info@prolingva.ru</a>
+        </td>
+    </tr>
+
+</table>
+{#    <div class="margin-left--20 translation_file list-group-item row" style="padding: 10px; border: 1px solid #ddd; font-family: Roboto, Sans-Serif">#}
+{#        {% if ID %}#}
+{#        <div>#}
+{#            ID: {{ ID }}#}
+{#        </div>#}
+{#        {% endif %}#}
+{#        <div>#}
+{#            Тип: {{ type }}#}
+{#        </div>#}
+{##}
+{#        <div>#}
+{#            Клиент: {{ client }}#}
+{#        </div>#}
+{#        {% if email %}#}
+{#        <div>#}
+{#            Email: {{ email }}#}
+{#        </div>#}
+{#       {% endif %}#}
+{#        {% if tel %}#}
+{#        <div>#}
+{#            Телефон: {{ tel }}#}
+{#        </div>#}
+{#        {% endif %}#}
+{#        {% if message %}#}
+{#        <div>#}
+{#            Сообщение: {{ message }}#}
+{#        </div>#}
+{#        {% endif %}#}
+{#        {% if order_type %}#}
+{#        <div>#}
+{#            Тип перевода: {{ order_type }}#}
+{#        </div>#}
+{#        {% endif %}#}
+{#        {% if order_theme %}#}
+{#        <div>#}
+{#            Тип перевода: {{ order_theme }}#}
+{#        </div>#}
+{#        {% endif %}#}
+{##}
+{##}
+        {#        <img src="/static/img/logo/logo1_white.png">#}
+{#    </div>#}
+</body>
+</html>
+{% endblock %}

@@ -1463,6 +1463,15 @@ def save_order_comment_client(request):
                 'role': user_profile.role.role_name,
             })
             answer = 1
+            email_context = {
+                'order': SentDoc.objects.get(id=order_id),
+                'manager': User.objects.get(id=SentDoc.objects.get(id=order_id).resp.id),
+                'comment_text': comment.comment.text,
+                'answer': comment_text
+            }
+            # TODO изменить имейл на имейл клиента
+            send_email(request, 'comments.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
+
         else:
             comment = OrderCommentsClients()
             answer = 0
