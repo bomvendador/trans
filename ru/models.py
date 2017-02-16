@@ -5,7 +5,8 @@ from django.conf import settings
 from django.contrib.auth.models import User
 import positions
 import os
-
+from uuid import uuid4
+from django.utils.deconstruct import deconstructible
 
 class Testimonials(models.Model):
     text = models.CharField(max_length=3000)
@@ -261,8 +262,27 @@ class TranslationFiles(models.Model):
     uploaded_by = models.ForeignKey(User, null=True, blank=True)
 
 
+@deconstructible
+class UploadToPathAndRename(object):
+
+    def __init__(self, path):
+        self.sub_path = path
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(self.sub_path, filename)
+
+
 class SentFiles (models.Model):
-    file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
+    # file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
+    file = models.FileField(upload_to=UploadToPathAndRename(settings.BASE_DIR + '/media/sent_docs'))
     # file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
     file_name = models.CharField(max_length=150, null=True)
     sent_doc = models.ForeignKey(SentDoc)
