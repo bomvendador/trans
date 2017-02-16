@@ -492,7 +492,7 @@ def save_files_trans(request):
             doc_sent.save()
 
             for f in request.FILES.getlist('filesToUpload'):
-                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name.encode(sys))
+                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
                 s.save()
             if user_exists:
                 message = 'user_exists'
