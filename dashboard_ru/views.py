@@ -1486,7 +1486,7 @@ def get_new_comments_client(request):
     user_profile = UserProfile.objects.get(user=request.user)
     new_client_comments = OrderCommentsClients.objects.filter(done=False)
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
-        orders = SentDoc.objects.filter(id__in=new_client_comments.values('order'))
+        orders = SentDoc.objects.filter(id=new_client_comments.values('order'))
         # orders = SentDoc.objects.filter(id__in=new_client_comments.values('id', id()))
     elif user_profile.role.role_name == u'Менеджер':
         orders = SentDoc.objects.filter(id=new_client_comments.order.id).filter(resp=request.user)
