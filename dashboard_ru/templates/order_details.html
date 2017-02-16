@@ -818,7 +818,7 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="">
+                                    <div class="{% if user_profile.role.role_name != 'Клиент' %}none{% endif %}" id="send_div">
 
                                         <div class="input-group">
                                             <div class="form-line">
@@ -880,6 +880,7 @@
         {% if user_profile.role.role_name != 'Клиент' %}
         $('.comment_item').on('click', function () {
             $('#comment_id').val($.trim($(this).attr('data-comment-id')));
+            $('#send_div').fadeIn('slow');
             console.log($('#comment_id').val())
             $('#client_comments_div .comment_item').each(function () {
                $(this).removeClass('background-yellow');
