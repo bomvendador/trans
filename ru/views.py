@@ -536,3 +536,14 @@ def get_testimonials_list(request):
         })
     return render(request, 'testimonials_list.html', context)
 
+
+def get_new_testimonials_list(request):
+    context = dash_views.get_data_proc(request)
+    testimonials = Testimonials.objects.filter(new=True)
+    context.update(
+        {
+            'testimonials': testimonials
+
+        })
+    return render(request, 'testimonials_list.html', context)
+

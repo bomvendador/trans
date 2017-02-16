@@ -1647,6 +1647,8 @@ def send_trans_files_to_client(request):
 def testimonial(request, testimonial_id):
     context = get_data_proc(request)
     testimonial_ = Testimonials.objects.get(id=testimonial_id)
+    testimonial_.new = False
+    testimonial_.save()
     context.update({
         'testimonial': testimonial_
     })
