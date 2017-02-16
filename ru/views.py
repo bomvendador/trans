@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
+
+from django.utils.encoding import smart_text
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
@@ -493,7 +495,7 @@ def save_files_trans(request):
             doc_sent.save()
             logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
-                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
+                s = SentFiles(file=f, sent_doc=doc_sent, file_name=smart_text(f.name, encoding='utf-8', strings_only=False, errors='strict'))
                 s.save()
             if user_exists:
                 message = 'user_exists'
