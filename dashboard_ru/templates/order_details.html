@@ -1777,6 +1777,7 @@
     function add_translation_files(order_id) {
         var data_ = new FormData($('#translation_form').get(0));
         data_.append('order_id', order_id);
+        console.log('order_id = ' + order_id );
 {#        console.log($('#filesToUpload')[0].files[0]);#}
         $.ajax({
             url: '{% url 'ru:dashboard_ru:add_translation_file_to_order' %}',
