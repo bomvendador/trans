@@ -30,7 +30,7 @@ import logging
 from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 
-import datetime
+from datetime import datetime, date, time
 
 logger = logging.getLogger('django-debug')
 
@@ -39,7 +39,10 @@ def view_locale(request):
     loc_info = "getlocale: " + str(locale.getlocale()) + \
         "<br/>getdefaultlocale(): " + str(locale.getdefaultlocale()) + \
         "<br/>fs_encoding: " + str(sys.getfilesystemencoding()) + \
-        "<br/>sys default encoding: " + str(sys.getdefaultencoding())
+        "<br/>sys default encoding: " + str(sys.getdefaultencoding()) + \
+        'datetime now = ' + str(datetime.now()) + \
+        'date = ' + str(date.today()) + \
+        'time = ' + str(datetime.now().time())
     return HttpResponse(loc_info)
 
 
