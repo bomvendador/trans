@@ -255,18 +255,6 @@ class OrderCommentsClientsAnswer(models.Model):
     author_role = models.ForeignKey(Role, null=True, blank=True)
 
 
-class TranslationFiles(models.Model):
-    file = models.FileField(upload_to=UploadToPathAndRename(settings.BASE_DIR + '/media/translation_files'), blank=True, null=True)
-    file_name = models.CharField(max_length=100, null=True, blank=True)
-    order = models.ForeignKey(SentDoc, blank=True, null=True)
-    added = models.DateTimeField(auto_now_add=True, auto_now=False)
-    changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
-    uploaded_by = models.ForeignKey(User, null=True, blank=True)
-
-    def filename(self):
-        return os.path.basename(self.file.name)
-
-
 @deconstructible
 class UploadToPathAndRename(object):
 
@@ -284,6 +272,18 @@ class UploadToPathAndRename(object):
             filename = '{}.{}'.format(str(dt[2]) + '-' + str(dt[1]) + '-' + str(dt[0]) + '_' + str(dt[3]) + '-' + str(dt[4]) + '-' + str(dt[5]), ext)
         # return the whole path to the file
         return os.path.join(self.sub_path, filename)
+
+
+class TranslationFiles(models.Model):
+    file = models.FileField(upload_to=UploadToPathAndRename(settings.BASE_DIR + '/media/translation_files'), blank=True, null=True)
+    file_name = models.CharField(max_length=100, null=True, blank=True)
+    order = models.ForeignKey(SentDoc, blank=True, null=True)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False)
+    changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
+    uploaded_by = models.ForeignKey(User, null=True, blank=True)
+
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 
 class SentFiles (models.Model):
