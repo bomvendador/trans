@@ -577,3 +577,7 @@ ul{
 .color-ddd{
     color: #d1d1d1;
 }
+
+.border-2px{
+    border: 2px solid;
+}
