@@ -1493,9 +1493,10 @@ def get_new_comments_client(request):
     else:
         return HttpResponse(u'Нет прав доступа')
     context.update({
-                   'sent_docs': orders,
-                   'user_profile': user_profile,
-                   })
+        'sent_docs': orders,
+        'user_profile': user_profile,
+        'new_client_comment': 1
+       })
     return render(request, 'sent_docs.html', context)
                        # @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 # def save_order_comment_client_answer(request):

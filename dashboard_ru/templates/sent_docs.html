@@ -23,7 +23,7 @@
         </li>
         {% endif %}
         <li class="active">
-            <i class="material-icons">library_books</i> {% if new_orders %} Новые заявки {% elif in_progress_orders %} Заявки в работе {% elif orders_complete %}Выполненные заявки{% else %}Заявки{% endif %}
+            <i class="material-icons">library_books</i> {% if new_orders %} Новые заявки {% elif in_progress_orders %} Заявки в работе {% elif orders_complete %}Выполненные заявки{% elif new_client_comment %}Новые комментарии к заявкам{% else %}Заявки{% endif %}
         </li>
     </ol>
 
