@@ -600,3 +600,7 @@ ul{
 .border-comment{
     border: 1px solid rgba(204, 204, 204, 0.35);
 }
+
+.border-comment-red{
+    border: 1px solid red;
+}
