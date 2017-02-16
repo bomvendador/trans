@@ -16,6 +16,8 @@ from string import punctuation
 from dashboard_ru.views import update_client_statistics
 from dashboard_ru import views as dash_views
 
+from django.contrib.auth.decorators import login_required
+
 import logging
 logger = logging.getLogger('django-debug')
 
@@ -526,6 +528,7 @@ def confidentiality(request):
     return render(request, 'confidentiality.html', context)
 
 
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_testimonials_list(request):
     context = dash_views.get_data_proc(request)
     testimonials = Testimonials.objects.all()
@@ -537,6 +540,7 @@ def get_testimonials_list(request):
     return render(request, 'testimonials_list.html', context)
 
 
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_new_testimonials_list(request):
     context = dash_views.get_data_proc(request)
     testimonials = Testimonials.objects.filter(new=True)

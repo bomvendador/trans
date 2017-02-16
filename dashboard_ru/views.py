@@ -58,14 +58,19 @@ def get_data_proc(request):
     if user_profile.role.role_name == u'Менеджер':
         new_count = SentDoc.objects.filter(resp=user).filter(
             status=OrderStatus.objects.get(name=u'Назначен менеджер')).count()
-        # print('Менеджер нов = ' + str(new_count))
+        new_client_comments_count = OrderCommentsClients.objects.filter(done=False).filter(order=SentDoc.objects.filter(resp=user)).count()
+        context.update({
+            'new_client_comments_count': new_client_comments_count
+        })
     else:
         # print('role ' + str(user_profile.role.id))
         if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
             new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
             new_testimonials = Testimonials.objects.filter(new=True).count()
+            new_client_comments_count = OrderCommentsClients.objects.filter(done=False).count()
             context.update({
-                'new_testimonials': new_testimonials
+                'new_testimonials': new_testimonials,
+                'new_client_comments_count': new_client_comments_count
             })
         else:
             new_count = 0
@@ -79,7 +84,7 @@ def get_data_proc(request):
         'sent_docs': new_orders,
         'new_count': new_count,
         'user_profile': user_profile,
-        'client': client
+        'client': client,
     })
     return context
 
@@ -1476,28 +1481,44 @@ def save_order_comment_client(request):
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
-def save_order_comment_client_answer(request):
-    if request.method == 'POST':
-        order_id = request.POST.get('order_id')
-        comment_id = request.POST.get('comment_client_id')
-        answer_text = request.POST.get('comment_client_answer_text')
-        comment = OrderCommentsClients.objects.get(id=comment_id)
-        order = SentDoc.objects.get(id=order_id)
-        answer = OrderCommentsClientsAnswer()
-        answer.text = answer_text
-        answer.order = order
-        user = User.objects.get(id=request.user.id)
-        answer.author = user
-        user_profile = UserProfile.objects.get(user=user)
-        answer.author_role = user_profile.role
-        answer.comment = comment
-        answer.save()
-        response = json.dumps(
-            {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
-             'comment_text': answer.text,
-             'author_role': answer.author_role.role_name
-             })
-        return HttpResponse(response)
+def get_new_comments_client(request):
+    context = get_data_proc(request)
+    user_profile = UserProfile.objects.get(user=request.user)
+    new_client_comments = OrderCommentsClients.objects.filter(done=False)
+    if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
+        orders = SentDoc.objects.filter(id=new_client_comments.order.id)
+    elif user_profile.role.role_name == u'Менеджер':
+        orders = SentDoc.objects.filter(id=new_client_comments.order.id).filter(resp=request.user)
+    else:
+        return HttpResponse(u'Нет прав доступа')
+    context.update({
+                   'sent_docs': orders,
+                   'user_profile': user_profile,
+                   })
+    return render(request, 'sent_docs.html', context)
+                       # @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+# def save_order_comment_client_answer(request):
+#     if request.method == 'POST':
+#         order_id = request.POST.get('order_id')
+#         comment_id = request.POST.get('comment_client_id')
+#         answer_text = request.POST.get('comment_client_answer_text')
+#         comment = OrderCommentsClients.objects.get(id=comment_id)
+#         order = SentDoc.objects.get(id=order_id)
+#         answer = OrderCommentsClientsAnswer()
+#         answer.text = answer_text
+#         answer.order = order
+#         user = User.objects.get(id=request.user.id)
+#         answer.author = user
+#         user_profile = UserProfile.objects.get(user=user)
+#         answer.author_role = user_profile.role
+#         answer.comment = comment
+#         answer.save()
+#         response = json.dumps(
+#             {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
+#              'comment_text': answer.text,
+#              'author_role': answer.author_role.role_name
+#              })
+#         return HttpResponse(response)
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
