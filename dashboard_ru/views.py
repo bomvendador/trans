@@ -1405,10 +1405,10 @@ def save_order_comment(request):
     if request.method == 'POST':
         if request.POST.get('back_call_id'):
             back_call_id = request.POST.get('back_call_id')
-            comment = request.POST.get('back_call_comment_text')
-            print(comment)
+            text = request.POST.get('back_call_comment_text')
+            # print(comment)
             comment_inst = BackCallComments()
-            comment_inst.comment = comment
+            comment_inst.comment = text
             comment_inst.author = request.user
             comment_inst.back_call = BackCall.objects.get(id=back_call_id)
             comment_inst.author_role = Role.objects.get(id=UserProfile.objects.get(user=request.user).role.id)

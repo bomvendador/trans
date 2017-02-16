@@ -935,7 +935,7 @@
                                 var added = data_json['added'];
                                 var answer = data_json['answer'];
                                 if (answer == 0){
-                                    $('#client_comments_div').append('<div class="comments-style comment_item" id="client_comments_answers"><div class="border-bottom-1-grey"><small>' + added + '</small></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment_text + '</div></div>');
+                                    $('#client_comments_div').append('<div class="comments-style-no-border comment_item" id="client_comments_answers"><div class="border-bottom-1-grey"><small>' + added + '</small></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment_text + '</div></div>');
 
                                 }else {
                                     var comment_selector = ".comment_item[data-comment-id='" + data_json['comment_id'] + "']";
