@@ -11,6 +11,7 @@ from dashboard_ru import views as dashboard_views
 from datetime import datetime
 import logging
 logger = logging.getLogger('django-debug')
+from django.utils import timezone
 
 @csrf_exempt
 def payment_success(request):
@@ -21,13 +22,14 @@ def payment_success(request):
         logger.debug(u'время оплаты = ' + payment_date)
         order = SentDoc.objects.get(id=order_id)
         order.payment_amount = payment_amount
-        order.payment_date = payment_date
+        payment_date_local = timezone.localtime(datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S'))
+        order.payment_date = payment_date_local
         order.paystatus = PayStatus.objects.get(name='Paid')
         order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
         order.save()
         date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
-        date_ = date.strftime("%d.%m.%Y, %H:%M")
+        date_ = payment_date_local.strftime("%d.%m.%Y, %H:%M")
 
         email_context = {
             'manager': order.resp,
