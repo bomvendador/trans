@@ -1,4 +1,5 @@
-#-*- encoding:utf-8-*-
+# -*- encoding:utf-8-*-
+
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
@@ -491,7 +492,7 @@ def save_files_trans(request):
             doc_sent.save()
 
             for f in request.FILES.getlist('filesToUpload'):
-                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
+                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name.encode(sys))
                 s.save()
             if user_exists:
                 message = 'user_exists'
