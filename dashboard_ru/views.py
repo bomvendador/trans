@@ -1463,7 +1463,9 @@ def save_order_comment_client(request):
             {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
              'comment_text': comment.text,
              'answer': answer,
-             'comment_id': comment_id
+             'comment_id': comment_id,
+             'user_name': user.first_name,
+             'role': user_profile.role.role_name
              })
         return HttpResponse(response)
 
