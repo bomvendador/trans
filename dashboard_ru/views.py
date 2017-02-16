@@ -542,7 +542,7 @@ def download_file(request, file_id):
         data = f.read()
 
     response = HttpResponse(data, content_type='application/force-download')
-    response['Content-Disposition'] = 'attachment; filename=%s' % path.file_name
+    response['Content-Disposition'] = 'attachment; filename=%s' % path.file.name
     return response
 
 
