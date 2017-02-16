@@ -499,9 +499,11 @@ def save_files_trans(request):
             logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
                 file_name = f.name.split('.')
-                logger.debug(unicode(f.name))
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicode(f.name))
                 s = SentFiles(file=f, sent_doc=doc_sent)
+                new_file_name = update_filename(s, f.name)
+                logger.debug(str(new_file_name))
+
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicodedata.normalize('NFKD', f.name).encode('utf-8', 'ignore'))
                 s.save()
             if user_exists:
@@ -514,6 +516,12 @@ def save_files_trans(request):
 
             return HttpResponse(message)
     return HttpResponse()
+
+
+def update_filename(instance, filename):
+    # path = "upload/path/"
+    format_ = instance.userid + instance.transaction_uuid + instance.file_extension
+    return os.path.join(format_)
 
 
 def listdir(dirpath):
