@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+import os
+from uuid import uuid4
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -261,8 +262,23 @@ class TranslationFiles(models.Model):
     uploaded_by = models.ForeignKey(User, null=True, blank=True)
 
 
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
+
+
 class SentFiles (models.Model):
-    file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
+    # file = models.FileField(upload_to=settings.BASE_DIR + '/media/sent_docs')
+    file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
     file_name = models.CharField(max_length=150, null=True)
     sent_doc = models.ForeignKey(SentDoc)
 

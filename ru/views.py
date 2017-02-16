@@ -520,7 +520,7 @@ def save_files_trans(request):
 
 def update_filename(instance, filename):
     # path = "upload/path/"
-    format_ = instance.userid + instance.transaction_uuid + instance.file_extension
+    format_ = instance.transaction_uuid + instance.file_extension
     return os.path.join(format_)
 
 
