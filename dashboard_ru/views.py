@@ -31,7 +31,7 @@ from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 
 from datetime import datetime, date, time
-
+from django.utils import timezone
 logger = logging.getLogger('django-debug')
 
 
@@ -46,7 +46,8 @@ def view_locale(request):
         '<br/>sdate = ' + str(date.today()) + \
         '<br/>stime = ' + str(datetime.now().time()) + \
         u'<br/>год = ' + str(dt[0]) + u' день = ' + str(dt[1]) + u' день = ' + str(dt[2]) + ' ' + str(dt[3]) + ' ' + str(dt[4]) + \
-        '<br/>stime = ' + str(order.payment_date.strftime("%d.%m.%Y, %H:%M"))
+        '<br/>stime = ' + str(order.payment_date.strftime("%d.%m.%Y, %H:%M")) + \
+        '<br/>timezone = ' + str(timezone.now())
     return HttpResponse(loc_info)
 
 
