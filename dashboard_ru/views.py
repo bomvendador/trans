@@ -37,7 +37,7 @@ logger = logging.getLogger('django-debug')
 
 def view_locale(request):
     dt = datetime.now().timetuple()
-
+    order = SentDoc.objects.get(id=92)
     loc_info = "getlocale: " + str(locale.getlocale()) + \
         "<br/>getdefaultlocale(): " + str(locale.getdefaultlocale()) + \
         "<br/>fs_encoding: " + str(sys.getfilesystemencoding()) + \
@@ -45,7 +45,8 @@ def view_locale(request):
         '<br/>sdatetime now = ' + str(datetime.now()) + \
         '<br/>sdate = ' + str(date.today()) + \
         '<br/>stime = ' + str(datetime.now().time()) + \
-        u'<br/>год = ' + str(dt[0]) + u' день = ' + str(dt[1]) + u' день = ' + str(dt[2]) + ' ' + str(dt[3]) + ' ' + str(dt[4])
+        u'<br/>год = ' + str(dt[0]) + u' день = ' + str(dt[1]) + u' день = ' + str(dt[2]) + ' ' + str(dt[3]) + ' ' + str(dt[4]) + \
+        '<br/>stime = ' + str(order.payment_date)
     return HttpResponse(loc_info)
 
 
