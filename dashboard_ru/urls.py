@@ -42,6 +42,7 @@ urlpatterns = [
 
     url(r'^save_order_comment_client/$', views.save_order_comment_client, name='save_order_comment_client'),
     url(r'^save_order_comment/$', views.save_order_comment, name='save_order_comment'),
+    url(r'^get_new_comments_client/$', views.get_new_comments_client, name='get_new_comments_client'),
 
 
     url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),

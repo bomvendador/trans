@@ -206,7 +206,7 @@
                 {% if user_profile.role.role_name != 'Клиент' %}
 
                     <li class="">
-                        <a href="{% url 'ru:dashboard_ru:get_new_testimonials_list' %}" class="" role="button" data-toggle="tooltip" title="Новые комментарии клиента" data-placement="bottom">
+                        <a href="{% url 'ru:dashboard_ru:get_new_comments_client' %}" class="" role="button" data-toggle="tooltip" title="Новые комментарии клиента" data-placement="bottom">
 
                                 <i class="mdi mdi-comment-multiple-outline f_s_20"></i>
                             <span class="label-count" id="new_testimonials">{% if new_client_comments_count != 0 %}{{ new_client_comments_count }}{% endif %}</span>
