@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import login_required
 import json
 from dashboard_ru import views as dashboard_views
 from datetime import datetime
-
+import logging
+logger = logging.getLogger('django-debug')
 
 @csrf_exempt
 def payment_success(request):
@@ -17,6 +18,7 @@ def payment_success(request):
         order_id = request.POST.get('LMI_PAYMENT_NO')
         payment_amount = request.POST.get('LMI_PAYMENT_AMOUNT')
         payment_date = request.POST.get('LMI_SYS_PAYMENT_DATE')
+        logger.debug(u'время оплаты = ' + payment_date)
         order = SentDoc.objects.get(id=order_id)
         order.payment_amount = payment_amount
         order.payment_date = payment_date
