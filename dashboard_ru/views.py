@@ -1453,7 +1453,6 @@ def save_order_comment_client(request):
             comment = OrderCommentsClientsAnswer()
             comment.comment = OrderCommentsClients.objects.get(id=comment_id)
             user = User.objects.get(id=request.user.id)
-            new_client_comments_count = get_data_proc(request).get('new_client_comments_count')
             logger.debug('new comment = ' + str(new_client_comments_count))
             comment.author = user
             user_profile = UserProfile.objects.get(user=user)
@@ -1463,7 +1462,6 @@ def save_order_comment_client(request):
             context.update({
                 'user_name': user.first_name,
                 'role': user_profile.role.role_name,
-                'new_client_comments_count': new_client_comments_count
             })
             answer = 1
         else:
@@ -1473,12 +1471,15 @@ def save_order_comment_client(request):
         comment.text = comment_text
         comment.order = order
         comment.save()
+        new_client_comments_count = get_data_proc(request).get('new_client_comments_count')
         context.update({
             'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
             'comment_text': comment.text,
             'answer': answer,
             'comment_id': comment_id,
-            })
+            'new_client_comments_count': new_client_comments_count
+
+        })
         response = json.dumps(context)
         return HttpResponse(response)
 
