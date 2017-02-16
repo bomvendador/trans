@@ -22,7 +22,7 @@ def payment_success(request):
         logger.debug(u'время оплаты = ' + payment_date)
         order = SentDoc.objects.get(id=order_id)
         order.payment_amount = payment_amount
-        payment_date_local = timezone.localtime(datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S'))
+        payment_date_local = timezone.localtime(datetime.strptime(payment_date, '%Y-%m-%dT%H:%M:%S'))
         order.payment_date = payment_date_local
         order.paystatus = PayStatus.objects.get(name='Paid')
         order.paymethod = PayMethod.objects.get(name='PayMaster')
