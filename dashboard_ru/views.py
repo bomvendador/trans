@@ -43,7 +43,7 @@ def view_locale(request):
         '<br/>sdatetime now = ' + str(datetime.now()) + \
         '<br/>sdate = ' + str(date.today()) + \
         '<br/>stime = ' + str(datetime.now().time())
-    dt = datetime.now()
+    dt = datetime.now().timetuple()
     for i in dt:
         logger.debug(i)
     return HttpResponse(loc_info)
