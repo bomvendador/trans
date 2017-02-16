@@ -817,7 +817,7 @@ def add_file_to_order(request):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def add_translation_file_to_order(request):
     if request.method == 'POST':
-        # print(request.POST.get('order_id'))
+        logger.debug('order_id = ' + str(request.POST.get('order_id')))
         order = SentDoc.objects.get(id=request.POST.get('order_id'))
         if order.paystatus.name == 'Paid':
             order.status = OrderStatus.objects.get(name=u'Выполнен')
@@ -830,7 +830,7 @@ def add_translation_file_to_order(request):
         for file in files:
             f = TranslationFiles(file=file, order=order, file_name=file.name, uploaded_by=request.user)
             f.save()
-            print(f.file_name)
+            # print(f.file_name)
             file_name = f.file_name
             file_id = f.id
         # trans_array = TranslationFiles.objects.filter(order=order)
