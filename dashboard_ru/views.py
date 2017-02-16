@@ -1523,6 +1523,19 @@ def get_back_calls(request):
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def get_new_back_calls(request):
+    back_calls = None
+    if UserProfile.objects.get(user=request.user).role.role_name == u'Суперадмин' or UserProfile.objects.get(
+            user=request.user).role.role_name == u'Админ':
+        back_calls = BackCall.objects.filter(new=True)
+    context = get_data_proc(request)
+    context.update({
+        'back_calls': back_calls,
+    })
+    return render(request, 'back_calls.html', context)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def get_back_call_details(request, back_call_id):
     if UserProfile.objects.get(user=request.user).role.role_name == u'Суперадмин' or UserProfile.objects.get(
             user=request.user).role.role_name == u'Админ':

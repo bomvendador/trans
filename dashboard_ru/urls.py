@@ -15,8 +15,6 @@ urlpatterns = [
 
     url(r'^order_details/(?P<order_id>\d+)/$', views.order_details, name='order_details'),
     url(r'^sent_docs/$', views.get_sent_docs, name='get_sent_docs'),
-    url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),
-    url(r'^back_call_details/(?P<back_call_id>\d+)/$', views.get_back_call_details, name='get_back_call_details'),
     url(r'^save_order_comment_client/$', views.save_order_comment_client, name='save_order_comment_client'),
     url(r'^save_order_comment/$', views.save_order_comment, name='save_order_comment'),
     url(r'^new_orders/$', views.get_new_sent_docs, name='get_new_orders'),
@@ -44,6 +42,9 @@ urlpatterns = [
     url(r'^set_company_for_payment/$', views.set_company_for_payment, name='set_company_for_payment'),
     url(r'^del_company_from_payment/$', views.del_company_from_payment, name='del_company_from_payment'),
 
+    url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),
+    url(r'^new_back_calls/$', views.get_new_back_calls, name='get_new_back_calls'),
+    url(r'^back_call_details/(?P<back_call_id>\d+)/$', views.get_back_call_details, name='get_back_call_details'),
 
     url(r'^send_email/$', views.send_email, name='send_email'),
     url(r'^send_email_test/$', views.send_email_test, name='send_email_test'),
