@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-import os
-from uuid import uuid4
+from views import path_and_rename
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -260,20 +259,6 @@ class TranslationFiles(models.Model):
     added = models.DateTimeField(auto_now_add=True, auto_now=False)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     uploaded_by = models.ForeignKey(User, null=True, blank=True)
-
-
-def path_and_rename(path):
-    def wrapper(instance, filename):
-        ext = filename.split('.')[-1]
-        # get filename
-        if instance.pk:
-            filename = '{}.{}'.format(instance.pk, ext)
-        else:
-            # set filename as random string
-            filename = '{}.{}'.format(uuid4().hex, ext)
-        # return the whole path to the file
-        return os.path.join(path, filename)
-    return wrapper
 
 
 class SentFiles (models.Model):

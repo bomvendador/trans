@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import sys
+from uuid import uuid4
 import unicodedata
 
 from __builtin__ import unicode
@@ -499,10 +500,10 @@ def save_files_trans(request):
             logger.debug(sys.getfilesystemencoding())
             for f in request.FILES.getlist('filesToUpload'):
                 file_name = f.name.split('.')
-                # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicode(f.name))
+                s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
                 s = SentFiles(file=f, sent_doc=doc_sent)
-                new_file_name = update_filename(s, f.name)
-                logger.debug(str(new_file_name))
+                # new_file_name = update_filename(s, f.name)
+                # logger.debug(str(new_file_name))
 
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicodedata.normalize('NFKD', f.name).encode('utf-8', 'ignore'))
                 s.save()
@@ -520,14 +521,8 @@ def save_files_trans(request):
 
 def update_filename(instance, filename):
     # path = "upload/path/"
-    format_ = instance.transaction_uuid + instance.file_extension
+    format_ = instance.useinstance.transaction_uuid + instance.file_extension
     return os.path.join(format_)
-
-
-def listdir(dirpath):
-    if isinstance(dirpath,unicode):
-        dirpath = dirpath.encode('utf8')
-    return [p.decode('utf8') for p in os.listdir(dirpath)]
 
 
 def learn_more_trans(request):
@@ -576,3 +571,16 @@ def get_new_testimonials_list(request):
         })
     return render(request, 'testimonials_list.html', context)
 
+
+def path_and_rename(path):
+    def wrapper(instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.pk:
+            filename = '{}.{}'.format(instance.pk, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(path, filename)
+    return wrapper
