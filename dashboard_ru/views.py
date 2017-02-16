@@ -1442,14 +1442,24 @@ def save_order_comment_client(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
         comment_text = request.POST.get('formated_text')
+        comment_id = request.POST.get('comment_id')
+        context = {}
+        if comment_id:
+            comment = OrderCommentsClientsAnswer()
+            comment.comment = OrderCommentsClients.objects.get(id=comment_id)
+            answer = 1
+        else:
+            comment = OrderCommentsClients()
+            answer = 0
         order = SentDoc.objects.get(id=order_id)
-        comment = OrderCommentsClients()
         comment.text = comment_text
         comment.order = order
         comment.save()
         response = json.dumps(
             {'added': comment.added.strftime("%d.%m.%Y, %H:%M"),
-             'comment_text': comment.text
+             'comment_text': comment.text,
+             'answer': answer,
+             'comment_id': comment_id
              })
         return HttpResponse(response)
 
