@@ -291,6 +291,17 @@ ul{
     margin-bottom: 5px; font-size: 13px;
 }
 
+.border-comment{
+    border: 1px solid rgba(204, 204, 204, 0.35);
+
+}
+
+.comments-style-no-border{
+    background: #f9f9f9;
+    padding: 3px 12px;
+    margin-bottom: 5px; font-size: 13px;
+}
+
 .border-0{
     border: 0px!important;
 }
