@@ -238,6 +238,7 @@ class OrderCommentsClients(models.Model):
     text = models.CharField(max_length=300, null=True, blank=True)
     added = models.DateTimeField(auto_now=False, auto_now_add=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False)
+    done = models.BooleanField(default=False)
 
 
 class OrderCommentsClientsAnswer(models.Model):
