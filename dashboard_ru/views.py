@@ -1405,7 +1405,7 @@ def save_order_comment(request):
     if request.method == 'POST':
         if request.POST.get('back_call_id'):
             back_call_id = request.POST.get('back_call_id')
-            text = request.POST.get('back_call_comment_text')
+            text = request.POST.get('formated_text')
             # print(comment)
             comment_inst = BackCallComments()
             comment_inst.comment = text

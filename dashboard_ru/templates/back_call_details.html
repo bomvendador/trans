@@ -149,7 +149,7 @@
                                                 </div>
                                             </div>
                                             <div class="mrg-bot-20" style="margin-left: 10px">
-                                                {{ comment.comment }}
+                                                {{ comment.comment|safe }}
                                             </div>
 
                                             {% endfor %}
@@ -206,9 +206,11 @@
 
         //сохранение комментария
     $('#back_call_comment_btn').on('click', function () {
+        var formated_text = $('#back_call_comment_text').val().replace(/\n/g,'<br />');
         var data_ = new FormData($('#back_call_form_comments').get(0));
 {#            data_.append('user_id', {{ order_details.user.id }});#}
         data_.append('back_call_id', {{ back_call.id }});
+        data_.append('formated_text', formated_text);
 
         $.ajax({
             url: '{% url 'ru:dashboard_ru:save_order_comment' %}',
