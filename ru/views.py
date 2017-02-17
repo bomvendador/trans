@@ -444,7 +444,7 @@ def save_files_trans(request):
                     user_profile.role = Role.objects.get(role_name=u'Клиент')
                     user_profile.save()
                 doc_sent.author = user
-            text = request.POST['text_doc_send']
+            text = request.POST.get('text_doc_send')
             if request.POST['trans_from']:
                 try:
                     trans_from = Language.objects.get(name=request.POST['trans_from'])
