@@ -296,8 +296,8 @@
                     type: 'success'
                 });
             },
-            error: function (file, data, xhr) {
-                var response = $.parseJSON(xhr);
+            error: function (file, data) {
+                var response = $.parseJSON(data);
                 console.log(response);
 
                 swal({
