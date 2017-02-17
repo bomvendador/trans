@@ -29,7 +29,7 @@ def payment_success(request):
         order.just_paid = True
         order.save()
         # date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
-        date_ = payment_date_local.strftime("%d.%m.%Y, %H:%M")
+        date_ = payment_date_local.strftime("%d.%m.%Y, %H:%M") + timedelta(hours=3)
 
         email_context = {
             'manager': order.resp,
