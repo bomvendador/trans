@@ -889,7 +889,7 @@
             sending: function (file, xhr, formData) {
                 add_csrf();
                 formData.append('order_id', {{ order_details.id }});
-{#                formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));#}
+                formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));
             },
 {#            autoProcessQueue: false#}
         });
