@@ -1885,5 +1885,5 @@ def del_company_from_payment(request):
 
 @csrf_exempt
 def test(request):
-
+    logger.debug(request)
     return HttpResponse(request)
