@@ -803,6 +803,7 @@ def add_file_to_order(request):
         files = request.FILES.getlist('file')
         f = SentFiles()
         for file in files:
+            logger.debug(file.name)
             f = SentFiles(file=file, sent_doc=order)
             f.save()
             file_name = f.file_name
