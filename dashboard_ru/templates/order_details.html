@@ -4,6 +4,7 @@
 
 {% block links %}
     <link href="{% static 'dashboard/plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'dashboard/plugins/dropzone/dropzone.css' %}" rel="stylesheet" />
     <link href="{% static 'css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
 {#    <link href="{% static 'css/scss/style.scss' %}" rel="stylesheet" />#}
     <link href="{% static 'css/mdl_file.css' %}" rel="stylesheet" />
@@ -160,6 +161,9 @@
                                             <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
                                                     <span>Загрузить файл(ы)</span>
                                                     <input type="file" class="upload height-100" name="file" id="filesToUpload"  onchange="add_files({{ order_details.id }});">
+
+                                            </div>
+                                            <div id="drop_zone_order_files">
 
                                             </div>
                                     {% endif %}
@@ -861,6 +865,7 @@
     <script src="{% static 'js/mdl_file.js' %}"></script>
     <script src="{% static 'js/add_csrf.js' %}"></script>
     <script src="{% static 'dashboard/plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'dashboard/plugins/dropzone/dropzone.js' %}"></script>
 
 
 {#        <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker_eng.js"></script>#}
@@ -868,6 +873,7 @@
 
     $(document).ready(function () {
 
+        $('#drop_zone_order_files').dropzone();
         send_calc_func();
         //отправка комментариев клиента
         $('#comment_client_text').on('input', function () {
