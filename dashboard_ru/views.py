@@ -804,7 +804,7 @@ def add_file_to_order(request):
         print(order.id)
         print(files)
         for file in files:
-            f = SentFiles(file=file, sent_doc=order, file_name=file.name)
+            f = SentFiles(file=file, sent_doc=order)
             f.save()
             print(f.file_name)
             file_name = f.file_name
