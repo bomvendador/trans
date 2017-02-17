@@ -1885,5 +1885,8 @@ def del_company_from_payment(request):
 
 @csrf_exempt
 def test(request):
+    files = request.FILES.getlist('file')
+    for f in files:
+        logger.debug('name = ' + str(f.name))
     logger.debug(request.POST)
     return HttpResponse(request)
