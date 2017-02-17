@@ -8,7 +8,7 @@ from ru.models import SentDoc, PayStatus, PayMethod
 from django.contrib.auth.decorators import login_required
 import json
 from dashboard_ru import views as dashboard_views
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 logger = logging.getLogger('django-debug')
 from django.utils import timezone
@@ -23,7 +23,7 @@ def payment_success(request):
         order = SentDoc.objects.get(id=order_id)
         order.payment_amount = payment_amount
         payment_date_local = datetime.strptime(payment_date, '%Y-%m-%dT%H:%M:%S')
-        order.payment_date = payment_date_local
+        order.payment_date = payment_date_local + timedelta(hours=3)
         order.paystatus = PayStatus.objects.get(name='Paid')
         order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
