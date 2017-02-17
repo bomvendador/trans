@@ -886,9 +886,9 @@
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files').dropzone({
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
             addRemoveLinks: true,
-            sending: function (file, xhr, formData) {
-                formData.append('order_id', {{ order_details.id }})
-            }
+{#            sending: function (file, xhr, formData) {#}
+{#                formData.append('order_id', {{ order_details.id }})#}
+{#            }#}
 {#            autoProcessQueue: false#}
         });
 
