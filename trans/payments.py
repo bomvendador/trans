@@ -28,7 +28,7 @@ def payment_success(request):
         order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
         order.save()
-        date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
+        # date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
         date_ = payment_date_local.strftime("%d.%m.%Y, %H:%M")
 
         email_context = {
