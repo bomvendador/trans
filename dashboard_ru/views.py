@@ -802,19 +802,16 @@ def add_file_to_order(request):
         order.status = OrderStatus.objects.get(name=u'В работе')
         files = request.FILES.getlist('file')
         f = SentFiles()
-        print(order.id)
-        print(files)
         for file in files:
             f = SentFiles(file=file, sent_doc=order)
             f.save()
-            print(f.file_name)
             file_name = f.file_name
             file_id = f.id
         files_qnt = SentFiles.objects.filter(sent_doc=order).count()
         order.files_qnt = files_qnt
         order.save()
 
-        return HttpResponse(json.dumps({'file_name': file_name, 'file_id': file_id}))
+        return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
