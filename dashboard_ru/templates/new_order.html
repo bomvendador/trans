@@ -276,6 +276,17 @@
         Dropzone.autoDiscover = false;
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:save_files_trans' %}",
+            init: function() {
+{#                var myDropzone = this;#}
+
+                // First change the button to actually tell Dropzone to process the queue.
+                $('#drop_zone_btn').on('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    drop_zone_order_files.processQueue();
+
+                });
+            },
             addRemoveLinks: true,
             sending: function (file, xhr, formData) {
                 add_csrf();
@@ -384,7 +395,6 @@
                 drop_zone_order_files.removeAllFiles();
 
             },
-            clickable: '#drop_zone_btn',
             autoProcessQueue: false
         });
 
