@@ -245,7 +245,7 @@
                             <i class="mdi mdi-content-save text_rnd_btn_save" style="top: 2px!important;"></i>
                         </button>
                     </a>
-
+            <div id="drop_zone_btn" class="none"></div>
 
 {% endblock %}
 
@@ -281,11 +281,88 @@
                 add_csrf();
 {#                formData.append('order_id', {{ order_details.id }});#}
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+                {% if user_profile.role.role_name != 'Клиент' %}
+                formData.append('name_doc_send', $('#name_doc_send').val());
+                formData.append('email_doc_send', $('#email_doc_send').val());
+                formData.append('tel_doc_send', $('#tel_doc_send').val());
+                formData.append('text_doc_send', $('#text_doc_send').val());
+                formData.append('trans_from', $('#trans_from').val());
+                formData.append('trans_to', $('#trans_to').val());
+                formData.append('order_source', $('#order_source').val());
+                {% endif %}
             },
             success: function (file, data) {
-                var data_json = $.parseJSON(data);
-                var file_name = data_json['file_name'];
-                $('#fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');
+                $('#dropdown-menu .inner li:first').addClass('selected');
+                $('#trans_from').find('option[value="default"]').prop('selected', true);
+                $('#trans_to').find('option[value="default"]').prop('selected', true);
+{#                            console.log($('#trans_to').find('option[value="default"]').val());#}
+                console.log(data);
+                if (data == 'ok'){
+{#                                $('.close').click();#}
+                        swal({
+                            title: 'Информация успешно сохранена',
+                            text: '',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                window.location.reload();
+
+                            }
+                        });
+
+{#                                toastr.success('Заголовок', 'Текст все ок');#}
+                }else {
+{#                                $('.close').click();#}
+
+                    if (data == 'user_exists'){
+                        swal({
+                            title: 'Информация успешно сохранена',
+                            text: '',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+                            if (isConfirm){
+                                {% if user_profile.role.role_name != 'Клиент' %}
+                                swal({
+                                    title: 'Пользователь с таким email уже зарегистрирован',
+                                    text: '',
+                                    type: 'warning'
+                                });
+                                {% else %}
+                                swal({
+                                    title: 'Уважаемый(ая) {{ client.name }}',
+                                    text: 'Ваш заказ отправлен и в ближайшее время будет обработан.' +
+                                    'Спасибо за оказнное доверие нашей компании!',
+                                    type: 'warning',
+                                    confirmButtonText: 'Ok',
+                                    closeOnConfirm: false
+
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm){
+                                        window.location.reload();
+                                    }
+                                }
+
+                            );
+
+
+                                {% endif %}
+                            }
+                        });
+
+                    }
+                }
+                clear_send_docs();
+
+{#                var data_json = $.parseJSON(data);#}
+{#                var file_name = data_json['file_name'];#}
+{#                $('#fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');#}
                 drop_zone_order_files.removeFile(file);
             },
             complete: function (data) {
@@ -307,6 +384,7 @@
                 drop_zone_order_files.removeAllFiles();
 
             },
+            clickable: '#drop_zone_btn',
             autoProcessQueue: false
         });
 
@@ -396,7 +474,7 @@
         }
         {% endif %}
         //проверка файла
-        if ($('#text_doc_send').val() == '' && $('#fileList li').length == 0){
+        if (!$('.dz-preview').length){
             file_err_doc_send = true;
             file_err_doc_send_msg = 'Добавьте текст или файл';
             $('#text_doc_send').addClass('invalid');
@@ -419,50 +497,27 @@
 
         }else {
             $('#order_source').val('dashboard');
-            console.log('src = ' + $('#order_source').val());
-{#                    showPreloader();#}
-            var formdata = new FormData($('#doc_send_form').get(0));
-            console.log(formdata)
-            formdata.append('order_source', 'dashboard');
-            $.ajax({
-                url: '{% url 'ru:save_files_trans' %}',
-                type: 'POST',
-                data: formdata,
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    swal({
-                        title: 'Ошибка',
-                        text: 'Возникла ошибка на сервере при сохранении данных. Попытайтесь позже.',
-                        type: 'error',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: false
-                    },
-                    function (isConfirm) {
-                        if (isConfirm){
-                            window.location.reload();
+            if ($('.dz-preview').length){
+{#                $('#drop_zone_btn').click();#}
+                console.log('есть файлы');
+            }else {
 
-                        }
-                    });
-
-                    console.log(data);
-                },
-                success:function (data) {
-{#                            hidePreloader();#}
-                        if ($('#fileList').val() == ''){
-                            $('#del_files').fadeOut('slow');
-                        }
-                    $('#dropdown-menu .inner li:first').addClass('selected');
-                    $('#trans_from').find('option[value="default"]').prop('selected', true);
-                    $('#trans_to').find('option[value="default"]').prop('selected', true);
-                    console.log($('#trans_to').find('option[value="default"]').val());
-                    console.log(data);
-                    if (data == 'ok'){
-{#                                $('.close').click();#}
+                    console.log('src = ' + $('#order_source').val());
+        {#                    showPreloader();#}
+                    var formdata = new FormData($('#doc_send_form').get(0));
+                    console.log(formdata)
+                    formdata.append('order_source', 'dashboard');
+                    $.ajax({
+                        url: '{% url 'ru:save_files_trans' %}',
+                        type: 'POST',
+                        data: formdata,
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
                             swal({
-                                title: 'Информация успешно сохранена',
-                                text: '',
-                                type: 'success',
+                                title: 'Ошибка',
+                                text: 'Возникла ошибка на сервере при сохранении данных. Попытайтесь позже.',
+                                type: 'error',
                                 confirmButtonText: 'Ok',
                                 closeOnConfirm: false
                             },
@@ -473,57 +528,88 @@
                                 }
                             });
 
-{#                                toastr.success('Заголовок', 'Текст все ок');#}
-                    }else {
-{#                                $('.close').click();#}
-
-                        if (data == 'user_exists'){
-                            swal({
-                                title: 'Информация успешно сохранена',
-                                text: '',
-                                type: 'success',
-                                confirmButtonText: 'Ok',
-                                closeOnConfirm: false
-                            },
-                            function (isConfirm) {
-                                if (isConfirm){
-                                    {% if user_profile.role.role_name != 'Клиент' %}
+                            console.log(data);
+                        },
+                        success:function (data) {
+        {#                            hidePreloader();#}
+                                if ($('#fileList').val() == ''){
+                                    $('#del_files').fadeOut('slow');
+                                }
+                            $('#dropdown-menu .inner li:first').addClass('selected');
+                            $('#trans_from').find('option[value="default"]').prop('selected', true);
+                            $('#trans_to').find('option[value="default"]').prop('selected', true);
+{#                            console.log($('#trans_to').find('option[value="default"]').val());#}
+                            console.log(data);
+                            if (data == 'ok'){
+        {#                                $('.close').click();#}
                                     swal({
-                                        title: 'Пользователь с таким email уже зарегистрирован',
+                                        title: 'Информация успешно сохранена',
                                         text: '',
-                                        type: 'warning'
-                                    });
-                                    {% else %}
-                                    swal({
-                                        title: 'Уважаемый(ая) {{ client.name }}',
-                                        text: 'Ваш заказ отправлен и в ближайшее время будет обработан.' +
-                                        'Спасибо за оказнное доверие нашей компании!',
-                                        type: 'warning',
+                                        type: 'success',
                                         confirmButtonText: 'Ok',
                                         closeOnConfirm: false
-
                                     },
                                     function (isConfirm) {
                                         if (isConfirm){
                                             window.location.reload();
+
                                         }
-                                    }
+                                    });
 
-                                );
+        {#                                toastr.success('Заголовок', 'Текст все ок');#}
+                            }else {
+        {#                                $('.close').click();#}
+
+                                if (data == 'user_exists'){
+                                    swal({
+                                        title: 'Информация успешно сохранена',
+                                        text: '',
+                                        type: 'success',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: false
+                                    },
+                                    function (isConfirm) {
+                                        if (isConfirm){
+                                            {% if user_profile.role.role_name != 'Клиент' %}
+                                            swal({
+                                                title: 'Пользователь с таким email уже зарегистрирован',
+                                                text: '',
+                                                type: 'warning'
+                                            });
+                                            {% else %}
+                                            swal({
+                                                title: 'Уважаемый(ая) {{ client.name }}',
+                                                text: 'Ваш заказ отправлен и в ближайшее время будет обработан.' +
+                                                'Спасибо за оказнное доверие нашей компании!',
+                                                type: 'warning',
+                                                confirmButtonText: 'Ok',
+                                                closeOnConfirm: false
+
+                                            },
+                                            function (isConfirm) {
+                                                if (isConfirm){
+                                                    window.location.reload();
+                                                }
+                                            }
+
+                                        );
 
 
-                                    {% endif %}
+                                            {% endif %}
+                                        }
+                                    });
+
                                 }
-                            });
+                            }
 
+
+
+
+        {#                        alert(data);#}
+                            clear_send_docs();
                         }
-                    }
-{#                        alert(data);#}
-                    clear_send_docs();
-                }
-            });
-
-
+                    });
+            }
 
 
 
