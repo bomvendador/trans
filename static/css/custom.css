@@ -604,3 +604,7 @@ ul{
 .border-comment-red{
     border: 1px solid red;
 }
+
+.padding-right-20{
+    padding-right: 20px;
+}
