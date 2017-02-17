@@ -114,7 +114,7 @@
 
                                         <td class="">
 
-                                        {{ sent_doc.id }}
+                                        {{ sent_doc.id|center:'40' }}
                                         {% if user_profile.role.role_name == 'Клиент' and sent_doc.price and sent_doc.paystatus.name != 'Paid'%}
                                             <i class="mdi mdi-alert-circle color-red" data-toggle="tooltip" title="По заявке ожидается оплата" data-placement="top"></i>
                                         {% endif %}
