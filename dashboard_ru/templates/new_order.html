@@ -241,7 +241,7 @@
                 </div>
             </div>
                     <a href="{% url 'ru:dashboard_ru:add_new_order' %}">
-                        <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float round_btn" data-toggle="tooltip" title="Добвавить заявку" data-placement="left" id="btn_submit_group_doc_send">
+                        <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float round_btn" data-toggle="tooltip" title="Сохранить заявку" data-placement="left" id="btn_submit_group_doc_send">
                             <i class="mdi mdi-content-save text_rnd_btn_save" style="top: 2px!important;"></i>
                         </button>
                     </a>
@@ -275,7 +275,7 @@
 
         Dropzone.autoDiscover = false;
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
-            url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
+            url: "{% url 'ru:save_files_trans' %}",
             addRemoveLinks: false,
             sending: function (file, xhr, formData) {
                 add_csrf();
@@ -307,20 +307,7 @@
                 drop_zone_order_files.removeAllFiles();
 
             },
-{#            error: function (file, data) {#}
-{#                var response = $.parseJSON(data);#}
-{#                console.log(data);#}
-{##}
-{#                swal({#}
-{#                    title: 'Ошибка',#}
-{#                    text: 'При сохранении произошла ошибка. Попробуйте позже.',#}
-{#                    type: 'error'#}
-{#                });#}
-{##}
-{#            }#}
-
-
-{#            autoProcessQueue: false#}
+            autoProcessQueue: false
         });
 
 
@@ -535,6 +522,10 @@
                     clear_send_docs();
                 }
             });
+
+
+
+
 
         }
     });
