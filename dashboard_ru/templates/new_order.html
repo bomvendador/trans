@@ -297,7 +297,7 @@
                 });
             },
             error: function (file, data, xhr) {
-                var response = JSON.parse(xhr.responseText);
+                var response = JSON.parse(xhr);
                 console.log(response);
 
                 swal({
