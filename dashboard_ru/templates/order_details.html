@@ -882,14 +882,17 @@
     <script>
 
     $(document).ready(function () {
-
+        Dropzone.autoDiscover = false;
+        $('#drop_zone_order_files').dropzone({
+            url: "{% url 'ru:dashboard_ru:test' %}"
+        })
 {#        $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:test' %}"});#}
-        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});
+{#        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});#}
 {#        var drop_zone_order_files = document.getElementById('drop_zone_order_files');#}
 
-        Dropzone.options.drop_zone_order_files = {
-            paramName: "file",
-        };
+{#        Dropzone.options.drop_zone_order_files = {#}
+{#            paramName: "file",#}
+{#        };#}
         send_calc_func();
         //отправка комментариев клиента
         $('#comment_client_text').on('input', function () {
