@@ -156,9 +156,13 @@
                                 <div class="row clearfix">
                                     <div class="col-md-12 input-group">
                 {#                                    <div class="md-form">#}
+                                        <span class="input-group-addon">
+
                                             <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>
+                                        </span>
                                     {% if user_profile.role.role_name != 'Клиент' %}
-{#                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
+
+                                        {#                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
 {#                                                    <span>Загрузить файл(ы)</span>#}
 {#                                                    <input type="file" class="upload height-100" name="file" id="filesToUpload"  onchange="add_files({{ order_details.id }});">#}
 {##}
