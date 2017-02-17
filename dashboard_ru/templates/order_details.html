@@ -185,7 +185,7 @@
                                             {% if user_profile.role.role_name != 'Клиент' %}
                                                 <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
                                             {% endif %}
-                                                    <div class="list-group col-sm-offset-1" id="fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+                                                    <div class="list-group" id="fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
 {#                                                <ul id="fileList" class="" style="margin-left: 48px!important;">#}
                                                     {% for file in files %}
 
