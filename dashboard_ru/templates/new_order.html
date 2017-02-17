@@ -288,7 +288,7 @@
                 $('#fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');
                 drop_zone_order_files.removeFile(file);
             },
-            complete: function (file, data) {
+            complete: function (data) {
                 console.log(data);
                 swal({
                     title: 'Информация сохранена',
