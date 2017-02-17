@@ -5,6 +5,7 @@ import locale, sys
 from string import punctuation
 
 from custom_def import *
+from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -1882,5 +1883,6 @@ def del_company_from_payment(request):
         return HttpResponse('ok')
 
 
+@csrf_exempt
 def test(request):
     return request.body
