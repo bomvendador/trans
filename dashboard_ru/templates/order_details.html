@@ -891,6 +891,12 @@
                 formData.append('order_id', {{ order_details.id }});
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
             },
+            success: function (file, data) {
+                var data_json = $.parseJSON(data);
+                var file_name = data_json['file_name'];
+                console.log(file_name);
+                
+            }
 {#            autoProcessQueue: false#}
         });
 
