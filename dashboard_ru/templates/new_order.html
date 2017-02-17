@@ -279,7 +279,7 @@
             addRemoveLinks: false,
             sending: function (file, xhr, formData) {
                 add_csrf();
-                formData.append('order_id', {{ order_details.id }});
+{#                formData.append('order_id', {{ order_details.id }});#}
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
             },
             success: function (file, data) {
