@@ -228,7 +228,7 @@ def user_client_add(name, email, tel):
 
 def save_files_trans(request):
     if request.method == 'POST':
-        logger.debug('request = ' + str(request))
+        logger.debug('request = ' + str(request.FILES.getlist('file')))
         email_source = u'Сайт - заявка'
         data = request.POST
         user_exists = False
