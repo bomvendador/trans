@@ -35,7 +35,7 @@
     <div class="card">
         <div class="header bg-cyan">
             <h2>
-                Заявка № {{ order_details.id }} <small>Дата создания: {{ order_details.timestamp|date:"d.m.Y, H:i" }}</small>{% if author_role.role.role_name %}{% if user_role.role.role_name != 'Клиент'%}<a href=""><small>Автор: {{ order_details.author.id }}. {{ author_role.role.role_name }} - {{ order_details.author.first_name }} {{ order_details.author.last_name }}</small></a><small>Источник: {{ order_details.order_src.name }}</small>{% endif %}{% endif %}
+                Заявка № {{ order_details.id }} <small>Дата создания: {{ order_details.timestamp|date:"d.m.Y, H:i" }}</small>{% if author_role.role.role_name %}{% if user_role.role.role_name != 'Клиент'%}<a href="{% url 'ru:dashboard_ru:get_client_details ' order_details.author.id %}"><small>Автор: {{ order_details.author.id }}. {{ author_role.role.role_name }} - {{ order_details.author.first_name }} {{ order_details.author.last_name }}</small></a><small>Источник: {{ order_details.order_src.name }}</small>{% endif %}{% endif %}
             </h2>
         <div style="float: right; font-size: 20px; position: absolute; top: 15px; right: 35px;">
 
