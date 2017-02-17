@@ -168,8 +168,7 @@
                                                     <div class="drag-icon-cph">
                                                         <i class="material-icons">touch_app</i>
                                                     </div>
-                                                    <h3>Drop files here or click to upload.</h3>
-                                                    <em>(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</em>
+                                                    <h3>Перетащите файлы сюда.</h3>
                                                 </div>
                                                 <div class="fallback">
                                                     <input name="file" type="file" multiple />
@@ -885,7 +884,8 @@
         Dropzone.autoDiscover = false;
         $('#drop_zone_order_files').dropzone({
             url: "{% url 'ru:dashboard_ru:test' %}",
-            addRemoveLinks: true
+            addRemoveLinks: true,
+            autoProcessQueue: false
         });
 {#        $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:test' %}"});#}
 {#        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});#}
