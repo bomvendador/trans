@@ -180,7 +180,7 @@
                                                     <div class="drag-icon-cph">
                                                         <i class="material-icons">touch_app</i>
                                                     </div>
-                                                    <h3 class="font-family-roboto font-weight-100">Перетащите файлы сюда.</h3>
+                                                    <h3 class="font-family-roboto font-weight-100">Перетащите файлы сюда</h3>
                                                 </div>
                                                 <div class="fallback">
                                                     <input name="file" type="file" multiple />
@@ -304,6 +304,8 @@
                     });
 
                 }
+                drop_zone_order_files.removeAllFiles();
+
             },
 {#            error: function (file, data) {#}
 {#                var response = $.parseJSON(data);#}
