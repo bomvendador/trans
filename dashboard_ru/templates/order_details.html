@@ -898,7 +898,7 @@
             success: function (file, data) {
                 var data_json = $.parseJSON(data);
                 var file_name = data_json['file_name'];
-                console.log(data);
+                $('#fileList').append('<div class="file list-group-item row" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + data_json['file_name'] + '</p></div></div>');
                 
             }
 {#            autoProcessQueue: false#}
@@ -1787,7 +1787,6 @@
             },
             success:function (data) {
                 var json = $.parseJSON(data);
-                console.log(json['file_name']);
 {#                $('#fileList').append('<li class="margin-left--20" id="file_' + json["file_id"] + '"><i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="left" style="width: 28px"></i><a href="/ru/dashbrd/download_file/' +json["file_id"] + '">' + json["file_name"] + '</a></li>');#}
                 $('#fileList').append('<div class="margin-left--20 file list-group-item row" id="file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');
 
