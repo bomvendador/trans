@@ -1574,18 +1574,21 @@
                         if (isConfirm){
                             hide_save_order();
                             updateIcons();
-                            if ($('#order_price').val() != ''){
+                            if ($('#order_price').val() != '' && $('#calc_sent_date').text() == ''){
                                 console.log('есть цена')
                                 $('#btn_send_calc_active').removeClass('none');
                                 $('#btn_send_calc_deactivated').addClass('none');
 
 {#                                send_calc_func();#}
                             }else {
-                                console.log('нет цены')
+                                if ($('#calc_sent_date').text() == ''){
+                                    console.log('нет цены')
 
-                                $('#btn_send_calc_active').addClass('none');
-                                $('#btn_send_calc_deactivated').removeClass('none');
-                                send_calc_func();
+                                    $('#btn_send_calc_active').addClass('none');
+                                    $('#btn_send_calc_deactivated').removeClass('none');
+                                    send_calc_func();
+
+                                }
 
                             }
 
