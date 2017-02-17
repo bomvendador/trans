@@ -470,9 +470,10 @@ def save_files_trans(request):
             # file = SentFiles()
 
             r = re.compile(r'[{}]'.format(punctuation))
-            text_str = r.sub(' ', text)
-            text_qnt = len(text_str.split())
-            doc_sent.text_qnt = text_qnt
+            if text:
+                text_str = r.sub(' ', text)
+                text_qnt = len(text_str.split())
+                doc_sent.text_qnt = text_qnt
             files_qnt = 0
 
             for f in request.FILES.getlist('file'):
