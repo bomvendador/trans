@@ -892,8 +892,8 @@
 {#            autoProcessQueue: false#}
 {#        });#}
 
-{#        $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:test' %}"});#}
-        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});
+        var drop_zone_order_files = $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:test' %}"});
+{#        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});#}
 {#        var drop_zone_order_files = document.getElementById('drop_zone_order_files');#}
 
 {#        Dropzone.options.drop_zone_order_files = {#}
