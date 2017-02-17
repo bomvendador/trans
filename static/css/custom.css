@@ -273,7 +273,7 @@ ul{
 }
 
 .padding-left-20{
-    padding-left: 20px;
+    padding-left: 20px!important;
 }
 
 .background-blue{
@@ -606,5 +606,5 @@ ul{
 }
 
 .padding-right-20{
-    padding-right: 20px;
+    padding-right: 20px!important;
 }
