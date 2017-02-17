@@ -907,6 +907,14 @@
                     type: 'success'
                 });
 
+            },
+            canceled: function () {
+                swal({
+                    title: 'Ошибка',
+                    text: 'При сохранении произошла ошибка. Попробуйте позже.',
+                    type: 'error'
+                });
+
             }
 {#            autoProcessQueue: false#}
         });
