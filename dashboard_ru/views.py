@@ -1880,3 +1880,7 @@ def del_company_from_payment(request):
         }
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
         return HttpResponse('ok')
+
+
+def test(request):
+    return request.body

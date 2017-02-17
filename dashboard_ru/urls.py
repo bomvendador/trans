@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^help/$', views.help_dashboard, name='help_dashboard'),
     url(r'^sign_up/$', views.sign_up_board, name='sign_up_board'),
 
+    url(r'^test/$', views.test, name='test'),
+
     url(r'^order_details/(?P<order_id>\d+)/$', views.order_details, name='order_details'),
     url(r'^sent_docs/$', views.get_sent_docs, name='get_sent_docs'),
     url(r'^new_orders/$', views.get_new_sent_docs, name='get_new_orders'),
