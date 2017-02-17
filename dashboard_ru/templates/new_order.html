@@ -289,24 +289,33 @@
                 drop_zone_order_files.removeFile(file);
             },
             complete: function (data) {
-                console.log(data.status);
-                swal({
-                    title: 'Информация сохранена',
-                    text: 'Файлы были успешно сохранены. Первоначальные имена файлов были изменены.',
-                    type: 'success'
-                });
+                if (data.status != 'error'){
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Файлы были успешно сохранены. Первоначальные имена файлов были изменены.',
+                        type: 'success'
+                    });
+
+                }else {
+                    swal({
+                        title: 'Ошибка',
+                        text: 'При сохранении произошла ошибка. Попробуйте позже.',
+                        type: 'error'
+                    });
+
+                }
             },
-            error: function (file, data) {
+{#            error: function (file, data) {#}
 {#                var response = $.parseJSON(data);#}
 {#                console.log(data);#}
-
-                swal({
-                    title: 'Ошибка',
-                    text: 'При сохранении произошла ошибка. Попробуйте позже.',
-                    type: 'error'
-                });
-
-            }
+{##}
+{#                swal({#}
+{#                    title: 'Ошибка',#}
+{#                    text: 'При сохранении произошла ошибка. Попробуйте позже.',#}
+{#                    type: 'error'#}
+{#                });#}
+{##}
+{#            }#}
 
 
 {#            autoProcessQueue: false#}
