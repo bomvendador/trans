@@ -887,7 +887,9 @@
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
             addRemoveLinks: true,
             sending: function (file, xhr, formData) {
-                formData.append('order_id', {{ order_details.id }})
+                add_csrf();
+                formData.append('order_id', {{ order_details.id }});
+{#                formData.append('csrfmiddlewaretoken', getCookie('csrftoken'));#}
             },
 {#            autoProcessQueue: false#}
         });
