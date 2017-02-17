@@ -445,14 +445,14 @@ def save_files_trans(request):
                     user_profile.save()
                 doc_sent.author = user
             text = request.POST.get('text_doc_send')
-            if request.POST['trans_from']:
+            if request.POST.get('trans_from'):
                 try:
                     trans_from = Language.objects.get(name=request.POST.get('trans_from'))
                 except Language.DoesNotExist:
                     trans_from = None
                 doc_sent.trans_from = trans_from
 
-            if request.POST['trans_to']:
+            if request.POST.get('trans_to'):
                 try:
                     trans_to = Language.objects.get(name=request.POST.get('trans_to'))
                 except Language.DoesNotExist:
