@@ -873,7 +873,7 @@
 
     $(document).ready(function () {
 
-        $('#drop_zone_order_files').dropzone({url: ''});
+        $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:base_board' %}"});
         send_calc_func();
         //отправка комментариев клиента
         $('#comment_client_text').on('input', function () {
