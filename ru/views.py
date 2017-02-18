@@ -477,7 +477,7 @@ def save_files_trans(request):
                 doc_sent.text_qnt = text_qnt
             files_qnt = 0
 
-            for f in request.FILES.getlist('file'):
+            for f in request.FILES:
                 files_qnt += 1
             if files_qnt > 0:
                 doc_sent.files_qnt = files_qnt
@@ -506,7 +506,7 @@ def save_files_trans(request):
             data_files = request.FILES
             logger.debug(data_files)
 
-            for f in request.FILES.getlist('file'):
+            for f in request.FILES:
                 logger.debug('file = ' + str(f.name))
                 file_name = f.name.split('.')
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
