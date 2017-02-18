@@ -145,7 +145,7 @@
                                             </span>
                                             <div id="text_doc_send_div" class="">
                                                 <div class="form-line">
-                                                    <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ order_details.text }}</textarea>
+                                                    <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{% if order_details.text %}{{ order_details.text }}{% endif %}</textarea>
                                                     <textarea rows="4" class="form-control no-resize none-important" id="text_doc_send_hidden" name="text_doc_send">{{ order_details.text }}</textarea>
                                                 </div>
                                             </div>
