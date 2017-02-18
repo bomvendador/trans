@@ -824,8 +824,9 @@ def add_translation_file_to_order(request):
         except SentDoc.DoesNotExist:
             order = None
         logger.debug('id = ' + str(order.id))
-        if order.paystatus.name == 'Paid':
-            order.status = OrderStatus.objects.get(name=u'Выполнен')
+        if order.paystatus:
+            if order.paystatus.name == 'Paid':
+                order.status = OrderStatus.objects.get(name=u'Выполнен')
 
         order.translation_files = True
         files = request.FILES.getlist('file')
