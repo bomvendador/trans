@@ -209,11 +209,11 @@
 {#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
 {#                                                        </li>#}
                                                         {% else %}
-                                                        <div class="margin-left--20 list-group-item row" id="file_{{ file.id }}">
-                                                            <div class="col-sm-1 margin-bottom-0">
+                                                        <div class="list-group-item row" id="file_{{ file.id }}">
+                                                            <div class="col-xs-1 margin-bottom-0">
                                                                 <i class="mdi mdi-download text_label prefix file_download pointer-pure"   style="width: 28px" data-toggle="tooltip" title="Скачать" data-placement="top"></i>
                                                             </div>
-                                                            <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                            <div class="col-xs-11 margin-bottom-0 padding-top-3">
                                                                 <p class="display-inline">{{ file.filename }}</p>
 {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
                                                             </div>
@@ -885,6 +885,7 @@
 
     $(document).ready(function () {
         add_csrf();
+        {% if user_profile.role.role_name != 'Клиент' %}
         Dropzone.autoDiscover = false;
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
@@ -930,6 +931,7 @@
             }
 {#            autoProcessQueue: false#}
         });
+        {% endif %}
 
         <!--var drop_zone_order_files = $('#drop_zone_order_files').dropzone({url: "{% url 'ru:dashboard_ru:test' %}"});-->
 {#        var drop_zone_order_files = new Dropzone ('#drop_zone_order_files', {url: "{% url 'ru:dashboard_ru:test' %}"});#}
