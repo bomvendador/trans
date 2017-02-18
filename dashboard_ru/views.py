@@ -1480,9 +1480,14 @@ def save_order_comment_client(request):
                 'role': user_profile.role.role_name,
             })
             answer = 1
+            try:
+                manager = SentDoc.objects.get(id=order_id).resp.id
+            except:
+                manager = None
+
             email_context = {
                 'order': SentDoc.objects.get(id=order_id),
-                'manager': User.objects.get(id=SentDoc.objects.get(id=order_id).resp.id),
+                'manager': manager,
                 'comment_text': comment.comment.text,
                 'answer': comment_text
             }
