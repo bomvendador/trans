@@ -951,7 +951,7 @@
         });
 
 
-        //отправка файлов перевода
+        //сохранение файлов перевода
         var drop_zone_trans_files = new Dropzone('#drop_zone_translation_files', {
             url: "{% url 'ru:dashboard_ru:add_translation_file_to_order' %}",
             addRemoveLinks: false,
@@ -973,6 +973,9 @@
                         text: 'Файлы были успешно сохранены. Первоначальные имена файлов были изменены.',
                         type: 'success'
                     });
+                    $('#btn_send_trans_files_active').removeClass('none');
+                    $('#btn_send_trans_files_deactivated').addClass('none');
+                    send_trans_files_func();
 
                 }else {
                     swal({
