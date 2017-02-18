@@ -1687,7 +1687,7 @@ def send_trans_files_to_client(request):
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
         order = SentDoc.objects.get(id=order_id)
-        order.translation_sent_date = datetime.datetime.now()
+        order.translation_sent_date = datetime.now()
         order.save()
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
