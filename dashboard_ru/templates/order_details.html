@@ -679,13 +679,13 @@
                                     <div class="row clearfix">
                                         <div class="col-md-12">
                     {#                                    <div class="md-form">#}
+                                                 <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                 {% if user_profile.role.role_name != 'Клиент' %}
 {#                                                <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
 {#                                                        <span>Загрузить файл(ы)</span>#}
 {#                                                        <input type="file" class="upload height-100" name="file" id="traslations_filesToUpload"  onchange="add_translation_files({{ order_details.id }});">#}
 {#                                                </div>#}
-                                                 <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                 <div id="drop_zone_translation_files" class="dropzone dz-clickable border-2-dotted-grey">
                                                     <div class="dz-message">
@@ -708,7 +708,6 @@
                                                     <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
                                                     {% if user_profile.role.role_name == 'Клиент' %}
-                                                         <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                         {% if translation_files %}
                                                             {% if order_details.paystatus.name == 'Paid' %}
