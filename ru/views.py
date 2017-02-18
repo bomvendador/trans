@@ -506,16 +506,16 @@ def save_files_trans(request):
             data_files = request.FILES
             logger.debug(data_files)
 
-            for f in request.FILES['file[0]']:
+            for name, f in request.FILES:
                 logger.debug('file = ' + str(f.name))
                 file_name = f.name.split('.')
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
-                s = SentFiles(file=f, sent_doc=doc_sent)
+                # s = SentFiles(file=f, sent_doc=doc_sent)
                 # new_file_name = update_filename(s, f.name)
                 # logger.debug(str(new_file_name))
 
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=unicodedata.normalize('NFKD', f.name).encode('utf-8', 'ignore'))
-                s.save()
+                # s.save()
             if user_exists:
                 message = 'user_exists'
             else:
