@@ -680,7 +680,6 @@
                                         <div class="col-md-12">
                     {#                                    <div class="md-form">#}
 
-                                                <i class="mdi mdi-paperclip text_label prefix"></i>
                                                 {% if user_profile.role.role_name != 'Клиент' %}
 {#                                                <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
 {#                                                        <span>Загрузить файл(ы)</span>#}
@@ -705,7 +704,7 @@
 
 
                                                     <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
-                                                    <div class="list-group col-sm-offset-1" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+                                                    <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
                                                     {% if user_profile.role.role_name == 'Клиент' %}
 
