@@ -172,7 +172,8 @@
                                                     <div class="drag-icon-cph">
                                                         <i class="material-icons">touch_app</i>
                                                     </div>
-                                                    <h3 class="font-family-roboto font-weight-100">Перетащите файлы сюда</h3>
+                                                    <h3 class="font-family-roboto font-weight-100">Загрузите файл(ы)</h3>
+                                                    <em>Перетащите файлы в эту область или нажмите для <strong>загрузки</strong></em>
                                                 </div>
                                                 <div class="fallback">
                                                     <input name="file" type="file" multiple />
@@ -194,10 +195,10 @@
 
 
                                                         <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_{{ file.id }}">
-                                                            <div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
+                                                            <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
                                                                 <i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i>
                                                             </div>
-                                                            <div class="col-sm-11 margin-bottom-0 padding-top-3">
+                                                            <div class="col-xs-11 margin-bottom-0 padding-top-3">
                                                                 <p class="pointer-pure display-inline file_download">{{ file.filename }}</p>
                                                             </div>
                                                         </div>
