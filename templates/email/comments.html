@@ -1,5 +1,5 @@
 {% load staticfiles %}
-{% block subject %}Расчет стоимости PROLINGVA{% endblock %}
+{% block subject %}Вопрос по заявке PROLINGVA{% endblock %}
 {% block html %}
 <html>
 <head>
@@ -51,7 +51,11 @@
                        Менеджер:
                    </td>
                    <td align="left" valign="center" style="font-size: 13px; padding: 5px">
+                       {% if manager %}
                        {{ manager.first_name }}, <a href="emailto:{{ manager.email }}">{{ manager.email }}</a>
+                       {% else %}
+                       Пока не определен
+                       {% endif %}
                    </td>
                </tr>
                <tr style="font-size: 13px">
