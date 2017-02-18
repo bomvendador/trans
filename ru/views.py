@@ -503,7 +503,7 @@ def save_files_trans(request):
             # if 'file' in data:
             # logger.debug(data['file[0]'])
             # logger.debug(request.FILES.getlist('file[0]'))
-            data_files = request.FILES.getlist()
+            data_files = request.FILES
             logger.debug(data_files)
 
             for f in request.FILES.getlist('file'):
