@@ -704,7 +704,7 @@
 
 
                                                     <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
-                                                    <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+                                                    <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
                                                     {% if user_profile.role.role_name == 'Клиент' %}
                                                          <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
