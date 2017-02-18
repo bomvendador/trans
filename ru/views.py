@@ -506,9 +506,11 @@ def save_files_trans(request):
             data_files = request.FILES
             logger.debug(data_files)
 
-            for name, f in request.FILES:
-                logger.debug('file = ' + str(f.name))
-                file_name = f.name.split('.')
+            for k in request.FILES.keys():
+                for f in request.FILES.getlist(k):
+                    # f = request.FILES.getlist(key):
+                    logger.debug('file = ' + str(f.name))
+                # file_name = f.name.split('.')
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
                 # s = SentFiles(file=f, sent_doc=doc_sent)
                 # new_file_name = update_filename(s, f.name)
