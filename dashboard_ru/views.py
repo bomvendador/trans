@@ -1492,9 +1492,13 @@ def save_order_comment_client(request):
         else:
             comment = OrderCommentsClients()
             answer = 0
+            if SentDoc.objects.get(id=order_id).resp.id:
+                manager = SentDoc.objects.get(id=order_id).resp.id
+            else:
+                manager = None
             email_context = {
                 'order': SentDoc.objects.get(id=order_id),
-                'manager': User.objects.get(id=SentDoc.objects.get(id=order_id).resp.id),
+                'manager': manager,
                 'comment_text': comment_text
             }
             # TODO изменить имейл на имейл клиента
