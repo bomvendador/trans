@@ -500,7 +500,9 @@ def save_files_trans(request):
             doc_sent.save()
             # sys.getdefaultencoding = lambda : 'UTF-8'
             logger.debug('--------------')
-
+            # if 'file' in data:
+            logger.debug(data['file[0]'])
+            logger.debug(data['file[1]'])
             for f in request.FILES.getlist('file'):
                 logger.debug('file = ' + str(f.name))
                 file_name = f.name.split('.')
