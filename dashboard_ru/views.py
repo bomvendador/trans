@@ -1492,9 +1492,9 @@ def save_order_comment_client(request):
         else:
             comment = OrderCommentsClients()
             answer = 0
-            if SentDoc.objects.get(id=order_id).resp.id:
+            try:
                 manager = SentDoc.objects.get(id=order_id).resp.id
-            else:
+            except:
                 manager = None
             email_context = {
                 'order': SentDoc.objects.get(id=order_id),
