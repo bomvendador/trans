@@ -510,7 +510,7 @@ def save_files_trans(request):
                 logger.debug('key = ' + str(k))
                 for f in request.FILES.getlist(k):
                     # f = request.FILES.getlist(key):
-                    logger.debug('file = ' + str(f.name))
+                    logger.debug('file = ' + str(f.name).encode('utf-8'))
                     # logger.debug('file = ' + str(f.name).encode('utf-8'))
                 # file_name = f.name.split('.')
                 # s = SentFiles(file=f, sent_doc=doc_sent, file_name=f.name)
