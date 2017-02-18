@@ -682,10 +682,10 @@
 
                                                 <i class="mdi mdi-paperclip text_label prefix"></i>
                                                 {% if user_profile.role.role_name != 'Клиент' %}
-                                                <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">
-                                                        <span>Загрузить файл(ы)</span>
-                                                        <input type="file" class="upload height-100" name="file" id="traslations_filesToUpload"  onchange="add_translation_files({{ order_details.id }});">
-                                                </div>
+{#                                                <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
+{#                                                        <span>Загрузить файл(ы)</span>#}
+{#                                                        <input type="file" class="upload height-100" name="file" id="traslations_filesToUpload"  onchange="add_translation_files({{ order_details.id }});">#}
+{#                                                </div>#}
 
                                                 <div id="drop_zone_translation_files" class="dropzone dz-clickable border-2-dotted-grey">
                                                     <div class="dz-message">
@@ -695,15 +695,15 @@
                                                         <h3 class="font-family-roboto font-weight-100">Загрузите файл(ы)</h3>
                                                         <em>Перетащите файлы в эту область или нажмите для <strong>загрузки</strong></em>
                                                     </div>
-                                                    <div class="fallback">
+                                                    <div class="fallback" id="send_trans_files_btn">
                                                         <input name="file" type="file" multiple />
                                                     </div>
 
                                                 </div>
-
+                                                <div ></div>
                                                 {% endif %}
 
-                                                <div>
+
                                                     <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
                                                     <div class="list-group col-sm-offset-1" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
@@ -903,6 +903,8 @@
         add_csrf();
         {% if user_profile.role.role_name != 'Клиент' %}
         Dropzone.autoDiscover = false;
+
+            //отправка файлов заявки
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
             addRemoveLinks: false,
@@ -943,6 +945,51 @@
                     type: 'error'
                 });
                 drop_zone_order_files.removeFile(file);
+
+            }
+{#            autoProcessQueue: false#}
+        });
+
+
+        //отправка файлов перевода
+        var drop_zone_trans_files = new Dropzone('#drop_zone_translation_files', {
+            url: "{% url 'ru:dashboard_ru:add_translation_file_to_order' %}",
+            addRemoveLinks: false,
+            sending: function (file, xhr, formData) {
+                add_csrf();
+                formData.append('order_id', {{ order_details.id }});
+                formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+            },
+            success: function (file, data) {
+                var data_json = $.parseJSON(data);
+                var file_name = data_json['file_name'];
+                $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');
+                drop_zone_trans_files.removeFile(file);
+            },
+            complete: function (data) {
+                if (data.status != 'error'){
+                    swal({
+                        title: 'Информация сохранена',
+                        text: 'Файлы были успешно сохранены. Первоначальные имена файлов были изменены.',
+                        type: 'success'
+                    });
+
+                }else {
+                    swal({
+                        title: 'Ошибка',
+                        text: 'При сохранении произошла ошибка. Попробуйте позже.',
+                        type: 'error'
+                    });
+
+                }
+            },
+            error: function () {
+                swal({
+                    title: 'Ошибка',
+                    text: 'При сохранении произошла ошибка. Попробуйте позже.',
+                    type: 'error'
+                });
+                drop_zone_trans_files.removeFile(file);
 
             }
 {#            autoProcessQueue: false#}
