@@ -711,6 +711,7 @@
                                                         {% if translation_files %}
                                                             {% if order_details.paystatus.name == 'Paid' %}
                                                                 {% for translation_file in translation_files %}
+                                                                 <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                                     <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="translation_file_{{ translation_file.id }}">
                                                                         <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Скачать файл" data-placement="left">
