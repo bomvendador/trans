@@ -507,6 +507,7 @@ def save_files_trans(request):
             logger.debug(data_files)
 
             for k in request.FILES.keys():
+                logger.debug('key = ' + str(k))
                 for f in request.FILES.getlist(k):
                     # f = request.FILES.getlist(key):
                     logger.debug('file = ' + str(f.name))
