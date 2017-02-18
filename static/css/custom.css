@@ -608,3 +608,7 @@ ul{
 .padding-right-20{
     padding-right: 20px!important;
 }
+
+.border-2-dotted-grey{
+    border: 2px dotted lightgrey!important;
+}
