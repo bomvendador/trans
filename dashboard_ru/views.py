@@ -819,7 +819,11 @@ def add_file_to_order(request):
 def add_translation_file_to_order(request):
     if request.method == 'POST':
         logger.debug('order_id = ' + str(request.POST.get('order_id')))
-        order = SentDoc.objects.get(id=request.POST.get('order_id'))
+        try:
+            order = SentDoc.objects.get(id=request.POST.get('order_id'))
+        except SentDoc.DoesNotExist:
+            order = None
+        logger.debug('id = ' + str(order.id))
         if order.paystatus.name == 'Paid':
             order.status = OrderStatus.objects.get(name=u'Выполнен')
 
