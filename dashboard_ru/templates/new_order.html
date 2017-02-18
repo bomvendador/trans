@@ -399,6 +399,15 @@
                 drop_zone_order_files.removeAllFiles();
 
             },
+            error: function () {
+                swal({
+                    title: 'Ошибка',
+                    text: 'При сохранении произошла ошибка. Попробуйте позже.',
+                    type: 'error'
+                });
+                drop_zone_order_files.removeAllFiles();
+
+            }
         });
 
 
