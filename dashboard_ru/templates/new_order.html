@@ -277,6 +277,8 @@
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:save_files_trans' %}",
             uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 100,
             init: function() {
 {#                var myDropzone = this;#}
 
