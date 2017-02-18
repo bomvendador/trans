@@ -1256,7 +1256,7 @@
     function send_trans_files_func () {
         if ($('#translations_fileList').children().length > 0){
             console.log('send_trans length = ' + $('#translations_fileList').children().length)
-            $('#translation_files_uploaded').css('opacity', 1);
+            $('#translation_files_uploaded').removeClass('opacity-0_5').css('opacity', 1);
 
             $('#btn_send_trans_files_active').on('click', function () {
                 if ($('#paid_amount').val() == ''){
@@ -1284,7 +1284,7 @@
             });
 
         }else {
-            $('#translation_files_uploaded').css('opacity', 0.5);
+            $('#translation_files_uploaded').removeClass('opacity-1').css('opacity', 0.5);
 
         }
 
