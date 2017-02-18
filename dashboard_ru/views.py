@@ -831,20 +831,16 @@ def add_translation_file_to_order(request):
         order.translation_files = True
         files = request.FILES.getlist('file')
         f = SentFiles()
-        print(order.id)
-        print(files)
-        for file in files:
-            f = TranslationFiles(file=file, order=order, uploaded_by=request.user)
+        for file_ in files:
+            f = TranslationFiles(file=file_, order=order, uploaded_by=request.user)
             f.save()
-            # print(f.file_name)
-            file_name = f.file_name
             file_id = f.id
         # trans_array = TranslationFiles.objects.filter(order=order)
         # order.files_qnt = files_qnt
 
         order.save()
 
-        return HttpResponse(json.dumps({'file_name': file_name, 'file_id': file_id}))
+        return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
