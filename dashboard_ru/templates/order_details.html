@@ -685,6 +685,7 @@
 {#                                                        <span>Загрузить файл(ы)</span>#}
 {#                                                        <input type="file" class="upload height-100" name="file" id="traslations_filesToUpload"  onchange="add_translation_files({{ order_details.id }});">#}
 {#                                                </div>#}
+                                                 <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                 <div id="drop_zone_translation_files" class="dropzone dz-clickable border-2-dotted-grey">
                                                     <div class="dz-message">
@@ -706,9 +707,8 @@
                                                     <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
                                                     <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
-                                                     <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
-
                                                     {% if user_profile.role.role_name == 'Клиент' %}
+                                                         <h2 class="card-inside-title mrg-bottom-33">Файлы перевода</h2>
 
                                                         {% if translation_files %}
                                                             {% if order_details.paystatus.name == 'Paid' %}
