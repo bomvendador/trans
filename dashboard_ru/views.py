@@ -834,7 +834,7 @@ def add_translation_file_to_order(request):
         print(order.id)
         print(files)
         for file in files:
-            f = TranslationFiles(file=file, order=order, file_name=file.name, uploaded_by=request.user)
+            f = TranslationFiles(file=file, order=order, uploaded_by=request.user)
             f.save()
             # print(f.file_name)
             file_name = f.file_name
