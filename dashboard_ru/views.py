@@ -826,12 +826,13 @@ def add_file_to_order(request):
         event = u'Добавлены файлы: ' + str(curr_files_qnt) + u' шт.'
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
-        files_dict.update({'date_time': timeline.added.strftime("%d.%m.%Y, %H:%M"),
-                           'name': request.user.first_name,
-                           'role': user_profile.role.role_name
-                           })
+        additional_data = {}
+        additional_data.update({'date_time': timeline.added.strftime("%d.%m.%Y, %H:%M"),
+                                'name': request.user.first_name,
+                                'role': user_profile.role.role_name
+                                })
 
-        return HttpResponse(json.dumps({'files': files_dict}))
+        return HttpResponse(json.dumps({'files': files_dict, 'additional_data': additional_data}))
         # return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 

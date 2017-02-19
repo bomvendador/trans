@@ -957,9 +957,10 @@
                 var files_qnt = 0;
                 var data_json = $.parseJSON(data);
                 var files = data_json['files'];
-                var date_time = data_json['date_time'];
-                var name = data_json['name'];
-                var role = data_json['role'];
+                var add_data = data_json['additional_data'];
+                var date_time = add_data['date_time'];
+                var name = add_data['name'];
+                var role = add_data['role'];
                 for (var key in files){
                     if (files.hasOwnProperty(key)){
                         files_qnt ++;
