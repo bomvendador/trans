@@ -2130,13 +2130,19 @@
                     );
             },
             success: function (data) {
-                if (data != 0){
+                var response = $.parseJSON('response');
+                var new_count = response['new_count'];
+                var name_author = response['name_author'];
+                var role_author = response['role_author'];
+                var date_time = response['date_time'];
+                var resp_name = response['resp_name'];
+                if (new_count != 0){
                     $('#new_count_label').text(data);
                 }else {
                     $('#new_count_label').text('');
                 }
                 updateIcons();
-
+                add_timeline_item(date_time, name_author, role_author, 'Назначен ответственный: ' + resp_name);
                 $.notify({
                     message: 'Информация сохранена',
 

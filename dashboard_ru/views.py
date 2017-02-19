@@ -580,12 +580,9 @@ def download_translation_file(request, file_id):
 def set_resp(request):
     if request.method == 'POST':
         resp = request.POST.get('resp', None)
-        print('1 - ' + str(resp))
         resp = json.loads(request.body.decode('utf-8'))
         resp_id = resp['resp'].split('.')
-        print('2 - ' + str(resp_id[0]) + ' - ' + str(resp['order_id']))
         sent_docs = SentDoc.objects.get(id=resp['order_id'])
-        print(resp_id[0])
         if resp_id[0] != '':
             sent_docs.resp = User.objects.get(id=resp_id[0])
             sent_docs.status = OrderStatus.objects.get(name=u'Назначен менеджер')
@@ -605,9 +602,18 @@ def set_resp(request):
             status=OrderStatus.objects.get(name=u'Назначен менеджер')).count()
         manager.orders_new = orders_new_manager
         manager.save()
-
+        timeline = TimelineOrder(order=sent_docs, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Назначен ответственный: ' + str(manager.user.first_name))
+        timeline.save()
+        date_time = timeline.added + timedelta(hours=3)
         new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый')).count()
-        return HttpResponse(new_count)
+        response = {
+            'new_count': new_count,
+            'date_time': date_time.strftime("%d.%m.%Y, %H:%M"),
+            'name_author': request.user.first_name,
+            'role_author': UserProfile.objects.get(user=request.user).role.role_name,
+            'resp_name': manager.user.first_name
+        }
+        return HttpResponse(json.dumps({'response': response})
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
