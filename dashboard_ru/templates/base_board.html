@@ -852,9 +852,9 @@
 
     {% block script %}{% endblock %}
 <script>
-function add_timeline_item(date_time, name, role, text) {
-    $('.timeline-ul').append('<li class="in-view"><div><time>' + date_time + '<br>' + name + ', ' + role + '</time><p class="timeline-event">' + text + '</p></div></li>');
-}
+    function add_timeline_item(date_time, name, role, text) {
+        $('.timeline-ul').append('<li class="in-view"><div><time>' + date_time + '<br>' + name + ', ' + role + '</time><p class="timeline-event">' + text + '</p></div></li>');
+    }
 
     add_csrf();
 

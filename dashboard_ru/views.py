@@ -31,7 +31,7 @@ import logging
 from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
 
-from datetime import datetime, date, time
+from datetime import datetime, date, time, timedelta
 from django.utils import timezone
 logger = logging.getLogger('django-debug')
 
@@ -827,7 +827,8 @@ def add_file_to_order(request):
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
         additional_data = {}
-        additional_data.update({'date_time': timeline.added.strftime("%d.%m.%Y, %H:%M"),
+        date_time = timeline.added + timedelta(hours=3)
+        additional_data.update({'date_time': date_time.strftime("%d.%m.%Y, %H:%M"),
                                 'name': request.user.first_name,
                                 'role': user_profile.role.role_name
                                 })
