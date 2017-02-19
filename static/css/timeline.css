@@ -11,7 +11,7 @@
 }
 
 .timeline-header{
-    font-size: 20px;
+    font-size: 18px;
     font-family: Roboto, Sans-Serif;
     font-weight: 100;
     color: white;
@@ -24,6 +24,7 @@
     padding-bottom: 2px!important;
     font-weight: 100!important;
     color: white;
+    font-size: 13px;
 }
 
 /*body {*/
@@ -99,25 +100,25 @@
   border-style: solid;
 }
 
-.timeline ul li:nth-child(odd) div {
-  left: 30px;
-}
+/*.timeline ul li:nth-child(odd) div {*/
+  /*left: 30px;*/
+/*}*/
 
-.timeline ul li:nth-child(odd) div::before {
-  left: -16px;
-  border-width: 8px 16px 8px 0;
-  border-color: transparent #F45B69 transparent transparent;
-}
+/*.timeline ul li:nth-child(odd) div::before {*/
+  /*left: -16px;*/
+  /*border-width: 8px 16px 8px 0;*/
+  /*border-color: transparent #F45B69 transparent transparent;*/
+/*}*/
 
-.timeline ul li:nth-child(even) div {
-  left: -439px;
-}
+/*.timeline ul li:nth-child(even) div {*/
+  /*left: -439px;*/
+/*}*/
 
-.timeline ul li:nth-child(even) div::before {
-  right: -15px;
-  border-width: 8px 0 8px 16px;
-  border-color: transparent transparent transparent #F45B69;
-}
+/*.timeline ul li:nth-child(even) div::before {*/
+  /*right: -15px;*/
+  /*border-width: 8px 0 8px 16px;*/
+  /*border-color: transparent transparent transparent #F45B69;*/
+/*}*/
 
 time {
   display: block;
@@ -148,13 +149,13 @@ time {
   transition: all .5s ease-in-out;
 }
 
-.timeline ul li:nth-child(odd) div {
-  transform: translate3d(200px, 0, 0);
-}
+/*.timeline ul li:nth-child(odd) div {*/
+  /*transform: translate3d(200px, 0, 0);*/
+/*}*/
 
-.timeline ul li:nth-child(even) div {
-  transform: translate3d(-200px, 0, 0);
-}
+/*.timeline ul li:nth-child(even) div {*/
+  /*transform: translate3d(-200px, 0, 0);*/
+/*}*/
 
 .timeline ul li.in-view div {
   transform: none;
@@ -170,10 +171,10 @@ time {
   .timeline ul li div {
     width: 250px;
   }
-  .timeline ul li:nth-child(even) div {
-    left: -289px;
-    /*250+45-6*/
-  }
+  /*.timeline ul li:nth-child(even) div {*/
+    /*left: -289px;*/
+    /*!*250+45-6*!*/
+  /*}*/
 }
 
 @media screen and (max-width: 600px) {
