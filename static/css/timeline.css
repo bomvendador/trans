@@ -99,6 +99,10 @@
     height: 20px;
     border-radius: 50%;
     background: inherit;
+    padding-top: 2px;
+    font-size: 11px;
+    text-align: center;
+    color: white;
 
 }
 
