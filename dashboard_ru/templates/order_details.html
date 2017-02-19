@@ -30,6 +30,31 @@
 
 {% endblock %}
 
+{% block right_sidebar_header %}
+    <li role="presentation" class="active"><a href="#order_timeline" data-toggle="tab">События</a></li>
+    <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+
+{% endblock %}
+
+{% block right_sidebar_content %}
+    <div role="tabpanel" class="tab-pane fade in active in active" id="order_timeline">
+        <section class="intro">
+          <div class="container">
+            <h1>События во времени</h1>
+          </div>
+        </section>
+    <section class="timeline">
+      <ul>
+        <li>
+          <div>
+            <time>1934</time> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+          </div>
+        </li>
+      </ul>
+    </section>
+    </div>
+
+{% endblock %}
 
 
 {% block content %}

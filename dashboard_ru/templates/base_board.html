@@ -44,6 +44,8 @@
 
     {% block links %}
     {% endblock %}
+    <link href="{% static 'css/timeline.css' %}" rel="stylesheet" />
+
     <link href="{% static 'css/custom.css' %}" rel="stylesheet" />
 
 </head>
@@ -393,10 +395,14 @@
         <!-- Right Sidebar -->
         <aside id="rightsidebar" class="right-sidebar">
             <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                {% block right_sidebar_header %}
                 <li role="presentation" class="active"><a href="#skins" data-toggle="tab">SKINS</a></li>
                 <li role="presentation"><a href="#settings" data-toggle="tab">SETTINGS</a></li>
+                {% endblock %}
             </ul>
             <div class="tab-content">
+                {% block right_sidebar_content %}
+
                 <div role="tabpanel" class="tab-pane fade in active in active" id="skins">
                     <ul class="demo-choose-skin">
                         <li data-theme="red" class="active">
@@ -530,6 +536,7 @@
                         </ul>
                     </div>
                 </div>
+                {% endblock %}
             </div>
         </aside>
         <!-- #END# Right Sidebar -->
@@ -948,6 +955,8 @@
     <script src="{% static 'js/dashboard/demo.js' %}"></script>
     <script src="{% static 'js/moment_ru.js' %}"></script>
     <script src="{% static 'js/jquery.cookie.js' %}"></script>
+
+    <script src="{% static 'js/timeline.js' %}"></script>
 
 
     {% block script %}{% endblock %}
