@@ -602,6 +602,7 @@ def set_resp(request):
             status=OrderStatus.objects.get(name=u'Назначен менеджер')).count()
         manager.orders_new = orders_new_manager
         manager.save()
+        logger.debug(manager.user.first_name)
         timeline_event = u'Назначен ответственный: ' + str(manager.user.first_name)
         timeline = TimelineOrder(order=sent_docs, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=timeline_event)
         timeline.save()
