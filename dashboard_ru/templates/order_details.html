@@ -2130,7 +2130,8 @@
                     );
             },
             success: function (data) {
-                var response = $.parseJSON('response');
+                var data_json = $.parseJSON(data);
+                var response = data_json['response'];
                 var new_count = response['new_count'];
                 var name_author = response['name_author'];
                 var role_author = response['role_author'];
