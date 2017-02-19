@@ -9,7 +9,7 @@ from django.utils.encoding import smart_text
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall, Testimonials
+from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall, Testimonials, TimelineOrder, Event
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -498,6 +498,8 @@ def save_files_trans(request):
                     email_source = u'Сайт - заявка'
 
             doc_sent.save()
+
+
             # sys.getdefaultencoding = lambda : 'UTF-8'
             logger.debug('--------------')
             # if 'file' in data:
@@ -522,9 +524,15 @@ def save_files_trans(request):
                     s.save()
             if user_exists:
                 message = 'user_exists'
+                timeline_user = user
+                timeline_userprofile = user_profile
             else:
                 message = 'ok'
+                timeline_user = None
+                timeline_userprofile = None
 
+            timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=Event.objects.get(name=u'Заявка создана'))
+            timeline.save()
             email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel}
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 

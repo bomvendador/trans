@@ -303,3 +303,15 @@ class Translator_Lang(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
 
+
+class Event(models.Model):
+    name = models.CharField(max_length=20)
+
+
+class TimelineOrder(models.Model):
+    order = models.ForeignKey(SentDoc, null=False, blank=False)
+    author = models.ForeignKey(User, null=True, blank=True)
+    author_profile = models.ForeignKey(UserProfile, null=True, blank=True)
+    event = models.ForeignKey(Event, null=False, blank=False)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False)
+
