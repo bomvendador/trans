@@ -14,6 +14,11 @@
     margin-top: 10px;
 }
 
+.timeline-event{
+    margin: 0px 10px;
+    text-align: left;
+}
+
 /*body {*/
   /*font: normal 16px/1.5 "Helvetica Neue", sans-serif;*/
   /*background: #456990;*/
@@ -81,7 +86,7 @@
 .timeline ul li div::before {
   content: '';
   position: absolute;
-  bottom: 7px;
+  bottom: 3px;
   width: 0;
   height: 0;
   border-style: solid;
@@ -92,7 +97,7 @@
 }
 
 .timeline ul li:nth-child(odd) div::before {
-  left: -15px;
+  left: -16px;
   border-width: 8px 16px 8px 0;
   border-color: transparent #F45B69 transparent transparent;
 }
@@ -112,7 +117,7 @@ time {
   font-size: 1.2rem;
   font-weight: bold;
   /*margin-bottom: 8px;*/
-    padding: 10px;
+    padding: 5px 10px;
 }
 
 
