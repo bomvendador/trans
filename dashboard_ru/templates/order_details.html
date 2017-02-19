@@ -45,26 +45,19 @@
               </div>
             </section>
             <section class="timeline">
-              <ul class="margin-bottom-0">
+            <ul class="margin-bottom-0">
+              {% for timeline in timelines %}
                 <li class="in-view">
                   <div>
-                    <time>1934</time>
-                    <p class="timeline-event">Создание unjknjk njk njk nj kn jkn jk</p>
+                    <time>
+                        {{ timeline.added|date:"d.m.Y, H:i" }}<br/>
+                        {{ timeline.author.first_name }}
+                    </time>
+                    <p class="timeline-event">{{ timeline.event.name }}</p>
                   </div>
                 </li>
-                <li class="in-view">
-                  <div>
-                    <time>1934</time>
-                    <p class="timeline-event">Создание</p>
-                  </div>
-                </li>
-                <li class="in-view">
-                  <div>
-                    <time>1934</time>
-                    <p class="timeline-event">Создание</p>
-                  </div>
-                </li>
-              </ul>
+              {% endfor %}
+            </ul>
             </section>
         </div>
     </div>

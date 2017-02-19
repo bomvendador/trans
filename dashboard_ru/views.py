@@ -15,7 +15,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer, TimelineOrder, Event
 
 from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Sum
@@ -538,7 +538,8 @@ def order_details(request, order_id):
         'user_role': user_role,
         'trans_themes': TranslationTheme.objects.all(),
         'trans_types': TranslationType.objects.all(),
-        'companies': companies
+        'companies': companies,
+        'timelines': TimelineOrder.objects.filter(order=order_det)
     })
     return render(request, 'order_details.html', context)
 
