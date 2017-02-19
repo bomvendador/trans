@@ -72,16 +72,30 @@
   background: #fff;
 }
 
+.timeline-ul{
+    counter-reset: my-counter;
+}
+
+.timeline-ul li::before {
+    content: counter(my-counter,disc);
+    padding-top: 2px;
+    font-size: 11px;
+    text-align: center;
+    color: white;
+
+}
+
 .timeline ul li::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: inherit;
+    content: counter(m,disc);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: inherit;
+
 }
 
 .timeline ul li div {
