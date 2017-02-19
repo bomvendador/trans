@@ -952,11 +952,12 @@
             },
             successmultiple: function (file, data) {
                 console.log(data.code);
-
+                var files_qnt = 0;
                 var data_json = $.parseJSON(data);
                 var files = data_json['files'];
                 for (var key in files){
                     if (files.hasOwnProperty(key)){
+                        files_qnt ++;
                         var file_id = key;
                         var file_name = files[key];
                         $('#fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + file_id + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + file_name + '</p></div></div>');
@@ -964,6 +965,7 @@
                     }
 
                 }
+                $('.timeline-ul').append('<li class="in-view"><div><time>20.02.2017, 01:17<br> Алена, Клиент</time><p class="timeline-event">Добавлены файлы: ' + files_qnt +'</p></div></li>');
                 drop_zone_order_files.removeAllFiles();
             },
             complete: function (data) {
