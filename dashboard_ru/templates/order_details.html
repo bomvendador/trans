@@ -51,7 +51,7 @@
                   <div>
                     <time>
                         {{ timeline.added|date:"d.m.Y, H:i" }}<br/>
-                        {{ timeline.author.first_name }}
+                        {{ timeline.author.first_name }}, {{ timeline.author_profile.role.role_name }}
                     </time>
                     <p class="timeline-event">{{ timeline.event.name }}</p>
                   </div>
