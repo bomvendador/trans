@@ -15,8 +15,8 @@
 }
 
 .timeline-event{
-    margin: 0px 10px;
-    text-align: left;
+    margin: 0px 10px!important;
+    text-align: left!important;
 }
 
 /*body {*/
