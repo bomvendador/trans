@@ -818,7 +818,8 @@ def add_file_to_order(request):
         event = u'Добавлены файлы: ' + str(curr_files_qnt) + u' шт.'
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
-        return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
+        return HttpResponse(json.dumps({'file_name': f.filename()}))
+        # return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
