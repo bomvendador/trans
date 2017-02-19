@@ -90,7 +90,7 @@
 /*}*/
 
 .timeline ul li::after {
-    content: '[' counter(my-counter,disc) ']';
+    content: counter(my-counter);
     position: absolute;
     left: 50%;
     bottom: 0;
