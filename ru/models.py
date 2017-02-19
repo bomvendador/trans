@@ -292,7 +292,7 @@ class SentFiles (models.Model):
     # file = models.FileField(upload_to=path_and_rename('/media/sent_docs'))
     file_name = models.CharField(max_length=150, null=True)
     sent_doc = models.ForeignKey(SentDoc)
-    added = models.DateTimeField(auto_now_add=True, auto_now=False, default=None)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     added_by = models.ForeignKey(User, null=True, blank=True)
 
