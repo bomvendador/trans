@@ -804,12 +804,15 @@ def add_file_to_order(request):
         files = request.FILES.getlist('file')
         f = SentFiles()
         curr_files_qnt = 0
+        files_dict = {}
         for k in request.FILES.keys():
             logger.debug('key = ' + str(k))
             curr_files_qnt += 1
             for f in request.FILES.getlist(k):
                 s = SentFiles(file=f, sent_doc=order)
                 s.save()
+                files_dict.update({s.id: s.filename()})
+
 
         # for file in files:
         #     logger.debug(file.name)
@@ -824,7 +827,7 @@ def add_file_to_order(request):
         event = u'Добавлены файлы: ' + str(curr_files_qnt) + u' шт.'
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
-        return HttpResponse(json.dumps({'file_name': f.filename()}))
+        return HttpResponse(json.dumps({'files': files_dict}))
         # return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
