@@ -9,7 +9,7 @@ from django.utils.encoding import smart_text
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.contrib.auth.models import User
-from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall, Testimonials, TimelineOrder, Event
+from .models import Language, SentDoc, SentFiles, UserProfile, Role, OrderStatus, OrderSource, Client, TranslationTheme, TranslationType, BackCall, Testimonials, TimelineOrder
 from django.utils.translation import ugettext as _
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
