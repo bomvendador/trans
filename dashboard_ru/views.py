@@ -813,7 +813,8 @@ def add_file_to_order(request):
         order.files_qnt = files_qnt
         user_profile = UserProfile.objects.get(user=request.user)
         order.save()
-        timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=u'Добавлены файлы: ' + files_qnt + u'шт.')
+        event = u'Добавлены файлы: ' + str(files_qnt) + u' шт.'
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
