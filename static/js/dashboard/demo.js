@@ -28,7 +28,7 @@ function skinChanger() {
 //Skin tab content set height and show scroll
 function setSkinListHeightAndScroll() {
     var height = $(window).height() - ($('.navbar').innerHeight() + $('.right-sidebar .nav-tabs').outerHeight());
-    var $el = $('.demo-choose-skin');
+    var $el = $('.timeline_div');
 
     $el.slimScroll({ destroy: true }).height('auto');
     $el.parent().find('.slimScrollBar, .slimScrollRail').remove();
