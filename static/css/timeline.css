@@ -86,7 +86,7 @@
 }
 
 .timeline ul li::after {
-    /*content: counter(m,disc);*/
+    content: '';
     position: absolute;
     left: 50%;
     bottom: 0;
