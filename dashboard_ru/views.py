@@ -812,7 +812,7 @@ def add_file_to_order(request):
         files_qnt = SentFiles.objects.filter(sent_doc=order).count()
         order.files_qnt = files_qnt
         order.save()
-
+        timeline = TimelineOrder(order=order, author=request.user)
         return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
 
 
