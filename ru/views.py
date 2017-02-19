@@ -531,7 +531,7 @@ def save_files_trans(request):
                 timeline_user = None
                 timeline_userprofile = None
 
-            timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=Event.objects.get(name=u'Заявка создана'))
+            timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=u'Заявка создана')
             timeline.save()
             email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel}
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
