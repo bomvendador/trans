@@ -613,7 +613,7 @@ def set_resp(request):
             'role_author': UserProfile.objects.get(user=request.user).role.role_name,
             'resp_name': manager.user.first_name
         }
-        return HttpResponse(json.dumps({'response': response})
+        return HttpResponse(json.dumps({'response': response}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
