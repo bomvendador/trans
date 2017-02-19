@@ -72,21 +72,25 @@
   background: #fff;
 }
 
-.timeline-ul{
+.timeline ul{
     counter-reset: my-counter;
 }
 
-.timeline-ul li::before {
-    content: counter(my-counter,disc);
-    padding-top: 2px;
-    font-size: 11px;
-    text-align: center;
-    color: white;
-
+.timeline ul li{
+    counter-increment: my-counter;
 }
 
+/*.timeline-ul li::before {*/
+    /*content: counter(my-counter,disc);*/
+    /*padding-top: 2px;*/
+    /*font-size: 11px;*/
+    /*text-align: center;*/
+    /*color: white;*/
+
+/*}*/
+
 .timeline ul li::after {
-    content: '';
+    content: '[' counter(my-counter,disc) ']';
     position: absolute;
     left: 50%;
     bottom: 0;
