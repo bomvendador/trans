@@ -498,7 +498,7 @@
         }
         {% endif %}
         //проверка файла
-        if (!$('.dz-preview').length){
+        if (!$('.dz-preview').length && $('#text_doc_send').val() == ''){
             file_err_doc_send = true;
             file_err_doc_send_msg = 'Добавьте текст или файл';
             $('#text_doc_send').addClass('invalid');
