@@ -847,11 +847,14 @@
 
 {#    <script src="{% static 'js/timeline.js' %}"></script>#}
     <script src="{% static 'js/dashboard/demo.js' %}"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
+{#    <script src="{% static 'js/custom.js' %}"></script>#}
 
 
     {% block script %}{% endblock %}
 <script>
+function add_timeline_item(date_time, name, role, text) {
+    $('.timeline-ul').append('<li class="in-view"><div><time>' + date_time + '<br>' + name + ', ' + role + '</time><p class="timeline-event">' + text + '</p></div></li>');
+}
 
     add_csrf();
 

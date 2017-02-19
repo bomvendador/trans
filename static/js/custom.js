@@ -42,6 +42,3 @@ function changeState() {
         $('#preloader').fadeOut('slow');
     }
 
-function add_timline_item(date_time, name, role, text) {
-    $('.timeline-ul').append('<li class="in-view"><div><time>' + date_time + '<br>' + name + ', ' + role + '</time><p class="timeline-event">' + text + '</p></div></li>');
-}
