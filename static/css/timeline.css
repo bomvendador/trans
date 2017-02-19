@@ -80,15 +80,6 @@
     counter-increment: my-counter;
 }
 
-/*.timeline-ul li::before {*/
-    /*content: counter(my-counter,disc);*/
-    /*padding-top: 2px;*/
-    /*font-size: 11px;*/
-    /*text-align: center;*/
-    /*color: white;*/
-
-/*}*/
-
 .timeline ul li::after {
     content: counter(my-counter);
     position: absolute;

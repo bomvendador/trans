@@ -941,12 +941,16 @@
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
             addRemoveLinks: false,
-            sending: function (file, xhr, formData) {
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 100,
+
+            sendingmultiple: function (file, xhr, formData) {
                 add_csrf();
                 formData.append('order_id', {{ order_details.id }});
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
             },
-            success: function (file, data) {
+            successmultiple: function (file, data) {
                 console.log(data.code);
 
                 var data_json = $.parseJSON(data);
