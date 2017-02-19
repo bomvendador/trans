@@ -6,6 +6,14 @@
   box-sizing: border-box;
 }
 
+.timeline-header{
+    font-size: 20px;
+    font-family: roboto;
+    font-weight: 100;
+    color: white;
+    margin-top: 10px;
+}
+
 /*body {*/
   /*font: normal 16px/1.5 "Helvetica Neue", sans-serif;*/
   /*background: #456990;*/
@@ -38,16 +46,16 @@
 
 .timeline ul {
   background: #456990;
-  padding: 50px 0;
+  padding: 20px 0;
 }
 
 .timeline ul li {
   list-style-type: none;
   position: relative;
-  width: 6px;
+  width: 3px;
   margin-left: 20px;
   /*margin: 0 auto;*/
-  padding-top: 50px;
+  padding-top: 10px;
   background: #fff;
 }
 
@@ -66,8 +74,7 @@
 .timeline ul li div {
   position: relative;
   bottom: 0;
-  width: 400px;
-  padding: 15px;
+  width: 210px;
   background: #F45B69;
 }
 
@@ -81,7 +88,7 @@
 }
 
 .timeline ul li:nth-child(odd) div {
-  left: 45px;
+  left: 30px;
 }
 
 .timeline ul li:nth-child(odd) div::before {
@@ -104,7 +111,8 @@ time {
   display: block;
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 8px;
+  /*margin-bottom: 8px;*/
+    padding: 10px;
 }
 
 
