@@ -803,17 +803,19 @@ def add_file_to_order(request):
         order.status = OrderStatus.objects.get(name=u'В работе')
         files = request.FILES.getlist('file')
         f = SentFiles()
+        curr_files_qnt = 0
         for file in files:
+            curr_files_qnt += 1
             logger.debug(file.name)
             f = SentFiles(file=file, sent_doc=order)
             f.save()
-            file_name = f.file_name
+            # file_name = f.file_name
             file_id = f.id
         files_qnt = SentFiles.objects.filter(sent_doc=order).count()
         order.files_qnt = files_qnt
         user_profile = UserProfile.objects.get(user=request.user)
         order.save()
-        event = u'Добавлены файлы: ' + str(files_qnt) + u' шт.'
+        event = u'Добавлены файлы: ' + str(curr_files_qnt) + u' шт.'
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
         return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
