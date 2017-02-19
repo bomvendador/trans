@@ -178,9 +178,9 @@ time {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 @media screen and (max-width: 900px) {
-  .timeline ul li div {
-    width: 250px;
-  }
+  /*.timeline ul li div {*/
+    /*width: 250px;*/
+  /*}*/
   /*.timeline ul li:nth-child(even) div {*/
     /*left: -289px;*/
     /*!*250+45-6*!*/
@@ -191,9 +191,9 @@ time {
   .timeline ul li {
     margin-left: 20px;
   }
-  .timeline ul li div {
-    width: calc(100vw - 91px);
-  }
+  /*.timeline ul li div {*/
+    /*width: calc(100vw - 91px);*/
+  /*}*/
   /*.timeline ul li:nth-child(even) div {*/
     /*left: 45px;*/
   /*}*/
