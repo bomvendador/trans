@@ -804,13 +804,19 @@ def add_file_to_order(request):
         files = request.FILES.getlist('file')
         f = SentFiles()
         curr_files_qnt = 0
-        for file in files:
+        for k in request.FILES.keys():
+            logger.debug('key = ' + str(k))
             curr_files_qnt += 1
-            logger.debug(file.name)
-            f = SentFiles(file=file, sent_doc=order)
-            f.save()
-            # file_name = f.file_name
-            file_id = f.id
+            for f in request.FILES.getlist(k):
+                s = SentFiles(file=f, sent_doc=order)
+                s.save()
+
+        # for file in files:
+        #     logger.debug(file.name)
+        #     f = SentFiles(file=file, sent_doc=order)
+        #     f.save()
+        #     # file_name = f.file_name
+        #     file_id = f.id
         files_qnt = SentFiles.objects.filter(sent_doc=order).count()
         order.files_qnt = files_qnt
         user_profile = UserProfile.objects.get(user=request.user)
