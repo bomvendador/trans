@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.timeline_div{
+    background: #456990;
+}
+
 .timeline-header{
     font-size: 20px;
     font-family: roboto;
