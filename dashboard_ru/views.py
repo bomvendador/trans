@@ -1751,9 +1751,19 @@ def send_trans_files_to_client(request):
         # TODO изменить адрес отправки
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'translation_is_ready.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
+        user_profile = UserProfile.objects.get(user=request.user)
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=u'Уведомление клиенту: файлы перевода загружены')
+        timeline.save()
+        response = {
+            'date_time': order.translation_sent_date.strftime("%d.%m.%Y, %H:%M"),
+            'timeline_author': timeline.author.first_name,
+            'timeline_author_role': user_profile.role.role_name,
+            'event': timeline.event
+
+        }
         # logger.debug('id = ' + str(order_id))
         # logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
-        return HttpResponse(order.translation_sent_date.strftime("%d.%m.%Y, %H:%M"))
+        return HttpResponse(json.dumps({'response': response}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')

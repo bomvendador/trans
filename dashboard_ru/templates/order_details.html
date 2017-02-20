@@ -1296,7 +1296,7 @@
 {##}
 
 
-    //отправка файлов перевода
+    //отправка уведомления клиенту о готовности файлов перевода
 
     function send_trans_files_ajax() {
         $.ajax({
@@ -1315,6 +1315,13 @@
                 });
             },
             success:function (data) {
+                var data_json = $.parseJSON(data);
+                var date_time = data_json['date_time'];
+                var name = data_json['timeline_author'];
+                var role = data_json['timeline_author_role'];
+                var event = data_json['event'];
+                add_timeline_item(date_time, name, role, event);
+
                 swal({
                     title: 'Уведомление отправлено',
                     text: 'Уведомление клиенту о файлах перевода успешно отправлено.',

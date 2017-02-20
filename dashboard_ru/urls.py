@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^in_progress_orders/$', views.get_in_progress_sent_docs, name='get_in_progress_sent_docs'),
     url(r'^complete_orders/$', views.get_complete_sent_docs, name='get_complete_sent_docs'),
     url(r'^add_file_to_order/$', views.add_file_to_order, name='add_file_to_order'),
+
     url(r'^add_translation_file_to_order/$', views.add_translation_file_to_order, name='add_translation_file_to_order'),
     url(r'^update_order_translation/$', views.update_order_translation, name='update_order_translation'),
     url(r'^delete_file_from_order/$', views.delete_file_from_order, name='delete_file_from_order'),
