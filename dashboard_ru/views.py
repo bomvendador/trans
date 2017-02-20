@@ -1741,7 +1741,7 @@ def send_calculation_to_client(request):
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
 
-        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Уведомление клиенту: расчет цены отправлен')
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Уведомление клиенту: расчет цены отправлен - ' + str(order_price) + u' руб.')
         timeline.save()
         timeline_date = timeline.added + timedelta(hours=3)
         response = {
@@ -1749,7 +1749,7 @@ def send_calculation_to_client(request):
             'timeline_author': timeline.author.first_name,
             # 'timeline_datetime': timeline_date.strftime("%d.%m.%Y, %H:%M"),
             'timeline_author_role': timeline.author_profile.role.role_name,
-            'event': timeline.event
+            'event': timeline.event,
         }
 
         logger.debug('id = ' + str(order_id))
