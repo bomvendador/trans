@@ -971,7 +971,7 @@
                     }
 
                 }
-                add_timeline_item(date_time, name, role, 'Добавлены файлы: ' + files_qnt +' шт.' );
+                add_timeline_item(date_time, name, role, 'Добавлены файлы заявки: ' + files_qnt +' шт.' );
                 drop_zone_order_files.removeAllFiles();
             },
             complete: function (data) {
@@ -1052,8 +1052,8 @@
                         text: 'Файлы были успешно сохранены. Первоначальные имена файлов были изменены.',
                         type: 'success'
                     });
-                    if ($('#translation_sent_date').val() != ''){
-                        $('#translation_sent_date').val('');
+                    if ($('#translation_sent_date').text() != ''){
+                        $('#translation_sent_date').text('');
                         $('#translation_sent_date_div').css('display', 'none');
 
                     }
