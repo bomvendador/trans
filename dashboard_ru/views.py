@@ -919,10 +919,11 @@ def delete_translation_file_from_order(request):
         order.save()
         timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Файл перевода удален')
         timeline.save()
-        response={
+        timeline_date = timeline.added + timedelta(hours=3)
+        response = {
             'file_id': file_id,
             'timeline_author': timeline.author.first_name,
-            'timeline_datetime': timeline.added.strftime("%d.%m.%Y, %H:%M"),
+            'timeline_datetime': timeline_date.strftime("%d.%m.%Y, %H:%M"),
             'timeline_author_role': timeline.author_profile.role.role_name,
             'event': timeline.event
         }
