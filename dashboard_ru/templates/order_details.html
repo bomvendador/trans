@@ -1076,6 +1076,7 @@
                             var uploaded_by = files['uploaded_by'];
                             var uploaded_by_role = files['uploaded_by_role'];
                             var added = files['added'];
+
 {#                            if ($('#translation_files_table tbody tr:first td:first').text() == 'Файлы отсутствуют'){#}
 {#                                $('#translation_files_table tbody tr:first td:first').remove();#}
 {#                            }#}
@@ -1372,11 +1373,24 @@
             },
             success:function (data) {
                 var data_json = $.parseJSON(data);
+                var files = data_json['files'];
                 var response = data_json['response'];
                 var date_time = response['date_time'];
                 var name = response['timeline_author'];
                 var role = response['timeline_author_role'];
                 var event = response['event'];
+
+                   for (var key in files) {
+                       if (files.hasOwnProperty(key)) {
+                           files_qnt++;
+                           var file_id = key;
+                           var selector = 'translation_file_' + file_id;
+                           $('#translation_file_' + key).find('td:nth-child(5)').text(files[key]);
+                           var sent_time = files[key];
+                       }
+                   }
+
+
                 add_timeline_item(date_time, name, role, event);
 
                 swal({

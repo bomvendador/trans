@@ -1804,10 +1804,13 @@ def send_trans_files_to_client(request):
         order.translation_sent_date = datetime.now()
         order.save()
         translation_files = TranslationFiles.objects.filter(order=order)
+        files = {}
         for translation_file in translation_files:
             if not translation_file.sent_to_client_datetime:
-                translation_file.sent_to_client_datetime = datetime.now()
+                translation_file.sent_to_client_datetime = order.translation_sent_date
                 translation_file.save()
+                files.update({translation_file.id: translation_file.sent_to_client_datetime.strftime("%d.%m.%Y, %H:%M")})
+
             else:
                 pass
         manager = User.objects.get(id=order.resp_id)
@@ -1820,16 +1823,17 @@ def send_trans_files_to_client(request):
         user_profile = UserProfile.objects.get(user=request.user)
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=u'Уведомление клиенту: файлы перевода загружены')
         timeline.save()
+        sent_date = order.translation_sent_date + timedelta(hours=3)
         response = {
             'date_time': order.translation_sent_date.strftime("%d.%m.%Y, %H:%M"),
             'timeline_author': timeline.author.first_name,
             'timeline_author_role': user_profile.role.role_name,
-            'event': timeline.event
+            'event': timeline.event,
 
         }
         # logger.debug('id = ' + str(order_id))
         # logger.debug('price = ' + order.calc_sent_date.strftime("%d.%m.%Y, %H:%M"))
-        return HttpResponse(json.dumps({'response': response}))
+        return HttpResponse(json.dumps({'response': response, 'files': files}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
