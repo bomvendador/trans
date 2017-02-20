@@ -969,6 +969,7 @@ def update_order(request):
             sent_doc.email = email
             user.first_name = name
             sent_doc.name = name
+            logger.debug('text' + str()text_doc_send)
             if text_doc_send:
                 sent_doc.text = text_doc_send
             else:
