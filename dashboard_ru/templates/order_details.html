@@ -1068,7 +1068,7 @@
                 var event = add_data['event'];
                 for (var key in files) {
                     if (files.hasOwnProperty(key)) {
-                        if (!key.contains('uploaded_by') && !key.contains('added')){
+                        if (!key.includes('uploaded_by') && !key.includes('added')){
 
                         files_qnt++;
                         var file_id = key;
