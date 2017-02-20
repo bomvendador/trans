@@ -799,21 +799,21 @@
                                                                 </table>
                                                             </div>
 
-                                                        {% for translation_file in translation_files %}
-
-                                                            <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="translation_file_{{ translation_file.id }}">
-                                                                <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
-                                                                    <i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px"></i>
-                                                                </div>
-                                                                <div class="col-xs-7 margin-bottom-0 padding-top-3">
-                                                                    <p class="pointer-pure display-inline translation_file_download">{{ translation_file.filename }}</p>
+{#                                                        {% for translation_file in translation_files %}#}
+{##}
+{#                                                            <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="translation_file_{{ translation_file.id }}">#}
+{#                                                                <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">#}
+{#                                                                    <i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px"></i>#}
+{#                                                                </div>#}
+{#                                                                <div class="col-xs-7 margin-bottom-0 padding-top-3">#}
+{#                                                                    <p class="pointer-pure display-inline translation_file_download">{{ translation_file.filename }}</p>#}
 {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
-                                                                </div>
-                                                                <div class="col-sm-4 margin-bottom-0 padding-top-3">
-                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.first_name }}, {{ translation_file.added|date:"d.m.Y, H:i" }}{% if translation_file.sent_to_client_datetime %}Отправлен клиенту: {{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% else %}Не отправелн клиенту{% endif %}</p>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
+{#                                                                </div>#}
+{#                                                                <div class="col-sm-4 margin-bottom-0 padding-top-3">#}
+{#                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.first_name }}, {{ translation_file.added|date:"d.m.Y, H:i" }}{% if translation_file.sent_to_client_datetime %}Отправлен клиенту: {{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% else %}Не отправелн клиенту{% endif %}</p>#}
+{#                                                                </div>#}
+{#                                                            </div>#}
+{#                                                        {% endfor %}#}
                                                     {% endif %}
 {#                                                    </ul>#}
                                                     </div>
