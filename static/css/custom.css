@@ -299,6 +299,10 @@ ul{
     border-bottom: 1px solid rgba(204, 204, 204, 0.35);
 }
 
+.border-1-grey{
+    border: 1px solid rgba(204, 204, 204, 0.35);
+}
+
 .cursor-default{
     cursor: default;
 }
