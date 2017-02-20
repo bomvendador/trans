@@ -1044,7 +1044,6 @@
 {#                var data_json = $.parseJSON(data);#}
 {#                var file_name = data_json['file_name'];#}
 {#                $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');#}
-                drop_zone_trans_files.removeFile(file);
             },
             complete: function (data) {
                 if (data.status != 'error'){
@@ -1065,6 +1064,8 @@
                     });
 
                 }
+                drop_zone_trans_files.removeFile(file);
+
             },
             error: function () {
                 swal({
