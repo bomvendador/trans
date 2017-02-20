@@ -790,7 +790,7 @@
                                                                             <tr id="translation_file_{{ translation_file.id }}">
                                                                                 <td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px" data-toggle="tooltip" title="Удалить файл" data-placement="top" ></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10" data-toggle="tooltip" title="Скачать файл" data-placement="top"></i></td>
                                                                                 <td>{{ translation_file.filename }}</td>
-                                                                                <td>{{ translation_file.uploaded_by.first_name }}</td>
+                                                                                <td>{{ translation_file.uploaded_by.first_name }}, {{ translation_file.author_profile.role.role_name }}</td>
                                                                                 <td class="text_align_center">{{ translation_file.added|date:"d.m.Y, H:i" }}</td>
                                                                                 <td class="text_align_center">{% if translation_file.sent_to_client_datetime %}{{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% endif %}</td>
                                                                             </tr>
