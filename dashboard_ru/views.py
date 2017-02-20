@@ -565,7 +565,7 @@ def download_translation_file(request, file_id):
         data = f.read()
 
     response = HttpResponse(data, content_type='application/force-download')
-    response['Content-Disposition'] = 'attachment; filename=%s' % path.filename
+    response['Content-Disposition'] = 'attachment; filename=%s' % path.filename()
 
     if UserProfile.objects.get(user=request.user).role.role_name == u'Клиент':
         order = SentDoc.objects.get(id=TranslationFiles.objects.get(id=file_id).order_id)
