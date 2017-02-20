@@ -952,7 +952,7 @@ def update_order(request):
             tel = request.POST.get('tel_doc_send')
             text_doc_send = request.POST.get('text_doc_send', None)
             text = request.POST.get('text', None)
-            logger.debug('text 1 = ' + str()text)
+            logger.debug('text 1 = ' + str(text))
             trans_theme = request.POST.get('trans_theme')
             trans_type = request.POST.get('trans_type')
             # print(trans_theme)
