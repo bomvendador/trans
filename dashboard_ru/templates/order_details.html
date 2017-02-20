@@ -2037,11 +2037,12 @@
                                         $(this).remove();
                                     });
 
-                                    if ($('#translations_fileList').children().length == 0){
+                                    if ($('#translation_files_table tr').length == 0){
                                         $('#btn_send_trans_files_active').addClass('none');
                                         $('#btn_send_trans_files_deactivated').removeClass('none');
+                                        $('#translation_files_table tbody').append('<tr><td colspan="5" align="center">Файлы отсутствуют</td></tr>');
                                     }
-                                    console.log('length =' + $('#translations_fileList').children().length);
+{#                                    console.log('length =' + $('#translations_fileList').children().length);#}
 {#                                    send_trans_files_func();#}
                                     add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
 
