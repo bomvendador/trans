@@ -917,8 +917,16 @@ def delete_translation_file_from_order(request):
 
             logger.debug('file qnt = ' + str(order_files_qnt))
         order.save()
-
-        return HttpResponse(file_id)
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Файл перевода удален')
+        timeline.save()
+        response={
+            'file_id': file_id,
+            'timeline_author': timeline.author.first_name,
+            'timeline_datetime': timeline.added.strftime("%d.%m.%Y, %H:%M"),
+            'timeline_author_role': timeline.author_profile.role.role_name,
+            'event': timeline.event
+        }
+        return HttpResponse(json.dumps({'response': response}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
