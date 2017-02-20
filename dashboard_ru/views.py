@@ -834,7 +834,7 @@ def add_file_to_order(request):
         order.files_qnt = files_qnt
         user_profile = UserProfile.objects.get(user=request.user)
         order.save()
-        event = u'Добавлены файлы: ' + str(curr_files_qnt) + u' шт.'
+        event = u'Добавлены файлы заявки: ' + str(curr_files_qnt) + u' шт.'
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
         timeline.save()
         additional_data = {}
@@ -864,16 +864,29 @@ def add_translation_file_to_order(request):
         order.translation_files = True
         files = request.FILES.getlist('file')
         f = SentFiles()
-        for file_ in files:
-            f = TranslationFiles(file=file_, order=order, uploaded_by=request.user)
-            f.save()
-            file_id = f.id
-        # trans_array = TranslationFiles.objects.filter(order=order)
-        # order.files_qnt = files_qnt
 
+        curr_files_qnt = 0
+        files_dict = {}
+        for k in request.FILES.keys():
+            curr_files_qnt += 1
+            for f in request.FILES.getlist(k):
+                s = TranslationFiles(file=f, order=order, uploaded_by=request.user)
+                s.save()
+                files_dict.update({s.id: s.filename()})
         order.save()
+        user_profile = UserProfile.objects.get(user=request.user)
+        event = u'Добавлены файлы перевода: ' + str(curr_files_qnt) + u' шт.'
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=event)
+        timeline.save()
+        additional_data = {}
+        date_time = timeline.added + timedelta(hours=3)
+        additional_data.update({'date_time': date_time.strftime("%d.%m.%Y, %H:%M"),
+                                'name': request.user.first_name,
+                                'role': user_profile.role.role_name,
+                                'event': timeline.event
+                                })
 
-        return HttpResponse(json.dumps({'file_name': f.filename(), 'file_id': file_id}))
+        return HttpResponse(json.dumps({'files': files_dict, 'additional_data': additional_data}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')

@@ -939,7 +939,7 @@
         {% if user_profile.role.role_name != 'Клиент' %}
         Dropzone.autoDiscover = false;
 
-            //отправка файлов заявки
+        //сохранение файлов заявки
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
             url: "{% url 'ru:dashboard_ru:add_file_to_order' %}",
             addRemoveLinks: false,
@@ -1009,15 +1009,41 @@
         var drop_zone_trans_files = new Dropzone('#drop_zone_translation_files', {
             url: "{% url 'ru:dashboard_ru:add_translation_file_to_order' %}",
             addRemoveLinks: false,
-            sending: function (file, xhr, formData) {
+            uploadMultiple: true,
+            parallelUploads: 100,
+            maxFiles: 100,
+
+            sendingmultiple: function (file, xhr, formData) {
                 add_csrf();
                 formData.append('order_id', {{ order_details.id }});
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
             },
-            success: function (file, data) {
+            successmultiple: function (file, data) {
+
+                var files_qnt = 0;
                 var data_json = $.parseJSON(data);
-                var file_name = data_json['file_name'];
-                $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');
+                var files = data_json['files'];
+                var add_data = data_json['additional_data'];
+                var date_time = add_data['date_time'];
+                var name = add_data['name'];
+                var role = add_data['role'];
+                var event = add_data['event'];
+                for (var key in files) {
+                    if (files.hasOwnProperty(key)) {
+                        files_qnt++;
+                        var file_id = key;
+                        var file_name = files[key];
+                        $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + file_id + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file" style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + file_name + '</p></div></div>');
+                    }
+                }
+                add_timeline_item(date_time, name, role, event);
+
+
+
+
+{#                var data_json = $.parseJSON(data);#}
+{#                var file_name = data_json['file_name'];#}
+{#                $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');#}
                 drop_zone_trans_files.removeFile(file);
             },
             complete: function (data) {
