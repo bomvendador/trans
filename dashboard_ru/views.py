@@ -26,7 +26,7 @@ from templated_email import send_templated_mail, InlineImage
 
 from trans import settings
 
-from django.utils.encoding import smart_str, smart_unicode
+from django.utils.encoding import smart_str, smart_unicode, smart_text
 
 import logging
 
@@ -605,7 +605,7 @@ def set_resp(request):
         manager.orders_new = orders_new_manager
         manager.save()
         logger.debug(manager.user.first_name)
-        timeline_event = u'Назначен ответственный: ' + smart_str(manager.user.first_name)
+        timeline_event = u'Назначен ответственный: ' + smart_text(manager.user.first_name)
         # timeline_event = u'Назначен ответственный: ' + str(manager.user.first_name)
         timeline = TimelineOrder(order=sent_docs, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=timeline_event)
         timeline.save()
