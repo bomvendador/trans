@@ -2001,8 +2001,8 @@
                                 var event = response['event'];
                                 var file_id = response['file_id'];
 
-                                $('#translation_file_' + file_id).fadeOut('slow');
-                                $('#translation_file_' + file_id).remove();
+                                $('#translation_file_' + file_id).fadeOut('slow').remove();
+
                                 if ($('#translations_fileList').children().length == 0){
                                     $('#btn_send_trans_files_active').addClass('none');
                                     $('#btn_send_trans_files_deactivated').removeClass('none');
