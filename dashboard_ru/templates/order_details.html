@@ -745,33 +745,6 @@
 
                                                     {% if user_profile.role.role_name == 'Клиент' %}
 
-                        <div class="body table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>FIRST NAME</th>
-                                        <th>LAST NAME</th>
-                                        <th>USERNAME</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-                        </div>
 
 
 
@@ -800,6 +773,32 @@
                                                             </div>
                                                         {% endif %}
                                                     {% else %}
+                                                            <div class="body table-responsive">
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>#</th>
+                                                                            <th>Название</th>
+                                                                            <th>Загрузил</th>
+                                                                            <th>Дата</th>
+                                                                            <th>Отправлено уведомление</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    {% for translation_file in translation_files %}
+                                                                        <tr>
+                                                                            <td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px"></i></td>
+                                                                            <td>{{ translation_file.filename }}</td>
+                                                                            <td>{{ translation_file.uploaded_by.first_name }}</td>
+                                                                            <td>{{ translation_file.added|date:"d.m.Y, H:i" }}</td>
+                                                                            <td>{% if translation_file.sent_to_client_datetime %}{{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% endif %}</td>
+                                                                        </tr>
+                                                                    {% endfor %}
+
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
                                                         {% for translation_file in translation_files %}
 
                                                             <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="translation_file_{{ translation_file.id }}">
