@@ -1957,8 +1957,7 @@
     });
 
     //удаление файла перевода
-    function delete_translation_file_func() {
-        $('.del_translation_file').on('click', function () {
+        $('.translation_files_table').on('click', '.del_translation_file',function () {
             console.log('del');
             var id_raw = $(this).parents().parents().attr('id');
             var id = id_raw.split('_')[2];
@@ -2031,7 +2030,6 @@
             );
         });
 
-    }
 
     delete_translation_file_func();
 
