@@ -1806,6 +1806,16 @@
                     },
                     function (isConfirm) {
                         if (isConfirm){
+                            var data_json = $.parseJSON(data);
+                            var response = data_json['response'];
+                            if (!response['no_data']){
+                                var timeline_author = response['timeline_author'];
+                                var timeline_datetime = response['timeline_datetime'];
+                                var timeline_author_role = response['timeline_author_role'];
+                                var event = response['event'];
+                                add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
+                            }
+
                             hide_save_order();
                             updateIcons();
                             if ($('#order_price').val() != '' && $('#calc_sent_date').text() == ''){

@@ -574,6 +574,9 @@ def download_translation_file(request, file_id):
         else:
             order.translation_downloaded = True
             order.save()
+            if UserProfile.objects.get(user=request.user).role.role_name == u'Клиент':
+                timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Файл перевода скачан клиентом')
+                timeline.save()
             return response
     return response
 
@@ -997,16 +1000,35 @@ def update_order(request):
         if price:
             sent_doc.price = price
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
+            timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(price) + u' руб.')
+
         else:
+            if sent_doc.price:
+                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость удалена: ' + str(price) + u' руб.')
+
             sent_doc.price = None
             sent_doc.paystatus = None
+        if timeline:
+            timeline.save()
+            timeline_date = timeline.added + timedelta(hours=3)
+
+            response = {
+                'timeline_author': timeline.author.first_name,
+                'timeline_datetime': timeline_date.strftime("%d.%m.%Y, %H:%M"),
+                'timeline_author_role': timeline.author_profile.role.role_name,
+                'event': timeline.event,
+            }
+        else:
+            response = {'no_data': 1}
+
         sent_doc.trans_to = trans_to_inst
         sent_doc.trans_from = trans_from_inst
         sent_doc.save()
         # print(user_id + ' ' + order_id)
         # json_data = json.loads(request.body.decode('utf-8'))
         # file_id = json_data['file_id']
-        return HttpResponse()
+
+        return HttpResponse(json.dumps({'response': response}))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
