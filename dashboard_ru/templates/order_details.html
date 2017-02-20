@@ -774,7 +774,7 @@
                                                         {% endif %}
                                                     {% else %}
                                                             <div class="body table-responsive border-1-grey margin-top-10">
-                                                                <table class="table" id="ddd">
+                                                                <table class="table" id="translation_files_table">
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="text_align_center">#</th>
@@ -1071,7 +1071,9 @@
                         files_qnt++;
                         var file_id = key;
                         var file_name = files[key];
-                        $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + file_id + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file" style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + file_name + '</p></div></div>');
+                        var uploaded_by = files['uploaded_by'];
+                        var added = files['added'];
+                        $('#translation_files_table tbody').append('<tr id="translation_file_' + file_id + '"><td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px" data-toggle="tooltip" title="Удалить файл" data-placement="top" ></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10" data-toggle="tooltip" title="Скачать файл" data-placement="top"></i></td><td>' + file_name + '</td><td>' + uploaded_by + '</td><td class="text_align_center">' + added + '</td><td class="text_align_center"></td></tr>');
                     }
                 }
                 add_timeline_item(date_time, name, role, event);

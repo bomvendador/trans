@@ -875,7 +875,10 @@ def add_translation_file_to_order(request):
             for f in request.FILES.getlist(k):
                 s = TranslationFiles(file=f, order=order, uploaded_by=request.user)
                 s.save()
-                files_dict.update({s.id: s.filename()})
+                files_dict.update({s.id: s.filename(),
+                                   'added': s.added.strftime("%d.%m.%Y, %H:%M"),
+                                   'uploaded_by': s.uploaded_by.first_name,
+                                   })
         if order.translation_sent_date:
             order.translation_sent_date = None
         order.save()
