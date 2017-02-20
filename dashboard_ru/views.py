@@ -875,8 +875,9 @@ def add_translation_file_to_order(request):
             for f in request.FILES.getlist(k):
                 s = TranslationFiles(file=f, order=order, uploaded_by=request.user, uploaded_by_user_profile=UserProfile.objects.get(user=request.user))
                 s.save()
+                added = s.added + timedelta(hours=3)
                 files_dict.update({s.id: s.filename(),
-                                   'added': s.added.strftime("%d.%m.%Y, %H:%M") + timedelta(hours=3),
+                                   'added': added.strftime("%d.%m.%Y, %H:%M"),
                                    'uploaded_by': s.uploaded_by.first_name,
                                    'uploaded_by_role': s.uploaded_by_user_profile.role.role_name,
                                    })
