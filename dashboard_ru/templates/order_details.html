@@ -1957,7 +1957,7 @@
     });
 
     //удаление файла перевода
-        $('.translation_files_table').on('click', '.del_translation_file',function () {
+        $('#translation_files_table').on('click', '.del_translation_file',function () {
             console.log('del');
             var id_raw = $(this).parents().parents().attr('id');
             var id = id_raw.split('_')[2];
