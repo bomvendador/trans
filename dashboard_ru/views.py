@@ -878,6 +878,7 @@ def add_translation_file_to_order(request):
                 files_dict.update({s.id: s.filename(),
                                    'added': s.added.strftime("%d.%m.%Y, %H:%M"),
                                    'uploaded_by': s.uploaded_by.first_name,
+                                   'uploaded_by_role': s.uploaded_by_user_profile.role.role_name,
                                    })
         if order.translation_sent_date:
             order.translation_sent_date = None
