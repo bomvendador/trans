@@ -873,6 +873,8 @@ def add_translation_file_to_order(request):
                 s = TranslationFiles(file=f, order=order, uploaded_by=request.user)
                 s.save()
                 files_dict.update({s.id: s.filename()})
+        if order.translation_sent_date:
+            order.translation_sent_date = None
         order.save()
         user_profile = UserProfile.objects.get(user=request.user)
         event = u'Добавлены файлы перевода: ' + str(curr_files_qnt) + u' шт.'
@@ -1744,6 +1746,13 @@ def send_trans_files_to_client(request):
         order = SentDoc.objects.get(id=order_id)
         order.translation_sent_date = datetime.now()
         order.save()
+        translation_files = TranslationFiles.objects.filter(order=order)
+        for translation_file in translation_files:
+            if not translation_file.sent_to_client_datetime:
+                translation_file.sent_to_client_datetime = datetime.now()
+                translation_file.save()
+            else:
+                pass
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
                          'manager': manager,

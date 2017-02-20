@@ -130,296 +130,297 @@
                 </ul>
 
                         <div class="tab-content paddin padding-15">
+<!--завка-->
                             <div role="tabpanel" class="tab-pane fade in active" id="order">
-                    <form id="form">{% csrf_token %}
-                                {% if user_profile.role.role_name != 'Клиент' %}
-                                <h2 class="card-inside-title">Клиент</h2>
-                                <div class="row clearfix">
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-account f_s_20"></i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control" placeholder="Имя" id="name_doc_send" name="name_doc_send" value="{{ order_details.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-email f_s_20"></i>
-                                            </span>
-
-                                            <div class="form-line">
-                                                <input type="text" class="form-control date" placeholder="Email" id="email_doc_send" name="email_doc_send" value="{{ order_details.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-cellphone-iphone f_s_20"></i>
-                                            </span>
-                                            <div class="form-line">
-                                                <input type="text" class="form-control date" placeholder="Телефон" id="tel_doc_send" name="tel_doc_send" value="{% if order_details.tel %}{{ order_details.tel }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endif %}
-                                <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} <i class="mdi mdi-content-copy f_s_20 float-right pointer-pure" id="copy_text_doc_send" data-toggle="tooltip" title="Скопировать текст" data-placement="left"></i></h2>
-                                <div class="row clearfix" >
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">
-                                                <i class="mdi mdi-clipboard-text f_s_20"></i>
-                                            </span>
-                                            <div id="text_doc_send_div" class="">
-                                                <div class="form-line">
-                                                    <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{% if order_details.text %}{{ order_details.text }}{% endif %}</textarea>
-                                                    <textarea rows="4" class="form-control no-resize none-important" id="text_doc_send_hidden" name="text_doc_send">{{ order_details.text }}</textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-    {#                        {% if files %}#}
-                                <div class="row clearfix">
-                                    <div class="col-md-12 input-group  padding-left-20 padding-right-20">
-                {#                                    <div class="md-form">#}
-{#                                        <span class="input-group-addon">#}
-{##}
-{#                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>#}
-{#                                        </span>#}
+                                <form id="form">{% csrf_token %}
                                     {% if user_profile.role.role_name != 'Клиент' %}
-
-                                        {#                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
-{#                                                    <span>Загрузить файл(ы)</span>#}
-{#                                                    <input type="file" class="upload height-100" name="file" id="filesToUpload"  onchange="add_files({{ order_details.id }});">#}
-{##}
-{#                                            </div>#}
-                                            <div id="drop_zone_order_files" class="dropzone dz-clickable border-2-dotted-grey">
-                                                <div class="dz-message">
-                                                    <div class="drag-icon-cph">
-                                                        <i class="material-icons">touch_app</i>
-                                                    </div>
-                                                    <h3 class="font-family-roboto font-weight-100">Загрузите файл(ы)</h3>
-                                                    <em>Перетащите файлы в эту область или нажмите для <strong>загрузки</strong></em>
-                                                </div>
-                                                <div class="fallback">
-                                                    <input name="file" type="file" multiple />
-                                                </div>
-
-                                            </div>
-                                    {% endif %}
-                                            <div {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -24px"{% endif %}>
-{#                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>#}
-                                            {% if user_profile.role.role_name != 'Клиент' %}
-                                                <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
-                                            {% endif %}
-                                                    <div class="list-group" id="fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
-{#                                                <ul id="fileList" class="" style="margin-left: 48px!important;">#}
-                                                    {% for file in files %}
-
-{#                                                        <li class="margin-left--20" id="file_{{ file.id }}">#}
-                                                        {% if user_profile.role.role_name != 'Клиент' %}
-
-
-                                                        <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_{{ file.id }}">
-                                                            <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
-                                                                <i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i>
-                                                            </div>
-                                                            <div class="col-xs-11 margin-bottom-0 padding-top-3">
-                                                                <p class="pointer-pure display-inline file_download">{{ file.filename }}</p>
-                                                            </div>
-                                                        </div>
-
-
-
-{#                                                            <i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="left" style="width: 28px"></i>#}
-{#                                                        {% endif %}#}
-{#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
-{#                                                        </li>#}
-                                                        {% else %}
-                                                        <div class="list-group-item row" id="file_{{ file.id }}">
-                                                            <div class="col-xs-1 margin-bottom-0">
-                                                                <i class="mdi mdi-download text_label prefix file_download pointer-pure"   style="width: 28px" data-toggle="tooltip" title="Скачать" data-placement="top"></i>
-                                                            </div>
-                                                            <div class="col-xs-11 margin-bottom-0 padding-top-3">
-                                                                <p class="display-inline">{{ file.filename }}</p>
-{#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
-                                                            </div>
-                                                        </div>
-
-                                                        {% endif %}
-                                                    {% endfor %}
-{#                                                </ul>#}
-                                                    </div>
-                                            </div>
-
-
-                {#                                    </div>#}
-                                    </div>
-                                </div>
-    {#                         {% endif %}#}
-                                {% if order_details.contact_form_message %}
-                                <h2 class="card-inside-title">Сообщение</h2>
-                                <div class="row clearfix">
-                                    <div class="body">
-                                        {{ order_details.contact_form_message }}
-                                    </div>
-                                </div>
-                                {% endif %}
-                                <div class="row clearfix">
-                                    <div class="body">
-                                        <div class="row clearfix">
-
-                                            <div class="col-sm-6">
-                                                <h2 class="card-inside-title">Тематика</h2>
-
-                                                <select class="form-control show-tick" id="trans_theme" name="trans_theme" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
-                                                    <option value="">-- Тема --</option>
-                                                    {% for trans_theme in trans_themes %}
-                                                    <option value="{{ trans_theme.short_name }}" {% if trans_theme.id == order_details.translation_theme.id %} selected {% endif %}>{{ trans_theme.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <h2 class="card-inside-title">Тип</h2>
-
-                                                <select class="form-control show-tick" id="trans_type" name="trans_type" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
-                                                    <option value="">-- Тип --</option>
-                                                    {% for trans_type in trans_types %}
-                                                    <option value="{{ trans_type.short_name }}" {% if trans_type.id == order_details.translation_type.id %} selected {% endif %}>{{ trans_type.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <h2 class="card-inside-title">Язык</h2>
-                                <div class="row clearfix">
-                                    <div class="body">
-                                        <div class="row clearfix">
-                                            <div class="col-sm-5">
-                                                <select class="form-control show-tick" id="trans_from" name="trans_from" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
-                                                    <option value="">-- Перевод С --</option>
-                                                    {% for lang in langs %}
-                                                    <option value="{{ lang.name }}" {% if lang.name == order_details.trans_from.name %} selected {% endif %}>{{ lang.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-2 text text_align_center f_s_20">
-                                                <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>
-                                                <i class="mdi mdi-arrow-right hidden-xs"></i>
-                                            </div>
-                                            <div class="col-sm-5">
-                                                <select class="form-control show-tick" id="trans_to" name="trans_to" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
-                                                    <option value="">-- Перевод НА --</option>
-                                                    {% for lang in langs %}
-                                                    <option value="{{ lang.name }}" {% if lang.name == order_details.trans_to.name %} selected {% endif %}>{{ lang.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                {% if user_profile.role.role_name != 'Клиент' %}
-                                    {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
-                                    <div class="col-sm-4 col-xs-12">
-                                        <h2 class="card-inside-title">Ответственный</h2>
-                                        <div class="row clearfix">
-                                            <div class="body">
-                                                <div class="row clearfix">
-                                                    <div class="">
-                                                        <select class="form-control show-tick" id="resp" name="resp">
-                                                            <option value="">--  --</option>
-                                                            {% for manager in managers %}
-                                                            <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
-                                                            {% endfor %}
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-
-{#                                    <div class="col-sm-6">#}
-{#                                        <h2 class="card-inside-title">Статус</h2>#}
-{##}
-{#                                        <div class="row clearfix">#}
-{#                                            <div class="body">#}
-{#                                                <div class="row clearfix">#}
-{#                                                    <div class="">#}
-{#                                                        <select class="form-control show-tick" id="order_status" name="order_status">#}
-{#                                                            <option value="">--  --</option>#}
-{#                                                            {% for o_status in order_status %}#}
-{#                                                            <option value="{{ o_status.name }}" {% if order_details.status.id == o_status.id %} selected {% endif %}{% if user_profile.role.id == 3 %} disabled {% endif %}>{{ o_status.name }}</option>#}
-{#                                                            {% endfor %}#}
-{#                                                        </select>#}
-{#                                                    </div>#}
-{#                                                </div>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-                                        <div class="col-sm-4 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
+                                    <h2 class="card-inside-title">Клиент</h2>
+                                    <div class="row clearfix">
+                                        <div class="col-md-4">
                                             <div class="input-group">
-                                                <div class="row">
-                                                    <div class="col-sm-2">
-                                                        <i class="mdi mdi-currency-rub font-24"></i>
-                                                    </div>
-                                                    <div class="col-sm-10">
-                                                        <div class="form-line">
-                                                            <input type="text" class="form-control date" id="order_price" name="order_price" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-sm-4 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
-
-                                            <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
-                                                <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
-                                            </div>
-                                            <div id="btn_send_calc_deactivated" class="btn btn-primary btn-lg col-sm-12 padding-top-5 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
-                                                <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
-                                            </div>
-
-                                            <div id="calc_sent_date_div" class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
                                                 <span class="input-group-addon">
-                                                    <i class="mdi mdi-calendar-today font-24"></i>
-
+                                                    <i class="mdi mdi-account f_s_20"></i>
                                                 </span>
                                                 <div class="form-line">
-
-                                                    <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date|date:"d.m.Y, H:i" }}</p>
+                                                    <input type="text" class="form-control" placeholder="Имя" id="name_doc_send" name="name_doc_send" value="{{ order_details.name }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-email f_s_20"></i>
+                                                </span>
+
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Email" id="email_doc_send" name="email_doc_send" value="{{ order_details.email }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-cellphone-iphone f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Телефон" id="tel_doc_send" name="tel_doc_send" value="{% if order_details.tel %}{{ order_details.tel }}{% endif %}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} <i class="mdi mdi-content-copy f_s_20 float-right pointer-pure" id="copy_text_doc_send" data-toggle="tooltip" title="Скопировать текст" data-placement="left"></i></h2>
+                                    <div class="row clearfix" >
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-clipboard-text f_s_20"></i>
+                                                </span>
+                                                <div id="text_doc_send_div" class="">
+                                                    <div class="form-line">
+                                                        <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{% if order_details.text %}{{ order_details.text }}{% endif %}</textarea>
+                                                        <textarea rows="4" class="form-control no-resize none-important" id="text_doc_send_hidden" name="text_doc_send">{{ order_details.text }}</textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+        {#                        {% if files %}#}
+                                    <div class="row clearfix">
+                                        <div class="col-md-12 input-group  padding-left-20 padding-right-20">
+                    {#                                    <div class="md-form">#}
+    {#                                        <span class="input-group-addon">#}
+    {##}
+    {#                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>#}
+    {#                                        </span>#}
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+
+                                            {#                                            <div class="fileUpload btn btn-primary file-upload-files btn-lg" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
+    {#                                                    <span>Загрузить файл(ы)</span>#}
+    {#                                                    <input type="file" class="upload height-100" name="file" id="filesToUpload"  onchange="add_files({{ order_details.id }});">#}
+    {##}
+    {#                                            </div>#}
+                                                <div id="drop_zone_order_files" class="dropzone dz-clickable border-2-dotted-grey">
+                                                    <div class="dz-message">
+                                                        <div class="drag-icon-cph">
+                                                            <i class="material-icons">touch_app</i>
+                                                        </div>
+                                                        <h3 class="font-family-roboto font-weight-100">Загрузите файл(ы)</h3>
+                                                        <em>Перетащите файлы в эту область или нажмите для <strong>загрузки</strong></em>
+                                                    </div>
+                                                    <div class="fallback">
+                                                        <input name="file" type="file" multiple />
+                                                    </div>
+
+                                                </div>
+                                        {% endif %}
+                                                <div {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -24px"{% endif %}>
+    {#                                            <i class="mdi mdi-paperclip text_label prefix f_s_20"></i>#}
+                                                {% if user_profile.role.role_name != 'Клиент' %}
+                                                    <i class="mdi mdi-basket-fill text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px"></i>
+                                                {% endif %}
+                                                        <div class="list-group" id="fileList" {% if user_profile.role.role_name == 'Клиент' %}style="margin-top: -25px" {% endif %}>
+    {#                                                <ul id="fileList" class="" style="margin-left: 48px!important;">#}
+                                                        {% for file in files %}
+
+    {#                                                        <li class="margin-left--20" id="file_{{ file.id }}">#}
+                                                            {% if user_profile.role.role_name != 'Клиент' %}
 
 
+                                                            <div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_{{ file.id }}">
+                                                                <div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left">
+                                                                    <i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i>
+                                                                </div>
+                                                                <div class="col-xs-11 margin-bottom-0 padding-top-3">
+                                                                    <p class="pointer-pure display-inline file_download">{{ file.filename }}</p>
+                                                                </div>
+                                                            </div>
+
+
+
+    {#                                                            <i class="mdi mdi-close text_label prefix pointer-pure del_file"  data-toggle="tooltip" title="Удалить файл" data-placement="left" style="width: 28px"></i>#}
+    {#                                                        {% endif %}#}
+    {#                                                            <a href="{% url 'ru:dashboard_ru:download_file' file.id %}">{{ file.file_name }}</a>#}
+    {#                                                        </li>#}
+                                                            {% else %}
+                                                            <div class="list-group-item row" id="file_{{ file.id }}">
+                                                                <div class="col-xs-1 margin-bottom-0">
+                                                                    <i class="mdi mdi-download text_label prefix file_download pointer-pure"   style="width: 28px" data-toggle="tooltip" title="Скачать" data-placement="top"></i>
+                                                                </div>
+                                                                <div class="col-xs-11 margin-bottom-0 padding-top-3">
+                                                                    <p class="display-inline">{{ file.filename }}</p>
+    {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
+                                                                </div>
+                                                            </div>
+
+                                                            {% endif %}
+                                                        {% endfor %}
+    {#                                                </ul>#}
+                                                        </div>
+                                                </div>
+
+
+                    {#                                    </div>#}
+                                        </div>
+                                    </div>
+        {#                         {% endif %}#}
+                                    {% if order_details.contact_form_message %}
+                                    <h2 class="card-inside-title">Сообщение</h2>
+                                    <div class="row clearfix">
+                                        <div class="body">
+                                            {{ order_details.contact_form_message }}
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    <div class="row clearfix">
+                                        <div class="body">
+                                            <div class="row clearfix">
+
+                                                <div class="col-sm-6">
+                                                    <h2 class="card-inside-title">Тематика</h2>
+
+                                                    <select class="form-control show-tick" id="trans_theme" name="trans_theme" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                        <option value="">-- Тема --</option>
+                                                        {% for trans_theme in trans_themes %}
+                                                        <option value="{{ trans_theme.short_name }}" {% if trans_theme.id == order_details.translation_theme.id %} selected {% endif %}>{{ trans_theme.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <h2 class="card-inside-title">Тип</h2>
+
+                                                    <select class="form-control show-tick" id="trans_type" name="trans_type" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                        <option value="">-- Тип --</option>
+                                                        {% for trans_type in trans_types %}
+                                                        <option value="{{ trans_type.short_name }}" {% if trans_type.id == order_details.translation_type.id %} selected {% endif %}>{{ trans_type.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h2 class="card-inside-title">Язык</h2>
+                                    <div class="row clearfix">
+                                        <div class="body">
+                                            <div class="row clearfix">
+                                                <div class="col-sm-5">
+                                                    <select class="form-control show-tick" id="trans_from" name="trans_from" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                        <option value="">-- Перевод С --</option>
+                                                        {% for lang in langs %}
+                                                        <option value="{{ lang.name }}" {% if lang.name == order_details.trans_from.name %} selected {% endif %}>{{ lang.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-2 text text_align_center f_s_20">
+                                                    <i class="mdi mdi-arrow-down col-xs-12 hidden-sm hidden-lg hidden-md"></i>
+                                                    <i class="mdi mdi-arrow-right hidden-xs"></i>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <select class="form-control show-tick" id="trans_to" name="trans_to" {% if user_profile.role.role_name == 'Клиент' %} disabled{% endif %}>
+                                                        <option value="">-- Перевод НА --</option>
+                                                        {% for lang in langs %}
+                                                        <option value="{{ lang.name }}" {% if lang.name == order_details.trans_to.name %} selected {% endif %}>{{ lang.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    {% if user_profile.role.role_name != 'Клиент' %}
+                                        {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                        <div class="col-sm-4 col-xs-12">
+                                            <h2 class="card-inside-title">Ответственный</h2>
+                                            <div class="row clearfix">
+                                                <div class="body">
+                                                    <div class="row clearfix">
+                                                        <div class="">
+                                                            <select class="form-control show-tick" id="resp" name="resp">
+                                                                <option value="">--  --</option>
+                                                                {% for manager in managers %}
+                                                                <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
+                                                                {% endfor %}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+    {#                                    <div class="col-sm-6">#}
+    {#                                        <h2 class="card-inside-title">Статус</h2>#}
+    {##}
+    {#                                        <div class="row clearfix">#}
+    {#                                            <div class="body">#}
+    {#                                                <div class="row clearfix">#}
+    {#                                                    <div class="">#}
+    {#                                                        <select class="form-control show-tick" id="order_status" name="order_status">#}
+    {#                                                            <option value="">--  --</option>#}
+    {#                                                            {% for o_status in order_status %}#}
+    {#                                                            <option value="{{ o_status.name }}" {% if order_details.status.id == o_status.id %} selected {% endif %}{% if user_profile.role.id == 3 %} disabled {% endif %}>{{ o_status.name }}</option>#}
+    {#                                                            {% endfor %}#}
+    {#                                                        </select>#}
+    {#                                                    </div>#}
+    {#                                                </div>#}
+    {#                                            </div>#}
+    {#                                        </div>#}
+    {#                                    </div>#}
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
+                                                <div class="input-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i class="mdi mdi-currency-rub font-24"></i>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control date" id="order_price" name="order_price" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
+
+                                                <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
+                                                    <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
+                                                </div>
+                                                <div id="btn_send_calc_deactivated" class="btn btn-primary btn-lg col-sm-12 padding-top-5 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
+                                                    <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
+                                                </div>
+
+                                                <div id="calc_sent_date_div" class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-calendar-today font-24"></i>
+
+                                                    </span>
+                                                    <div class="form-line">
+
+                                                        <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date|date:"d.m.Y, H:i" }}</p>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        {% endif %}
+                                        <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
+                                           <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
                                         </div>
 
-                                    {% endif %}
-                                    <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
-                                       <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
                                     </div>
 
-                                </div>
 
 
-
-                    </form>
+                                </form>
 
                             </div>
-
+<!--оплата-->
                             <div role="tabpanel" class="tab-pane fade" id="payment">
                                 <form id="form_payment">
 
@@ -778,7 +779,7 @@
 {#                                                                        <p href="{% url 'ru:dashboard_ru:download_translation_file' translation_file.id %}">{{ translation_file.file_name }}</p>#}
                                                                 </div>
                                                                 <div class="col-sm-4 margin-bottom-0 padding-top-3">
-                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.first_name }}</p>
+                                                                    <p class="pointer-pure display-inline translation_file_download">Загружен: {{ translation_file.uploaded_by.first_name }}, {{ translation_file.added|date:"d.m.Y, H:i" }}{% if translation_file.sent_to_client_datetime %}Отправлен клиенту: {{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% else %}Не отправелн клиенту{% endif %}</p>
                                                                 </div>
                                                             </div>
                                                         {% endfor %}
