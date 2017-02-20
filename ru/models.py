@@ -281,6 +281,7 @@ class TranslationFiles(models.Model):
     added = models.DateTimeField(auto_now_add=True, auto_now=False)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     uploaded_by = models.ForeignKey(User, null=True, blank=True)
+    uploaded_by_user_profile = models.ForeignKey(UserProfile, null=True, blank=True)
     sent_to_client_datetime = models.DateTimeField(null=True, blank=True)
 
     def filename(self):

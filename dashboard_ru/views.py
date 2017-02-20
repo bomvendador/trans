@@ -865,15 +865,15 @@ def add_translation_file_to_order(request):
                 order.status = OrderStatus.objects.get(name=u'Выполнен')
 
         order.translation_files = True
-        files = request.FILES.getlist('file')
-        f = SentFiles()
+        # files = request.FILES.getlist('file')
+        # f = SentFiles()
 
         curr_files_qnt = 0
         files_dict = {}
         for k in request.FILES.keys():
             curr_files_qnt += 1
             for f in request.FILES.getlist(k):
-                s = TranslationFiles(file=f, order=order, uploaded_by=request.user)
+                s = TranslationFiles(file=f, order=order, uploaded_by=request.user, uploaded_by_user_profile=UserProfile.objects.get(user=request.user))
                 s.save()
                 files_dict.update({s.id: s.filename(),
                                    'added': s.added.strftime("%d.%m.%Y, %H:%M"),
