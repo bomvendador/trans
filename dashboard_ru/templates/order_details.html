@@ -1070,24 +1070,18 @@
                     if (files.hasOwnProperty(key)) {
                         if (!key.includes('uploaded_by') && !key.includes('added')){
 
-                        files_qnt++;
-                        var file_id = key;
-                        var file_name = files[key];
-                        var uploaded_by = files['uploaded_by'];
-                        var added = files['added'];
-                        $('#translation_files_table tbody').append('<tr id="translation_file_' + file_id + '"><td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px" data-toggle="tooltip" title="Удалить файл" data-placement="top" ></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10" data-toggle="tooltip" title="Скачать файл" data-placement="top"></i></td><td>' + file_name + '</td><td>' + uploaded_by + '</td><td class="text_align_center">' + added + '</td><td class="text_align_center"></td></tr>');
+                            files_qnt++;
+                            var file_id = key;
+                            var file_name = files[key];
+                            var uploaded_by = files['uploaded_by'];
+                            var added = files['added'];
+                            $('#translation_files_table tbody').append('<tr id="translation_file_' + file_id + '"><td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px" data-toggle="tooltip" title="Удалить файл" data-placement="top" ></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10" data-toggle="tooltip" title="Скачать файл" data-placement="top"></i></td><td>' + file_name + '</td><td>' + uploaded_by + '</td><td class="text_align_center">' + added + '</td><td class="text_align_center"></td></tr>');
                         }
 
                     }
                 }
                 add_timeline_item(date_time, name, role, event);
 
-
-
-
-{#                var data_json = $.parseJSON(data);#}
-{#                var file_name = data_json['file_name'];#}
-{#                $('#translations_fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-xs-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-xs-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');#}
             },
             complete: function (data) {
                 if (data.status != 'error'){
@@ -1106,6 +1100,7 @@
                     $('#btn_send_trans_files_active').removeClass('none');
                     $('#btn_send_trans_files_deactivated').addClass('none');
                     send_trans_files_func();
+                    delete_translation_file_func();
 
                 }else {
                     swal({
@@ -1962,89 +1957,83 @@
     });
 
     //удаление файла перевода
-    $('.del_translation_file').on('click', function () {
-        console.log('del');
-        var id_raw = $(this).parents().parents().attr('id');
-        var id = id_raw.split('_')[2];
+    function delete_translation_file_func() {
+        $('.del_translation_file').on('click', function () {
+            console.log('del');
+            var id_raw = $(this).parents().parents().attr('id');
+            var id = id_raw.split('_')[2];
 
-        swal({
-            title: 'Удаление файла',
-            text: 'Вы уверены, что хотите удалить файл?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Да',
-            cancelButtonText: 'Нет',
-            closeOnConfirm: false,
-        },
-        function (isConfirm) {
-            if (isConfirm) {
-                $.ajax({
-                    url: '{% url 'ru:dashboard_ru:delete_translation_file_from_order' %}',
-                    type: 'POST',
-                    data: JSON.stringify({
-                        'file_id': id
-                    }),
-                    processData: false,
-                    contentType: false,
-                    error: function(data){
-                        swal({
-                            title: 'Ошибка сервера',
-                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                            type: 'warning'
-                        });
-                    },
-                    success:function (data) {
-                        swal({
-                            title: 'Файл удален',
-                            text: 'Данные на сервере успешно обновлены',
-                            type: 'success',
-                            confirmButtonText: 'Ok',
-                            closeOnConfirm: true
+            swal({
+                title: 'Удаление файла',
+                text: 'Вы уверены, что хотите удалить файл?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Да',
+                cancelButtonText: 'Нет',
+                closeOnConfirm: false,
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $.ajax({
+                        url: '{% url 'ru:dashboard_ru:delete_translation_file_from_order' %}',
+                        type: 'POST',
+                        data: JSON.stringify({
+                            'file_id': id
+                        }),
+                        processData: false,
+                        contentType: false,
+                        error: function(data){
+                            swal({
+                                title: 'Ошибка сервера',
+                                text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                                type: 'warning'
+                            });
                         },
-                        function (isConfirm) {
-                            if (isConfirm){
-                                updateIcons();
-                                var data_json = $.parseJSON(data);
-                                var response = data_json['response'];
-                                var timeline_author = response['timeline_author'];
-                                var timeline_author_role = response['timeline_author_role'];
-                                var timeline_datetime = response['timeline_datetime'];
-                                var event = response['event'];
-                                var file_id = response['file_id'];
+                        success:function (data) {
+                            swal({
+                                title: 'Файл удален',
+                                text: 'Данные на сервере успешно обновлены',
+                                type: 'success',
+                                confirmButtonText: 'Ok',
+                                closeOnConfirm: true
+                            },
+                            function (isConfirm) {
+                                if (isConfirm){
+                                    updateIcons();
+                                    var data_json = $.parseJSON(data);
+                                    var response = data_json['response'];
+                                    var timeline_author = response['timeline_author'];
+                                    var timeline_author_role = response['timeline_author_role'];
+                                    var timeline_datetime = response['timeline_datetime'];
+                                    var event = response['event'];
+                                    var file_id = response['file_id'];
 
-                                $('#translation_file_' + file_id).slideUp('slow', function () {
-                                    $(this).remove();
-                                });
+                                    $('#translation_file_' + file_id).slideUp('slow', function () {
+                                        $(this).remove();
+                                    });
 
-                                if ($('#translations_fileList').children().length == 0){
-                                    $('#btn_send_trans_files_active').addClass('none');
-                                    $('#btn_send_trans_files_deactivated').removeClass('none');
+                                    if ($('#translations_fileList').children().length == 0){
+                                        $('#btn_send_trans_files_active').addClass('none');
+                                        $('#btn_send_trans_files_deactivated').removeClass('none');
+                                    }
+                                    console.log('length =' + $('#translations_fileList').children().length);
+                                    send_trans_files_func();
+                                    add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
+
                                 }
-                                console.log('length =' + $('#translations_fileList').children().length);
-                                send_trans_files_func();
-                                add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
+                            });
+                        }
+                    });
 
-                            }
-                        });
-                    }
-                });
-
+                }
             }
-        }
-        );
+            );
+        });
 
+    }
 
-
-
-
-
-
-
-
-
-
-    });
+    delete_translation_file_func();
 
     //добавление файлов в ЗАЯВКА
     function add_files(order_id) {
@@ -2096,57 +2085,6 @@
 
     }
 
-
-
-{#    //добавление файлов перевода#}
-{#    function add_translation_files(order_id) {#}
-{#        var data_ = new FormData($('#translation_form').get(0));#}
-{#        data_.append('order_id', order_id);#}
-{#        console.log($('#filesToUpload')[0].files[0]);#}
-{#        $.ajax({#}
-{#            url: '{% url 'ru:dashboard_ru:add_translation_file_to_order' %}',#}
-{#            type: 'POST',#}
-{#            data: data_,#}
-{#            processData: false,#}
-{#            contentType: false,#}
-{#            error: function(data){#}
-{#                swal({#}
-{#                    title: 'Ошибка сервера',#}
-{#                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',#}
-{#                    type: 'warning'#}
-{#                });#}
-{#            },#}
-{#            success:function (data) {#}
-{#                var json = $.parseJSON(data);#}
-{#                console.log(json['file_name']);#}
-{##}
-{#                $('#translations_fileList').append('<div class="margin-left--20 translation_file list-group-item row" id="translation_file_' + json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file" style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline">' + json['file_name'] + '</p></div></div>');#}
-{#                if ($('#translation_sent_date').val() != ''){#}
-{#                    $('#translation_sent_date').val('');#}
-{#                    $('#translation_sent_date_div').css('display', 'none');#}
-{##}
-{#                }#}
-{#                $('#btn_send_trans_files_active').removeClass('none');#}
-{#                $('#btn_send_trans_files_deactivated').addClass('none');#}
-{#                send_trans_files_func();#}
-{#                swal({#}
-{#                    title: 'Файл сохранен',#}
-{#                    text: 'Данные на сервере успешно обновлены',#}
-{#                    type: 'success',#}
-{#                    confirmButtonText: 'Ok',#}
-{#                    closeOnConfirm: true#}
-{#                },#}
-{#                function (isConfirm) {#}
-{#                    if (isConfirm){#}
-{#                        updateIcons();#}
-{#                        window.location.href = '/ru/dashbrd/sent_docs/';#}
-{##}
-{#                    }#}
-{#                });#}
-{#            }#}
-{#        });#}
-{##}
-{#    }#}
 
 
 
@@ -2360,7 +2298,7 @@
                 }else {
                     console.log(data)
                     $('#order_status option[value="Расчет отослан"]').prop('selected', true);
-                    $('#translator_details').addClass('opacity-0_3')
+                    $('#translator_details').addClass('opacity-0_3');
                     $('#translator_details').prop('title', '');
                     $('#translator_details').removeClass('pointer-pure').addClass('opacity-0_3');
 
