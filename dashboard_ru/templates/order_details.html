@@ -784,7 +784,7 @@
                                                                             <th class="text_align_center">Отправлено уведомление</th>
                                                                         </tr>
                                                                     </thead>
-                                                                    <tbody>
+                                                                    <tbody id="translations_fileList">
                                                                     {% for translation_file in translation_files %}
                                                                         <tr id="translation_file_{{ translation_file.id }}">
                                                                             <td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px" data-toggle="tooltip" title="Удалить файл" data-placement="top" ></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10" data-toggle="tooltip" title="Скачать файл" data-placement="top"></i></td>
