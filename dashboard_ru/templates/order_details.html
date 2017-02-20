@@ -2007,7 +2007,9 @@
                                 var event = response['event'];
                                 var file_id = response['file_id'];
 
-                                $('#translation_file_' + file_id).fadeOut('slow').remove();
+                                $('#translation_file_' + file_id).slideUp('slow', function () {
+                                    $(this).remove();
+                                });
 
                                 if ($('#translations_fileList').children().length == 0){
                                     $('#btn_send_trans_files_active').addClass('none');
