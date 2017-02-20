@@ -2375,7 +2375,7 @@
 
 
     //скачивание файла перевода и закрытие сообщения после
-    $('#translations_fileList').on('click', '.translation_file_download', function () {
+    $('#translation_files_table').on('click', '.translation_file_download', function () {
         console.log('file download');
         var id_raw = $(this).parents().parents().attr('id');
         var id = id_raw.split('_')[2];
