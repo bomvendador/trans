@@ -1782,6 +1782,7 @@
             var data_ = new FormData($('#form').get(0));
             data_.append('user_id', {{ order_details.user.id }});
             data_.append('order_id', {{ order_details.id }});
+            console.log('text = ' + $('#text_doc_send').val())
 
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:update_order' %}',
