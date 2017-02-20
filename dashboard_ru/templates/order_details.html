@@ -742,6 +742,9 @@
                                                     <div class="list-group" id="translations_fileList" {% if user_profile.role.role_name == 'Клиент' %}style="" {% endif %}>
 {#                                                    <ul id="translations_fileList" class="" style="margin-left: 48px!important; {% if user_profile.role.role_name == 'Клиент' %}margin-top: -24px{% endif %}">#}
 
+
+                                                    {% if user_profile.role.role_name == 'Клиент' %}
+
                         <div class="body table-responsive">
                             <table class="table">
                                 <thead>
@@ -771,7 +774,6 @@
                         </div>
 
 
-                                                    {% if user_profile.role.role_name == 'Клиент' %}
 
                                                         {% if translation_files %}
                                                             {% if order_details.paystatus.name == 'Paid' %}
