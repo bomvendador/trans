@@ -973,6 +973,7 @@ def update_order(request):
                 sent_doc.text = text_doc_send
             else:
                 sent_doc.text = None
+                sent_doc.text_qnt = None
             r = re.compile(r'[{}]'.format(punctuation))
             text_str = r.sub(' ', text_doc_send)
             text_qnt = len(text_str.split())
