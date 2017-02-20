@@ -1316,10 +1316,11 @@
             },
             success:function (data) {
                 var data_json = $.parseJSON(data);
-                var date_time = data_json['date_time'];
-                var name = data_json['timeline_author'];
-                var role = data_json['timeline_author_role'];
-                var event = data_json['event'];
+                var response = data_json['repsonse'];
+                var date_time = response['date_time'];
+                var name = response['timeline_author'];
+                var role = response['timeline_author_role'];
+                var event = response['event'];
                 add_timeline_item(date_time, name, role, event);
 
                 swal({
