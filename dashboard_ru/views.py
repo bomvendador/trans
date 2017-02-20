@@ -950,7 +950,7 @@ def update_order(request):
             # print(name)
             email = request.POST.get('email_doc_send')
             tel = request.POST.get('tel_doc_send')
-            text_doc_send = request.POST.get('text_doc_send')
+            text_doc_send = request.POST.get('text_doc_send', None)
             trans_theme = request.POST.get('trans_theme')
             trans_type = request.POST.get('trans_type')
             # print(trans_theme)
@@ -972,14 +972,14 @@ def update_order(request):
             logger.debug('text' + str(text_doc_send))
             if text_doc_send:
                 sent_doc.text = text_doc_send
+                r = re.compile(r'[{}]'.format(punctuation))
+                text_str = r.sub(' ', text_doc_send)
+                text_qnt = len(text_str.split())
+
+                sent_doc.text_qnt = text_qnt
             else:
                 sent_doc.text = None
                 sent_doc.text_qnt = None
-            r = re.compile(r'[{}]'.format(punctuation))
-            text_str = r.sub(' ', text_doc_send)
-            text_qnt = len(text_str.split())
-
-            sent_doc.text_qnt = text_qnt
             user.save()
             user_profile.save()
 
