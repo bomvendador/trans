@@ -969,7 +969,10 @@ def update_order(request):
             sent_doc.email = email
             user.first_name = name
             sent_doc.name = name
-            sent_doc.text = text_doc_send
+            if text_doc_send:
+                sent_doc.text = text_doc_send
+            else:
+                sent_doc.text = None
             r = re.compile(r'[{}]'.format(punctuation))
             text_str = r.sub(' ', text_doc_send)
             text_qnt = len(text_str.split())
