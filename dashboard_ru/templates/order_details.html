@@ -790,8 +790,8 @@
                                                                             <td><i class="mdi mdi-close text_label prefix pointer-pure del_translation_file"   style="width: 28px"></i><i class="mdi mdi-download text_label prefix pointer-pure translation_file_download margin-left-10"></i></td>
                                                                             <td>{{ translation_file.filename }}</td>
                                                                             <td>{{ translation_file.uploaded_by.first_name }}</td>
-                                                                            <td>{{ translation_file.added|date:"d.m.Y, H:i" }}</td>
-                                                                            <td>{% if translation_file.sent_to_client_datetime %}{{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% endif %}</td>
+                                                                            <td class="text_align_center">{{ translation_file.added|date:"d.m.Y, H:i" }}</td>
+                                                                            <td class="text_align_center">{% if translation_file.sent_to_client_datetime %}{{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% endif %}</td>
                                                                         </tr>
                                                                     {% endfor %}
 
