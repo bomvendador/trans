@@ -1005,6 +1005,7 @@ def update_order(request):
         else:
             if sent_doc.price:
                 timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость удалена: ' + str(sent_doc.price) + u' руб.')
+                sent_doc.calc_sent_date = None
 
             sent_doc.price = None
             sent_doc.paystatus = None
