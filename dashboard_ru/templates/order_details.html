@@ -785,6 +785,7 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody id="translations_fileList">
+                                                                    <div>
                                                                     {% if translation_files %}
                                                                         {% for translation_file in translation_files %}
                                                                             <tr id="translation_file_{{ translation_file.id }}">
@@ -795,6 +796,7 @@
                                                                                 <td class="text_align_center">{% if translation_file.sent_to_client_datetime %}{{ translation_file.sent_to_client_datetime|date:"d.m.Y, H:i" }}{% endif %}</td>
                                                                             </tr>
                                                                         {% endfor %}
+                                                                        </div>
                                                                     {% else %}
                                                                         <tr>
                                                                             <td colspan="5" align="center">Файлы отсутствуют</td>
