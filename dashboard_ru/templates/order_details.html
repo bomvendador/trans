@@ -1585,10 +1585,19 @@
                                     closeOnConfirm: true
                                 },
                                 function (isConfirm) {
+                                    var data_json = $.parseJSON(data);
+                                    var response = data_json['response'];
+                                    var calc_sent_date = response['calc_sent_date'];
+                                    var timeline_author = response['timeline_author'];
+                                    var timeline_author_role = response['timeline_author_role'];
+                                    var event = response['event'];
+
+
                                     $('#btn_send_calc_active').addClass('none');
                                     $('#calc_sent_date_div').removeClass('none');
-                                    $('#calc_sent_date').text(data);
+                                    $('#calc_sent_date').text(calc_sent_date);
                                     updateIcons();
+                                    add_timeline_item(calc_sent_date, timeline_author, timeline_author_role, event);
                                 });
                             }
                         });
@@ -1924,7 +1933,6 @@
                         });
                     },
                     success:function (data) {
-                        console.log(data);
                         swal({
                             title: 'Файл удален',
                             text: 'Данные на сервере успешно обновлены',
