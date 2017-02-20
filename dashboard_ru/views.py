@@ -1001,19 +1001,22 @@ def update_order(request):
         translation_sent_date = request.POST.get('translation_sent_date')
         sent_doc.translation_sent_date = translation_sent_date
         # sent_doc.calc_sent_date = calc_sent_date
+        is_price = False
         if price:
             sent_doc.price = price
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
             timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(price) + u' руб.')
+            is_price = True
 
         else:
             if sent_doc.price:
                 timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость удалена: ' + str(sent_doc.price) + u' руб.')
                 sent_doc.calc_sent_date = None
+                is_price = False
 
             sent_doc.price = None
             sent_doc.paystatus = None
-        if timeline:
+        if is_price:
             timeline.save()
             timeline_date = timeline.added + timedelta(hours=3)
 
