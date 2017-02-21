@@ -131,91 +131,91 @@
 
 
 
-<div id="myModal" class="modal fade in" role="dialog">
-  <div class="modal-dialog">
-        <form action="" method="post" name="auth_form" id="auth_form" class="bs-co">{% csrf_token %}
-            <!-- Modal content-->
-            <div class="modal-content">
-
-                    <!--Form with header-->
-                <div class="card">
-                    <div class="card-block">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <!--Header-->
-                        <div class="text-xs-center" id="title_auth">
-                            <h3 class="comforta_font f_s_20 color_grey">Авторизация</h3>
-                            <hr class="mt-2 mb-2">
-                        </div>
-                        <div class="text-xs-center" id="title_reg" style="display: none">
-                            <h3 class="comforta_font f_s_20 color_grey">Регистрация</h3>
-                            <hr class="mt-2 mb-2">
-                        </div>
-                        <div id="message" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>
-                        <!--Body-->
-                        <div class="md-form" id="login_group">
-                            <i class="mdi mdi-at text_label prefix"></i>
-                            <input type="text" id="email" name="email" class="form-control">
-                            <label for="email">Email</label>
-                        </div>
-
+{#<div id="myModal" class="modal fade in" role="dialog">#}
+{#  <div class="modal-dialog">#}
+{#        <form action="" method="post" name="auth_form" id="auth_form" class="bs-co">{% csrf_token %}#}
+{#            <!-- Modal content-->#}
+{#            <div class="modal-content">#}
+{##}
+{#                    <!--Form with header-->#}
+{#                <div class="card">#}
+{#                    <div class="card-block">#}
+{#                        <button type="button" class="close" data-dismiss="modal">&times;</button>#}
+{#                        <!--Header-->#}
+{#                        <div class="text-xs-center" id="title_auth">#}
+{#                            <h3 class="comforta_font f_s_20 color_grey">Авторизация</h3>#}
+{#                            <hr class="mt-2 mb-2">#}
+{#                        </div>#}
+{#                        <div class="text-xs-center" id="title_reg" style="display: none">#}
+{#                            <h3 class="comforta_font f_s_20 color_grey">Регистрация</h3>#}
+{#                            <hr class="mt-2 mb-2">#}
+{#                        </div>#}
+{#                        <div id="message" class="comforta_font f_s_15 mrg-bot-20" style="display: none"></div>#}
+{#                        <!--Body-->#}
+{#                        <div class="md-form" id="login_group">#}
+{#                            <i class="mdi mdi-at text_label prefix"></i>#}
+{#                            <input type="text" id="email" name="email" class="form-control">#}
+{#                            <label for="email">Email</label>#}
+{#                        </div>#}
+{##}
     {#                    <div class="md-form" id="email_group" style="display: none;">#}
     {#                        <i class="mdi mdi-at text_label prefix"></i>#}
     {#                        <input type="text" id="email_reg" name="email_reg" class="form-control">#}
     {#                        <label for="login">Email</label>#}
     {#                    </div>#}
-
-                        <div class="md-form" id="pass_group">
-                            <i class="mdi mdi-key text_label prefix"></i>
-                            <input type="password" id="password" name="password" class="form-control">
-                            <label for="password">Пароль</label>
-                        </div>
-
-                        <div class="md-form" id="pass_rep_group" style="display: none;">
-                            <i class="mdi mdi-key text_label prefix"></i>
-                            <input type="password" id="password_rep" name="password_rep" class="form-control">
-                            <label for="password_rep">Пароль (повторно)</label>
-                        </div>
-                        <div class="md-form" id="name_group" style="display: none">
-                            <i class="mdi mdi-account text_label prefix"></i>
-                            <input type="text" id="name" name="name" class="form-control">
-                            <label for="name">Имя</label>
-
-                        </div>
-                        <div class="row">
-                            <div class="text-xs-center col-lg-12" id="btn_submit_group">
-                                <button class="btn btn-deep-purple col-lg-12" id="btn_submit">Вход</button>
-                            </div>
-                        </div>
-                        <div class="row" id="reg_btns_group" style="display: none;">
-                            <div class="text-xs-center col-lg-6 col-xs-12">
-                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" id="btn_submit_reg">Отправить</button>
-                            </div>
-                            <div class="text-xs-center col-lg-6 col-xs-12">
-                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" data-dismiss="modal">Выход</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--Footer-->
-                    <div class="modal-footer" id="footer_group">
-                        <div class="options">
-                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>
-                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>
-                        </div>
-                    </div>
-                    <div class="modal-footer" id="footer_group_reg" style="display: none;">
-                        <div class="options">
-                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>
-                        </div>
-                    </div>
-
-                </div>
-                <!--/Form with header-->
-
-            </div>
-        </form>
-    </div>
-</div>
+{##}
+{#                        <div class="md-form" id="pass_group">#}
+{#                            <i class="mdi mdi-key text_label prefix"></i>#}
+{#                            <input type="password" id="password" name="password" class="form-control">#}
+{#                            <label for="password">Пароль</label>#}
+{#                        </div>#}
+{##}
+{#                        <div class="md-form" id="pass_rep_group" style="display: none;">#}
+{#                            <i class="mdi mdi-key text_label prefix"></i>#}
+{#                            <input type="password" id="password_rep" name="password_rep" class="form-control">#}
+{#                            <label for="password_rep">Пароль (повторно)</label>#}
+{#                        </div>#}
+{#                        <div class="md-form" id="name_group" style="display: none">#}
+{#                            <i class="mdi mdi-account text_label prefix"></i>#}
+{#                            <input type="text" id="name" name="name" class="form-control">#}
+{#                            <label for="name">Имя</label>#}
+{##}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                            <div class="text-xs-center col-lg-12" id="btn_submit_group">#}
+{#                                <button class="btn btn-deep-purple col-lg-12" id="btn_submit">Вход</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row" id="reg_btns_group" style="display: none;">#}
+{#                            <div class="text-xs-center col-lg-6 col-xs-12">#}
+{#                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" id="btn_submit_reg">Отправить</button>#}
+{#                            </div>#}
+{#                            <div class="text-xs-center col-lg-6 col-xs-12">#}
+{#                                <button class="btn btn-deep-purple col-xs-12 col-lg-12" data-dismiss="modal">Выход</button>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                    <!--Footer-->#}
+{#                    <div class="modal-footer" id="footer_group">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>#}
+{#                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="modal-footer" id="footer_group_reg" style="display: none;">#}
+{#                        <div class="options">#}
+{#                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>#}
+{#                        </div>#}
+{#                    </div>#}
+{##}
+{#                </div>#}
+{#                <!--/Form with header-->#}
+{##}
+{#            </div>#}
+{#        </form>#}
+{#    </div>#}
+{#</div>#}
 <!--modal auth page ends-->
 
 <!--modal contact form-->
@@ -271,22 +271,6 @@
                             </div>
                         </div>
                     </div>
-{##}
-{#                    <!--Footer-->#}
-{#                    <div class="modal-footer" id="footer_group">#}
-{#                        <div class="options">#}
-{#                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>#}
-{#                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="modal-footer" id="footer_group_reg" style="display: none;">#}
-{#                        <div class="options">#}
-{#                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{#                <!--/Form with header-->#}
                 </div>
             </div>
         </form>
@@ -334,22 +318,6 @@
                             </div>
                         </div>
                     </div>
-{##}
-{#                    <!--Footer-->#}
-{#                    <div class="modal-footer" id="footer_group">#}
-{#                        <div class="options">#}
-{#                            <p class="mrg-bot-0">Нет учетной записи? <i href="" id="register" class="pointer">Зарегистрируйтесь</i></p>#}
-{#                            <p>Забыли пароль?<i href="" class="pointer">Восстановить</i></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                    <div class="modal-footer" id="footer_group_reg" style="display: none;">#}
-{#                        <div class="options">#}
-{#                            <p class="mrg-bot-0">Зарегистрированы? <i href="" id="footer_login" class="pointer">Войти</i></p>#}
-{#                        </div>#}
-{#                    </div>#}
-{##}
-{#                </div>#}
-{#                <!--/Form with header-->#}
                 </div>
             </div>
         </form>
@@ -443,47 +411,6 @@
                             </div>
 
                         </div>
-
-
-
-
-{#                        <div class="md-form">#}
-{#                            <i class="mdi mdi-paperclip text_label prefix"></i>#}
-{#                            <div class="fileUpload btn btn-primary file-upload-files" data-toggle="tooltip" title="Выберите один или несколько файлов одновременно">#}
-{#                                <span>Загрузить файл(ы)</span>#}
-{#                                <input type="file" class="upload height-100" name="filesToUpload" id="filesToUpload" multiple="" onchange="makeFileList();">#}
-{##}
-{#                            </div>#}
-{#                            <div>#}
-{#                                <i class="mdi mdi-close text_label prefix pointer-pure none" id="del_files" data-toggle="tooltip" title="Удалить файлы" data-placement="right" style="width: 28px; margin-top: 0px!important; font-size: 15px; margin-left: 7px"></i>#}
-{#                                <ul id="fileList" class="file-upload-files"></ul>#}
-{##}
-{#                            </div>#}
-{##}
-{#                        </div>#}
-
-{#                        <div id="content">#}
-{#                            <h2>Demo</h2>#}
-{##}
-{#                            <!-- Example 2 -->#}
-{#                            <input type="file" name="files[]" id="filer_input2" multiple="multiple">#}
-{#                            <!-- end of Example 2 -->#}
-{##}
-{#                        </div>#}
-
-{#                        <div class="file-field">#}
-{#                            <div class="btn btn-primary btn-sm">#}
-{#                                <span>Choose files</span>#}
-{#                                <input type="file" multiple >#}
-{#                            </div>#}
-{#                            <div class="file-path-wrapper">#}
-{#                                <input class="file-path validate file_" type="text" placeholder="Upload one or more files">#}
-{#                            </div>#}
-{#                        </div>#}
-
-
-
-
                         <div class="row">
                             <div class="text-xs-center col-lg-12" id="btn_submit_group_doc_send">
                                 <button class="btn btn-deep-purple col-lg-12 col-xs-12 margin--0" id="btn_submit">Отправить</button>
@@ -508,6 +435,12 @@
 </div>
 
 <!-- Preloader ends-->
+
+<!-- Номер телефона -->
+    <div style="padding: 15px; position: fixed; right: 15px; bottom: 15px;">
+        <p style="font-size: 20px">{{ prolingva_tel }}</p>
+
+    </div>
 
 <!-- Кнопка обратного звонка-->
     <button type="button" class="btn bg-red btn-circle-lg waves-effect waves-circle waves-float main" data-toggle="tooltip" title="Обратный звонок" data-placement="right" id="btn_back_call" style="position: fixed; left: 10px; bottom: 10px; z-index: 100">

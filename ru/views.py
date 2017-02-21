@@ -73,6 +73,7 @@ class IndexView (generic.TemplateView):
                    'user_profile': user_profile,
                    'testimonials': Testimonials.objects.all(),
                    'prolingva_tel': settings.PROLINGVA_TEL
+
                    }
         # print(self.request.POST.get('login'))
         return context
@@ -88,7 +89,9 @@ class BaseView (generic.TemplateView):
 
 def baseView (request):
     context = {'user': User.objects.all(),
-               'langs': Language.objects.all().order_by('name')
+               'langs': Language.objects.all().order_by('name'),
+               'prolingva_tel': settings.PROLINGVA_TEL
+
                }
     return render(request, 'base.html', context)
 
