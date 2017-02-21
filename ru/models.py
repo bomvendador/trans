@@ -16,7 +16,7 @@ class Testimonials(models.Model):
     company = models.CharField(max_length=50)
     is_approved = models.BooleanField(default=False)
     new = models.BooleanField(default=True)
-    added = models.DateTimeField(auto_now_add=True, auto_now=False, default=None)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False)
 
 
 class Language (models.Model):
