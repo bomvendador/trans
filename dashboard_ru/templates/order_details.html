@@ -1414,8 +1414,6 @@
 
 {#    function send_trans_files_func () {#}
 {#        if ($('#translation_files_table tbody').length > 0){#}
-            console.log('send_trans length = ' + $('#translation_files_table tr').length);
-            console.log('вввв = ' + $('#translation_files_table tbody tr:first td:first').text());
 
         if ($('#translation_files_table tr').length > 0 && $('#translation_files_table tbody tr:first td:first').text() != 'Файлы отсутствуют'){
             console.log('send_trans length = ' + $('#translation_files_table tr').length);
@@ -1491,7 +1489,7 @@
             $('#paid').css('opacity', 0.5)
         }
 
-        if ($('#translations_fileList div').length != 0){
+        if ($('#translation_files_table tr').length > 0 && $('#translation_files_table tbody tr:first td:first').text() != 'Файлы отсутствуют'){
             $('#translation_files_uploaded').css('opacity', 1)
         }else {
             $('#translation_files_uploaded').css('opacity', 0.5)
