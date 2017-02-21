@@ -401,7 +401,6 @@ def save_files_trans(request):
                         user_profile.user = user
                         user_profile.role = Role.objects.get(role_name=u'Клиент')
                         user_profile.save()
-
                 else:
                     user_exists = True
 
@@ -410,6 +409,9 @@ def save_files_trans(request):
                     email = client.email
                     tel = client.tel
                     user = User.objects.get(id=request.user.id)
+                timeline_user = request.user
+                timeline_userprofile = UserProfile.objects.get(user=request.user)
+
             else:
                 name = request.POST['name_doc_send']
                 email = request.POST['email_doc_send']
@@ -444,6 +446,9 @@ def save_files_trans(request):
                     user_profile.user = user
                     user_profile.role = Role.objects.get(role_name=u'Клиент')
                     user_profile.save()
+                    timeline_user = user
+                    timeline_userprofile = user_profile
+
                 doc_sent.author = user
             text = request.POST.get('text_doc_send')
             if request.POST.get('trans_from'):
@@ -528,8 +533,8 @@ def save_files_trans(request):
                 timeline_userprofile = user_profile
             else:
                 message = 'ok'
-                timeline_user = None
-                timeline_userprofile = None
+                # timeline_user = None
+                # timeline_userprofile = None
 
             timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=u'Заявка создана')
             timeline.save()
