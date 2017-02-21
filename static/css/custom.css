@@ -655,3 +655,14 @@ ul{
     background: white;
 
 }
+
+.slide_div .slider-p3:after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 90%;
+    width: 50px;
+    height: 2px;
+    background: white;
+
+}
