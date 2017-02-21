@@ -80,7 +80,7 @@
             <i class="mdi mdi-currency-rub cursor-default {% if order_details.calc_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отправлен" data-placement="top"></i>
             <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
             <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
-            <i class="mdi mdi-note cursor-default {% if translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+            <i class="mdi mdi-note cursor-default {% if order_details.translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
             <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
 
         </div>
