@@ -131,8 +131,13 @@
 
                                 {% for sent_doc in sent_docs %}
 
-                                    <tr class="sent_doc pointer-pure" id="{{ sent_doc.id }}">
 
+                                    <tr class="sent_doc pointer-pure" id="{{ sent_doc.id }}">
+                                        <td>
+                                            <input type="checkbox" id="testimonial_approved" class="">
+                                            <label for="testimonial_approved" style="height: 5px"></label>
+
+                                        </td>
                                         <td class="">
 
                                         {{ sent_doc.id|center:'40' }}
