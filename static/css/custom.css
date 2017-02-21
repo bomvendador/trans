@@ -645,7 +645,7 @@ ul{
     margin: 0px!important;
 }
 
-.slide_div:after{
+.slide_div p:after{
     content: '';
     position: absolute;
     bottom: 5px;
