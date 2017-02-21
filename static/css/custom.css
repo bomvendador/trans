@@ -649,7 +649,7 @@ ul{
     content: '';
     position: absolute;
     /*bottom: 10px;*/
-    left: 50%;
+    left: 25%;
     width: 50px;
     height: 2px;
     background: red;
