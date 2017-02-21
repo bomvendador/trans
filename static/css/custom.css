@@ -458,6 +458,12 @@ and (min-width: 768px)
 
 }
 
+@media (min-width: 1030px){
+    .container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
 
 
 /*@media only screen*/
