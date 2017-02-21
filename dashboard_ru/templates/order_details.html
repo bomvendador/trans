@@ -2039,7 +2039,7 @@
                                     $('#translation_file_' + file_id).slideUp('slow', function () {
                                         $(this).remove();
                                     });
-                                    console.log('кол-во = ' + $('#translation_files_table tr').length);
+                                    console.log('кол-во = ' + $('#translation_files_table tbody tr').length);
                                     if ($('#translation_files_table tr').length == 0){
                                         $('#btn_send_trans_files_active').addClass('none');
                                         $('#btn_send_trans_files_deactivated').removeClass('none');
