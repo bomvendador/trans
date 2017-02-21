@@ -134,10 +134,11 @@
 
                                     <tr class="sent_doc pointer-pure" id="{{ sent_doc.id }}">
                                         <td>
-                                            <input type="checkbox" id="testimonial_approved" class="">
-                                            <label for="testimonial_approved" style="height: 5px"></label>
+                                            <input type="checkbox" id="t_{{ sent_doc.id }}" class="">
+                                            <label for="t_{{ sent_doc.id }}" style="height: 5px"></label>
 
                                         </td>
+
                                         <td class="">
 
                                         {{ sent_doc.id|center:'40' }}
