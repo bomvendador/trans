@@ -761,7 +761,7 @@
             },
             addRemoveLinks: true,
             sendingmultiple: function (file, xhr, formData) {
-                add_csrf();
+{#                add_csrf();#}
 {#                formData.append('order_id', {{ order_details.id }});#}
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
                 formData.append('name_doc_send', $('#name_doc_send').val());
