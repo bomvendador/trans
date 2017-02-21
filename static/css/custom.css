@@ -640,3 +640,7 @@ ul{
 .dropzone-background{
     background: #EEEEEE!important;
 }
+
+.margin--0{
+    margin: 0px!important;
+}
