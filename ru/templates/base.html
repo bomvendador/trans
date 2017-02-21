@@ -693,7 +693,7 @@
     {#                    });#}
 
                     }else {
-{#                        showPreloader();#}
+                        showPreloader();
                         if ($('#drop_zone_order_files .dz-preview').length > 0){
                             drop_zone_order_files.processQueue();
                         }else {
@@ -786,7 +786,6 @@
                 $('#trans_from').find('option[value="default"]').prop('selected', true);
                 $('#trans_to').find('option[value="default"]').prop('selected', true);
 {#                            console.log($('#trans_to').find('option[value="default"]').val());#}
-                console.log(data);
             hidePreloader();
                 if (data == 'ok'){
                         $('.close').click();
@@ -830,14 +829,9 @@
                     }
                 }
                 clear_send_docs();
-
-{#                var data_json = $.parseJSON(data);#}
-{#                var file_name = data_json['file_name'];#}
-{#                $('#fileList').append('<div class="translation_file list-group-item row margin-left-0 margin-right-0 margin-top-10" id="file_' + data_json["file_id"] + '"><div class="col-sm-1 margin-bottom-0" data-toggle="tooltip" title="Удалить файл" data-placement="left"><i class="mdi mdi-close text_label prefix pointer-pure del_file"   style="width: 28px"></i></div><div class="col-sm-11 margin-bottom-0 padding-top-3"><p class="pointer-pure display-inline file_download">' + data_json["file_name"] + '</p></div></div>');#}
                 drop_zone_order_files.removeFile(file);
             },
             complete: function (data) {
-                console.log(data)
                 if (data.status != 'error'){
                     swal({
                         title: 'Информация сохранена',
