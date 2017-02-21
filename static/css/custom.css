@@ -476,6 +476,12 @@ and (max-width: 1030px) {
     }
 }
 
+@media (min-width: 1031px) {
+    .container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
 /*@media only screen*/
 /*and (min-device-width : 481px)*/
 /*and (max-device-width : 800px) {*/
