@@ -448,6 +448,16 @@ def save_files_trans(request):
                     user_profile.save()
                     timeline_user = user
                     timeline_userprofile = user_profile
+                    email_context = {
+                        'prolingva_tel': settings.prolingva_tel,
+                        'user': user,
+                        'login': client.email,
+                        'password': client.init_password,
+
+                    }
+                    # TODO заменить имейл на клиентский
+                    # dash_views.send_email(request, 'order_welcome.html', 'info@prolingva.ru', client.email, email_context)
+                    dash_views.send_email(request, 'order_welcome.html', 'info@prolingva.ru', 'orders@prolingva.ru', email_context)
 
                 doc_sent.author = user
             text = request.POST.get('text_doc_send')
