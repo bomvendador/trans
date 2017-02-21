@@ -645,13 +645,13 @@ ul{
     margin: 0px!important;
 }
 
-/*.slide_div .slider-p:after{*/
-    /*content: '';*/
-    /*position: absolute;*/
-    /*bottom: -5px;*/
-    /*left: 48%;*/
-    /*width: 50px;*/
-    /*height: 2px;*/
-    /*background: white;*/
+.slide_div .slider-p:after{
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 48%;
+    width: 50px;
+    height: 2px;
+    background: white;
 
-/*}*/
+}
