@@ -384,18 +384,18 @@
                         <!--Body-->
 
                         <div class="md-form" id="name_group_doc_send">
-                            <i class="mdi mdi-account text_label prefix"></i>
+                            <i class="mdi mdi-account text_label prefix font-size-30 padding-top-10"></i>
                             <input type="text" id="name_doc_send" name="name_doc_send" class="form-control" {% if user.is_authenticated %}value="{{ user.first_name }}" {% endif %}>
                             <label for="name_doc_send">Имя</label>
                         </div>
 
                         <div class="md-form" id="login_group_doc_send">
-                            <i class="mdi mdi-at text_label prefix"></i>
+                            <i class="mdi mdi-at text_label prefix font-size-30 padding-top-10"></i>
                             <input type="text" id="email_doc_send" name="email_doc_send" class="form-control" {% if user.is_authenticated %}value="{{ user.email }}" {% endif %}>
                             <label for="email_doc_send">Email</label>
                         </div>
 
-                        <div class="md-form" id="tel_group_doc_send">
+                        <div class="md-form" id="tel_group_doc_send font-size-30 padding-top-10">
                             <i class="mdi mdi-cellphone-iphone text_label prefix"></i>
                             <input type="text" id="tel_doc_send" name="tel_doc_send" class="form-control" value="{{ user_profile.tel }}">
                             <label for="tel_doc_send">Телефон</label>
