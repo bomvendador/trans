@@ -624,3 +624,7 @@ ul{
 .padding-10{
     padding: 10px!important;
 }
+
+.dropzone-font-color{
+    color: #777777;
+}
