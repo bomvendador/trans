@@ -694,59 +694,68 @@
 
                     }else {
 {#                        showPreloader();#}
-                        drop_zone_order_files.processQueue();
-{#                        var formdata = new FormData($('#doc_send_form').get(0));#}
-{#                        $.ajax({#}
-{#                            url: '{% url 'ru:save_files_trans' %}',#}
-{#                            type: 'POST',#}
-{#                            data: formdata,#}
-{#                            processData: false,#}
-{#                            contentType: false,#}
-{#                            error: function(data){#}
-{#                                console.log(data);#}
-{#                            },#}
-{#                            success:function (data) {#}
-{#                                hidePreloader();#}
-{#    #}
-{#                                if (data == 'ok'){#}
-{#                                    $('.close').click();#}
-{#                                        swal({#}
-{#                                            title: 'Информация успешно отправлена',#}
-{#                                            text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
-{#                                            type: 'success',#}
-{#                                            confirmButtonText: 'Ok',#}
-{#                                            closeOnConfirm: false#}
-{#                                        });#}
-{#    #}
-    {#                                toastr.success('Заголовок', 'Текст все ок');#}
-{#                                }else {#}
-{#                                    $('.close').click();#}
-{#                                    #}
-{#                                    if (data == 'user_exists'){#}
-{#                                        swal({#}
-{#                                            title: 'Информация успешно отправлена',#}
-{#                                            text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
-{#                                            type: 'success',#}
-{#                                            confirmButtonText: 'Ok',#}
-{#                                            closeOnConfirm: false#}
-{#                                        },#}
-{#                                        function (isConfirm) {#}
-{#                                            if (isConfirm){#}
-{#                                                swal({#}
-{#                                                    title: 'Пользователь с таким email уже зарегистрирован',#}
-{#                                                    text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',#}
-{#                                                    type: 'warning'#}
-{#                                                })#}
-{#                                            }#}
-{#                                        });#}
-{#    #}
-{#                                    }#}
-{#                                }#}
-        {#                        alert(data);#}
-{#                                clear_send_docs();#}
-{#                            }#}
-{#                        });#}
+                        if ($('#drop_zone_order_files .dz-preview').length > 0){
+                            drop_zone_order_files.processQueue();
+                        }else {
 
+                            var formdata = new FormData($('#doc_send_form').get(0));
+                            $.ajax({
+                                url: '{% url 'ru:save_files_trans' %}',
+                                type: 'POST',
+                                data: formdata,
+                                processData: false,
+                                contentType: false,
+                                error: function(data){
+                                    swal({
+                                        title: 'Ошибка сервера',
+                                        text: 'При сохранении произошла ошибка. Пробуйте позже.',
+                                        type: 'error',
+                                        confirmButtonText: 'Ok',
+                                        closeOnConfirm: true
+                                    });
+                                },
+                                success:function (data) {
+                                    hidePreloader();
+
+                                    if (data == 'ok'){
+                                        $('.close').click();
+                                            swal({
+                                                title: 'Информация успешно отправлена',
+                                                text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                                type: 'success',
+                                                confirmButtonText: 'Ok',
+                                                closeOnConfirm: false
+                                            });
+
+                                    toastr.success('Заголовок', 'Текст все ок');
+                                    }else {
+                                        $('.close').click();
+
+                                        if (data == 'user_exists'){
+                                            swal({
+                                                title: 'Информация успешно отправлена',
+                                                text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
+                                                type: 'success',
+                                                confirmButtonText: 'Ok',
+                                                closeOnConfirm: false
+                                            },
+                                            function (isConfirm) {
+                                                if (isConfirm){
+                                                    swal({
+                                                        title: 'Пользователь с таким email уже зарегистрирован',
+                                                        text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',
+                                                        type: 'warning'
+                                                    })
+                                                }
+                                            });
+
+                                        }
+                                    }
+                                    alert(data);
+                                    clear_send_docs();
+                                }
+                            });
+                        }
                     }
 
 //send documents ends
