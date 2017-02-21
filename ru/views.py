@@ -449,7 +449,7 @@ def save_files_trans(request):
                     timeline_user = user
                     timeline_userprofile = user_profile
                     email_context = {
-                        'prolingva_tel': settings.prolingva_tel,
+                        'prolingva_tel': settings.PROLINGVA_TEL,
                         'user': user,
                         'login': client.email,
                         'password': client.init_password,
