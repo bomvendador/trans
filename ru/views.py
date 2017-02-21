@@ -569,6 +569,7 @@ def learn_more_trans(request):
     context = {
         'learn_more': 'trans',
         'langs': Language.objects.all().order_by('name'),
+        'prolingva_tel': settings.PROLINGVA_TEL
 
     }
     return render(request, 'learn_more_trans.html', context)
@@ -578,13 +579,18 @@ def learn_more_types(request):
     context = {
         'learn_more': 'types',
         'langs': Language.objects.all().order_by('name'),
+        'prolingva_tel': settings.PROLINGVA_TEL
 
     }
     return render(request, 'learn_more_trans.html', context)
 
 
 def confidentiality(request):
-    context = {'confidentiality': 'yes'}
+    context = {
+        'confidentiality': 'yes',
+        'prolingva_tel': settings.PROLINGVA_TEL
+
+    }
     return render(request, 'confidentiality.html', context)
 
 
