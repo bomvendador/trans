@@ -465,17 +465,17 @@ and (min-width: 768px)
     /*}*/
 /*}*/
 
-@media only screen
-and (max-width: 1030px) {
-    .navbar-right {
-        float: right !important;
-        margin-right: -15px;
-        display: none;
-    }
+/*@media only screen*/
+/*and (max-width: 1030px) {*/
+    /*.navbar-right {*/
+        /*float: right !important;*/
+        /*margin-right: -15px;*/
+        /*display: none;*/
+    /*}*/
     /*.expanded-menu{*/
         /*display: none;*/
     /*}*/
-}
+/*}*/
 
 /*@media screen and (max-width: 1029px) {*/
     /*.fh5co-nav-toggle {*/
