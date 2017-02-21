@@ -648,10 +648,10 @@ ul{
 .slide_div .slider-p:after{
     content: '';
     position: absolute;
-    /*bottom: 0;*/
+    bottom: -5px;
     left: 48%;
     width: 50px;
     height: 2px;
-    background: red;
+    background: #D6382F;
 
 }
