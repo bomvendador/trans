@@ -466,7 +466,7 @@ and (min-width: 768px)
 }
 
 @media only screen
-and (min-width: 1030px) {
+and (max-width: 1030px) {
     .navbar-right {
         float: right !important;
         margin-right: -15px;
