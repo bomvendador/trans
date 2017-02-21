@@ -430,7 +430,7 @@ ul{
 
 @media only screen
 and (min-width: 1210px)
-and (max-device-width : 767px) {
+ {
 
      .tel-style{
 
@@ -445,7 +445,7 @@ and (max-device-width : 767px) {
 
 @media only screen
 and (min-width: 768px)
-and (max-device-width : 481px) {
+ {
 
      .tel-style{
 
