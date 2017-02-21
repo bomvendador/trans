@@ -1945,6 +1945,7 @@ def save_company(request):
         client_id = request.POST.get('client_id', None)
         company_id = request.POST.get('company_id', None)
         property_inst = Property.objects.get(id=property_id)
+        logger.debug('client id = ' + str(client_id))
         if new == 'yes':
             company_inst = Company()
         else:

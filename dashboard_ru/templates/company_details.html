@@ -286,7 +286,7 @@
             if (!numbers_only.test($('#inn_company').val()) || !numbers_only.test($('#kpp_company').val()) || !numbers_only.test($('#ogrn_company').val())) {
                 swal({
                     title: 'Ошибка ввода',
-                    text: 'Проверьте ',
+                    text: 'Проверьте введенные данные ИНН, КПП, ОГРН',
                     type: 'error'
                 });
 
@@ -294,7 +294,11 @@
                 var formdata = new FormData($('#form_info').get(0));
                 {% if new %}
                 formdata.append('new', 'yes');
-                formdata.append('client_id', $('#client').attr('data-client-id'));
+                    {% if user_profile.role.role_name != 'Клиент' %}
+                    formdata.append('client_id', $('#client').attr('data-client-id'));
+                    {% else %}
+
+                    {% endif %}
                 {% else %}
                 formdata.append('new', 'no');
                 formdata.append('company_id', {{ company.id }});
