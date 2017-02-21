@@ -77,6 +77,26 @@
                             <table class="table table-bordered table-striped table-hover dataTable {% if user_profile.role.id == 1 %} js-exportable {% else %} js-basic-example {% endif %}">
                                 <thead>
                                     <tr>
+                                        <th>
+                                            <ul class="header-dropdown m-r--5">
+                                                <li class="dropdown">
+                                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="material-icons">more_vert</i>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-right">
+                                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                                        <li><a href="{% url 'ru:dashboard_ru:get_new_orders' %}" id="orders_new">Новые</a></li>
+                                                        {% else %}
+                                                        <li><a href="{% url 'ru:dashboard_ru:get_sent_docs' %}" id="orders_new">Все</a></li>
+
+                                                        {% endif %}
+                                                        <li><a href="{% url 'ru:dashboard_ru:get_in_progress_sent_docs' %}" id="orders_in_progress">В работе</a></li>
+                                                        <li><a href="{% url 'ru:dashboard_ru:get_complete_sent_docs' %}" id="orders_complete">Выполненные</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+
+                                        </th>
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
@@ -92,6 +112,7 @@
                                     </tr>
                                 </thead>
                                 <tfoot>
+                                        <th></th>
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
