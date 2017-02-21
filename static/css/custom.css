@@ -648,8 +648,8 @@ ul{
 .slide_div p:after{
     content: '';
     position: absolute;
-    /*bottom: 10px;*/
-    left: 25%;
+    bottom: 5px;
+    left: 40%;
     width: 50px;
     height: 2px;
     background: red;
