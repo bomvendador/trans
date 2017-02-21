@@ -465,6 +465,12 @@ and (min-width: 768px)
     }
 }
 
+@media (min-width: 1030px) {
+    .navbar-right {
+        float: right !important;
+        margin-right: -15px;
+    }
+}
 
 /*@media only screen*/
 /*and (min-device-width : 481px)*/
