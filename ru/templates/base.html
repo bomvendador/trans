@@ -423,9 +423,9 @@
 {#                                            </div>#}
                         </div>
                         <div class="md-form">
-                            <i class="mdi mdi-pencil text_label prefix"></i>
+                            <i class="mdi mdi-pencil text_label prefix font-size-30"></i>
 
-                            <textarea type="text" id="text_doc_send" class="md-textarea" name="text_doc_send"></textarea>
+                            <textarea type="text" id="text_doc_send" class="md-textarea" name="text_doc_send" rows="7" style="resize: vertical"></textarea>
                             <label for="form76">Введите/вставьте текст</label>
                         </div>
 
@@ -620,7 +620,6 @@
                 add_csrf();
 {#                formData.append('order_id', {{ order_details.id }});#}
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-                {% if user_profile.role.role_name != 'Клиент' %}
                 formData.append('name_doc_send', $('#name_doc_send').val());
                 formData.append('email_doc_send', $('#email_doc_send').val());
                 formData.append('tel_doc_send', $('#tel_doc_send').val());
@@ -628,7 +627,6 @@
                 formData.append('trans_from', $('#trans_from').val());
                 formData.append('trans_to', $('#trans_to').val());
                 formData.append('order_source', $('#order_source').val());
-                {% endif %}
             },
             successmultiple: function (file, data) {
                 $('#dropdown-menu .inner li:first').addClass('selected');
