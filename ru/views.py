@@ -113,7 +113,8 @@ def loginUser(request):
 
 
 def logout_user(request):
-    if request.user is not None:
+    if request.user:
+        logger.debug('logout')
         logout(request)
         return redirect('ru:index')
 
