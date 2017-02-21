@@ -57,7 +57,7 @@
                         <i class="material-icons">more_vert</i>
                     </a>
                     <ul class="dropdown-menu pull-right">
-                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="delete_order">Удалить заявку</a></li>
+                        <li><a href="javascript:void(0);" class=" waves-effect waves-block" id="delete_back_call">Удалить</a></li>
                     </ul>
                 </li>
             </ul>
@@ -202,6 +202,42 @@
         $('#back_call_comment_text').on('input', function () {
            $('#back_call_comment_btn').removeAttr('disabled')
         });
+
+
+    //удаление звонка
+    $('#delete_back_call').on('click', function () {
+        $.ajax({
+            url: '{% url 'ru:dashboard_ru:del_back_call' %}',
+            type: 'POST',
+            data: JSON.stringify({
+                            'back_call_id': {{ back_call.id }}
+                        }),
+            processData: false,
+            contentType: false,
+            error: function(data){
+                swal({
+                    title: 'Ошибка сервера',
+                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                    type: 'warning'
+                });
+            },
+            success:function (data) {
+                swal({
+                    title: 'Информация удалена',
+                    text: 'Информация успешно удалена',
+                    type: 'success',
+                    confirmButtonText: 'Ok',
+                    closeOnConfirm: true
+                },
+                function (isConfirm) {
+                    if (isConfirm){
+                        window.location.href = "{% url 'ru:dashboard_ru:get_back_calls' %}"
+                    }
+                });
+            }
+        });
+
+    });
 
 
         //сохранение комментария

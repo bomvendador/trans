@@ -54,6 +54,7 @@ urlpatterns = [
 
     url(r'^back_calls/$', views.get_back_calls, name='get_back_calls'),
     url(r'^new_back_calls/$', views.get_new_back_calls, name='get_new_back_calls'),
+    url(r'^del_back_calls/$', views.del_back_call, name='del_back_call'),
     url(r'^back_call_details/(?P<back_call_id>\d+)/$', views.get_back_call_details, name='get_back_call_details'),
 
     url(r'^send_email/$', views.send_email, name='send_email'),

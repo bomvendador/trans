@@ -2024,3 +2024,12 @@ def test(request):
         logger.debug('name = ' + str(f.name))
     logger.debug(request.POST)
     return HttpResponse(request)
+
+
+@login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
+def del_back_call(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+        back_call_id = json_data['back_call_id']
+        BackCall.objects.get(id=back_call_id).delete()
+        return HttpResponse('ok')
