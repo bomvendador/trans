@@ -476,7 +476,11 @@ and (max-width: 1030px) {
     }
 }
 
-
+@media screen and (max-width: 1029px) {
+    .fh5co-nav-toggle {
+        display: block;
+    }
+}
 /*@media (min-width: 1029px) {*/
     /*.container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {*/
         /*margin-right: 0;*/
