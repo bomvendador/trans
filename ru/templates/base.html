@@ -112,7 +112,7 @@
                         {% if user.is_authenticated %}
 
 						<li class="header_style"><a href="{% url 'ru:dashboard_ru:base_board' user_id=user.pk %}" id="settings"  data-toggle="tooltip" title="К панели управления" data-placement="bottom"><span>{{ user.first_name }} | <i class="mdi mdi-settings"></i></span></a></li>
-						<li class="header_style"><a href="{% url 'ru:logoutUser' %}" id="logout"><span class="font-weight-300 style="font-family: Roboto, Sans-Serif">Выйти</span></a></li>
+						<li class="header_style"><a href="{% url 'ru:logoutUser' %}" id="logout"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Выйти</span></a></li>
                         {% else %}
 						<li class="header_style"><a href="{% url 'ru:dashboard_ru:login_board' %}" id="login"><span class="font-weight-300" style="font-family: Roboto, Sans-Serif">Войти</span></a></li>
 
