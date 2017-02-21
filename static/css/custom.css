@@ -636,3 +636,7 @@ ul{
 .font-size-30{
     font-size: 30px;
 }
+
+.dropzone-background{
+    background: #EEEEEE;
+}
