@@ -727,7 +727,7 @@
                                                 closeOnConfirm: false
                                             });
 
-                                    toastr.success('Заголовок', 'Текст все ок');
+{#                                    toastr.success('Заголовок', 'Текст все ок');#}
                                     }else {
                                         $('.close').click();
 
@@ -751,7 +751,7 @@
 
                                         }
                                     }
-                                    alert(data);
+{#                                    alert(data);#}
                                     clear_send_docs();
                                 }
                             });
@@ -789,20 +789,20 @@
                 console.log(data);
             hidePreloader();
                 if (data == 'ok'){
-{#                                $('.close').click();#}
+                        $('.close').click();
                         swal({
                             title: 'Информация успешно отправлена',
                             text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
                             type: 'success',
                             confirmButtonText: 'Ok',
                             closeOnConfirm: false
-                        },
-                        function (isConfirm) {
-                            if (isConfirm){
-                                window.location.reload();
-
-                            }
-                        });
+                        };
+{#                        function (isConfirm) {#}
+{#                            if (isConfirm){#}
+{#                                window.location.reload();#}
+{##}
+{#                            }#}
+{#                        });#}
 
 {#                                toastr.success('Заголовок', 'Текст все ок');#}
                 }else {
