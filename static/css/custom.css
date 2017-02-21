@@ -458,7 +458,7 @@ and (min-width: 768px)
 
 }
 
-@media (max-width: 1029px){
+@media (min-width: 1029px){
     .container > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-header, .container-fluid > .navbar-collapse {
         margin-right: 0;
         margin-left: 0;
@@ -466,7 +466,7 @@ and (min-width: 768px)
 }
 
 @media only screen
-and (min-width: 1030px) {
+and (max-width: 1030px) {
     .navbar-right {
         float: right !important;
         margin-right: -15px;
