@@ -465,10 +465,14 @@ and (min-width: 768px)
     }
 }
 
-@media (min-width: 1030px) {
+@media only screen
+and (min-width: 1030px) {
     .navbar-right {
         float: right !important;
         margin-right: -15px;
+    }
+    .expanded-menu{
+        display: none;
     }
 }
 
