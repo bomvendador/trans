@@ -596,6 +596,21 @@
 
     <script>
 
+        $('#email_doc_send').on('click', function () {
+            hideMessage_doc_send();
+        });
+        $('#name_doc_send').on('click', function () {
+            hideMessage_doc_send();
+        });
+        $('#tel_doc_send').on('click', function () {
+            hideMessage_doc_send();
+        });
+        $('#text_doc_send').on('click', function () {
+            hideMessage_doc_send();
+        });
+        $('#filesToUpload').on('click', function () {
+            hideMessage_doc_send();
+        });
 
         Dropzone.autoDiscover = false;
         var drop_zone_order_files = new Dropzone('#drop_zone_order_files', {
@@ -608,10 +623,139 @@
 {#                var myDropzone = this;#}
 
                 // First change the button to actually tell Dropzone to process the queue.
-                $('#drop_zone_btn').on('click', function (e) {
+                $('#btn_submit_group_doc_send').on('click', function (e) {
                     e.preventDefault();
                     e.stopPropagation();
-                    drop_zone_order_files.processQueue();
+
+
+                    var message_doc_send = '';
+                    var email_err_doc_send = false;
+                    var email_err_doc_send_msg = '';
+                    var name_err_doc_send = false;
+                    var name_err_doc_send_msg = '';
+                    var tel_err_doc_send = false;
+                    var tel_err_doc_send_msg = '';
+                    var file_err_doc_send = false;
+                    var file_err_doc_send_msg = '';
+{#                    e.preventDefault();#}
+                    //валидация email
+                    if ($('#email_doc_send').val() != '') {
+                        if (!email.test($('#email_doc_send').val())) {
+                            $('#email_doc_send').addClass('invalid');
+                            email_err_doc_send_msg = 'Проверьте правильность заполнения email<br/>';
+                            email_err_doc_send = true;
+                        }
+                    } else {
+                        email_err_doc_send = true;
+                        email_err_doc_send_msg = 'Введите свой email<br/>';
+                        $('#email_doc_send').addClass('invalid');
+                    }
+                    //проверка имени
+                    if ($('#name_doc_send').val() == ''){
+                        name_err_doc_send = true;
+                        name_err_doc_send_msg = 'Введите свое имя </br>';
+                        $('#name_doc_send').addClass('invalid');
+
+                    }
+                    //проверка телефона
+                    if ($('#tel_doc_send').val() == ''){
+                        tel_err_doc_send = true;
+                        tel_err_doc_send_msg = 'Введите свой номер телефона </br>';
+                        $('#tel_doc_send').addClass('invalid');
+
+                    }else {
+                        if (!tel_exp.test($('#tel_doc_send').val())) {
+                            $('#tel_doc_send').addClass('invalid');
+                            tel_err_doc_send_msg = 'Проверьте правильность номера телефона<br/>';
+                            tel_err_doc_send = true;
+                        }
+                    }
+                    //проверка файла
+                    if ($('#text_doc_send').val() == '' && $('#drop_zone_order_files .dz-preview').length == 0){
+                        file_err_doc_send = true;
+                        file_err_doc_send_msg = 'Добавьте текст или файл';
+                        $('#text_doc_send').addClass('invalid');
+
+                    }
+
+
+                    if(email_err_doc_send || name_err_doc_send || file_err_doc_send || tel_err_doc_send){
+                        $('#message_doc_send').html('');
+                        message_doc_send = name_err_doc_send_msg + email_err_doc_send_msg + tel_err_doc_send_msg + file_err_doc_send_msg;
+                        showMessage_doc_send(message_doc_send);
+                        $('#modalDocSend').animate({scrollTop: 0}, 'slow');
+
+    {#                    console.log($('#trans_from').val() + ' ' + $('#trans_to').val());#}
+
+    {#                    $('#modalDocSend').on('shown.bs.modal', function () {#}
+    {#                        $('#modalDocSend .modal-content').animate({'scrollTop': $('#message_doc_send').offset().top}, 2000)#}
+    {##}
+    {#                    });#}
+
+                    }else {
+                        showPreloader();
+                        drop_zone_order_files.processQueue();
+{#                        var formdata = new FormData($('#doc_send_form').get(0));#}
+{#                        $.ajax({#}
+{#                            url: '{% url 'ru:save_files_trans' %}',#}
+{#                            type: 'POST',#}
+{#                            data: formdata,#}
+{#                            processData: false,#}
+{#                            contentType: false,#}
+{#                            error: function(data){#}
+{#                                console.log(data);#}
+{#                            },#}
+{#                            success:function (data) {#}
+{#                                hidePreloader();#}
+{#    #}
+{#                                if (data == 'ok'){#}
+{#                                    $('.close').click();#}
+{#                                        swal({#}
+{#                                            title: 'Информация успешно отправлена',#}
+{#                                            text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
+{#                                            type: 'success',#}
+{#                                            confirmButtonText: 'Ok',#}
+{#                                            closeOnConfirm: false#}
+{#                                        });#}
+{#    #}
+    {#                                toastr.success('Заголовок', 'Текст все ок');#}
+{#                                }else {#}
+{#                                    $('.close').click();#}
+{#                                    #}
+{#                                    if (data == 'user_exists'){#}
+{#                                        swal({#}
+{#                                            title: 'Информация успешно отправлена',#}
+{#                                            text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
+{#                                            type: 'success',#}
+{#                                            confirmButtonText: 'Ok',#}
+{#                                            closeOnConfirm: false#}
+{#                                        },#}
+{#                                        function (isConfirm) {#}
+{#                                            if (isConfirm){#}
+{#                                                swal({#}
+{#                                                    title: 'Пользователь с таким email уже зарегистрирован',#}
+{#                                                    text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',#}
+{#                                                    type: 'warning'#}
+{#                                                })#}
+{#                                            }#}
+{#                                        });#}
+{#    #}
+{#                                    }#}
+{#                                }#}
+        {#                        alert(data);#}
+{#                                clear_send_docs();#}
+{#                            }#}
+{#                        });#}
+
+                    }
+
+//send documents ends
+
+
+
+
+
+
 
                 });
             },
@@ -872,7 +1016,7 @@
                                 $('.close').click();
                                     swal({
                                         title: 'Информация успешно отправлена',
-                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время с Вами свяжется наш Менеджер',
+                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время с Вами свяжется наш менеджер',
                                         type: 'success',
                                         confirmButtonText: 'Ok',
                                         closeOnConfirm: false
@@ -941,46 +1085,46 @@
             {% endif %}
 
 
-            $('#register').on('click', function (e) {
-               hide_reg_errors();
+{#            $('#register').on('click', function (e) {#}
+{#               hide_reg_errors();#}
 {#               $('#login_group').slideUp('fast');#}
-               $('#footer_group').slideUp('fast');
-               $('#btn_submit_group').slideUp('fast');
-                $('#title_auth').slideUp('fast');
+{#               $('#footer_group').slideUp('fast');#}
+{#               $('#btn_submit_group').slideUp('fast');#}
+{#                $('#title_auth').slideUp('fast');#}
+{##}
+{#               $('#name_group').slideDown('fast');#}
+{#               $('#pass_rep_group').slideDown('fast');#}
+{#               $('#reg_btns_group').slideDown('fast');#}
+{#                $('#footer_group_reg').slideDown('fast');#}
+{#                $('#title_reg').slideDown('fast');#}
+{##}
+{#            });#}
 
-               $('#name_group').slideDown('fast');
-               $('#pass_rep_group').slideDown('fast');
-               $('#reg_btns_group').slideDown('fast');
-                $('#footer_group_reg').slideDown('fast');
-                $('#title_reg').slideDown('fast');
-
-            });
-
-            $('#footer_login').on('click', function (e) {
-               hide_reg_errors();
-               $('#name_group').slideUp('fast');
-               $('#pass_rep_group').slideUp('fast');
-               $('#reg_btns_group').slideUp('fast');
-                $('#footer_group_reg').slideUp('fast');
-                $('#title_reg').slideUp('fast');
-
+{#            $('#footer_login').on('click', function (e) {#}
+{#               hide_reg_errors();#}
+{#               $('#name_group').slideUp('fast');#}
+{#               $('#pass_rep_group').slideUp('fast');#}
+{#               $('#reg_btns_group').slideUp('fast');#}
+{#                $('#footer_group_reg').slideUp('fast');#}
+{#                $('#title_reg').slideUp('fast');#}
+{##}
 {#               $('#login_group').slideDown('fast');#}
-               $('#footer_group').slideDown('fast');
-               $('#btn_submit_group').slideDown('fast');
-               $('#title_auth').slideDown('fast');
+{#               $('#footer_group').slideDown('fast');#}
+{#               $('#btn_submit_group').slideDown('fast');#}
+{#               $('#title_auth').slideDown('fast');#}
 
 
             });
 
-            $('#login_group').on('click', function () {
-                hide_reg_errors();
-            });
-            $('#pass_group').on('click', function () {
-                hide_reg_errors();
-            });
-            $('#pass_rep_group').on('click', function () {
-                hide_reg_errors();
-            });
+{#            $('#login_group').on('click', function () {#}
+{#                hide_reg_errors();#}
+{#            });#}
+{#            $('#pass_group').on('click', function () {#}
+{#                hide_reg_errors();#}
+{#            });#}
+{#            $('#pass_rep_group').on('click', function () {#}
+{#                hide_reg_errors();#}
+{#            });#}
             $('#login').on('click', function () {
 {#                $('#btn_login').click();#}
                     window.location.href = '{% url "ru:dashboard_ru:login_board" %}'
@@ -991,286 +1135,286 @@
             var email = new RegExp(/^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/);
             var tel_exp = new RegExp(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/)
 
-            $('#btn_submit_reg').on('click', function (e) {
-               e.preventDefault();
-
-            });
-
-            $('#btn_submit_reg').on('click', function (e) {
-                var message = '';
-                var email_err = false;
-                e.preventDefault();
-                 //валидация email
-                if ($('#email').val() != '') {
-                         if(!email.test($('#email').val())) {
-                            $('#email').addClass('invalid');
-                             message = 'Проверьте правильность заполнения email';
-                             email_err = true;
-                         }
-                }else {
-                    email_err = true;
-                    message = 'Заполните поле email';
-                    $('#email').addClass('invalid');
-                }
-                //валидация пароля
-                var password_check = new RegExp(/^[a-zA-Z0-9_]{3,20}$/);
-                if ($('#password').val() != $('#password_rep').val() && $('#password_rep').val() != '' && $('#password').val() != ''){
-                    if (message != ''){
-                        message = message + '<br/>Пароли должны совпадать';
-                        $('#password').addClass('invalid');
-                        $('#password_rep').addClass('invalid');
-                        email_err = true;
-                    }else {
-                        message = 'Пароли должны совпадать';
-                        $('#password').addClass('invalid');
-                        $('#password_rep').addClass('invalid');
-                        email_err = true;
-
-                    }
-                }else {
-                    if ($('#password_rep').val() == '' || $('#password').val() == ''){
-                        if (message != ''){
-                            message = message + '<br/>Пароли не могут быть пустыми';
-                            $('#password').addClass('invalid');
-                            $('#password_rep').addClass('invalid');
-                            email_err = true;
-                        }else {
-                            message = 'Пароли не могут быть пустыми';
-                            $('#password').addClass('invalid');
-                            $('#password_rep').addClass('invalid');
-                            email_err = true;
-
-                        }
-
-                    }
-
-                }
-                if(email_err){
-                    showMessage(message);
-                }else {
-                    showPreloader();
-                    var formdata = new FormData($('#auth_form').get(0));
-                    $.ajax({
-                        url: '{% url 'ru:reg_user' %}',
-                        type: 'POST',
-
-                        data: formdata,
-
-
-                        processData: false,
-                        contentType: false,
-                        error: function(data){
-                            console.log(data);
-                        },
-                        success:function (data) {
-                            if (data == 'ok'){
-                                location.reload();
-                            }else {
-                                hidePreloader();
-                                $('#email').addClass('invalid');
-
-                                $('#message').html('Пользователь с таким email уже существует');
-                                $('#message').addClass('err_msg');
-                                $('#message').slideDown('fast');
-                            }
+{#            $('#btn_submit_reg').on('click', function (e) {#}
+{#               e.preventDefault();#}
+{##}
+{#            });#}
+{##}
+{#            $('#btn_submit_reg').on('click', function (e) {#}
+{#                var message = '';#}
+{#                var email_err = false;#}
+{#                e.preventDefault();#}
+{#                 //валидация email#}
+{#                if ($('#email').val() != '') {#}
+{#                         if(!email.test($('#email').val())) {#}
+{#                            $('#email').addClass('invalid');#}
+{#                             message = 'Проверьте правильность заполнения email';#}
+{#                             email_err = true;#}
+{#                         }#}
+{#                }else {#}
+{#                    email_err = true;#}
+{#                    message = 'Заполните поле email';#}
+{#                    $('#email').addClass('invalid');#}
+{#                }#}
+{#                //валидация пароля#}
+{#                var password_check = new RegExp(/^[a-zA-Z0-9_]{3,20}$/);#}
+{#                if ($('#password').val() != $('#password_rep').val() && $('#password_rep').val() != '' && $('#password').val() != ''){#}
+{#                    if (message != ''){#}
+{#                        message = message + '<br/>Пароли должны совпадать';#}
+{#                        $('#password').addClass('invalid');#}
+{#                        $('#password_rep').addClass('invalid');#}
+{#                        email_err = true;#}
+{#                    }else {#}
+{#                        message = 'Пароли должны совпадать';#}
+{#                        $('#password').addClass('invalid');#}
+{#                        $('#password_rep').addClass('invalid');#}
+{#                        email_err = true;#}
+{##}
+{#                    }#}
+{#                }else {#}
+{#                    if ($('#password_rep').val() == '' || $('#password').val() == ''){#}
+{#                        if (message != ''){#}
+{#                            message = message + '<br/>Пароли не могут быть пустыми';#}
+{#                            $('#password').addClass('invalid');#}
+{#                            $('#password_rep').addClass('invalid');#}
+{#                            email_err = true;#}
+{#                        }else {#}
+{#                            message = 'Пароли не могут быть пустыми';#}
+{#                            $('#password').addClass('invalid');#}
+{#                            $('#password_rep').addClass('invalid');#}
+{#                            email_err = true;#}
+{##}
+{#                        }#}
+{##}
+{#                    }#}
+{##}
+{#                }#}
+{#                if(email_err){#}
+{#                    showMessage(message);#}
+{#                }else {#}
+{#                    showPreloader();#}
+{#                    var formdata = new FormData($('#auth_form').get(0));#}
+{#                    $.ajax({#}
+{#                        url: '{% url 'ru:reg_user' %}',#}
+{#                        type: 'POST',#}
+{##}
+{#                        data: formdata,#}
+{##}
+{##}
+{#                        processData: false,#}
+{#                        contentType: false,#}
+{#                        error: function(data){#}
+{#                            console.log(data);#}
+{#                        },#}
+{#                        success:function (data) {#}
+{#                            if (data == 'ok'){#}
+{#                                location.reload();#}
+{#                            }else {#}
+{#                                hidePreloader();#}
+{#                                $('#email').addClass('invalid');#}
+{##}
+{#                                $('#message').html('Пользователь с таким email уже существует');#}
+{#                                $('#message').addClass('err_msg');#}
+{#                                $('#message').slideDown('fast');#}
+{#                            }#}
     {#                        alert(data);#}
-
-                        }
-                    });
-
-                }
-            });
+{##}
+{#                        }#}
+{#                    });#}
+{##}
+{#                }#}
+{#            });#}
 
 //send documents starts
 {#            $('#btn_doc_send_open').on#}
 
-            $('#email_doc_send').on('click', function () {
-                hideMessage_doc_send();
-            });
-            $('#name_doc_send').on('click', function () {
-                hideMessage_doc_send();
-            });
-            $('#tel_doc_send').on('click', function () {
-                hideMessage_doc_send();
-            });
-            $('#text_doc_send').on('click', function () {
-                hideMessage_doc_send();
-            });
-            $('#filesToUpload').on('click', function () {
-                hideMessage_doc_send();
-            });
-
-            $('#btn_submit_group_doc_send').on('click', function (e) {
-                var message_doc_send = '';
-                var email_err_doc_send = false;
-                var email_err_doc_send_msg = '';
-                var name_err_doc_send = false;
-                var name_err_doc_send_msg = '';
-                var tel_err_doc_send = false;
-                var tel_err_doc_send_msg = '';
-                var file_err_doc_send = false;
-                var file_err_doc_send_msg = '';
-                e.preventDefault();
-                //валидация email
-                if ($('#email_doc_send').val() != '') {
-                    if (!email.test($('#email_doc_send').val())) {
-                        $('#email_doc_send').addClass('invalid');
-                        email_err_doc_send_msg = 'Проверьте правильность заполнения email<br/>';
-                        email_err_doc_send = true;
-                    }
-                } else {
-                    email_err_doc_send = true;
-                    email_err_doc_send_msg = 'Введите свой email<br/>';
-                    $('#email_doc_send').addClass('invalid');
-                }
-                //проверка имени
-                if ($('#name_doc_send').val() == ''){
-                    name_err_doc_send = true;
-                    name_err_doc_send_msg = 'Введите свое имя </br>';
-                    $('#name_doc_send').addClass('invalid');
-
-                }
-                //проверка телефона
-                if ($('#tel_doc_send').val() == ''){
-                    tel_err_doc_send = true;
-                    tel_err_doc_send_msg = 'Введите свой номер телефона </br>';
-                    $('#tel_doc_send').addClass('invalid');
-
-                }else {
-                    if (!tel_exp.test($('#tel_doc_send').val())) {
-                        $('#tel_doc_send').addClass('invalid');
-                        tel_err_doc_send_msg = 'Проверьте правильность номера телефона<br/>';
-                        tel_err_doc_send = true;
-                    }
-                }
-                //проверка файла
-                if ($('#text_doc_send').val() == '' && $('#fileList li').length == 0){
-                    file_err_doc_send = true;
-                    file_err_doc_send_msg = 'Добавьте текст или файл';
-                    $('#text_doc_send').addClass('invalid');
-
-                }
-
-
-                if(email_err_doc_send || name_err_doc_send || file_err_doc_send || tel_err_doc_send){
-                    $('#message_doc_send').html('');
-                    message_doc_send = name_err_doc_send_msg + email_err_doc_send_msg + tel_err_doc_send_msg + file_err_doc_send_msg;
-                    showMessage_doc_send(message_doc_send);
-                    $('#modalDocSend').animate({scrollTop: 0}, 'slow');
-
+{#            $('#email_doc_send').on('click', function () {#}
+{#                hideMessage_doc_send();#}
+{#            });#}
+{#            $('#name_doc_send').on('click', function () {#}
+{#                hideMessage_doc_send();#}
+{#            });#}
+{#            $('#tel_doc_send').on('click', function () {#}
+{#                hideMessage_doc_send();#}
+{#            });#}
+{#            $('#text_doc_send').on('click', function () {#}
+{#                hideMessage_doc_send();#}
+{#            });#}
+{#            $('#filesToUpload').on('click', function () {#}
+{#                hideMessage_doc_send();#}
+{#            });#}
+{##}
+{#            $('#btn_submit_group_doc_send').on('click', function (e) {#}
+{#                var message_doc_send = '';#}
+{#                var email_err_doc_send = false;#}
+{#                var email_err_doc_send_msg = '';#}
+{#                var name_err_doc_send = false;#}
+{#                var name_err_doc_send_msg = '';#}
+{#                var tel_err_doc_send = false;#}
+{#                var tel_err_doc_send_msg = '';#}
+{#                var file_err_doc_send = false;#}
+{#                var file_err_doc_send_msg = '';#}
+{#                e.preventDefault();#}
+{#                //валидация email#}
+{#                if ($('#email_doc_send').val() != '') {#}
+{#                    if (!email.test($('#email_doc_send').val())) {#}
+{#                        $('#email_doc_send').addClass('invalid');#}
+{#                        email_err_doc_send_msg = 'Проверьте правильность заполнения email<br/>';#}
+{#                        email_err_doc_send = true;#}
+{#                    }#}
+{#                } else {#}
+{#                    email_err_doc_send = true;#}
+{#                    email_err_doc_send_msg = 'Введите свой email<br/>';#}
+{#                    $('#email_doc_send').addClass('invalid');#}
+{#                }#}
+{#                //проверка имени#}
+{#                if ($('#name_doc_send').val() == ''){#}
+{#                    name_err_doc_send = true;#}
+{#                    name_err_doc_send_msg = 'Введите свое имя </br>';#}
+{#                    $('#name_doc_send').addClass('invalid');#}
+{##}
+{#                }#}
+{#                //проверка телефона#}
+{#                if ($('#tel_doc_send').val() == ''){#}
+{#                    tel_err_doc_send = true;#}
+{#                    tel_err_doc_send_msg = 'Введите свой номер телефона </br>';#}
+{#                    $('#tel_doc_send').addClass('invalid');#}
+{##}
+{#                }else {#}
+{#                    if (!tel_exp.test($('#tel_doc_send').val())) {#}
+{#                        $('#tel_doc_send').addClass('invalid');#}
+{#                        tel_err_doc_send_msg = 'Проверьте правильность номера телефона<br/>';#}
+{#                        tel_err_doc_send = true;#}
+{#                    }#}
+{#                }#}
+{#                //проверка файла#}
+{#                if ($('#text_doc_send').val() == '' && $('#drop_zone_order_files .dz-preview').length == 0){#}
+{#                    file_err_doc_send = true;#}
+{#                    file_err_doc_send_msg = 'Добавьте текст или файл';#}
+{#                    $('#text_doc_send').addClass('invalid');#}
+{##}
+{#                }#}
+{##}
+{##}
+{#                if(email_err_doc_send || name_err_doc_send || file_err_doc_send || tel_err_doc_send){#}
+{#                    $('#message_doc_send').html('');#}
+{#                    message_doc_send = name_err_doc_send_msg + email_err_doc_send_msg + tel_err_doc_send_msg + file_err_doc_send_msg;#}
+{#                    showMessage_doc_send(message_doc_send);#}
+{#                    $('#modalDocSend').animate({scrollTop: 0}, 'slow');#}
+{##}
 {#                    console.log($('#trans_from').val() + ' ' + $('#trans_to').val());#}
-
+{##}
 {#                    $('#modalDocSend').on('shown.bs.modal', function () {#}
 {#                        $('#modalDocSend .modal-content').animate({'scrollTop': $('#message_doc_send').offset().top}, 2000)#}
 {##}
 {#                    });#}
-
-                }else {
-                    showPreloader();
-                    var formdata = new FormData($('#doc_send_form').get(0));
-                    $.ajax({
-                        url: '{% url 'ru:save_files_trans' %}',
-                        type: 'POST',
-                        data: formdata,
-                        processData: false,
-                        contentType: false,
-                        error: function(data){
-                            console.log(data);
-                        },
-                        success:function (data) {
-                            hidePreloader();
-
-                            if (data == 'ok'){
-                                $('.close').click();
-                                    swal({
-                                        title: 'Информация успешно отправлена',
-                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
-                                        type: 'success',
-                                        confirmButtonText: 'Ok',
-                                        closeOnConfirm: false
-                                    });
-
+{##}
+{#                }else {#}
+{#                    showPreloader();#}
+{#                    var formdata = new FormData($('#doc_send_form').get(0));#}
+{#                    $.ajax({#}
+{#                        url: '{% url 'ru:save_files_trans' %}',#}
+{#                        type: 'POST',#}
+{#                        data: formdata,#}
+{#                        processData: false,#}
+{#                        contentType: false,#}
+{#                        error: function(data){#}
+{#                            console.log(data);#}
+{#                        },#}
+{#                        success:function (data) {#}
+{#                            hidePreloader();#}
+{##}
+{#                            if (data == 'ok'){#}
+{#                                $('.close').click();#}
+{#                                    swal({#}
+{#                                        title: 'Информация успешно отправлена',#}
+{#                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
+{#                                        type: 'success',#}
+{#                                        confirmButtonText: 'Ok',#}
+{#                                        closeOnConfirm: false#}
+{#                                    });#}
+{##}
 {#                                toastr.success('Заголовок', 'Текст все ок');#}
-                            }else {
-                                $('.close').click();
-                                
-                                if (data == 'user_exists'){
-                                    swal({
-                                        title: 'Информация успешно отправлена',
-                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',
-                                        type: 'success',
-                                        confirmButtonText: 'Ok',
-                                        closeOnConfirm: false
-                                    },
-                                    function (isConfirm) {
-                                        if (isConfirm){
-                                            swal({
-                                                title: 'Пользователь с таким email уже зарегистрирован',
-                                                text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',
-                                                type: 'warning'
-                                            })
-                                        }
-                                    });
-
-                                }
-                            }
+{#                            }else {#}
+{#                                $('.close').click();#}
+{#                                #}
+{#                                if (data == 'user_exists'){#}
+{#                                    swal({#}
+{#                                        title: 'Информация успешно отправлена',#}
+{#                                        text: 'Спасибо за оказанное нам доверие! В ближайшее время на Вашу почту будет отправлено коммерческое предложение',#}
+{#                                        type: 'success',#}
+{#                                        confirmButtonText: 'Ok',#}
+{#                                        closeOnConfirm: false#}
+{#                                    },#}
+{#                                    function (isConfirm) {#}
+{#                                        if (isConfirm){#}
+{#                                            swal({#}
+{#                                                title: 'Пользователь с таким email уже зарегистрирован',#}
+{#                                                text: 'Если учетная запись принадлежит Вам, Вы можете отслеживать свои заказы в личном кабинете',#}
+{#                                                type: 'warning'#}
+{#                                            })#}
+{#                                        }#}
+{#                                    });#}
+{##}
+{#                                }#}
+{#                            }#}
     {#                        alert(data);#}
-                            clear_send_docs();
-                        }
-                    });
-
-                }
-            });
-
-//send documents ends
-
-
-            $('#btn_submit').on('click', function (e) {
-                showPreloader();
-                e.preventDefault();
-                var formdata = new FormData($('#auth_form').get(0));
-                $.ajax({
-                    url: '{% url 'ru:check_user' %}',
-                    type: 'POST',
-
-                    data: formdata,
+{#                            clear_send_docs();#}
+{#                        }#}
+{#                    });#}
+{##}
+{#                }#}
+{#            });#}
+{##}
+{#//send documents ends#}
 
 
-                    processData: false,
-                    contentType: false,
-                    error: function(data){
-                        console.log(data);
-                    },
-                    success:function (data) {
-                        if (data == 0){
-                            location.reload();
-                        }else {
-                            hidePreloader();
-                            $('#password').addClass('invalid');
-                            $('#email').addClass('invalid');
-
-                            $('#message').html('Email или пароль указаны не верно');
-                            $('#message').addClass('err_msg');
-                            $('#message').slideDown('fast');
-                        }
+{#            $('#btn_submit').on('click', function (e) {#}
+{#                showPreloader();#}
+{#                e.preventDefault();#}
+{#                var formdata = new FormData($('#auth_form').get(0));#}
+{#                $.ajax({#}
+{#                    url: '{% url 'ru:check_user' %}',#}
+{#                    type: 'POST',#}
+{##}
+{#                    data: formdata,#}
+{##}
+{##}
+{#                    processData: false,#}
+{#                    contentType: false,#}
+{#                    error: function(data){#}
+{#                        console.log(data);#}
+{#                    },#}
+{#                    success:function (data) {#}
+{#                        if (data == 0){#}
+{#                            location.reload();#}
+{#                        }else {#}
+{#                            hidePreloader();#}
+{#                            $('#password').addClass('invalid');#}
+{#                            $('#email').addClass('invalid');#}
+{##}
+{#                            $('#message').html('Email или пароль указаны не верно');#}
+{#                            $('#message').addClass('err_msg');#}
+{#                            $('#message').slideDown('fast');#}
+{#                        }#}
 {#                        alert(data);#}
-
-                    }
-                });
-
-            });
-            $('#logout').on('click', function () {
-                $.post("{% url 'ru:logoutUser' %}").done(function(data){
-                    showPreloader();
-                    location.reload();
-                })
-            });
+{##}
+{#                    }#}
+{#                });#}
+{##}
+{#            });#}
+{#            $('#logout').on('click', function () {#}
+{#                $.post("{% url 'ru:logoutUser' %}").done(function(data){#}
+{#                    showPreloader();#}
+{#                    location.reload();#}
+{#                })#}
+{#            });#}
 
 {#            $('#settings').on('click', function () {#}
 {#                showPreloader();#}
 {#                $.post("{% url 'ru:dashboard_ru:base_board' %}");#}
 {#            })#}
-        })
+{#        })#}
 
     </script>
     {% block script_footer %}
