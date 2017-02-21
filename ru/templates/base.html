@@ -1315,17 +1315,17 @@
 {#                });#}
 {##}
 {#            });#}
-{#            $('#logout').on('click', function () {#}
-{#                $.post("{% url 'ru:logoutUser' %}").done(function(data){#}
-{#                    showPreloader();#}
-{#                    location.reload();#}
-{#                })#}
-{#            });#}
+            $('#logout').on('click', function () {
+                $.post("{% url 'ru:logoutUser' %}").done(function(data){
+                    showPreloader();
+                    location.reload();
+                })
+            });
 
-{#            $('#settings').on('click', function () {#}
-{#                showPreloader();#}
-{#                $.post("{% url 'ru:dashboard_ru:base_board' %}");#}
-{#            })#}
+            $('#settings').on('click', function () {
+                showPreloader();
+                $.post("{% url 'ru:dashboard_ru:base_board' %}");
+            });
 {#        })#}
 
     </script>
