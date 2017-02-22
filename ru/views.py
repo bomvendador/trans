@@ -450,6 +450,7 @@ def save_files_trans(request):
                     user_profile.user = user
                     user_profile.role = Role.objects.get(role_name=u'Клиент')
                     user_profile.save()
+                    logger.debug('timelin')
                     timeline_user = user
                     timeline_userprofile = user_profile
                     email_context = {
