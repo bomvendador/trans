@@ -317,3 +317,11 @@ class TimelineOrder(models.Model):
     event = models.CharField(max_length=50, null=False, blank=False)
     added = models.DateTimeField(auto_now_add=True, auto_now=False)
 
+
+class Payment(models.Model):
+    order = models.ForeignKey(SentDoc)
+    amount = models.DecimalField(null=False, blank=False)
+    invoice = models.ForeignKey(Invoice, null=False, blank=False)
+    company = models.ForeignKey(Company, null=False, blank=False)
+    method = models.ForeignKey(PayMethod)
+
