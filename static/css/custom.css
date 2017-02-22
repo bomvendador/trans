@@ -697,7 +697,7 @@ and (min-width: 768px)
 .slide_div .slider-p {
     position: relative;
 }
-
+.slide_div .slider-p:after,
 .slide_div .slider-p:after{
     content: '';
     position: absolute;
@@ -707,7 +707,14 @@ and (min-width: 768px)
     /*height: 2px;*/
     top: 0;
     background: white;
+ }
 
+.slide_div .slider-p:after{
+    margin-left: 10px;
+}
+
+.slide_div .slider-p:before{
+    margin-right: 10px;
 }
 
 .slide_div .slider-p3:after{
