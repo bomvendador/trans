@@ -320,7 +320,7 @@ class TimelineOrder(models.Model):
 
 class Payment(models.Model):
     order = models.ForeignKey(SentDoc)
-    amount = models.DecimalField(null=False, blank=False)
+    amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     invoice = models.ForeignKey(Invoice, null=False, blank=False)
     company = models.ForeignKey(Company, null=False, blank=False)
     method = models.ForeignKey(PayMethod)
