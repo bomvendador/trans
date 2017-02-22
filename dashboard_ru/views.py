@@ -150,6 +150,7 @@ def forgot_password(request):
             password = User.objects.make_random_password()
             user.set_password(password)
             user_profile = UserProfile.objects.get(user=user)
+            user.save()
             if user_profile.role.role_name == u'Клиент':
                 client = Client.objects.get(user=user)
                 client.init_password = password
