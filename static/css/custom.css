@@ -694,13 +694,18 @@ and (min-width: 768px)
     margin: 0px!important;
 }
 
+.slide_div .slider-p {
+    position: relative;
+}
+
 .slide_div .slider-p:after{
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 48%;
-    width: 60px;
-    height: 2px;
+    border-bottom: 2px solid white;
+    /*left: 48%;*/
+    width: 90px;
+    /*height: 2px;*/
+    top: 0;
     background: white;
 
 }
