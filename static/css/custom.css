@@ -436,6 +436,17 @@ ul{
 }
 
 @media only screen
+  and (max-width: 320px) {
+    .mob-tel-style{
+        margin-top: -42px;
+        margin-left: 108px;
+        color: white;
+        font-size: 20px;
+
+    }
+}
+
+@media only screen
 and (min-width: 1210px)
  {
 
