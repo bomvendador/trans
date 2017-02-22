@@ -165,6 +165,7 @@ def forgot_password(request):
             return HttpResponse('email_not_in_db')
     return render(request, 'forgot_password.html')
 
+
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def base_board(request, user_id):
     # print(user_id)
