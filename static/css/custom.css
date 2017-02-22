@@ -710,10 +710,12 @@ and (min-width: 768px)
  }
 
 .slide_div .slider-p:before{
+    left: 100%;
     margin-left: 10px;
 }
 
 .slide_div .slider-p:after{
+    right: 100%;
     margin-right: 10px;
 }
 
