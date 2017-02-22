@@ -1582,7 +1582,9 @@ def save_order_comment_client(request):
                 'order': SentDoc.objects.get(id=order_id),
                 'manager': manager,
                 'comment_text': comment.comment.text,
-                'answer': comment_text
+                'answer': comment_text,
+                'prolingva_tel': settings.PROLINGVA_TEL
+
             }
             # TODO изменить имейл на имейл клиента
             send_email(request, 'answer_to_client_comment.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
@@ -1597,7 +1599,9 @@ def save_order_comment_client(request):
             email_context = {
                 'order': SentDoc.objects.get(id=order_id),
                 'manager': manager,
-                'comment_text': comment_text
+                'comment_text': comment_text,
+                'prolingva_tel': settings.PROLINGVA_TEL
+
             }
             # TODO изменить имейл на имейл клиента
             send_email(request, 'comments.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
@@ -1771,7 +1775,9 @@ def send_calculation_to_client(request):
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
                          'manager': manager,
-                         'order_price': order_price
+                         'order_price': order_price,
+                         'prolingva_tel': settings.PROLINGVA_TEL
+
                          }
         # TODO изменить адрес отправки
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
@@ -1816,6 +1822,8 @@ def send_trans_files_to_client(request):
         manager = User.objects.get(id=order.resp_id)
         email_context = {'order': order,
                          'manager': manager,
+                         'prolingva_tel': settings.PROLINGVA_TEL
+
                          }
         # TODO изменить адрес отправки
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
@@ -1983,7 +1991,9 @@ def set_company_for_payment(request):
         invoice.save()
         email_context_ = {
             'order': order_inst,
-            'company': company_inst
+            'company': company_inst,
+            'prolingva_tel': settings.PROLINGVA_TEL
+
         }
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context_)
         name = company_inst.property.short_name + ' "' + company_inst.name + '"'
@@ -2012,7 +2022,9 @@ def del_company_from_payment(request):
 
         Invoice.objects.filter(order=order_inst).delete()
         email_context = {
-            'order': order_inst
+            'order': order_inst,
+            'prolingva_tel': settings.PROLINGVA_TEL
+
         }
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context)
         return HttpResponse('ok')

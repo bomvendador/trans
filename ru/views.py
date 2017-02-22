@@ -171,7 +171,7 @@ def reg_user(request):
                 client.visited_times = 1
                 client.save()
                 user_profile.role = Role.objects.get(role_name=request.POST['role'])
-                email_context = {'user': user, 'login': email, 'password': password}
+                email_context = {'user': user, 'login': email, 'password': password, 'prolingva_tel': settings.PROLINGVA_TEL}
                 dash_views.send_email(request, 'welcome.html', 'info@prolingva.ru', [email], email_context)
             # else:
             #     user_profile.role = Role.objects.get(id=3)
@@ -262,9 +262,8 @@ def save_files_trans(request):
             doc_sent.save()
             update_client_statistics(user)
             email_context = {'client': name, 'email': email, 'type': u'Сайт - футер', 'message': data[
-                'message_contact_form_footer']}
+                'message_contact_form_footer'], 'prolingva_tel': settings.PROLINGVA_TEL}
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
-
             return HttpResponse(message)
 
         if request.POST.get('back_call'):
@@ -275,7 +274,7 @@ def save_files_trans(request):
             back_call.tel = tel
             back_call.name = name
             back_call.save()
-            email_context = {'client': name, 'type': u'Обратный звонок', 'tel': tel}
+            email_context = {'client': name, 'type': u'Обратный звонок', 'tel': tel, 'prolingva_tel': settings.PROLINGVA_TEL }
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse('ok')
@@ -329,7 +328,7 @@ def save_files_trans(request):
                 email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_type': short_name_type, 'message': data['text_contact_form']}
             if short_name_theme:
                 email_context = {'client': name, 'type': u'Заказ услуги', 'email': email, 'tel': tel, 'order_theme': short_name_theme,
-                                 'message': data['text_contact_form']}
+                                 'prolingva_tel': settings.PROLINGVA_TEL, 'message': data['text_contact_form']}
                 doc_sent.translation_theme = TranslationTheme.objects.get(short_name=short_name_theme)
             doc_sent.text = ''
             doc_sent.save()
@@ -553,7 +552,7 @@ def save_files_trans(request):
 
             timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=u'Заявка создана')
             timeline.save()
-            email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel}
+            email_context = {'client': name, 'email': email, 'type': email_source, 'ID': doc_sent.id, 'tel': tel, 'prolingva_tel': settings.PROLINGVA_TEL}
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
 
             return HttpResponse(message)
