@@ -332,6 +332,10 @@ def save_files_trans(request):
                 doc_sent.translation_theme = TranslationTheme.objects.get(short_name=short_name_theme)
             doc_sent.text = ''
             doc_sent.save()
+            timeline_user = user
+            timeline_userprofile = UserProfile.objects.get(user=user)
+            timeline = TimelineOrder(order=doc_sent, author=timeline_user, author_profile=timeline_userprofile, event=u'Заявка создана')
+            timeline.save()
 
             dash_views.send_email(request, 'orders.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)
             return HttpResponse(message)
@@ -450,7 +454,6 @@ def save_files_trans(request):
                     user_profile.user = user
                     user_profile.role = Role.objects.get(role_name=u'Клиент')
                     user_profile.save()
-                    logger.debug('timelin')
                     timeline_user = user
                     timeline_userprofile = user_profile
                     email_context = {
