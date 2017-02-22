@@ -616,7 +616,8 @@ def get_new_testimonials_list(request):
     testimonials = Testimonials.objects.filter(new=True)
     context.update(
         {
-            'testimonials': testimonials
+            'testimonials': testimonials,
+            'new': 1
 
         })
     return render(request, 'testimonials_list.html', context)
