@@ -324,4 +324,7 @@ class Payment(models.Model):
     invoice = models.ForeignKey(Invoice, null=False, blank=False)
     company = models.ForeignKey(Company, null=False, blank=False)
     method = models.ForeignKey(PayMethod)
+    added = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
+    changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
+    added_by = models.ForeignKey(User, null=True, blank=True)
 

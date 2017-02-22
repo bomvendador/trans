@@ -139,6 +139,32 @@ def sign_up_board(request):
     return render(request, 'sign_up_board.html')
 
 
+def forgot_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+        if user:
+            password = User.objects.make_random_password()
+            user.set_password(password)
+            user_profile = UserProfile.objects.get(user=user)
+            if user_profile.role.role_name == u'Клиент':
+                client = Client.objects.get(user=user)
+                client.init_password = password
+                client.save()
+                email_context = {
+                    'user': user,
+                    'login': user.email,
+                    'password': password
+                }
+                send_email(request, 'forgot_password', 'info@prolingva.ru', [user.email], email_context)
+                return HttpResponse('ok')
+        else:
+            return HttpResponse('email_not_in_db')
+
+
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def base_board(request, user_id):
     # print(user_id)
