@@ -433,6 +433,14 @@ ul{
     .mob-360{
         display: none;
     }
+    .mob-tel-style{
+        margin-top: -42px;
+        margin-left: 108px;
+        color: white;
+        font-size: 20px;
+
+    }
+
 }
 
 @media only screen
