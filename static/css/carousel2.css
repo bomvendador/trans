@@ -348,3 +348,13 @@
     }
 
 }
+
+@media (max-width: 340px) {
+
+    .slide-text > p
+    {
+        font-size: 13px;
+
+    }
+
+}
