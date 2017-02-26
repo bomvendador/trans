@@ -132,14 +132,14 @@
                                 {% for sent_doc in sent_docs %}
 
 
-                                    <tr class="sent_doc pointer-pure" id="{{ sent_doc.id }}">
+                                    <tr class="pointer-pure" id="{{ sent_doc.id }}">
 {#                                        <td>#}
 {#                                            <input type="checkbox" id="t_{{ sent_doc.id }}" class="">#}
 {#                                            <label for="t_{{ sent_doc.id }}" style="height: 5px"></label>#}
 {##}
 {#                                        </td>#}
 
-                                        <td class="">
+                                        <td class="sent_doc pointer-pure">
 
                                         {{ sent_doc.id|center:'40' }}
                                         {% if user_profile.role.role_name == 'Клиент' and sent_doc.price and sent_doc.paystatus.name != 'Paid'%}
@@ -157,21 +157,21 @@
                                         {% endif %}
 
                                         </td>
-                                        <td>{{ sent_doc.timestamp|date:"d.m.Y, H:i" }}</td>
-                                        <td>{% if sent_doc.text_qnt > 0 %}
+                                        <td class="sent_doc pointer-pure">{{ sent_doc.timestamp|date:"d.m.Y, H:i" }}</td>
+                                        <td class="sent_doc pointer-pure">{% if sent_doc.text_qnt > 0 %}
                                             {{ sent_doc.text_qnt }}
                                             {% else %}
                                             -
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        <td class="sent_doc pointer-pure">
                                             {% if sent_doc.files_qnt > 0 %}
                                             {{ sent_doc.files_qnt }}
                                             {% else %}
                                             -
                                             {% endif %}
                                         </td>
-                                        <td>
+                                        <td class="sent_doc pointer-pure">
                                             <i class="mdi mdi-account {% if not sent_doc.resp %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
                                             {% if user_profile.role.role_name != 'Клиент' %}
                                             <i class="mdi mdi-comment-processing {% if not sent_doc.comments %}opacity-0_5{% endif %}" id="manager_assigned" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
@@ -184,14 +184,14 @@
                                             <i class="mdi mdi-spellcheck {% if not sent_doc.translation_sent_date %}opacity-0_5{% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
 
                                         </td>
-                                        <td>{% if sent_doc.trans_from.name %}
+                                        <td class="sent_doc pointer-pure">{% if sent_doc.trans_from.name %}
                                             {{ sent_doc.trans_from.name }}/{{ sent_doc.trans_to.name }}
                                             {% else %}
                                             -
                                             {% endif %}
                                         </td>
                                         {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
-                                        <td>{{ sent_doc.resp.first_name }} {{ sent_doc.resp.last_name }}</td>
+                                        <td class="sent_doc pointer-pure">{{ sent_doc.resp.first_name }} {{ sent_doc.resp.last_name }}</td>
                                         {% endif %}
                                         {% if user_profile.role.role_name != 'Клиент' %}
                                         <td>{{ sent_doc.email }}</td>
@@ -232,7 +232,7 @@
 
 
     $('.sent_doc').on('click', function () {
-        window.location.href = "/ru/dashbrd/order_details/" + $(this).attr('id');
+        window.location.href = "/ru/dashbrd/order_details/" + $(this).parents().attr('id');
     })
 
 
