@@ -202,7 +202,7 @@
                                         <td class="sent_doc pointer-pure">{{ sent_doc.resp.first_name }} {{ sent_doc.resp.last_name }}</td>
                                         {% endif %}
                                         {% if user_profile.role.role_name != 'Клиент' %}
-                                        <td>{{ sent_doc.email }}</td>
+                                        <td class="sent_doc pointer-pure">{{ sent_doc.email }}</td>
                                         {% endif %}
 
                                     </tr>
