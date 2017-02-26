@@ -97,6 +97,11 @@
 {#                                            </ul>#}
 {##}
 {#                                        </th>#}
+
+                                        <th>
+                                            <input type="checkbox" id="check_all"/>
+{#                                            <label for="check_all">Default</label>#}
+                                        </th>
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
@@ -112,7 +117,10 @@
                                     </tr>
                                 </thead>
                                 <tfoot>
-{#                                        <th></th>#}
+                                        <th>
+                                            <input type="checkbox" id="check_all"/>
+{#                                            <label for="check_all">Default</label>#}
+                                        </th>
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
@@ -133,11 +141,11 @@
 
 
                                     <tr class="pointer-pure" id="{{ sent_doc.id }}">
-{#                                        <td>#}
-{#                                            <input type="checkbox" id="t_{{ sent_doc.id }}" class="">#}
-{#                                            <label for="t_{{ sent_doc.id }}" style="height: 5px"></label>#}
-{##}
-{#                                        </td>#}
+                                        <td>
+                                            <input type="checkbox" id="t_{{ sent_doc.id }}" class="">
+                                            <label for="t_{{ sent_doc.id }}" style="height: 5px"></label>
+
+                                        </td>
 
                                         <td class="sent_doc pointer-pure">
 
