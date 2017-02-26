@@ -142,7 +142,7 @@
 
                                     <tr class="" id="{{ sent_doc.id }}">
                                         <td>
-                                            <input type="checkbox" id="order_checked_{{ sent_doc.id }}" {% if payment_date %} disabled{% endif %}>
+                                            <input type="checkbox" id="order_checked_{{ sent_doc.id }}" {% if sent_doc.payment_date %} disabled{% endif %}>
                                             <label for="order_checked_{{ sent_doc.id }}" style="height: 5px"></label>
 
                                         </td>
