@@ -328,5 +328,5 @@ class Payment(models.Model):
     added = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     added_by = models.ForeignKey(User, null=True, blank=True)
-    date = models.DateTimeField()
+    date = models.DateTimeField(null=True, blank=True)
 
