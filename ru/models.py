@@ -186,6 +186,7 @@ class SentDoc (models.Model):
     paystatus = models.ForeignKey(PayStatus, blank=True, null=True)
     paymethod = models.ForeignKey(PayMethod, blank=True, null=True)
     payment_date = models.DateTimeField(null=True, blank=True)
+    is_paid = models.BooleanField(default=False)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     calc_sent_date = models.DateTimeField(null=True, blank=True)
     translation_sent_date = models.DateTimeField(null=True, blank=True)
