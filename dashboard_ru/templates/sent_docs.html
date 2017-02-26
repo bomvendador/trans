@@ -98,10 +98,7 @@
 {##}
 {#                                        </th>#}
 
-                                        <th>
-                                            <input type="checkbox" id="check_all"/>
-{#                                            <label for="check_all">Default</label>#}
-                                        </th>
+{#                                        <th></th>#}
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
@@ -117,10 +114,7 @@
                                     </tr>
                                 </thead>
                                 <tfoot>
-                                        <th>
-                                            <input type="checkbox" id="check_all"/>
-                                            <label for="check_all"></label>
-                                        </th>
+{#                                        <th></th>#}
                                         <th>ID</th>
                                         <th>Дата и время</th>
                                         <th>Текст</th>
@@ -141,11 +135,11 @@
 
 
                                     <tr class="" id="{{ sent_doc.id }}">
-                                        <td>
-                                            <input type="checkbox" id="order_checked_{{ sent_doc.id }}" {% if sent_doc.payment_date %} disabled{% endif %}>
-                                            <label for="order_checked_{{ sent_doc.id }}" style="height: 5px"></label>
-
-                                        </td>
+{#                                        <td>#}
+{#                                            <input type="checkbox" id="order_checked_{{ sent_doc.id }}" {% if sent_doc.payment_date %} disabled{% endif %}>#}
+{#                                            <label for="order_checked_{{ sent_doc.id }}" style="height: 5px"></label>#}
+{##}
+{#                                        </td>#}
 
                                         <td class="sent_doc pointer-pure">
 

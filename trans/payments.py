@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.messages import get_messages
 from django.contrib import messages, sessions
-from ru.models import SentDoc, PayStatus, PayMethod
+from ru.models import SentDoc, PayStatus, PayMethod, Payment
 from django.contrib.auth.decorators import login_required
 import json
 from dashboard_ru import views as dashboard_views
@@ -21,13 +21,17 @@ def payment_success(request):
         payment_date = request.POST.get('LMI_SYS_PAYMENT_DATE')
         logger.debug(u'время оплаты = ' + payment_date)
         order = SentDoc.objects.get(id=order_id)
-        order.payment_amount = payment_amount
+        payment = Payment()
+        payment.order = order
+        payment.amount = payment_amount
+        payment.method = PayMethod.objects.get(name='PayMaster')
         payment_date_local = datetime.strptime(payment_date, '%Y-%m-%dT%H:%M:%S') + timedelta(hours=3)
+        payment.date = payment_date_local
         order.payment_date = payment_date_local
         order.paystatus = PayStatus.objects.get(name='Paid')
-        order.paymethod = PayMethod.objects.get(name='PayMaster')
         order.just_paid = True
         order.save()
+        payment.save()
         # date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
         date_ = payment_date_local.strftime("%d.%m.%Y, %H:%M")
 
