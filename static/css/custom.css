@@ -204,6 +204,10 @@
     text-align: center!important;
 }
 
+.text_align_right{
+    text-align: right!important;
+}
+
 .border_radius_0{
     border-radius: 0px;
 }

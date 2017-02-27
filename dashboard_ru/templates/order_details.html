@@ -549,21 +549,21 @@
                                                     {% for payment in payments %}
                                                     <tr>
 
-                                                        <td class="text_align_center">
+                                                        <td class="text_align_right">
                                                             {{ forloop.counter }}
                                                         </td>
-                                                        <td class="text_align_center">
+                                                        <td class="text_align_right">
                                                         {% if payment.company %}
                                                             {{ payment.company.name }}
                                                         {% endif %}
                                                         </td>
-                                                        <td class="text_align_center">
+                                                        <td class="text_align_right">
                                                             {{ payment.method.name }}
                                                         </td>
-                                                        <td class="text_align_center">
+                                                        <td class="text_align_right">
                                                             {{ payment.date|date:"d.m.Y, H:i" }}
                                                         </td>
-                                                        <td class="text_align_center">
+                                                        <td class="text_align_right">
                                                             {{ payment.amount }}
                                                         </td>
 
@@ -573,7 +573,7 @@
                                                         <td colspan="4">
                                                             ИТОГО
                                                         </td>
-                                                        <td>
+                                                        <td class="text_align_right">
                                                             {{ payments_sum }}
                                                         </td>
 
