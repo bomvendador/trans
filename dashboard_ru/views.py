@@ -1050,6 +1050,7 @@ def update_order(request):
                 response.update({
                     'price_changed': 1
                 })
+                sent_doc.calc_sent_date = None
             sent_doc.price = price
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
             timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(price) + u' руб.')
