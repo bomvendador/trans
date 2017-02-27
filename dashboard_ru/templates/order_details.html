@@ -425,7 +425,7 @@
                                 <form id="form_payment">
 
                                     <div class="row">
-                                        <div class="col-sm-4 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">{% if user_profile.role.role_name == 'Клиент' %}Сумма к оплате{% else %}Сумма оплаты{% endif %}</h2>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
@@ -448,7 +448,7 @@
 
                                         </div>
                                         {% if user_profile.role.role_name != 'Клиент' %}
-                                        <div class="col-sm-4 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Дата оплаты</h2>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
@@ -461,7 +461,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-4 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Способ оплаты</h2>
                                             <div class="form-group input-group">
                                                 <span class="input-group-addon">
@@ -482,7 +482,7 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-sm-4 col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Баланс клиента</h2>
                                             <div class="form-line">
                                                 <p class="form-control">{{ client.balance }} руб.</p>
@@ -490,7 +490,7 @@
                                         </div>
 
                                         {% else %}
-
+                                        <div class="row">
                                             <div class="col-sm-4 col-xs-12 {% if not order_details.company %}none{% endif %}"  id="company_div">
                                                 <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
                                                 <div class="form-group input-group">
@@ -512,7 +512,7 @@
 
                                             </div>
 
-
+                                        </div>
 
                                         {% endif %}
 
