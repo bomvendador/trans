@@ -574,7 +574,8 @@ def order_details(request, order_id):
         'trans_types': TranslationType.objects.all(),
         'companies': companies,
         'timelines': TimelineOrder.objects.filter(order=order_det),
-        'payments': payments
+        'payments': payments,
+        'payments_sum': payments.aggregate(Sum('amount'))
     })
     return render(request, 'order_details.html', context)
 
