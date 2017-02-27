@@ -1945,6 +1945,14 @@
                                     $('#calc_sent_date').text('');
 
                                 }
+                                if (response['price_changed']){
+                                    $('#btn_send_calc_active').addClass('none');
+                                    $('#btn_send_calc_deactivated').removeClass('none');
+                                    $('#calc_sent_date_div').addClass('none');
+                                    $('#calc_sent_date').text('');
+
+                                }
+
                                 add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
                             }
 

@@ -1079,6 +1079,7 @@ def update_order(request):
                     'timeline_datetime': timeline_date.strftime("%d.%m.%Y, %H:%M"),
                     'timeline_author_role': timeline.author_profile.role.role_name,
                     'event': timeline.event,
+                    'price_deleted': 1
                 })
                 is_timeline = True
             sent_doc.price = None
