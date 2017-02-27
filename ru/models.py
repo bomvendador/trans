@@ -322,8 +322,8 @@ class TimelineOrder(models.Model):
 class Payment(models.Model):
     order = models.ForeignKey(SentDoc)
     amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
-    invoice = models.ForeignKey(Invoice, null=False, blank=False)
-    company = models.ForeignKey(Company, null=False, blank=False)
+    invoice = models.ForeignKey(Invoice, null=True, blank=True)
+    company = models.ForeignKey(Company, null=True, blank=True)
     method = models.ForeignKey(PayMethod)
     added = models.DateTimeField(auto_now_add=True, auto_now=False, null=True)
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
