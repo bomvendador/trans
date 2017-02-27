@@ -444,6 +444,10 @@ ul{
 
     }
 
+    .header-title{
+        font-size: 20px;
+    }
+
 }
 
 /*@media only screen*/
