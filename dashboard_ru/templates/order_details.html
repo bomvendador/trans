@@ -549,21 +549,21 @@
                                                     {% for payment in payments %}
                                                     <tr>
 
-                                                        <td>
+                                                        <td class="text_align_center">
                                                             {{ forloop.counter }}
                                                         </td>
-                                                        <td>
+                                                        <td class="text_align_center">
                                                         {% if payment.company %}
                                                             {{ payment.company.name }}
                                                         {% endif %}
                                                         </td>
-                                                        <td>
+                                                        <td class="text_align_center">
                                                             {{ payment.method.name }}
                                                         </td>
-                                                        <td>
+                                                        <td class="text_align_center">
                                                             {{ payment.date|date:"d.m.Y, H:i" }}
                                                         </td>
-                                                        <td>
+                                                        <td class="text_align_center">
                                                             {{ payment.amount }}
                                                         </td>
 
