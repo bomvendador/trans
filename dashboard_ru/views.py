@@ -1051,7 +1051,7 @@ def update_order(request):
                     'price_changed': 1
                 })
                 sent_doc.calc_sent_date = None
-                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(price) + u' руб.')
+                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(Decimal(price)) + u' руб.')
                 timeline.save()
                 timeline_date = timeline.added + timedelta(hours=3)
 
