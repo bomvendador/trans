@@ -1096,7 +1096,8 @@ def update_order_payment(request):
         if payment_amount:
             if Decimal(payment_amount) + payment_made >= sent_doc.price:
                 sent_doc.paystatus = PayStatus.objects.get(name='Paid')
-                client.balance += sent_doc.price - Decimal(payment_amount)
+                client.balance += (Decimal(payment_amount) + payment_made) - sent_doc.price
+                client.save()
             else:
                 sent_doc.paystatus = PayStatus.objects.get(name='Partially_paid')
         payment_date = request.POST.get('payment_date')
