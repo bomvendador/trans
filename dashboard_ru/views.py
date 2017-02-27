@@ -3,7 +3,7 @@ import json
 import re, os
 import locale, sys
 from string import punctuation
-
+from decimal import Decimal
 from custom_def import *
 from django.views.decorators.csrf import csrf_exempt
 
@@ -1094,7 +1094,7 @@ def update_order_payment(request):
         if payment_amount:
             if payment_amount >= sent_doc.price:
                 sent_doc.paystatus = PayStatus.objects.get(name='Paid')
-                client.balance += sent_doc.price - payment_amount
+                client.balance += sent_doc.price - Decimal(payment_amount)
             else:
                 sent_doc.paystatus = PayStatus.objects.get(name='Partially_paid')
         payment_date = request.POST.get('payment_date')
