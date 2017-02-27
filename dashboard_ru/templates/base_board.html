@@ -126,7 +126,11 @@
                     {% else %}
 
                     <li class="f_s_20">
-                        <i class="mdi mdi-wallet"></i> - {{ client.balance }} руб.
+                        <div class="row">
+                            <i class="mdi mdi-wallet"></i>
+                            <p> - {{ client.balance }} руб.</p>
+                        </div>
+
                     </li>
                     <li class="">
                         <a href="{% url 'ru:dashboard_ru:help_dashboard' %}" class="" role="button" data-toggle="tooltip" title="Помощь" data-placement="bottom">
