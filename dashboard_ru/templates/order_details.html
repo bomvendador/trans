@@ -1532,7 +1532,7 @@
             $('#translator_assigned').css('opacity', 0.5)
         }
 
-        if ($('#payment_date').val() != ''){
+        if ($('#total_paid_tr td:nth-child(2)').text().trim() >= $('#order_price').val().trim()){
             $('#paid').css('opacity', 1);
             if ($('#translation_sent_date').text() != ''){
                 $('#order_complete').css('opacity', 1);
@@ -2093,7 +2093,6 @@
                                     $('#translation_file_' + file_id).slideUp('slow', function () {
                                         $(this).remove();
                                     });
-                                    console.log('кол-во = ' + $('#translation_files_table tbody tr').length);
                                     if ($('#translation_files_table tr').length == 0){
                                         $('#btn_send_trans_files_active').addClass('none');
                                         $('#btn_send_trans_files_deactivated').removeClass('none');
