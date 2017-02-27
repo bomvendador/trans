@@ -1616,8 +1616,9 @@ def save_order_comment(request):
             #     'comment': comment_inst.comment,
             #     'author': request.user
             # }
+        datetime_ = comment_inst.added + timedelta(hours=3)
         return HttpResponse(json.dumps(
-            {'date': comment_inst.added.strftime("%d.%m.%Y, %H:%M"), 'comment': comment_inst.comment,
+            {'date': datetime_.strftime("%d.%m.%Y, %H:%M"), 'comment': comment_inst.comment,
              'author_firstname': request.user.first_name, 'author_lastname': request.user.last_name, 'role': role}))
 
 
