@@ -572,7 +572,7 @@
 
                                                     </tr>
                                                     {% endfor %}
-                                                    <tr bgcolor="#F9F9F9">
+                                                    <tr bgcolor="#F9F9F9" id="total_paid_tr">
                                                         <td colspan="4">
                                                             ИТОГО
                                                         </td>
@@ -1476,10 +1476,10 @@
             console.log('отправка')
 
             $('#btn_send_trans_files_active').on('click', function () {
-                if ($('#paid_amount').val() == ''){
+                if ($('#total_paid_tr td:nth-child(1)').val() < $('#order_price').val()){
                     swal({
-                        title: 'Оплата отсутствует',
-                        text: 'Оплата по данной заявке отсутствует. Отправить уведомление о файлах перевода?',
+                        title: 'Ошибка оплаты',
+                        text: 'Оплата по данной заявке отсутствует или недостаточна. Отправить уведомление о файлах перевода?',
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
