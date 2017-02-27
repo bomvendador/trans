@@ -1737,9 +1737,9 @@ def get_new_comments_client(request):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def help_dashboard(request):
     context = get_data_proc(request)
-    # context.update({
-    #     'clients': clients
-    # })
+    context.update({
+        'prolingva_tel': settings.PROLINGVA_TEL
+    })
     return render(request, 'help.html', context)
 
 
