@@ -430,6 +430,10 @@ ul{
         font-size: 20px;
 
     }
+    .header-title{
+        font-size: 20px;
+    }
+
 }
 
 @media (max-width: 340px) {
@@ -444,9 +448,6 @@ ul{
 
     }
 
-    .header-title{
-        font-size: 20px;
-    }
 
 }
 
