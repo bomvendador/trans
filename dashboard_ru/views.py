@@ -1085,6 +1085,7 @@ def update_order(request):
 def update_order_payment(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
+        company_id_raw = request.POST.get('company')
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
         payment = Payment()
@@ -1103,7 +1104,12 @@ def update_order_payment(request):
             parsed_datetime = parse_date_as_datetime(payment_date)
             sent_doc.payment_date = parse_datetime(parsed_datetime)
             payment.date = parse_datetime(parsed_datetime)
-
+        if company_id_raw:
+            company_id = company_id_raw.split('_')[1]
+            company_ = Company.objects.get(id=company_id)
+            payment.company = company_
+        payment.added_by = request.user
+        payment.order = sent_doc
         payment.amount = payment_amount
         payment.method = PayMethod.objects.get(name=payment_method)
         # logger.debug('date = ' + str(parsed_datetime))
