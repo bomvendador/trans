@@ -1092,7 +1092,7 @@ def update_order_payment(request):
             sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         payment_amount = request.POST.get('paid_amount')
         if payment_amount:
-            if payment_amount >= sent_doc.price:
+            if Decimal(payment_amount) >= sent_doc.price:
                 sent_doc.paystatus = PayStatus.objects.get(name='Paid')
                 client.balance += sent_doc.price - Decimal(payment_amount)
             else:
