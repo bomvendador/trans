@@ -562,6 +562,8 @@
                                                         <td class="text_align_right">
                                                         {% if payment.company %}
                                                             {{ payment.company.property.short_name }} "{{ payment.company.name }}"
+                                                        {% else %}
+                                                            Частное лицо
                                                         {% endif %}
                                                         </td>
                                                         <td class="text_align_right">
