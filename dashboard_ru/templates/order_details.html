@@ -1352,7 +1352,7 @@
         });
 
         //удаление юр лица
-        $('#delete_company').on('click', function () {
+        $('#company_div').on('click', '#delete_company', function () {
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:del_company_from_payment' %}',
                 type: 'POST',
