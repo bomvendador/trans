@@ -562,6 +562,7 @@ def order_details(request, order_id):
 
     context.update({
         'order_details': order_det,
+        'client': Client.objects.get(id=User.objects.get(id=order_det.user.id)),
         'files': files,
         'langs': Language.objects.all().order_by('name'),
         'managers': Manager.objects.all(),
