@@ -170,6 +170,8 @@
                 <div class="image">
                     <img src="{% static 'img/user.png' %}" width="48" height="48" alt="User" />
                 </div>
+                    {% if user_profile.role.role_name != 'Клиент' %}
+
                     <div class="btn-group user-helper-dropdown color_white shadow-none float-right">
                         <i class="material-icons pointer-pure" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
@@ -182,7 +184,7 @@
                             <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
-
+                    {% endif %}
                 <div class="info-container">
                     {% if user_profile.role.role_name != 'Клиент' %}
                     <div class="email float-right">{{ user_profile.role.role_name }}</div>
