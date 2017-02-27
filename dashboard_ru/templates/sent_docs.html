@@ -142,7 +142,7 @@
 {#                                        </td>#}
 
                                         <td class="sent_doc pointer-pure">
-
+                                            <div>
                                         {{ sent_doc.id|center:'40' }}
                                         {% if user_profile.role.role_name == 'Клиент' and sent_doc.price and sent_doc.paystatus.name != 'Paid'%}
                                             <i class="mdi mdi-alert-circle color-red" data-toggle="tooltip" title="По заявке ожидается оплата" data-placement="top"></i>
@@ -158,7 +158,7 @@
                                                 <i class="mdi mdi-download color-blue"></i>
                                             {% endif %}
                                         {% endif %}
-
+                                            </div>
                                         </td>
                                         <td class="sent_doc pointer-pure">{{ sent_doc.timestamp|date:"d.m.Y, H:i" }}</td>
                                         <td class="sent_doc pointer-pure">{% if sent_doc.text_qnt > 0 %}
