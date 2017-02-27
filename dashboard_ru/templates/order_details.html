@@ -1676,60 +1676,60 @@
     function send_calc_func () {
 {#            if ($('#order_price').val() != ''){#}
 
-                $('#btn_send_calc_active').on('click', function () {
-                    if ($('#resp').val() == ''){
-                        swal({
-                            title: 'Ошибка',
-                            text: 'Выберите ответственного для заявки',
-                            type: 'error'
-                        });
-
-                    }else{
-                        $.ajax({
-                            url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
-                            type: 'POST',
-                            data: JSON.stringify({
-                                        'order_price': $('#order_price').val(),
-                                        'order_id': {{ order_details.id }}
-                                    }),
-                            processData: false,
-                            contentType: false,
-                            error: function(data){
-                                swal({
-                                    title: 'Ошибка сервера',
-                                    text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                                    type: 'warning'
-                                });
-                            },
-                            success:function (data) {
-                                swal({
-                                    title: 'Расчет отправлен',
-                                    text: 'Расчет успешно отправлен.',
-                                    type: 'success',
-                                    confirmButtonText: 'Ok',
-                                    closeOnConfirm: true
-                                },
-                                function (isConfirm) {
-                                    var data_json = $.parseJSON(data);
-                                    var response = data_json['response'];
-                                    var calc_sent_date = response['calc_sent_date'];
-                                    var timeline_author = response['timeline_author'];
-                                    var timeline_author_role = response['timeline_author_role'];
-                                    var event = response['event'];
-
-
-                                    $('#btn_send_calc_active').addClass('none');
-                                    $('#calc_sent_date_div').removeClass('none');
-                                    $('#calc_sent_date').text(calc_sent_date);
-                                    updateIcons();
-                                    add_timeline_item(calc_sent_date, timeline_author, timeline_author_role, event);
-                                });
-                            }
-                        });
-
-                    }
-
+        $('#btn_send_calc_active').on('click', function () {
+            if ($('#resp').val() == ''){
+                swal({
+                    title: 'Ошибка',
+                    text: 'Выберите ответственного для заявки',
+                    type: 'error'
                 });
+
+            }else{
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                                'order_price': $('#order_price').val(),
+                                'order_id': {{ order_details.id }}
+                            }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        swal({
+                            title: 'Расчет отправлен',
+                            text: 'Расчет успешно отправлен.',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            var data_json = $.parseJSON(data);
+                            var response = data_json['response'];
+                            var calc_sent_date = response['calc_sent_date'];
+                            var timeline_author = response['timeline_author'];
+                            var timeline_author_role = response['timeline_author_role'];
+                            var event = response['event'];
+
+
+                            $('#btn_send_calc_active').addClass('none');
+                            $('#calc_sent_date_div').removeClass('none');
+                            $('#calc_sent_date').text(calc_sent_date);
+                            updateIcons();
+                            add_timeline_item(calc_sent_date, timeline_author, timeline_author_role, event);
+                        });
+                    }
+                });
+
+            }
+
+        });
 {#            }#}
 
 
@@ -1895,7 +1895,6 @@
 
     //сохранение ИНФО
     $('#save_order_info_btn').on('click', function () {
-        console.log('user_id ' + {{ order_details.user.id }})
 {#        if ($('#calc_sent_date').val() != '' && $('#order_price').val() == ''){#}
 {#            swal({#}
 {#                title: 'Ошибка вода',#}
@@ -1907,8 +1906,7 @@
             var data_ = new FormData($('#form').get(0));
             data_.append('user_id', {{ order_details.user.id }});
             data_.append('order_id', {{ order_details.id }});
-        data_.append('text', $('#text_doc_send').val());
-            console.log('text = ' + $('#text_doc_send').val())
+            data_.append('text', $('#text_doc_send').val());
 
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:update_order' %}',
@@ -1940,35 +1938,42 @@
                                 var timeline_datetime = response['timeline_datetime'];
                                 var timeline_author_role = response['timeline_author_role'];
                                 var event = response['event'];
+                                if (response['price_changed']){
+                                    $('#btn_send_calc_active').removeClass('none');
+                                    $('#btn_send_calc_deactivated').addClass('none');
+                                    $('#calc_sent_date_div').addClass('none');
+                                    $('#calc_sent_date').text('');
+
+                                }
                                 add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
                             }
 
                             hide_save_order();
                             updateIcons();
-                            if ($('#order_price').val() != '' && $('#calc_sent_date').text() == ''){
-                                console.log('есть цена')
-                                $('#btn_send_calc_active').removeClass('none');
-                                $('#btn_send_calc_deactivated').addClass('none');
-
+{#                            if ($('#order_price').val() != '' && $('#calc_sent_date').text() == ''){#}
+{#                                console.log('есть цена')#}
+{#                                $('#btn_send_calc_active').removeClass('none');#}
+{#                                $('#btn_send_calc_deactivated').addClass('none');#}
+{##}
 {#                                send_calc_func();#}
-                            }else {
-                                if ($('#calc_sent_date').text() == ''){
-                                    console.log('нет цены')
-
-                                    $('#btn_send_calc_active').addClass('none');
-                                    $('#btn_send_calc_deactivated').removeClass('none');
-                                    send_calc_func();
-
-                                }else {
-                                    console.log('нет цены и даты отправки')
-
-                                    $('#btn_send_calc_active').addClass('none');
-                                    $('#btn_send_calc_deactivated').removeClass('none');
-                                    $('#calc_sent_date_div').addClass('none');
-                                    $('#calc_sent_date').text('');
-                                }
-
-                            }
+{#                            }else {#}
+{#                                if ($('#order_price').val() == '' && $('#calc_sent_date').text() == ''){#}
+{#                                    console.log('нет цены и даты отправки')#}
+{##}
+{#                                    $('#btn_send_calc_active').addClass('none');#}
+{#                                    $('#btn_send_calc_deactivated').removeClass('none');#}
+{#                                    send_calc_func();#}
+{##}
+{#                                }else {#}
+{#                                    console.log('есть цена и дата отправки')#}
+{##}
+{#                                    $('#btn_send_calc_active').removeClass('none');#}
+{#                                    $('#btn_send_calc_deactivated').addClass('none');#}
+{#                                    $('#calc_sent_date_div').addClass('none');#}
+{#                                    $('#calc_sent_date').text('');#}
+{#                                }#}
+{##}
+{#                            }#}
 
                         }
                     });
