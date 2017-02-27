@@ -30,7 +30,6 @@ def payment_success(request):
         order.payment_date = payment_date_local
         order.paystatus = PayStatus.objects.get(name='Paid')
         order.just_paid = True
-        order.is_paid = True
         order.save()
         payment.save()
         # date = datetime.strptime(order.payment_date, '%Y-%m-%dT%H:%M:%S')
@@ -39,7 +38,8 @@ def payment_success(request):
         email_context = {
             'manager': order.resp,
             'order': order,
-            'payment_date': date_
+            'payment_date': date_,
+            'payment': payment
         }
         # TODO изменить почту достваки
         dashboard_views.send_email(request, 'payment_recieved.html', 'info@prolingva.ru', ['orders@prolingva.ru'], email_context)

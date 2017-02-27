@@ -521,7 +521,7 @@
                                                     <select class="form-control show-tick" id="company" name="company">
                                                         <option value="">--  --</option>
                                                         {% for company in companies %}
-                                                        <option value="{{ order_details.company.name }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
+                                                        <option value="{{ order_details.company.name }}_{{ order_details.company.id }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
                                                         {% endfor %}
                                                     </select>
                                                 </div>
