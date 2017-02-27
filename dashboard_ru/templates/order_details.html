@@ -1472,8 +1472,6 @@
 {#        if ($('#translation_files_table tbody').length > 0){#}
 
         if ($('#translation_files_table tr').length > 0 && $('#translation_files_table tbody tr:first td:first').text() != 'Файлы отсутствуют'){
-            console.log('send_trans length = ' + $('#translation_files_table tr').length);
-            console.log('вввв = ' + $('#translation_files_table tbody tr:first td:first').text());
             $('#translation_files_uploaded').removeClass('opacity-0_5').css('opacity', 1);
 
             $('#btn_send_trans_files_active').on('click', function () {
@@ -1752,30 +1750,17 @@
                 });
             },
             success:function (data) {
-                console.log(data);
-                console.log(data['date']);
+                var data_json = $.parseJSON(data);
+                var first_name = data_json['author_firstname'];
+                var last_name = data_json['author_lastname'];
+                var date = data_json['date'];
+                var role = data_json['role'];
+                var comment = data_json['comment'];
+                $('#message').css('opacity', 1)
+                $('#comments_div').append('<div class="comments-style"><div style=""><div><small>' + date + '</small></div> <small>' + role + ','  + first_name + ' ' + last_name + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment + '</div>')
+                $("#comments_div").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
+                $('#comment_text').val('')
 
-                swal({
-                    title: 'Информация сохранена',
-                    text: 'Данные на сервере успешно обновлены',
-                    type: 'success',
-                    confirmButtonText: 'Ok',
-                    closeOnConfirm: true
-                },
-                function (isConfirm) {
-                    if (isConfirm){
-                        var data_json = $.parseJSON(data);
-                        var first_name = data_json['author_firstname'];
-                        var last_name = data_json['author_lastname'];
-                        var date = data_json['date'];
-                        var role = data_json['role'];
-                        var comment = data_json['comment'];
-                        $('#message').css('opacity', 1)
-                        $('#comments_div').append('<div class="comments-style"><div style=""><div><small>' + date + '</small></div> <small>' + role + ','  + first_name + ' ' + last_name + '</small></div></div><div class="mrg-bot-20" style="margin-left: 10px">' + comment + '</div>')
-                        $("#comments_div").animate({ scrollTop: $('#comments_div')[0].scrollHeight}, 'slow');
-                        $('#comment_text').val('')
-                    }
-                });
             }
         });
 
