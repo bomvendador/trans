@@ -148,6 +148,7 @@ class Client(models.Model):
     orders_complete = models.IntegerField(null=True, blank=True, default=0)
     orders_paid = models.IntegerField(null=True, blank=True, default=0)
     visited_times = models.IntegerField(default=0)
+    balance = models.DecimalField(max_digits=8, decimal_places=2, default=0)
 
 
 class Property(models.Model):

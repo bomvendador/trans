@@ -208,7 +208,6 @@ def base_board(request, user_id):
             Sum('payment_amount'))
         update_client_statistics(request.user)
         new_count = 0
-        print(sum_paid)
         client = Client.objects.get(user=request.user)
         orders_for_payment = SentDoc.objects.filter(user=user).filter(price__isnull=False).exclude(
             paystatus=PayStatus.objects.get(name='Paid'))
@@ -1087,11 +1086,16 @@ def update_order_payment(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
         sent_doc = SentDoc.objects.get(id=order_id)
+        client = Client.objects.get(user=sent_doc.user)
         if sent_doc.status.name != u'Выполнен':
             sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         payment_amount = request.POST.get('paid_amount')
         if payment_amount:
-            sent_doc.paystatus = PayStatus.objects.get(name='Paid')
+            if payment_amount >= sent_doc.price:
+                sent_doc.paystatus = PayStatus.objects.get(name='Paid')
+                client.balance += sent_doc.price - payment_amount
+            else:
+                sent_doc.paystatus = PayStatus.objects.get(name='Partially_paid')
         payment_date = request.POST.get('payment_date')
         payment_method = request.POST.get('payment_method_')
         if not ',' in payment_date:

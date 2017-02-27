@@ -124,6 +124,10 @@
                         </a>
                     </li>
                     {% else %}
+
+                    <li class="">
+                        <i class="mdi mdi-wallet"></i> - {{ client.balance }}
+                    </li>
                     <li class="">
                         <a href="{% url 'ru:dashboard_ru:help_dashboard' %}" class="" role="button" data-toggle="tooltip" title="Помощь" data-placement="bottom">
 
