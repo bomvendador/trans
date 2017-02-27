@@ -531,9 +531,49 @@
                                     </div>
 
                                     {% endif %}
+
+
+                                    <div class="list-group {% if order_details.payment_date %} none {% endif %}" id="payments_list">
+                                        <div class="body table-responsive border-1-grey margin-top-10 padding-10">
+                                            <table class="table" id="payments_list_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text_align_center">#</th>
+                                                        <th class="text_align_center">Сумма</th>
+                                                        <th class="text_align_center">Плательщик</th>
+                                                        <th class="text_align_center">Способ</th>
+                                                        <th class="text_align_center">Дата</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="payments_list_">
+                                                    {% for payment in payments %}
+                                                        <tr>
+                                                            {{ forloop.counter }}
+                                                        </tr>
+                                                        <tr>
+                                                            {{ payment.amount }}
+                                                        </tr>
+                                                        <tr>
+                                                        {% if payment.company %}
+                                                            {{ payment.company.name }}
+                                                        {% endif %}
+                                                        </tr>
+                                                        <tr>
+                                                            {{ payment.method }}
+                                                        </tr>
+                                                        <tr>
+                                                            {{ payment.date|date:"d.m.Y, H:i" }}
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
 {#                                        {% if order_details.paystatus.name != 'Paid' and not order_details.company %}#}
-                                            <div class="{% if order_details.paystatus.name == 'Paid' or order_details.company %}none{% endif %}" id="payment_methods">
+                                            <div class="{% if not order_details.is_paid %}none{% endif %}" id="payment_methods">
                                                 <div class=" btn btn-primary btn-block btn-lg waves-effect text-align-left row margin-left-0 font-size-15" id="pay_order_btn" style="padding: 0 0">
                                                     <div class="col-sm-2 margin-bottom-0 hidden-xs" >
                                                         <img src="{% static 'img/payment_sys.png' %}">
