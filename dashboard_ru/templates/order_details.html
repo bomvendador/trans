@@ -539,33 +539,45 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="text_align_center">#</th>
-                                                        <th class="text_align_center">Сумма</th>
                                                         <th class="text_align_center">Плательщик</th>
                                                         <th class="text_align_center">Способ</th>
                                                         <th class="text_align_center">Дата</th>
+                                                        <th class="text_align_center">Сумма</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="payments_list_">
                                                     {% for payment in payments %}
-                                                        <tr>
+                                                    <tr>
+
+                                                        <td>
                                                             {{ forloop.counter }}
-                                                        </tr>
-                                                        <tr>
-                                                            {{ payment.amount }}
-                                                        </tr>
-                                                        <tr>
+                                                        </td>
+                                                        <td>
                                                         {% if payment.company %}
                                                             {{ payment.company.name }}
                                                         {% endif %}
-                                                        </tr>
-                                                        <tr>
+                                                        </td>
+                                                        <td>
                                                             {{ payment.method }}
-                                                        </tr>
-                                                        <tr>
+                                                        </td>
+                                                        <td>
                                                             {{ payment.date|date:"d.m.Y, H:i" }}
-                                                        </tr>
-                                                    {% endfor %}
+                                                        </td>
+                                                        <td>
+                                                            {{ payment.amount }}
+                                                        </td>
 
+                                                    </tr>
+                                                    {% endfor %}
+                                                    <tr>
+                                                        <td colspan="4">
+                                                            ИТОГО
+                                                        </td>
+                                                        <td>
+                                                            {{ payments|amount_total }}
+                                                        </td>
+
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
