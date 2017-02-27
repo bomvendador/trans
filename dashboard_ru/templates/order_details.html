@@ -1476,7 +1476,7 @@
             console.log('отправка ' + $('#total_paid_tr td:nth-child(2)').text() + '  ' + $('#order_price').val());
 
             $('#btn_send_trans_files_active').on('click', function () {
-                if ($('#total_paid_tr td:nth-child(1)').val() < $('#order_price').val()){
+                if ($('#total_paid_tr td:nth-child(2)').text() < $('#order_price').val()){
                     swal({
                         title: 'Ошибка оплаты',
                         text: 'Оплата по данной заявке отсутствует или недостаточна. Отправить уведомление о файлах перевода?',
