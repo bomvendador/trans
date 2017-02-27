@@ -435,7 +435,7 @@
                                                 <div class="form-line" id="order_price_div">
                                                     <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
                                                 </div>
-                                                {% if order_details.is_paid %}
+                                                {% if order_details.paystatus.name == 'Paid' %}
                                                 <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
                                                 {% endif %}
                                                 {% else %}
