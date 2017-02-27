@@ -1663,7 +1663,7 @@ def save_order_comment_client(request):
             comment = OrderCommentsClients()
             answer = 0
             try:
-                manager = SentDoc.objects.get(id=order_id).resp.id
+                manager = User.objects.get(id=SentDoc.objects.get(id=order_id).resp.id)
             except:
                 manager = None
             email_context = {
