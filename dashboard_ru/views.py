@@ -498,7 +498,7 @@ def order_details(request, order_id):
     try:
         payments = Payment.objects.filter(order=order_det)
         context.update({
-            'payments_sum': payments.aggregate(Sum('amount'))
+            'payments_sum': payments.aggregate(Sum('amount'))['amount__sum']
 
         })
     except Payment.DoesNotExist:
