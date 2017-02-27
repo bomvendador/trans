@@ -1644,7 +1644,7 @@ def save_order_comment_client(request):
             })
             answer = 1
             try:
-                manager = SentDoc.objects.get(id=order_id).resp.id
+                manager = SentDoc.objects.get(id=order_id).resp
             except:
                 manager = None
 
