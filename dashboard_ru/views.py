@@ -497,6 +497,10 @@ def order_details(request, order_id):
     companies = Company.objects.filter(user=order_det.user)
     try:
         payments = Payment.objects.filter(order=order_det)
+        context.update({
+            'payments_sum': payments.aggregate(Sum('amount'))
+
+        })
     except Payment.DoesNotExist:
         payments = None
 
@@ -575,7 +579,6 @@ def order_details(request, order_id):
         'companies': companies,
         'timelines': TimelineOrder.objects.filter(order=order_det),
         'payments': payments,
-        'payments_sum': payments.aggregate(Sum('amount'))
     })
     return render(request, 'order_details.html', context)
 

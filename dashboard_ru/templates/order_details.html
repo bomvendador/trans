@@ -533,7 +533,7 @@
                                     {% endif %}
 
 
-                                    <div class="list-group {% if order_details.payment_date %} none {% endif %}" id="payments_list">
+                                    <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">
                                         <div class="body table-responsive border-1-grey margin-top-10 padding-10">
                                             <table class="table" id="payments_list_table">
                                                 <thead>
