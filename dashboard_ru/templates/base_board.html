@@ -184,7 +184,7 @@
                     </div>
 
                 <div class="info-container">
-                    {% if user_profile.role.id != 3 %}
+                    {% if user_profile.role.role_name != 'Клиент' %}
                     <div class="email float-right">{{ user_profile.role.role_name }}</div>
                     {% endif %}
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.first_name }}</div>
