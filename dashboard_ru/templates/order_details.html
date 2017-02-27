@@ -456,7 +456,7 @@
 
                                                 </span>
                                                 <div class="form-line">
-                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date" value="{% if order_details.payment_date %}{{ order_details.payment_date|date:"d.m.Y, H:i" }}{% endif %}">
+                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date">
 
                                                 </div>
                                             </div>
@@ -467,16 +467,10 @@
                                                 <span class="input-group-addon">
                                                     <i class="mdi mdi-wallet font-24"></i>
                                                 </span>
-                                                <select class="form-control show-tick none-important" id="" name="payment_method">
-                                                    <option value="">-- Выберите способ --</option>
-                                                    {% for paymethod in paymethods %}
-                                                    <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
-                                                    {% endfor %}
-                                                </select>
                                                 <select class="form-control show-tick" id="payment_method" name="payment_method_">
                                                     <option value="">-- Выберите способ --</option>
                                                     {% for paymethod in paymethods %}
-                                                    <option value="{{ paymethod.name }}" {% if order_details.paymethod == paymethod %} selected {% endif %}>{{ paymethod.name }}</option>
+                                                    <option value="{{ paymethod.name }}">{{ paymethod.name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
