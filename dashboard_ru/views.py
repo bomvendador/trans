@@ -1048,6 +1048,8 @@ def update_order(request):
             trans_to = None
             trans_to_inst = None
         price = request.POST.get('order_price')
+        price_business = request.POST.get('order_price_business')
+        price_profi = request.POST.get('order_price_profi')
         # calc_sent_date = request.POST.get('calc_sent_date')
         # print(text_doc_send)
         sent_doc.status = OrderStatus.objects.get(name=u'В работе')
@@ -1055,13 +1057,14 @@ def update_order(request):
         sent_doc.translation_sent_date = translation_sent_date
         # sent_doc.calc_sent_date = calc_sent_date
         is_timeline = False
-        if price:
-            if sent_doc.price != Decimal(price):
+        if price and price_business and price_profi:
+            if sent_doc.price != Decimal(price) or sent_doc.price_business != Decimal(price_business) or sent_doc.price_profi != Decimal(price_profi):
                 response.update({
                     'price_changed': 1
                 })
                 sent_doc.calc_sent_date = None
-                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(Decimal(price)) + u' руб.')
+                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость определена: ' + str(Decimal(price)) + ', ' + str(
+                    Decimal(price_business)) + ', ' + str(Decimal(price_profi)))
                 timeline.save()
                 timeline_date = timeline.added + timedelta(hours=3)
 
@@ -1074,11 +1077,14 @@ def update_order(request):
                 is_timeline = True
 
             sent_doc.price = price
+            sent_doc.price_business = price_business
+            sent_doc.price_profi = price_profi
             sent_doc.paystatus = PayStatus.objects.get(name='Price determined')
 
         else:
             if sent_doc.price:
-                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость удалена: ' + str(sent_doc.price) + u' руб.')
+                timeline = TimelineOrder(order=sent_doc, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Стоимость удалена: ' + str(sent_doc.price) + ', ' + str(
+                    sent_doc.price_business) + ', ' + str(sent_doc.price_profi))
                 sent_doc.calc_sent_date = None
                 is_price = False
                 timeline.save()
@@ -1093,6 +1099,8 @@ def update_order(request):
                 })
                 is_timeline = True
             sent_doc.price = None
+            sent_doc.price_business = None
+            sent_doc.price_profi = None
             sent_doc.paystatus = None
 
         if not is_timeline:

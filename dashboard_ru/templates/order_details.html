@@ -1905,14 +1905,47 @@
 
     //сохранение ИНФО
     $('#save_order_info_btn').on('click', function () {
-{#        if ($('#calc_sent_date').val() != '' && $('#order_price').val() == ''){#}
-{#            swal({#}
-{#                title: 'Ошибка вода',#}
-{#                text: 'Введите стоимость заказа',#}
-{#                type: 'warning'#}
-{#            });#}
-{##}
-{#        }else {#}
+        var price_standart = false;
+        var price_business = false;
+        var price_profi = false;
+        var price_error = false;
+
+        if ($('#order_price').val() == ''){
+            price_standart = true
+        }
+        if ($('#order_price_business').val() == ''){
+            price_business = true
+        }
+        if ($('#order_price_profi').val() == ''){
+            price_profi = true
+        }
+        if (price_standart && price_business && price_profi){
+            price_error = false;
+        }else {
+            if (!price_standart && !price_business && !price_profi){
+                price_error = false;
+            }else {
+                price_error = true;
+            }
+
+        }
+
+        if (price_error){
+            swal({
+                title: 'Ошибка',
+                text: 'Все поля раздела СТОИМОСТЬ должны быть заполнены',
+                type: 'error',
+                confirmButtonText: 'Ok',
+                closeOnConfirm: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+
+                }
+            })
+
+        }else {
+
             var data_ = new FormData($('#form').get(0));
             data_.append('user_id', {{ order_details.user.id }});
             data_.append('order_id', {{ order_details.id }});
@@ -1998,7 +2031,7 @@
                 }
             });
 
-{#        }#}
+        }
 
 
 
