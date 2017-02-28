@@ -2026,25 +2026,26 @@
                         if (isConfirm){
                             var data_json = $.parseJSON(data);
                             var response = data_json['response'];
+                            if (response['price_changed']){
+                                $('#btn_send_calc_active').removeClass('none');
+                                $('#btn_send_calc_deactivated').addClass('none');
+                                $('#calc_sent_date_div').addClass('none');
+                                $('#calc_sent_date').text('');
+
+                            }
+                            if (response['price_deleted']){
+                                $('#btn_send_calc_active').addClass('none');
+                                $('#btn_send_calc_deactivated').removeClass('none');
+                                $('#calc_sent_date_div').addClass('none');
+                                $('#calc_sent_date').text('');
+
+                            }
+
                             if (!response['no_data']){
                                 var timeline_author = response['timeline_author'];
                                 var timeline_datetime = response['timeline_datetime'];
                                 var timeline_author_role = response['timeline_author_role'];
                                 var event = response['event'];
-                                if (response['price_changed']){
-                                    $('#btn_send_calc_active').removeClass('none');
-                                    $('#btn_send_calc_deactivated').addClass('none');
-                                    $('#calc_sent_date_div').addClass('none');
-                                    $('#calc_sent_date').text('');
-
-                                }
-                                if (response['price_deleted']){
-                                    $('#btn_send_calc_active').addClass('none');
-                                    $('#btn_send_calc_deactivated').removeClass('none');
-                                    $('#calc_sent_date_div').addClass('none');
-                                    $('#calc_sent_date').text('');
-
-                                }
 
                                 add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
                             }
