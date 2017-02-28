@@ -1052,9 +1052,13 @@ def update_order(request):
         price_business = request.POST.get('order_price_business')
         price_profi = request.POST.get('order_price_profi')
         pages_qnt = request.POST.get('order_pages_qnt')
-        recommended_price = request.POST.get('recommended_price')
-        sent_doc.pages_qnt = pages_qnt
-        sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
+        recommended_price = RecommendedPrice.objects.get(name=request.POST.get('recommended_price'))
+        if sent_doc.recommended_price != recommended_price or sent_doc.pages_qnt != Decimal(pages_qnt):
+            sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
+            sent_doc.pages_qnt = pages_qnt
+            response.update({
+                'price_changes': 1
+            })
         # logger.debug('recom = ' + str(recommended_price))
         # logger.debug('pages = ' + str(pages_qnt))
         # sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
