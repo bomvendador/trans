@@ -1054,7 +1054,7 @@ def update_order(request):
         pages_qnt = request.POST.get('order_pages_qnt')
         recommended_price = RecommendedPrice.objects.get(name=request.POST.get('recommended_price'))
         if sent_doc.recommended_price != recommended_price or sent_doc.pages_qnt != Decimal(pages_qnt):
-            sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
+            sent_doc.recommended_price = recommended_price
             sent_doc.pages_qnt = pages_qnt
             response.update({
                 'price_changes': 1
