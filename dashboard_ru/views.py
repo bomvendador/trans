@@ -204,7 +204,7 @@ def base_board(request, user_id):
         # new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(resp=user).count()
         # print(new_count)
         # except SentDoc.DoesNotExist:
-        sum_paid = Payment.objects.filter(order=SentDoc.objects.filter(user=request.user)).aggregate(Sum('amount'))
+        sum_paid = Payment.objects.filter(order_id__in=SentDoc.objects.filter(user=request.user)).aggregate(Sum('amount'))
         update_client_statistics(request.user)
         new_count = 0
         client = Client.objects.get(user=request.user)
@@ -1885,7 +1885,8 @@ def send_calculation_to_client(request):
         # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
         send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
 
-        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Уведомление клиенту: расчет цены отправлен - ' + str(order_price) + u' руб.')
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Уведомление клиенту: расчет цены отправлен - ' + str(order.price) + ', ' + str(order.price_business) + ', ' + str(
+            order.price_profi))
         timeline.save()
         timeline_date = timeline.added + timedelta(hours=3)
         response = {
