@@ -1052,7 +1052,9 @@ def update_order(request):
         price_business = request.POST.get('order_price_business')
         price_profi = request.POST.get('order_price_profi')
         pages_qnt = request.POST.get('order_pages_qnt')
+        recommended_price = request.POST.get('recommended_price')
         sent_doc.pages_qnt = pages_qnt
+        sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
         # calc_sent_date = request.POST.get('calc_sent_date')
         # print(text_doc_send)
         sent_doc.status = OrderStatus.objects.get(name=u'В работе')
