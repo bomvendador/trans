@@ -328,45 +328,27 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                    {% if user_profile.role.role_name != 'Клиент' %}
-                                        {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
-                                        <div class="col-sm-4 col-xs-12">
-                                            <h2 class="card-inside-title">Ответственный</h2>
-                                            <div class="row clearfix">
-                                                <div class="body">
-                                                    <div class="row clearfix">
-                                                        <div class="">
-                                                            <select class="form-control show-tick" id="resp" name="resp">
-                                                                <option value="">--  --</option>
-                                                                {% for manager in managers %}
-                                                                <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
-                                                                {% endfor %}
-                                                            </select>
+                                        {% if user_profile.role.role_name != 'Клиент' %}
+                                            {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title">Ответственный</h2>
+                                                <div class="row clearfix">
+                                                    <div class="body">
+                                                        <div class="row clearfix">
+                                                            <div class="">
+                                                                <select class="form-control show-tick" id="resp" name="resp">
+                                                                    <option value="">--  --</option>
+                                                                    {% for manager in managers %}
+                                                                    <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
+                                                                    {% endfor %}
+                                                                </select>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% endif %}
+                                        {% endif %}
 
-    {#                                    <div class="col-sm-6">#}
-    {#                                        <h2 class="card-inside-title">Статус</h2>#}
-    {##}
-    {#                                        <div class="row clearfix">#}
-    {#                                            <div class="body">#}
-    {#                                                <div class="row clearfix">#}
-    {#                                                    <div class="">#}
-    {#                                                        <select class="form-control show-tick" id="order_status" name="order_status">#}
-    {#                                                            <option value="">--  --</option>#}
-    {#                                                            {% for o_status in order_status %}#}
-    {#                                                            <option value="{{ o_status.name }}" {% if order_details.status.id == o_status.id %} selected {% endif %}{% if user_profile.role.id == 3 %} disabled {% endif %}>{{ o_status.name }}</option>#}
-    {#                                                            {% endfor %}#}
-    {#                                                        </select>#}
-    {#                                                    </div>#}
-    {#                                                </div>#}
-    {#                                            </div>#}
-    {#                                        </div>#}
-    {#                                    </div>#}
                                             <div class="col-sm-4 col-xs-12">
                                                 <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
                                                 <div class="input-group">
@@ -414,6 +396,10 @@
                                         </div>
 
                                     </div>
+                                    <div class="list-group-item active">
+                                        <p class="list-group-item-heading">Стоимость</p>
+                                    </div>
+
 
 
 
