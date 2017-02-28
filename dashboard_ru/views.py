@@ -292,6 +292,7 @@ def get_new_sent_docs(request):
     # if superadmin
     sent_docs = None
     new_count = 0
+    context = {}
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         sent_docs = SentDoc.objects.filter(status=OrderStatus.objects.get(name=u'Новый'))
         # sent_docs_files = SentFiles.
@@ -307,13 +308,19 @@ def get_new_sent_docs(request):
 
         except SentDoc.DoesNotExist:
             sent_docs = None
+        else:
+            try:
+                client = Client.objects.get(user=user)
+                context.update({'client': client})
+            except Client.DoesNotExist:
+                pass
 
-    context = {
+    context.update({
         'sent_docs': sent_docs,
         'user_profile': user_profile,
         'new_count': new_count,
         'new_orders': 1
-    }
+    })
     return render(request, 'sent_docs.html', context)
 
 
@@ -323,6 +330,7 @@ def get_in_progress_sent_docs(request):
     user = User.objects.get(id=request.user.id)
     user_profile = UserProfile.objects.get(user=user)
     # if superadmin
+    context = {}
     new_count = 0
     if user_profile.role.role_name == u'Суперадмин' or user_profile.role.role_name == u'Админ':
         sent_docs = SentDoc.objects.all().exclude(status=OrderStatus.objects.get(name=u'Выполнен')).exclude(
@@ -338,13 +346,15 @@ def get_in_progress_sent_docs(request):
             status=OrderStatus.objects.get(name=u'Назначен менеджер'))
     if user_profile.role.role_name == u'Клиент':
         sent_docs = SentDoc.objects.all().filter(user=user).exclude(status=OrderStatus.objects.get(name=u'Выполнен'))
+        client = Client.objects.get(user=user)
+        context.update({'client': client})
 
-    context = {
+    context.update({
         'sent_docs': sent_docs,
         'user_profile': user_profile,
         'new_count': new_count,
         'in_progress_orders': 1
-    }
+    })
     return render(request, 'sent_docs.html', context)
 
 
@@ -390,7 +400,8 @@ def get_complete_sent_docs(request):
             'sent_docs': sent_docs,
             'user_profile': user_profile,
             'new_count': new_count,
-            'orders_complete': 1
+            'orders_complete': 1,
+            'client': Client.objects.get(user=user)
         }
         return render(request, 'sent_docs.html', context)
     return HttpResponse()
