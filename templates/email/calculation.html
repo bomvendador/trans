@@ -61,11 +61,19 @@
                    </td>
                </tr>
                <tr style="font-size: 13px">
-                   <td align="left" valign="center" style="background: #337AB7;  padding: 5px; color: white;" colspan="2">
+                   <td align="left" valign="center" style="background: #DDDDDD;  padding: 5px">
+                       Кол-во страниц:
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ order.pages_qnt }}
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="center" valign="center" style="background: #337AB7;  padding: 5px; color: white;" colspan="2">
                        Стоимость
                    </td>
                </tr>
-               <tr>
+               <tr style="font-size: 13px">
                    <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
                        <div>
                            <b>Стандарт</b>
@@ -77,6 +85,34 @@
                    </td>
                    <td align="left" valign="center" style="padding: 5px">
                        {{ order.price }} руб.
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
+                       <div>
+                           <b>Бизнес</b>
+                       </div>
+                       <div>
+                           Документы средней сложности. Перевод производится переводчиком с определенной специализацией<br/>
+                           Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация.
+                       </div>
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ order.price_business }} руб.
+                   </td>
+               </tr>
+               <tr style="font-size: 13px">
+                   <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
+                       <div>
+                           <b>Профи</b>
+                       </div>
+                       <div>
+                           Документы повышенной сложности. Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка.<br/>
+                            Важнейшие документы, не допускающие наличие ошибок или неточностей.
+                       </div>
+                   </td>
+                   <td align="left" valign="center" style="padding: 5px">
+                       {{ order.price_profi }} руб.
                    </td>
                </tr>
 {#               <tr style="font-size: 13px">#}
