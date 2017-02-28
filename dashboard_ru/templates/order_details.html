@@ -427,12 +427,13 @@
                                                         </div>
 
                                                     </div>
+                                                    <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
+                                                       <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
+                                                    </div>
+
                                                 </div>
 
 
-                                        <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
-                                           <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
-                                        </div>
 
                                     {% endif %}
 
@@ -731,7 +732,7 @@
                                                             </div>
                                                             <div class="col-sm-11">
                                                                 <select class="form-control show-tick" id="translator" name="translator">
-                                                                    <option value="">-- Выберите пероводчика --</option>
+                                                                    <option value="">-- Выберите переводчика --</option>
                                                                     {% for translator in translators %}
                                                                     <option value="translator_{{ translator.id }}" {% if order_details.translator.id == translator.id %} selected {% endif %}{% if user_profile.role.role_name == 'Клиент' %} disabled {% endif %}>{{ translator.id }}. {{ translator.name }}</option>
                                                                     {% endfor %}
