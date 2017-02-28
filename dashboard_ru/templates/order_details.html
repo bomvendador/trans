@@ -2006,60 +2006,60 @@
             data_.append('recommended_price', $('#recommended_price').val());
             console.log('реком = ' + $('#recommended_price').val());
 
-            $.ajax({
-                url: '{% url 'ru:dashboard_ru:update_order' %}',
-                type: 'POST',
-                data: data_,
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    swal({
-                        title: 'Ошибка сервера',
-                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                        type: 'warning'
-                    });
-                },
-                success:function (data) {
-                    swal({
-                        title: 'Информация сохранена',
-                        text: 'Данные на сервере успешно обновлены',
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm){
-                            var data_json = $.parseJSON(data);
-                            var response = data_json['response'];
-                            $('#escapingBallG').addClass('none');
-                            $('#send_to_client_text_calc').removeClass('none');
-
-                            if (response['price_changed']){
-                                $('#btn_send_calc_active').removeClass('none');
-                                $('#btn_send_calc_deactivated').addClass('none');
-                                $('#calc_sent_date_div').addClass('none');
-                                $('#calc_sent_date').text('');
-
-                            }
-                            if (response['price_deleted']){
-                                $('#btn_send_calc_active').addClass('none');
-                                $('#btn_send_calc_deactivated').removeClass('none');
-                                $('#calc_sent_date_div').addClass('none');
-                                $('#calc_sent_date').text('');
-
-                            }
-
-                            if (!response['no_data']){
-                                var timeline_author = response['timeline_author'];
-                                var timeline_datetime = response['timeline_datetime'];
-                                var timeline_author_role = response['timeline_author_role'];
-                                var event = response['event'];
-
-                                add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
-                            }
-
-                            hide_save_order();
-                            updateIcons();
+{#            $.ajax({#}
+{#                url: '{% url 'ru:dashboard_ru:update_order' %}',#}
+{#                type: 'POST',#}
+{#                data: data_,#}
+{#                processData: false,#}
+{#                contentType: false,#}
+{#                error: function(data){#}
+{#                    swal({#}
+{#                        title: 'Ошибка сервера',#}
+{#                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',#}
+{#                        type: 'warning'#}
+{#                    });#}
+{#                },#}
+{#                success:function (data) {#}
+{#                    swal({#}
+{#                        title: 'Информация сохранена',#}
+{#                        text: 'Данные на сервере успешно обновлены',#}
+{#                        type: 'success',#}
+{#                        confirmButtonText: 'Ok',#}
+{#                        closeOnConfirm: true#}
+{#                    },#}
+{#                    function (isConfirm) {#}
+{#                        if (isConfirm){#}
+{#                            var data_json = $.parseJSON(data);#}
+{#                            var response = data_json['response'];#}
+{#                            $('#escapingBallG').addClass('none');#}
+{#                            $('#send_to_client_text_calc').removeClass('none');#}
+{##}
+{#                            if (response['price_changed']){#}
+{#                                $('#btn_send_calc_active').removeClass('none');#}
+{#                                $('#btn_send_calc_deactivated').addClass('none');#}
+{#                                $('#calc_sent_date_div').addClass('none');#}
+{#                                $('#calc_sent_date').text('');#}
+{##}
+{#                            }#}
+{#                            if (response['price_deleted']){#}
+{#                                $('#btn_send_calc_active').addClass('none');#}
+{#                                $('#btn_send_calc_deactivated').removeClass('none');#}
+{#                                $('#calc_sent_date_div').addClass('none');#}
+{#                                $('#calc_sent_date').text('');#}
+{##}
+{#                            }#}
+{##}
+{#                            if (!response['no_data']){#}
+{#                                var timeline_author = response['timeline_author'];#}
+{#                                var timeline_datetime = response['timeline_datetime'];#}
+{#                                var timeline_author_role = response['timeline_author_role'];#}
+{#                                var event = response['event'];#}
+{##}
+{#                                add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);#}
+{#                            }#}
+{##}
+{#                            hide_save_order();#}
+{#                            updateIcons();#}
 {#                            if ($('#order_price').val() != '' && $('#calc_sent_date').text() == ''){#}
 {#                                console.log('есть цена')#}
 {#                                $('#btn_send_calc_active').removeClass('none');#}
@@ -2084,11 +2084,11 @@
 {#                                }#}
 {##}
 {#                            }#}
-
-                        }
-                    });
-                }
-            });
+{##}
+{#                        }#}
+{#                    });#}
+{#                }#}
+{#            });#}
 
         }
 
