@@ -1759,50 +1759,50 @@
                 $('#escapingBallG').removeClass('none');
                 $('#send_to_client_text_calc').addClass('none');
 
-{#                $.ajax({#}
-{#                    url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',#}
-{#                    type: 'POST',#}
-{#                    data: JSON.stringify({#}
-{#                                'order_price': $('#order_price').val(),#}
-{#                                'order_id': {{ order_details.id }}#}
-{#                            }),#}
-{#                    processData: false,#}
-{#                    contentType: false,#}
-{#                    error: function(data){#}
-{#                        swal({#}
-{#                            title: 'Ошибка сервера',#}
-{#                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',#}
-{#                            type: 'warning'#}
-{#                        });#}
-{#                    },#}
-{#                    success:function (data) {#}
-{#                        swal({#}
-{#                            title: 'Расчет отправлен',#}
-{#                            text: 'Расчет успешно отправлен.',#}
-{#                            type: 'success',#}
-{#                            confirmButtonText: 'Ok',#}
-{#                            closeOnConfirm: true#}
-{#                        },#}
-{#                        function (isConfirm) {#}
-{#                            $('#escapingBallG').addClass('none');#}
-{#                            $('#send_to_client_text_calc').removeClass('none');#}
-{##}
-{#                            var data_json = $.parseJSON(data);#}
-{#                            var response = data_json['response'];#}
-{#                            var calc_sent_date = response['calc_sent_date'];#}
-{#                            var timeline_author = response['timeline_author'];#}
-{#                            var timeline_author_role = response['timeline_author_role'];#}
-{#                            var event = response['event'];#}
-{##}
-{##}
-{#                            $('#btn_send_calc_active').addClass('none');#}
-{#                            $('#calc_sent_date_div').removeClass('none');#}
-{#                            $('#calc_sent_date').text(calc_sent_date);#}
-{#                            updateIcons();#}
-{#                            add_timeline_item(calc_sent_date, timeline_author, timeline_author_role, event);#}
-{#                        });#}
-{#                    }#}
-{#                });#}
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:send_calculation_to_client' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                                'order_price': $('#order_price').val(),
+                                'order_id': {{ order_details.id }}
+                            }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'warning'
+                        });
+                    },
+                    success:function (data) {
+                        swal({
+                            title: 'Расчет отправлен',
+                            text: 'Расчет успешно отправлен.',
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        },
+                        function (isConfirm) {
+                            $('#escapingBallG').addClass('none');
+                            $('#send_to_client_text_calc').removeClass('none');
+
+                            var data_json = $.parseJSON(data);
+                            var response = data_json['response'];
+                            var calc_sent_date = response['calc_sent_date'];
+                            var timeline_author = response['timeline_author'];
+                            var timeline_author_role = response['timeline_author_role'];
+                            var event = response['event'];
+
+
+                            $('#btn_send_calc_active').addClass('none');
+                            $('#calc_sent_date_div').removeClass('none');
+                            $('#calc_sent_date').text(calc_sent_date);
+                            updateIcons();
+                            add_timeline_item(calc_sent_date, timeline_author, timeline_author_role, event);
+                        });
+                    }
+                });
 
             }
 
