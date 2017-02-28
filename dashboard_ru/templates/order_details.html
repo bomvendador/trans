@@ -404,6 +404,44 @@
                                                             </div>
 
                                                     </div>
+
+
+
+                                                    <div class="col-sm-3 col-xs-12">
+                                                        <h2 class="card-inside-title">Рекомендация</h2>
+                                                        <div class="row clearfix">
+                                                            <div class="body">
+                                                                <div class="row clearfix">
+                                                                    <div class="">
+                                                                        <select class="form-control show-tick" id="recommended_price" name="recommended_price">
+                                                                            <option value="">--  --</option>
+                                                                            {% for recommended_price in recommended_prices %}
+                                                                            <option value="" {% if order_details.recommended_price == recommended_price %} selected {% endif %}>{{ recommended_price }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row clearfix">
+                                                    <div class="col-sm-3 col-xs-12">
+                                                            <h2 class="card-inside-title mrg-bottom-33">Количество страниц</h2>
+                                                            <div class="input-group">
+                                                                <div class="row">
+                                                                    <div class="col-sm-2">
+                                                                        <i class="mdi mdi-file-multiple font-24"></i>
+                                                                    </div>
+                                                                    <div class="col-sm-10">
+                                                                        <div class="form-line">
+                                                                            <input type="text" class="form-control date" id="order_pages_qnt" name="order_pages_qnt" value="{% if order_details.pages_qnt %}{{ order_details.pages_qnt }}{% endif %}">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    </div>
                                                     <div class="col-sm-3 col-xs-12">
                                                         <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
 
@@ -1643,6 +1681,9 @@
     $('#order_price_profi').on('input', function () {
         show_save_order();
     });
+    $('#order_pages_qnt').on('input', function () {
+        show_save_order();
+    });
     $('#calc_sent_date').on('change', function () {
         show_save_order();
     });
@@ -1909,6 +1950,7 @@
         var price_business = false;
         var price_profi = false;
         var price_error = false;
+        var pages_qnt = false;
 
         if ($('#order_price').val() == ''){
             price_standart = true
@@ -1919,10 +1961,13 @@
         if ($('#order_price_profi').val() == ''){
             price_profi = true
         }
-        if (price_standart && price_business && price_profi){
+        if ($('#order_pages_qnt').val() == ''){
+            pages_qnt = true
+        }
+        if (price_standart && price_business && price_profi && pages_qnt){
             price_error = false;
         }else {
-            if (!price_standart && !price_business && !price_profi){
+            if (!price_standart && !price_business && !price_profi && !pages_qnt){
                 price_error = false;
             }else {
                 price_error = true;
