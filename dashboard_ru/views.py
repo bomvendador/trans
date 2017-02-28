@@ -1057,7 +1057,7 @@ def update_order(request):
             sent_doc.recommended_price = recommended_price
             sent_doc.pages_qnt = pages_qnt
             response.update({
-                'price_changes': 1
+                'price_changed': 1
             })
             sent_doc.calc_sent_date = None
             logger.debug('price changed')
