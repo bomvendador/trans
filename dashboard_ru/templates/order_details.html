@@ -416,7 +416,7 @@
                                                                         <select class="form-control show-tick" id="recommended_price" name="recommended_price">
                                                                             <option value="">--  --</option>
                                                                             {% for recommended_price in recommended_prices %}
-                                                                            <option value="" {% if order_details.recommended_price == recommended_price %} selected {% endif %}>{{ recommended_price }}</option>
+                                                                            <option value="" {% if order_details.recommended_price == recommended_price %} selected {% endif %}>{{ recommended_price.name }}</option>
                                                                             {% endfor %}
                                                                         </select>
                                                                     </div>
