@@ -381,7 +381,7 @@
                                                                     </div>
                                                                     <div class="col-sm-10">
                                                                         <div class="form-line">
-                                                                            <input type="text" class="form-control date" id="order_price_business" name="order_price_business" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                                            <input type="text" class="form-control date" id="order_price_business" name="order_price_business" value="{% if order_details.price_business %}{{ order_details.price_business }}{% endif %}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -397,7 +397,7 @@
                                                                     </div>
                                                                     <div class="col-sm-10">
                                                                         <div class="form-line">
-                                                                            <input type="text" class="form-control date" id="order_price_profi" name="order_price_profi" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                                            <input type="text" class="form-control date" id="order_price_profi" name="order_price_profi" value="{% if order_details.price_profi %}{{ order_details.price_profi }}{% endif %}">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -1634,6 +1634,12 @@
         show_save_order();
     });
     $('#order_price').on('input', function () {
+        show_save_order();
+    });
+    $('#order_price_business').on('input', function () {
+        show_save_order();
+    });
+    $('#order_price_profi').on('input', function () {
         show_save_order();
     });
     $('#calc_sent_date').on('change', function () {
