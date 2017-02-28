@@ -784,6 +784,10 @@ and (min-width: 768px)
     top: 10px;
 }
 
+.top-5{
+    top: 5px;
+}
+
 .height-35{
     height: 35px;
 }
