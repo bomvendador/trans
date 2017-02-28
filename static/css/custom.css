@@ -775,3 +775,11 @@ and (min-width: 768px)
 .font-size-13{
     font-size: 13px;
 }
+
+.margin-left-75{
+    margin-left: 75px;
+}
+
+.top-10{
+    top: 10px;
+}
