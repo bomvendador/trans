@@ -328,26 +328,25 @@
                                         </div>
                                     </div>
                                         {% if user_profile.role.role_name != 'Клиент' %}
-                                            {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name ==
-                                                <div class="row">
-            'Админ' %}
-                                                        <div class="col-sm-4 col-xs-12">
-                                                            <h2 class="card-inside-title">Ответственный</h2>
-                                                            <div class="row clearfix">
-                                                                <div class="body">
-                                                                    <div class="row clearfix">
-                                                                        <div class="">
-                                                                            <select class="form-control show-tick" id="resp" name="resp">
-                                                                                <option value="">--  --</option>
-                                                                                {% for manager in managers %}
-                                                                                <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
-                                                                                {% endfor %}
-                                                                            </select>
-                                                                        </div>
+                                            {% if user_profile.role.role_name == 'Суперадмин' or user_profile.role.role_name == 'Админ' %}
+                                               <div class="row">
+                                                    <div class="col-sm-4 col-xs-12">
+                                                        <h2 class="card-inside-title">Ответственный</h2>
+                                                        <div class="row clearfix">
+                                                            <div class="body">
+                                                                <div class="row clearfix">
+                                                                    <div class="">
+                                                                        <select class="form-control show-tick" id="resp" name="resp">
+                                                                            <option value="">--  --</option>
+                                                                            {% for manager in managers %}
+                                                                            <option value="{{ manager.user.id }}.   {{ manager.user.first_name }} {{ manager.user.last_name }}" {% if order_details.resp == manager.user %} selected {% endif %}{% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{{ manager.user.id }}. {{ manager.user.first_name }}</option>
+                                                                            {% endfor %}
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
 
                                                 </div>
                                                 {% endif %}
