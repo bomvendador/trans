@@ -447,7 +447,7 @@
 
                                                         <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class height-35">
                                                             <div id="escapingBallG" class="none">
-                                                                <div id="escapingBall_1" class="escapingBallG top-"></div>
+                                                                <div id="escapingBall_1" class="escapingBallG top-5"></div>
                                                             </div>
 {#                                                            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>#}
                                                             <span class="font-size-15" id="send_to_client_text_calc"> Отправить клиенту</span>
@@ -1997,7 +1997,8 @@
             })
 
         }else {
-
+            $('#escapingBallG').removeClass('none');
+            $('#send_to_client_text_calc').addClass('none');
             var data_ = new FormData($('#form').get(0));
             data_.append('user_id', {{ order_details.user.id }});
             data_.append('order_id', {{ order_details.id }});
@@ -2030,6 +2031,9 @@
                         if (isConfirm){
                             var data_json = $.parseJSON(data);
                             var response = data_json['response'];
+                            $('#escapingBallG').addClass('none');
+                            $('#send_to_client_text_calc').removeClass('none');
+
                             if (response['price_changed']){
                                 $('#btn_send_calc_active').removeClass('none');
                                 $('#btn_send_calc_deactivated').addClass('none');
