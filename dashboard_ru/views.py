@@ -204,8 +204,7 @@ def base_board(request, user_id):
         # new_count = SentDoc.objects.filter(status=OrderStatus.objects.get(name='Назначен менеджер')).filter(resp=user).count()
         # print(new_count)
         # except SentDoc.DoesNotExist:
-        sum_paid = SentDoc.objects.filter(user=request.user).filter(payment_amount__isnull=False).aggregate(
-            Sum('payment_amount'))
+        sum_paid = Payment.objects.filter(order=SentDoc.objects.filter(user=request.user)).aggregate(Sum('amount'))
         update_client_statistics(request.user)
         new_count = 0
         client = Client.objects.get(user=request.user)
@@ -214,7 +213,7 @@ def base_board(request, user_id):
 
         context.update({
             'client': client,
-            'sum_paid': sum_paid['payment_amount__sum'],
+            'sum_paid': sum_paid['amount__sum'],
             'orders_for_payment': orders_for_payment
         })
         try:
