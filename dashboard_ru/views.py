@@ -1054,9 +1054,9 @@ def update_order(request):
         pages_qnt = request.POST.get('order_pages_qnt')
         recommended_price = request.POST.get('recommended_price')
         sent_doc.pages_qnt = pages_qnt
-        logger.debug('recom = ' + str(recommended_price))
-        logger.debug('pages = ' + str(pages_qnt))
-        sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
+        # logger.debug('recom = ' + str(recommended_price))
+        # logger.debug('pages = ' + str(pages_qnt))
+        # sent_doc.recommended_price = RecommendedPrice.objects.get(name=recommended_price)
         # calc_sent_date = request.POST.get('calc_sent_date')
         # print(text_doc_send)
         sent_doc.status = OrderStatus.objects.get(name=u'В работе')
