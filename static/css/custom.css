@@ -771,3 +771,7 @@ and (min-width: 768px)
     margin-top: 13px;
     margin-left: 5px;
 }
+
+.font-size-13{
+    font-size: 13px;
+}
