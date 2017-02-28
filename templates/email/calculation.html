@@ -77,6 +77,17 @@
                    <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
                        <div>
                            <b>Стандарт</b>
+                           {% if order.recommended_price.name == 'Стандарт' %}<span style="display: inline;
+                                padding: .2em .6em .3em;
+                                font-size: 75%;
+                                font-weight: bold;
+                                line-height: 1;
+                                color: #fff;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: baseline;
+                                background: grey">Рекомендовано</span>
+                           {% endif %}
                        </div>
                        <div>
                            Документы низкой сложности. Перевод производится одним переводчиком.<br/>
@@ -91,6 +102,18 @@
                    <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
                        <div>
                            <b>Бизнес</b>
+                           {% if order.recommended_price.name == 'Бизнес' %}<span style="display: inline;
+                                padding: .2em .6em .3em;
+                                font-size: 75%;
+                                font-weight: bold;
+                                line-height: 1;
+                                color: #fff;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: baseline;
+                                background: grey">Рекомендовано</span>
+                           {% endif %}
+
                        </div>
                        <div>
                            Документы средней сложности. Перевод производится переводчиком с определенной специализацией<br/>
@@ -105,6 +128,18 @@
                    <td align="left" valign="center" style="padding: 5px; background: #DDDDDD;">
                        <div>
                            <b>Профи</b>
+                           {% if order.recommended_price.name == 'Профи' %}<span style="display: inline;
+                                padding: .2em .6em .3em;
+                                font-size: 75%;
+                                font-weight: bold;
+                                line-height: 1;
+                                color: #fff;
+                                text-align: center;
+                                white-space: nowrap;
+                                vertical-align: baseline;
+                                background: grey">Рекомендовано</span>
+                           {% endif %}
+
                        </div>
                        <div>
                            Документы повышенной сложности. Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка.<br/>
