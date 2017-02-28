@@ -168,7 +168,7 @@ class Company(models.Model):
 
 
 class RecommendedPrice(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25, blank=True, null=True)
 
 
 class SentDoc (models.Model):
