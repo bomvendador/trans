@@ -1999,6 +1999,7 @@
             data_.append('order_id', {{ order_details.id }});
             data_.append('text', $('#text_doc_send').val());
             data_.append('recommended_price', $('#recommended_price').val());
+            console.log('реком = ' + $('#recommended_price').val());
 
             $.ajax({
                 url: '{% url 'ru:dashboard_ru:update_order' %}',
