@@ -783,3 +783,7 @@ and (min-width: 768px)
 .top-10{
     top: 10px;
 }
+
+.height-35{
+    height: 35px;
+}
