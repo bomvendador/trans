@@ -167,8 +167,8 @@ class Company(models.Model):
     orders_qnt = models.IntegerField(default=0)
 
 
-class RecommendedPrice(models.Model):
-    name = models.CharField(max_length=25, blank=True, null=True)
+# class RecommendedPrice(models.Model):
+#     name = models.CharField(max_length=25, blank=True, null=True)
 
 
 class SentDoc (models.Model):
