@@ -350,6 +350,24 @@
                                         {% endif %}
 
                                             <div class="col-sm-4 col-xs-12">
+
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12">
+
+
+                                            </div>
+
+                                        {% endif %}
+                                        <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
+                                           <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
+                                        </div>
+
+                                    </div>
+                                    <div class="row list-group-item active" style="border-radius: 0">
+                                        <h4 class="list-group-item-heading">Стоимость</h4>
+                                    </div>
+                                    <div class="row col-xs-12">
+                                        <div class="col-sm-3 col-xs-12">
                                                 <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
                                                 <div class="input-group">
                                                     <div class="row">
@@ -364,40 +382,62 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-                                            <div class="col-sm-4 col-xs-12">
-                                                <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
-
-                                                <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
-                                                    <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
-                                                </div>
-                                                <div id="btn_send_calc_deactivated" class="btn btn-primary btn-lg col-sm-12 padding-top-5 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
-                                                    <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
-                                                </div>
-
-                                                <div id="calc_sent_date_div" class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
-                                                    <span class="input-group-addon">
-                                                        <i class="mdi mdi-calendar-today font-24"></i>
-
-                                                    </span>
-                                                    <div class="form-line">
-
-                                                        <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date|date:"d.m.Y, H:i" }}</p>
-
+                                        </div>
+                                        <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Бизнес</h2>
+                                                <div class="input-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i class="mdi mdi-currency-rub font-24"></i>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control date" id="order_price_business" name="order_price_business" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
+                                        </div>
+                                        <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Профи</h2>
+                                                <div class="input-group">
+                                                    <div class="row">
+                                                        <div class="col-sm-2">
+                                                            <i class="mdi mdi-currency-rub font-24"></i>
+                                                        </div>
+                                                        <div class="col-sm-10">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control date" id="order_price_profi" name="order_price_profi" value="{% if order_details.price %}{{ order_details.price }}{% endif %}">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
+                                        </div>
+                                        <div class="col-sm-3 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
+
+                                            <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class">
+                                                <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
+                                            </div>
+                                            <div id="btn_send_calc_deactivated" class="btn btn-primary btn-lg col-sm-12 padding-top-5 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
+                                                <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
                                             </div>
 
-                                        {% endif %}
-                                        <div class="col-sm-12 col-xs-12 none" id="save_order_info_div">
-                                           <button type="button" class="btn bg-cyan btn-block btn-lg waves-effect" id="save_order_info_btn">СОХРАНИТЬ</button>
-                                        </div>
+                                            <div id="calc_sent_date_div" class="form-group input-group {% if not order_details.calc_sent_date %} none {% endif %}">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-calendar-today font-24"></i>
 
-                                    </div>
-                                    <div class="list-group-item active">
-                                        <p class="list-group-item-heading">Стоимость</p>
+                                                </span>
+                                                <div class="form-line">
+
+                                                    <p class="form-control" id="calc_sent_date">{{ order_details.calc_sent_date|date:"d.m.Y, H:i" }}</p>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
 
 
