@@ -512,7 +512,7 @@
                                                                     <li><i class="fa fa-user"></i><span>limited</span> users</li>
                                                                     <li><i class="fa fa-smile-o"></i>first 10 day free</li>
                                                                 </ul>
-                                                                <input name="group4" type="radio" id="radio_1" class="radio-col-red" checked />
+                                                                <input name="group4" type="radio" id="radio_1" class="radio-col-red" che{% if order_details.recommended_price.name == 'Стандарт' %}checked{% endif %}/>
                                                                 <label for="radio_1"></label>
 
                                                             </div>
@@ -535,7 +535,7 @@
                                                                     <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
                                                                     <li><i class="fa fa-smile-o"></i>first 10 day free</li>
                                                                 </ul>
-                                                                <input name="group4" type="radio" id="radio_2" class="radio-col-red" checked />
+                                                                <input name="group4" type="radio" id="radio_2" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %} />
                                                                 <label for="radio_2"></label>
 
                                                             </div>
@@ -558,7 +558,7 @@
                                                                     <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
                                                                     <li><i class="fa fa-smile-o"></i>first 10 day free</li>
                                                                 </ul>
-                                                                <input name="group4" type="radio" id="radio_3" class="radio-col-red" checked />
+                                                                <input name="group4" type="radio" id="radio_3" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %} />
                                                                 <label for="radio_3"></label>
 
                                                             </div>
