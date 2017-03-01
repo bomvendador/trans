@@ -171,13 +171,33 @@
                                     </div>
                                     {% endif %}
                                     <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} </h2>
-                                    <div>
-                                        <p class="margin-bottom-0">Слова - {{ order_details.text_qnt }}</p>
-                                        <p class="margin-bottom-0">Буквы - {{ order_details.text_alphas_qnt }}</p>
-                                        <p class="margin-bottom-0">Пробелы - {{ order_details.text_spaces_qnt }}</p>
-                                        <p class="margin-bottom-0">Символы - {{ order_details.text_symbols_qnt }}</p>
-                                        <p style="border-bottom: 1px solid #ddd" class="margin-bottom-0">Цифры - {{ order_details.text_digits_qnt }}</p>
-                                        <p class="margin-bottom-10">Всего - {{ order_details.text_total_qnt }}</p>
+                                    <div class="col-sm-3 col-xs-12">
+                                        <table>
+                                            <tr>
+                                                <td style="background: #ddd;">Слова</td>
+                                                <td>{{ order_details.text_qnt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #ddd;">Буквы</td>
+                                                <td>{{ order_details.text_alphas_qnt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #ddd;">Пробелы</td>
+                                                <td>{{ order_details.text_spaces_qnt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #ddd;">Символы</td>
+                                                <td>{{ order_details.text_symbols_qnt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #ddd;">Цифры</td>
+                                                <td>{{ order_details.text_digits_qnt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="background: #ddd;">Всего</td>
+                                                <td>{{ order_details.text_total_qnt }}</td>
+                                            </tr>
+                                        </table>
 
                                     </div>
                                     <div class="row clearfix" >
