@@ -501,7 +501,7 @@
                                                         <div class="pricing-table">
                                                             <div class="pricing-header">
                                                                 <p class="pricing-title">Стандарт</p>
-                                                                <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price }}</p>
+                                                                <p class="pricing-rate" id="standart_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price }}</p>
                                                             </div>
 
                                                             <div class="pricing-list">
@@ -527,7 +527,7 @@
                                                         <div class="pricing-table">
                                                             <div class="pricing-header">
                                                                 <p class="pricing-title">Бизнес</p>
-                                                                <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
+                                                                <p class="pricing-rate"  id="business_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
                                                             </div>
 
                                                             <div class="pricing-list">
@@ -553,7 +553,7 @@
                                                         <div class="pricing-table">
                                                             <div class="pricing-header">
                                                                 <p class="pricing-title">Профи</p>
-                                                                <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_profi }}</p>
+                                                                <p class="pricing-rate" id="profi_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_profi }}</p>
                                                             </div>
 
                                                             <div class="pricing-list">
@@ -1549,10 +1549,19 @@
     //отправка оплаты
     $('#pay_order_btn').on('click', function () {
         var selected = $("#pricing-table").find("input[type='radio']:checked");
+        if (selected.prop('id') == 'radio_btn_business'){
+            var price = $('#business_price').text();
+        }
+        if (selected.prop('id') == 'radio_btn_standart'){
+            var price = $('#standart_price').text();
+        }
+        if (selected.prop('id') == 'radio_btn_profi'){
+            var price = $('#profi_price').text();
+        }
         if (selected.length > 0) {
             $('#LMI_PAYMENT_AMOUNT').val(selected.val());
 {#            $('#payment_form').submit()#}
-            console.log('план =' + $('#LMI_PAYMENT_AMOUNT').val());
+            console.log('план =' + price);
         }else {
             swal({
                 title: 'Платежный план не выбран',
