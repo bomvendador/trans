@@ -547,8 +547,11 @@
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с определенной специализацией</span></li>
                                                                     <li class="f_s_15"><span>Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация</span></li>
                                                                     <li {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Бизнес' %}style="background: green; color: white"{% endif %}>
-                                                                        {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Бизнес' %}
+                                                                        {% if order_details.paystatus.name == 'Paid' %}
+                                                                            {% if order_details.price_level.name == 'Бизнес' %}
                                                                             <div>Оплачено</div>
+                                                                            {% endif %}
+
                                                                         {% else %}
                                                                         <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
                                                                         <label for="radio_btn_business"></label>
@@ -577,8 +580,11 @@
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка</span></li>
                                                                     <li class="f_s_15"><span>Важнейшие документы, не допускающие наличие ошибок или неточностей</span></li>
                                                                     <li {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Профи' %}style="background: green; color: white"{% endif %}>
-                                                                        {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Профи' %}
+                                                                        {% if order_details.paystatus.name == 'Paid' %}
+                                                                            {% if order_details.price_level.name == 'Профи' %}
                                                                             <div>Оплачено</div>
+                                                                            {% endif %}
+
                                                                         {% else %}
                                                                         <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %}/>
                                                                         <label for="radio_btn_profi"></label>
