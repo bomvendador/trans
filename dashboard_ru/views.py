@@ -15,7 +15,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer, TimelineOrder, Payment
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer, TimelineOrder, Payment, RecommendedPrice
 
 from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Sum
