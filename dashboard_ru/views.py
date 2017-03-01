@@ -1029,6 +1029,16 @@ def update_order(request):
                 text_qnt = len(text_str.split())
 
                 sent_doc.text_qnt = text_qnt
+                numbers = sum(c.isdigit() for c in text_doc_send)
+                alphas = sum(c.isalpha() for c in text_doc_send)
+                spaces = sum(c.isspace() for c in text_doc_send)
+                symbols = len(text_doc_send) - numbers - alphas - spaces
+                sent_doc.text_alphas_qnt = alphas
+                sent_doc.text_digits_qnt = numbers
+                sent_doc.text_spaces_qnt = spaces
+                sent_doc.text_symbols_qnt = symbols
+                sent_doc.text_total_qnt = len(text_doc_send)
+
             else:
                 sent_doc.text = None
                 sent_doc.text_qnt = None
