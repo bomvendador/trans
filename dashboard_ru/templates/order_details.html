@@ -567,7 +567,7 @@
                                         </div>
                                     </section>
                                     <!-- Pricing Table Section End -->
-                                    {% endif %}
+                                {% endif %}
 
 
                                     {% if user_profile.role.role_name != 'Клиент' %}
@@ -655,9 +655,10 @@
 
                                         </div>
 
-                                    {% endif %}
 
                                     </div>
+                                    {% endif %}
+
                                     {% if user_profile.role.role_name != 'Клиент' and order_details.paymethod.name != 'PayMaster' %}
                                     <div class="row">
                                         <div class="col-sm-4 col-xs-12">
