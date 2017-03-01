@@ -791,3 +791,7 @@ and (min-width: 768px)
 .height-35{
     height: 35px;
 }
+
+.width-100-prc{
+    width: 100%;
+}
