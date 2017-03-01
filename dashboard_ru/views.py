@@ -1118,6 +1118,10 @@ def update_order(request):
 
         if not is_timeline:
             response.update({'no_data': 1})
+        else:
+            response.update({
+                'timeline_label': TimelineOrder.objects.filter(order=sent_doc).count()
+            })
 
         sent_doc.trans_to = trans_to_inst
         sent_doc.trans_from = trans_from_inst

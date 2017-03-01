@@ -2230,6 +2230,7 @@
                                 var event = response['event'];
 
                                 add_timeline_item(timeline_datetime, timeline_author, timeline_author_role, event);
+                                $('#timeline_label').text(response['timeline_label']);
                             }
 
                             hide_save_order();
