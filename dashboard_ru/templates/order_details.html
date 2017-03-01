@@ -479,14 +479,14 @@
                                                     <div class="col-sm-3 col-xs-12">
                                                         <h2 class="card-inside-title mrg-bottom-33">Отправка расчета</h2>
 
-                                                        <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-5 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class height-35">
+                                                        <div id="btn_send_calc_active" class="btn btn-primary btn-lg col-sm-12 padding-top-2 pointer-pure {% if not order_details.price or order_details.calc_sent_date %} none {% endif %}btn_send_calc_class height-35">
                                                             <div id="escapingBallG" class="none">
                                                                 <div id="escapingBall_1" class="escapingBallG top-5"></div>
                                                             </div>
 {#                                                            <i class="mdi mdi-arrow-up-bold-circle-outline"></i>#}
-                                                            <span class="font-size-15" id="send_to_client_text_calc"> Отправить клиенту</span>
+                                                            <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15" id="send_to_client_text_calc"> Отправить клиенту</span>
                                                         </div>
-                                                        <div id="btn_send_calc_deactivated" class="btn btn-primary btn-lg col-sm-12 padding-top-5 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
+                                                        <div id="btn_send_calc_deactivated" class="height-35 btn btn-primary btn-lg col-sm-12 padding-top-2 opacity-0_5 cursor-default {% if order_details.price or order_details.calc_sent_date %} none {% endif %}">
                                                             <i class="mdi mdi-arrow-up-bold-circle-outline"></i><span class="font-size-15 "> Отправить клиенту</span>
                                                         </div>
 

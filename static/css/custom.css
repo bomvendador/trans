@@ -649,6 +649,10 @@ and (min-width: 768px)
     padding-top: 5px;
 }
 
+.padding-top-2{
+    padding-top: 2px;
+}
+
 .text-decoration-none{
     text-decoration: none!important;
 }
