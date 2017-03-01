@@ -792,6 +792,8 @@
                                 <input name="LMI_PAYMENT_NO" value="{{ order_details.id }}">
                                 <input name="LMI_SIM_MODE" value="0">
                                 <input name="LMI_PAYMENT_DESC" value="Оплата услуг по переводу. Заявка № {{ order_details.id }}">
+                                <input name="price_level" value="" id="price_level">
+
                             </form>
 
                             <!-- Default Size modal список существующих клиентов-->
@@ -1548,18 +1550,25 @@
 
     //отправка оплаты
     $('#pay_order_btn').on('click', function () {
+
         var selected = $("#pricing-table").find("input[type='radio']:checked");
         if (selected.prop('id') == 'radio_btn_business'){
             var price = $('#business_price').text();
+            var price_level = 'Стандарт';
         }
         if (selected.prop('id') == 'radio_btn_standart'){
             var price = $('#standart_price').text();
+            var price_level = 'Бизнес';
+
         }
         if (selected.prop('id') == 'radio_btn_profi'){
             var price = $('#profi_price').text();
+            var price_level = 'Профи';
+
         }
         if (selected.length > 0) {
             $('#LMI_PAYMENT_AMOUNT').val(price);
+            $('#price_level').val(price_level);
             $('#payment_form').submit()
         }else {
             swal({
