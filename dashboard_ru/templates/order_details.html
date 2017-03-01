@@ -507,12 +507,13 @@
                                                             <div class="pricing-list">
                                                                 <ul>
                                                                     <li><span>Документы низкой сложности</span></li>
-                                                                    <li><span>Перевод производится одним переводчиком</span> data</li>
-                                                                    <li><i class="fa fa-user"></i><span>limited</span> users</li>
-                                                                    <li>Личные документы, удостоверения личности, дипломы, документы официальных органов, личная и бизнес переписка, сертификаты, свидетельства, таможенные документы и т.п.</li>
+                                                                    <li><span>Перевод производится одним переводчиком</span></li>
+                                                                    <li><span>Личные документы, удостоверения личности, дипломы, документы официальных органов, личная и бизнес переписка, сертификаты, свидетельства, таможенные документы и т.п.</span></li>
+                                                                    <li>
+                                                                        <input name="group4" type="radio" id="radio_1" class="radio-col-red" {% if order_details.recommended_price.name == 'Стандарт' %}checked{% endif %}/>
+                                                                        <label for="radio_1"></label>
+                                                                    </li>
                                                                 </ul>
-                                                                <input name="group4" type="radio" id="radio_1" class="radio-col-red" {% if order_details.recommended_price.name == 'Стандарт' %}checked{% endif %}/>
-                                                                <label for="radio_1"></label>
 
                                                             </div>
 
