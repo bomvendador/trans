@@ -491,6 +491,24 @@
                                     <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
                                         <p class="list-group-item-heading">Сумма к оплате</p>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-sm-3 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Стандарт</h2>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-currency-rub font-24"></i>
+                                                </span>
+                                                <div class="form-line" id="order_price_div">
+                                                    <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
+                                                </div>
+                                                {% if order_details.paystatus.name == 'Paid' %}
+                                                <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                    </div>
+
                                     {% endif %}
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">

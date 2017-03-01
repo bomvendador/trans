@@ -15,7 +15,7 @@ from django.shortcuts import render, redirect
 
 from ru.models import SentDoc, SentFiles, UserProfile, Language, OrderStatus, PayMethod, Translator, Translator_Lang, \
     TranslationFiles, Role, Manager, OrderComments, Admin, PaymentDetails, Client, TranslationType, TranslationTheme, \
-    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer, TimelineOrder, Payment, RecommendedPrice
+    PayStatus, BackCall, BackCallComments, Testimonials, Company, Property, Invoice, OrderCommentsClients, OrderCommentsClientsAnswer, TimelineOrder, Payment, PriceLevel
 
 from django.utils.dateparse import parse_date, parse_datetime
 from django.db.models import Sum
@@ -589,7 +589,7 @@ def order_details(request, order_id):
         'companies': companies,
         'timelines': TimelineOrder.objects.filter(order=order_det),
         'payments': payments,
-        'recommended_prices': RecommendedPrice.objects.all()
+        'recommended_prices': PriceLevel.objects.all()
     })
     return render(request, 'order_details.html', context)
 
@@ -1052,7 +1052,7 @@ def update_order(request):
         price_business = request.POST.get('order_price_business')
         price_profi = request.POST.get('order_price_profi')
         pages_qnt = request.POST.get('order_pages_qnt')
-        recommended_price = RecommendedPrice.objects.get(name=request.POST.get('recommended_price'))
+        recommended_price = PriceLevel.objects.get(name=request.POST.get('recommended_price'))
         if sent_doc.recommended_price != recommended_price or sent_doc.pages_qnt != Decimal(pages_qnt):
             sent_doc.recommended_price = recommended_price
             sent_doc.pages_qnt = pages_qnt

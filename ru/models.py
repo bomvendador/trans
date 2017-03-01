@@ -167,7 +167,7 @@ class Company(models.Model):
     orders_qnt = models.IntegerField(default=0)
 
 
-class RecommendedPrice(models.Model):
+class PriceLevel(models.Model):
     name = models.CharField(max_length=25, blank=True, null=True)
 
 
@@ -190,7 +190,7 @@ class SentDoc (models.Model):
     price_business = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     price_profi = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     pages_qnt = models.DecimalField(max_digits=8, decimal_places=2, null=True)
-    recommended_price = models.ForeignKey(RecommendedPrice, null=True)
+    recommended_price = models.ForeignKey(PriceLevel, null=True)
     payment_amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     paystatus = models.ForeignKey(PayStatus, blank=True, null=True)
     paymethod = models.ForeignKey(PayMethod, blank=True, null=True)
@@ -337,4 +337,7 @@ class Payment(models.Model):
     changed = models.DateTimeField(auto_now=True, auto_now_add=False, null=True)
     added_by = models.ForeignKey(User, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
+    price_level = models.ForeignKey(PriceLevel)
+
+
 
