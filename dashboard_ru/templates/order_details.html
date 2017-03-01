@@ -787,11 +787,11 @@
                             <!--Форма для оплаты-->
                             <form action="https://paymaster.ru/Payment/Init" method="post" id="payment_form" name="payment_form" class="none">
                                 <input name="LMI_MERCHANT_ID" value="caccd086-b240-4653-953d-3b7215e46ac8">
-                                <input name="LMI_PAYMENT_AMOUNT" value="{{ order_details.price }}">
+                                <input name="LMI_PAYMENT_AMOUNT" value="" id="LMI_PAYMENT_AMOUNT">
                                 <input name="LMI_CURRENCY" value="RUB">
                                 <input name="LMI_PAYMENT_NO" value="{{ order_details.id }}">
                                 <input name="LMI_SIM_MODE" value="0">
-                                <input name="LMI_PAYMENT_DESC" value="Оплата услуг по переводу">
+                                <input name="LMI_PAYMENT_DESC" value="Оплата услуг по переводу. Заявка № {{ order_details.id }}">
                             </form>
 
                             <!-- Default Size modal список существующих клиентов-->
@@ -1548,7 +1548,20 @@
 
     //отправка оплаты
     $('#pay_order_btn').on('click', function () {
-        $('#payment_form').submit()
+        var selected = $("#pricing-table").find("input[type='radio']:checked");
+        if (selected.length > 0) {
+            $('#LMI_PAYMENT_AMOUNT').val(selected.val());
+            $('#payment_form').submit()
+
+        }else {
+            swal({
+                title: 'Платежный план не выбран',
+                text: 'Выберите один из платежных планов (Стандарт, Бизнес, Профи)',
+                type: 'warning'
+            });
+
+        }
+
     });
 
 
