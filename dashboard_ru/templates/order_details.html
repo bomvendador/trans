@@ -511,7 +511,7 @@
                                                                     <li><span>Личные документы, удостоверения личности, дипломы, документы официальных органов, личная и бизнес переписка, сертификаты, свидетельства, таможенные документы и т.п.</span></li>
                                                                     <li>
                                                                         <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Стандарт' %}checked{% endif %}/>
-                                                                        <label for="radio_btn_standart" class="padding-left-0"></label>
+                                                                        <label for="radio_btn_standart"></label>
                                                                     </li>
                                                                 </ul>
 
@@ -521,23 +521,21 @@
                                                     </div>
 
                                                     <div class="col-md-4 col-sm-12 col-xs-12">
+                                                        <div class="pricing-header">
+                                                            <p class="pricing-title">Бизнес</p>
+                                                            <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
+                                                        </div>
+
                                                         <div class="pricing-table">
-                                                            <div class="pricing-header">
-                                                                <p class="pricing-title">Бизнес</p>
-                                                                <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
-                                                            </div>
-
-                                                            <div class="pricing-list">
-                                                                <ul>
-                                                                    <li><i class="fa fa-envelope"></i>10,000 messages</li>
-                                                                    <li><i class="fa fa-signal"></i><span>unlimited</span> data</li>
-                                                                    <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
-                                                                    <li><i class="fa fa-smile-o"></i>first 10 day free</li>
-                                                                </ul>
-                                                                <input name="group4" type="radio" id="radio_2" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %} />
-                                                                <label for="radio_2"></label>
-
-                                                            </div>
+                                                            <ul>
+                                                                <li><span>Документы средней сложности</span></li>
+                                                                <li><span>Перевод производится переводчиком с определенной специализацией</span></li>
+                                                                <li><span>Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация</span></li>
+                                                                <li>
+                                                                    <input name="radio_btn_price" type="radio" id="radio_btn_business" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
+                                                                    <label for="radio_btn_business"></label>
+                                                                </li>
+                                                            </ul>
 
                                                         </div>
                                                     </div>
@@ -551,14 +549,14 @@
 
                                                             <div class="pricing-list">
                                                                 <ul>
-                                                                    <li><i class="fa fa-envelope"></i>10,0000 messages</li>
-                                                                    <li><i class="fa fa-signal"></i><span>unlimited</span> data</li>
-                                                                    <li><i class="fa fa-user"></i><span>unlimited</span> users</li>
-                                                                    <li><i class="fa fa-smile-o"></i>first 10 day free</li>
+                                                                    <li><span>Документы повышенной сложности</span></li>
+                                                                    <li><span>Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка</span></li>
+                                                                    <li><span>Важнейшие документы, не допускающие наличие ошибок или неточностей</span></li>
+                                                                    <li>
+                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_profi" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %}/>
+                                                                        <label for="radio_btn_profi"></label>
+                                                                    </li>
                                                                 </ul>
-                                                                <input name="group4" type="radio" id="radio_3" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %} />
-                                                                <label for="radio_3"></label>
-
                                                             </div>
 
                                                         </div>
