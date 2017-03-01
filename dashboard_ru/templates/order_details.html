@@ -1551,8 +1551,8 @@
         var selected = $("#pricing-table").find("input[type='radio']:checked");
         if (selected.length > 0) {
             $('#LMI_PAYMENT_AMOUNT').val(selected.val());
-            $('#payment_form').submit()
-
+{#            $('#payment_form').submit()#}
+            console.log('план =' + $('#LMI_PAYMENT_AMOUNT').val(selected.val()));
         }else {
             swal({
                 title: 'Платежный план не выбран',
