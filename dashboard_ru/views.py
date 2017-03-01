@@ -569,7 +569,14 @@ def order_details(request, order_id):
                     resp=user).count()
             except SentDoc.DoesNotExist:
                 sent_docs = None
-
+    if order_det.price_level:
+        if order_det.price_level.name == u'Стандарт':
+            price = order_det.price
+        elif order_det.price_level.name == u'Бизнес':
+            price = order_det.price_business
+        else:
+            price = order_det.price_profi
+        context.update({'price': price})
     context.update({
         'order_details': order_det,
         'client': Client.objects.get(user=User.objects.get(id=order_det.user.id)),

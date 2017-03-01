@@ -689,7 +689,7 @@
                                             <h2 class="card-inside-title mrg-bottom-33">Платежный план</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="mdi mdi-tie font-24 {% if not order_details.company %} opacity-0_5 {% endif %}"></i>
+                                                        <i class="mdi mdi-credit-card font-24"></i>
                                                     </span>
                                                     <select class="form-control show-tick" id="payment_price_level" name="payment_price_level">
                                                         <option value="">--  --</option>
@@ -700,7 +700,21 @@
                                                 </div>
 
                                         </div>
+                                        <div class="col-sm-3 col-xs-12">
+                                            <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-currency-rub font-24"></i>
+                                                </span>
 
+                                                <div class="form-line">
+                                                    <input class="form-control date" id="payment_price" name="payment_price" value="{% if price %}{{ price }}{% endif %}" type="text">
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
 
