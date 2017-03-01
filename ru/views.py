@@ -506,7 +506,7 @@ def save_files_trans(request):
                 doc_sent.files_qnt = files_qnt
             if request.user.is_authenticated():
                 try:
-                    user_profile = UserProfile.objects.get(user=request.user.id)
+                    user_profile = UserProfile.objects.get(user=request.user)
                     if user_profile.role.role_name != u'Клиент':
                         doc_sent.order_src = OrderSource.objects.get(name=u'Персонал')
                         email_source = u'Персонал'
