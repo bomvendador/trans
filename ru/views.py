@@ -498,6 +498,16 @@ def save_files_trans(request):
                 text_str = r.sub(' ', text)
                 text_qnt = len(text_str.split())
                 doc_sent.text_qnt = text_qnt
+                numbers = sum(c.isdigit() for c in text)
+                alphas = sum(c.isalpha() for c in text)
+                spaces = sum(c.isspace() for c in text)
+                symbols = len(text) - numbers - alphas - spaces
+                doc_sent.text_alphas_qnt = alphas
+                doc_sent.text_digits_qnt = numbers
+                doc_sent.text_spaces_qnt = spaces
+                doc_sent.text_symbols_qnt = symbols
+                doc_sent.text_total_qnt = len(text)
+
             files_qnt = 0
 
             for f in request.FILES:
