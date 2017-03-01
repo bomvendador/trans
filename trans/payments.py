@@ -9,6 +9,9 @@ from django.contrib.auth.decorators import login_required
 import json
 from dashboard_ru import views as dashboard_views
 from datetime import datetime, timedelta
+
+from decimal import Decimal
+
 import logging
 logger = logging.getLogger('django-debug')
 from django.utils import timezone
@@ -22,6 +25,23 @@ def payment_success(request):
         price_level = request.POST.get('price_level')
         # logger.debug(u'price_level = ' + price_level)
         order = SentDoc.objects.get(id=order_id)
+        if price_level == u'Стандарт':
+            price_to_be_paid = order.price
+            order.price_level = PriceLevel.objects.get(name=u'Стандарт')
+        if price_level == u'Бизнес':
+            price_to_be_paid = order.price_business
+            order.price_level = PriceLevel.objects.get(name=u'Бизнес')
+
+        if price_level == u'Профи':
+            price_to_be_paid = order.price_profi
+            order.price_level = PriceLevel.objects.get(name=u'Профи')
+
+        if price_to_be_paid:
+            if price_to_be_paid == Decimal(payment_amount):
+                order.paystatus = PayStatus.objects.get(name='Paid')
+            else:
+                if Decimal(payment_amount) > 0:
+                    order.paystatus = PayStatus.objects.get(name='Partially_paid')
         payment = Payment()
         payment.order = order
         payment.amount = payment_amount

@@ -191,6 +191,7 @@ class SentDoc (models.Model):
     price_profi = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     pages_qnt = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     recommended_price = models.ForeignKey(PriceLevel, null=True)
+    price_level = models.ForeignKey(PriceLevel, null=True, related_name='price_level')
     payment_amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     paystatus = models.ForeignKey(PayStatus, blank=True, null=True)
     paymethod = models.ForeignKey(PayMethod, blank=True, null=True)

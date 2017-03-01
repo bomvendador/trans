@@ -512,9 +512,13 @@
                                                                     <li class="f_s_15"><span>Документы низкой сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится одним переводчиком</span></li>
                                                                     <li class="f_s_15"><span>Личные документы, удостоверения личности, дипломы, документы официальных органов, личная и бизнес переписка, сертификаты, свидетельства, таможенные документы и т.п.</span></li>
-                                                                    <li>
+                                                                    <li {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Стандарт' %}style="background: greenyellow; color: white"{% endif %}>
+                                                                        {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Стандарт' %}
+                                                                            <div>Оплачено</div>
+                                                                        {% else %}
                                                                         <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Стандарт' %}checked{% endif %}/>
                                                                         <label for="radio_btn_standart"></label>
+                                                                        {% endif %}
                                                                     </li>
                                                                 </ul>
 
@@ -539,9 +543,13 @@
                                                                     <li class="f_s_15"><span>Документы средней сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с определенной специализацией</span></li>
                                                                     <li class="f_s_15"><span>Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация</span></li>
-                                                                    <li>
-                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_business" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
+                                                                    <li {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Бизнес' %}style="background: greenyellow; color: white"{% endif %}>
+                                                                        {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Бизнес' %}
+                                                                            <div>Оплачено</div>
+                                                                        {% else %}
+                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
                                                                         <label for="radio_btn_business"></label>
+                                                                        {% endif %}
                                                                     </li>
                                                                 </ul>
 
@@ -565,9 +573,13 @@
                                                                     <li class="f_s_15"><span>Документы повышенной сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка</span></li>
                                                                     <li class="f_s_15"><span>Важнейшие документы, не допускающие наличие ошибок или неточностей</span></li>
-                                                                    <li>
-                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_profi" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %}/>
+                                                                    <li {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Профи' %}style="background: greenyellow; color: white"{% endif %}>
+                                                                        {% if order_details.paystatus.name == 'Paid' and order_details.price_level.name == 'Профи' %}
+                                                                            <div>Оплачено</div>
+                                                                        {% else %}
+                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_standart" class="radio-col-red" {% if order_details.recommended_price.name == 'Профи' %}checked{% endif %}/>
                                                                         <label for="radio_btn_profi"></label>
+                                                                        {% endif %}
                                                                     </li>
                                                                 </ul>
                                                             </div>
