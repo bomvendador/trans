@@ -71,19 +71,19 @@
             <h2>
                 Заявка № {{ order_details.id }} <small>Дата создания: {{ order_details.timestamp|date:"d.m.Y, H:i" }}</small>{% if author_role.role.role_name %}{% if user_role.role.role_name != 'Клиент'%}<small>Автор: {{ order_details.author.id }}. {{ author_role.role.role_name }} - {{ order_details.author.first_name }} {{ order_details.author.last_name }}</small><small>Источник: {{ order_details.order_src.name }}</small>{% endif %}{% endif %}
             </h2>
-        <div style="float: right; font-size: 20px; position: absolute; top: 15px; right: 35px;">
+                <div style="float: right; font-size: 20px; position: absolute; top: 15px; right: 35px;">
 
-            <i class="mdi mdi-account cursor-default {% if order_details.resp %} opacity-1 {% else %}opacity-0_5 {% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
-            {% if user_profile.role.role_name != 'Клиент' %}
-            <i class="mdi mdi-comment-processing cursor-default {% if comments %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="message" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
-            {% endif %}
-            <i class="mdi mdi-currency-rub cursor-default {% if order_details.calc_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отправлен" data-placement="top"></i>
-            <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
-            <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
-            <i class="mdi mdi-note cursor-default {% if order_details.translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
-            <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
+                    <i class="mdi mdi-account cursor-default {% if order_details.resp %} opacity-1 {% else %}opacity-0_5 {% endif %}" id="manager_assigned" data-toggle="tooltip" title="Менеджер назначен" data-placement="top"></i>
+                    {% if user_profile.role.role_name != 'Клиент' %}
+                    <i class="mdi mdi-comment-processing cursor-default {% if comments %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="message" data-toggle="tooltip" title="Комментарии" data-placement="top"></i>
+                    {% endif %}
+                    <i class="mdi mdi-currency-rub cursor-default {% if order_details.calc_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}"  id="calc_sent" data-toggle="tooltip" title="Расчет отправлен" data-placement="top"></i>
+                    <i class="mdi mdi-voice cursor-default {% if order_details.translator %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translator_assigned" data-toggle="tooltip" title="Переводчик назначен" data-placement="top"></i>
+                    <i class="mdi mdi-wallet cursor-default {% if order_details.paystatus.name == 'Paid' %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="paid" data-toggle="tooltip" title="Оплачено" data-placement="top"></i>
+                    <i class="mdi mdi-note cursor-default {% if order_details.translation_files %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="translation_files_uploaded" data-toggle="tooltip" title="Файлы перевода загружены" data-placement="top"></i>
+                    <i class="mdi mdi-spellcheck cursor-default {% if order_details.translation_sent_date %} opacity-1 {% else %} opacity-0_5 {% endif %}" id="order_complete" data-toggle="tooltip" title="Заказ выполнен" data-placement="top"></i>
 
-        </div>
+                </div>
             {% if user_profile.role.role_name == 'Суперадмин' %}
 
             <ul class="header-dropdown padding-left-0">
@@ -654,10 +654,10 @@
                                             </div>
 
                                         </div>
+                                    </div>
 
                                     {% endif %}
 
-                                    </div>
 
                                     {% if user_profile.role.role_name != 'Клиент' and order_details.paymethod.name != 'PayMaster' %}
                                     <div class="row">
@@ -1038,7 +1038,7 @@
                                     </div>
 
                             </div>
-                        {% if user_profile.role.role_name != 'Клиент' %}
+                            {% if user_profile.role.role_name != 'Клиент' %}
 
                             <div role="tabpanel" class="tab-pane fade" id="comments">
                                 <form name="form_comments" id="form_comments">
@@ -1144,18 +1144,6 @@
                             </div>
                         </div>
 
-{#                    <div role="tabpanel" class="card-inside-title tab-pane fade in active" id="payment">#}
-{##}
-{#                        <div class="row clearfix jsdemo-notification-button">#}
-{#<button type="button" class="btn btn-success btn-block waves-effect" data-placement-from="bottom" data-placement-align="center"#}
-{#                                            data-animate-enter="" data-animate-exit="" data-color-name="alert-success">#}
-{#                                        SUCCESS#}
-{#                                    </button>#}
-{##}
-{#                            </div>#}
-{##}
-{##}
-{#                    </div>#}
             </div>
 
     </div>
