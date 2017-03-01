@@ -130,7 +130,7 @@
                 </ul>
 
                         <div class="tab-content paddin padding-15">
-<!--завка-->
+<!--заявка-->
                             <div role="tabpanel" class="tab-pane fade in active" id="order">
                                 <form id="form">{% csrf_token %}
                                     {% if user_profile.role.role_name != 'Клиент' %}
@@ -567,17 +567,9 @@
                                         </div>
                                     </section>
                                     <!-- Pricing Table Section End -->
-
-
-
-
-
-
-
-
-
-
                                     {% endif %}
+
+
                                     {% if user_profile.role.role_name != 'Клиент' %}
                                     <div class="row">
                                         <div class="col-sm-3 col-xs-12">
@@ -663,7 +655,7 @@
 
                                         </div>
 
-                                {% endif %}
+                                    {% endif %}
 
                                     </div>
                                     {% if user_profile.role.role_name != 'Клиент' and order_details.paymethod.name != 'PayMaster' %}
@@ -1149,7 +1141,7 @@
                                 </form>
 
                             </div>
-                        </div>
+{#                        </div>#}
 
 {#                    <div role="tabpanel" class="card-inside-title tab-pane fade in active" id="payment">#}
 {##}
