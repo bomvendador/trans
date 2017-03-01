@@ -716,8 +716,8 @@
 
 
                                     <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">
-                                        <div class="row list-group-item active margin-bottom-20 text_align_center" style="border-radius: 0">
-                                            <p class="list-group-item-heading">Оплата</p>
+                                        <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading text_align_center">Оплата</p>
                                         </div>
                                         <div class="body table-responsive border-1-grey margin-top-10 padding-10">
                                             <table class="table" id="payments_list_table">
@@ -1578,11 +1578,11 @@
         var selected = $("#pricing-table").find("input[type='radio']:checked");
         if (selected.prop('id') == 'radio_btn_business'){
             var price = $('#business_price').text();
-            var price_level = 'Стандарт';
+            var price_level = 'Бизнес';
         }
         if (selected.prop('id') == 'radio_btn_standart'){
             var price = $('#standart_price').text();
-            var price_level = 'Бизнес';
+            var price_level = 'Стандарт';
 
         }
         if (selected.prop('id') == 'radio_btn_profi'){
