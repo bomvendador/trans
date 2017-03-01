@@ -170,7 +170,8 @@
                                         </div>
                                     </div>
                                     {% endif %}
-                                    <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} </h2>
+                                    <h2 class="card-inside-title">Материал для перевода</h2>
+                                    {% if order_details.text %}
                                     <div class="row clearfix">
                                         <div class="col-sm-3 col-xs-12">
                                             <table bordercolor = "#bcb9b9" border="1"  cellpadding='0' cellspacing='0' width="100%" style="padding:10px 0px 15px 0px;">
@@ -202,6 +203,7 @@
 
                                         </div>
                                     </div>
+                                    {% endif %}
                                     <div class="row clearfix" >
                                         <div class="col-md-12">
                                             <div class="input-group">
