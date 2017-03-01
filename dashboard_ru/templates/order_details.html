@@ -505,6 +505,9 @@
                                                             </div>
 
                                                             <div class="pricing-list">
+                                                                {% if order_details.recommended_price.name == 'Стандарт' %}
+                                                                <div style="background: grey; color: white">Рекомендовано</div>
+                                                                {% endif %}
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы низкой сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится одним переводчиком</span></li>
@@ -528,6 +531,10 @@
                                                             </div>
 
                                                             <div class="pricing-list">
+                                                                {% if order_details.recommended_price.name == 'Бизнес' %}
+                                                                <div style="background: grey; color: white">Рекомендовано</div>
+                                                                {% endif %}
+
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы средней сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с определенной специализацией</span></li>
@@ -550,6 +557,10 @@
                                                             </div>
 
                                                             <div class="pricing-list">
+                                                                {% if order_details.recommended_price.name == 'Профи' %}
+                                                                <div style="background: grey; color: white">Рекомендовано</div>
+                                                                {% endif %}
+
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы повышенной сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка</span></li>

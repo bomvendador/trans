@@ -51,7 +51,7 @@
   text-transform: uppercase;
 }
 #pricing-table .pricing .pricing-list {
-  padding: 20px 0 0 0;
+  /*padding: 20px 0 0 0;*/
   background: #ffffff;
   border: 1px solid #e3e3e3;
 }
