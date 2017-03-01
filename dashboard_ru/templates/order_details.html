@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                     {% endif %}
-                                    <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} <i class="mdi mdi-content-copy f_s_20 float-right pointer-pure" id="copy_text_doc_send" data-toggle="tooltip" title="Скопировать текст" data-placement="left"></i></h2>
+                                    <h2 class="card-inside-title">Материал для перевода {% if order_details.text_qnt %} (кол-во слов - {{ order_details.text_qnt }}){% endif %} </h2>
                                     <div>
                                         <p class="margin-bottom-0">Слова - {{ order_details.text_qnt }}</p>
                                         <p class="margin-bottom-0">Буквы - {{ order_details.text_alphas_qnt }}</p>
@@ -187,6 +187,7 @@
                                                     <i class="mdi mdi-clipboard-text f_s_20"></i>
                                                 </span>
                                                 <div id="text_doc_send_div" class="">
+                                                    <i class="mdi mdi-content-copy f_s_20 float-right pointer-pure" id="copy_text_doc_send" data-toggle="tooltip" title="Скопировать текст" data-placement="left"></i>
                                                     <div class="form-line">
                                                         <textarea rows="4" class="form-control" placeholder="Текст для перевода..." id="text_doc_send" name="text_doc_send" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>{% if order_details.text %}{{ order_details.text }}{% endif %}</textarea>
                                                         <textarea rows="4" class="form-control no-resize none-important" id="text_doc_send_hidden" name="text_doc_send">{{ order_details.text }}</textarea>
