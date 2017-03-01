@@ -190,7 +190,7 @@ class SentDoc (models.Model):
     price_business = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     price_profi = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     pages_qnt = models.DecimalField(max_digits=8, decimal_places=2, null=True)
-    recommended_price = models.ForeignKey(RecommendedPrice)
+    recommended_price = models.ForeignKey(RecommendedPrice, null=True)
     payment_amount = models.DecimalField(max_digits=8, decimal_places=2, null=True)
     paystatus = models.ForeignKey(PayStatus, blank=True, null=True)
     paymethod = models.ForeignKey(PayMethod, blank=True, null=True)
