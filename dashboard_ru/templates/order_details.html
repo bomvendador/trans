@@ -521,22 +521,24 @@
                                                     </div>
 
                                                     <div class="col-md-4 col-sm-12 col-xs-12">
-                                                        <div class="pricing-header">
-                                                            <p class="pricing-title">Бизнес</p>
-                                                            <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
-                                                        </div>
-
                                                         <div class="pricing-table">
-                                                            <ul>
-                                                                <li><span>Документы средней сложности</span></li>
-                                                                <li><span>Перевод производится переводчиком с определенной специализацией</span></li>
-                                                                <li><span>Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация</span></li>
-                                                                <li>
-                                                                    <input name="radio_btn_price" type="radio" id="radio_btn_business" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
-                                                                    <label for="radio_btn_business"></label>
-                                                                </li>
-                                                            </ul>
+                                                            <div class="pricing-header">
+                                                                <p class="pricing-title">Бизнес</p>
+                                                                <p class="pricing-rate"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
+                                                            </div>
 
+                                                            <div class="pricing-table">
+                                                                <ul>
+                                                                    <li><span>Документы средней сложности</span></li>
+                                                                    <li><span>Перевод производится переводчиком с определенной специализацией</span></li>
+                                                                    <li><span>Технический, медицинский перевод. Юридические документы, бизнес -презентации, -планы, -отчеты. Научная документация</span></li>
+                                                                    <li>
+                                                                        <input name="radio_btn_price" type="radio" id="radio_btn_business" class="radio-col-red" {% if order_details.recommended_price.name == 'Бизнес' %}checked{% endif %}/>
+                                                                        <label for="radio_btn_business"></label>
+                                                                    </li>
+                                                                </ul>
+
+                                                            </div>
                                                         </div>
                                                     </div>
 
