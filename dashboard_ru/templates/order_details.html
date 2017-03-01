@@ -541,16 +541,18 @@
                                                 <div class="pricing">
                                                     <div class="col-md-4 col-sm-12 col-xs-12">
                                                         <div class="pricing-table">
-                                                            <div class="pricing-header margin-top-18">
+                                                            <div class="pricing-header padding-top-20">
                                                                 <p class="pricing-title">Стандарт</p>
                                                                 <p class="pricing-rate" id="standart_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price }}</p>
+                                                                {% if order_details.recommended_price.name == 'Стандарт' %}
                                                                 <div style="background: grey; color: white; height: 20px">Рекомендовано</div>
+                                                                {% else %}
+                                                                <div style="height: 20px"></div>
+
+                                                                {% endif %}
                                                             </div>
 
                                                             <div class="pricing-list">
-                                                                {% if order_details.recommended_price.name == 'Стандарт' %}
-                                                                <div style="background: grey; color: white">Рекомендовано</div>
-                                                                {% endif %}
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы низкой сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится одним переводчиком</span></li>
@@ -578,13 +580,16 @@
                                                             <div class="pricing-header">
                                                                 <p class="pricing-title">Бизнес</p>
                                                                 <p class="pricing-rate"  id="business_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_business }}</p>
+                                                                {% if order_details.recommended_price.name == 'Бизнес' %}
+                                                                <div style="background: grey; color: white; height: 20px">Рекомендовано</div>
+                                                                {% else %}
+                                                                <div style="height: 20px"></div>
+
+                                                                {% endif %}
+
                                                             </div>
 
                                                             <div class="pricing-list">
-                                                                {% if order_details.recommended_price.name == 'Бизнес' %}
-                                                                <div style="background: grey; color: white">Рекомендовано</div>
-                                                                {% endif %}
-
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы средней сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с определенной специализацией</span></li>
@@ -611,13 +616,17 @@
                                                             <div class="pricing-header">
                                                                 <p class="pricing-title">Профи</p>
                                                                 <p class="pricing-rate" id="profi_price"><sup><i class="mdi mdi-currency-rub font-24"></i></sup>{{ order_details.price_profi }}</p>
+
+                                                                {% if order_details.recommended_price.name == 'Профи' %}
+                                                                <div style="background: grey; color: white; height: 20px">Рекомендовано</div>
+                                                                {% else %}
+                                                                <div style="height: 20px"></div>
+
+                                                                {% endif %}
+
                                                             </div>
 
                                                             <div class="pricing-list">
-                                                                {% if order_details.recommended_price.name == 'Профи' %}
-                                                                <div style="background: grey; color: white">Рекомендовано</div>
-                                                                {% endif %}
-
                                                                 <ul>
                                                                     <li class="f_s_15"><span>Документы повышенной сложности</span></li>
                                                                     <li class="f_s_15"><span>Перевод производится переводчиком с последующей редакцией высококвалифицированного сотрудника, в том числе носителя языка</span></li>
