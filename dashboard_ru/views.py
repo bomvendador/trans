@@ -2107,7 +2107,6 @@ def set_company_for_payment(request):
         invoice = Invoice()
         invoice.order = order
         invoice.save()
-        logger.debug('JJJJJJJJ')
         timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Установлено юр. лицо в качестве плательщика: ' + company_inst.property.short_name + ' "' + company_inst.name + '"')
         timeline.save()
         timeline_date = timeline.added + timedelta(hours=3)
