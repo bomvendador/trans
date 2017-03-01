@@ -1559,9 +1559,8 @@
             var price = $('#profi_price').text();
         }
         if (selected.length > 0) {
-            $('#LMI_PAYMENT_AMOUNT').val(selected.val());
-{#            $('#payment_form').submit()#}
-            console.log('план =' + price);
+            $('#LMI_PAYMENT_AMOUNT').val(price);
+            $('#payment_form').submit()
         }else {
             swal({
                 title: 'Платежный план не выбран',
