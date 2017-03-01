@@ -2091,21 +2091,34 @@ def save_company(request):
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def set_company_for_payment(request):
     if request.method == 'POST':
+        response ={}
         json_data = json.loads(request.body.decode('utf-8'))
         order_id = json_data['order_id']
         company_id = json_data['company_id']
-        order_inst = SentDoc.objects.get(id=order_id)
+        price_level = json_data['price_level']
+        order = SentDoc.objects.get(id=order_id)
         company_inst = Company.objects.get(id=company_id)
-        order_inst.company = company_inst
-        order_inst.save()
+        order.company = company_inst
+        order.price_level = PriceLevel.objects.get(name=price_level)
+        order.save()
         orders_qnt = SentDoc.objects.filter(company=company_inst).count()
         company_inst.orders_qnt = orders_qnt
         company_inst.save()
         invoice = Invoice()
-        invoice.order = order_inst
+        invoice.order = order
         invoice.save()
+        timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Установлено юр. лицо в качестве плательщика: ' + company_inst.property.short_name + ' "' + company_inst.name + '"')
+        timeline.save()
+        timeline_date = timeline.added + timedelta(hours=3)
+        response.update({
+            'timeline_author': timeline.author.first_name,
+            'timeline_datetime': timeline_date.strftime("%d.%m.%Y, %H:%M"),
+            'timeline_author_role': timeline.author_profile.role.role_name,
+            'event': timeline.event,
+        })
+
         email_context_ = {
-            'order': order_inst,
+            'order': order,
             'company': company_inst,
             'prolingva_tel': settings.PROLINGVA_TEL
 
@@ -2113,11 +2126,11 @@ def set_company_for_payment(request):
         send_email(request, 'invoice_request.html', 'info@prolingva.ru', ['invoices@prolingva.ru'], email_context_)
         name = company_inst.property.short_name + ' "' + company_inst.name + '"'
         company_id = company_inst.id
-        response = json.dumps({
+        response.update({
             'name': name,
             'company_id': company_id
         })
-        return HttpResponse(response)
+        return HttpResponse(json.dumps(response))
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')

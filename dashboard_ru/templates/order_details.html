@@ -663,6 +663,10 @@
                                     <div class="row">
 
                                     {% if user_profile.role.role_name != 'Клиент' %}
+                                        <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading">Детали оплаты</p>
+                                        </div>
+
                                         <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">{% if user_profile.role.role_name == 'Клиент' %}Сумма к оплате{% else %}Сумма оплаты{% endif %}</h2>
                                             <div class="form-group input-group">
@@ -1544,45 +1548,75 @@
 
         //выбор юр лица
         $('.company').on('click', function () {
-            $.ajax({
-                url: '{% url 'ru:dashboard_ru:set_company_for_payment' %}',
-                type: 'POST',
-                data: JSON.stringify({
-                            'order_id': {{ order_details.id }},
-                            'company_id': $(this).attr('id')
-                        }),
-                processData: false,
-                contentType: false,
-                error: function(data){
-                    swal({
-                        title: 'Ошибка сервера',
-                        text: 'Возникла ошибка при сохранении. Попробуйте позже.',
-                        type: 'error'
-                    });
-                },
-                success:function (data) {
-                    var data_json = $.parseJSON(data);
-                    var name = data_json['name'];
-                    var company_id = data_json['company_id'];
 
-                    swal({
-                        {% if user_profile.role.role_name != 'Клиент' %}
-                        title: 'Информация сохранена',
-                        text: 'Заявке успешно присвоено юридическое лицо',
-                        {% else %}
-                        title: 'Информация сохранена',
-                        text: 'Информация о плательщике успешно сохранена. В ближайшее время на Вашу электронную почту будет выслан счет на оплату. Спасибо за оказанное доверие нашей компании!',
-                        {% endif %}
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        closeOnConfirm: true
-                    });
-                    $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ name + '<i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="' + company_id + '" title="Удалить"></i><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
-                    $('#company_div').fadeIn('slow');
-                    $('#payment_methods').fadeOut('slow');
-                    $('#close_modal_select_company_btn').click();
-                }
-            });
+            var selected = $("#pricing-table").find("input[type='radio']:checked");
+            if (selected.prop('id') == 'radio_btn_business'){
+                var price_level = 'Бизнес';
+            }
+            if (selected.prop('id') == 'radio_btn_standart'){
+                var price_level = 'Стандарт';
+
+            }
+            if (selected.prop('id') == 'radio_btn_profi'){
+                var price_level = 'Профи';
+
+            }
+            if (selected.length > 0) {
+                $.ajax({
+                    url: '{% url 'ru:dashboard_ru:set_company_for_payment' %}',
+                    type: 'POST',
+                    data: JSON.stringify({
+                                'order_id': {{ order_details.id }},
+                                'company_id': $(this).attr('id'),
+                                'price_level': price_level
+                            }),
+                    processData: false,
+                    contentType: false,
+                    error: function(data){
+                        swal({
+                            title: 'Ошибка сервера',
+                            text: 'Возникла ошибка при сохранении. Попробуйте позже.',
+                            type: 'error'
+                        });
+                    },
+                    success:function (data) {
+                        var data_json = $.parseJSON(data);
+                        var name = data_json['name'];
+                        var company_id = data_json['company_id'];
+
+                        swal({
+                            {% if user_profile.role.role_name != 'Клиент' %}
+                            title: 'Информация сохранена',
+                            text: 'Заявке успешно присвоено юридическое лицо',
+                            {% else %}
+                            title: 'Информация сохранена',
+                            text: 'Информация о плательщике успешно сохранена. В ближайшее время на Вашу электронную почту будет выслан счет на оплату. Спасибо за оказанное доверие нашей компании!',
+                            {% endif %}
+                            type: 'success',
+                            confirmButtonText: 'Ok',
+                            closeOnConfirm: true
+                        });
+                        $('#company_div_content').html('<p class="form-control display-inline" id="company_from_client" name="company_from_client">'+ name + '<i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="' + company_id + '" title="Удалить"></i><i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i></p>');
+                        $('#company_div').fadeIn('slow');
+                        $('#payment_methods').fadeOut('slow');
+                        $('#close_modal_select_company_btn').click();
+                    }
+                });
+
+
+
+            }else {
+                swal({
+                    title: 'Платежный план не выбран',
+                    text: 'Выберите один из платежных планов (Стандарт, Бизнес, Профи)',
+                    type: 'warning'
+                });
+
+            }
+
+
+
+
 
         });
 
