@@ -723,30 +723,6 @@
                                         <p class="list-group-item-heading">Ввод оплаты</p>
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">{% if user_profile.role.role_name == 'Клиент' %}Сумма к оплате{% else %}Сумма оплаты{% endif %}</h2>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-currency-rub font-24"></i>
-                                                </span>
-                                                {% if user_profile.role.role_name == 'Клиент' %}
-                                                <div class="form-line" id="order_price_div">
-                                                    <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
-                                                </div>
-                                                {% if order_details.paystatus.name == 'Paid' %}
-                                                <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
-                                                {% endif %}
-                                                {% else %}
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
-                                                </div>
-
-                                                {% endif %}
-                                            </div>
-
-                                        </div>
-
                                         <div class="col-sm-3 col-xs-12">
                                             <h2 class="card-inside-title mrg-bottom-33">Дата оплаты</h2>
                                             <div class="form-group input-group">
@@ -813,60 +789,60 @@
 
 
 
-{#                                    <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">#}
-{#                                        <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">#}
-{#                                            <p class="list-group-item-heading text_align_center">Оплата</p>#}
-{#                                        </div>#}
-{#                                        <div class="body table-responsive border-1-grey margin-top-10 padding-10">#}
-{#                                            <table class="table" id="payments_list_table">#}
-{#                                                <thead>#}
-{#                                                    <tr>#}
-{#                                                        <th class="text_align_center">#</th>#}
-{#                                                        <th class="text_align_right">Плательщик</th>#}
-{#                                                        <th class="text_align_right">Способ</th>#}
-{#                                                        <th class="text_align_right">Дата</th>#}
-{#                                                        <th class="text_align_right">Сумма</th>#}
-{#                                                    </tr>#}
-{#                                                </thead>#}
-{#                                                <tbody id="payments_list_">#}
-{#                                                    {% for payment in payments %}#}
-{#                                                    <tr>#}
-{##}
-{#                                                        <td class="text_align_right">#}
-{#                                                            {{ forloop.counter }}#}
-{#                                                        </td>#}
-{#                                                        <td class="text_align_right">#}
-{#                                                        {% if payment.company %}#}
-{#                                                            {{ payment.company.property.short_name }} "{{ payment.company.name }}"#}
-{#                                                        {% else %}#}
-{#                                                            Частное лицо#}
-{#                                                        {% endif %}#}
-{#                                                        </td>#}
-{#                                                        <td class="text_align_right">#}
-{#                                                            {{ payment.method.name }}#}
-{#                                                        </td>#}
-{#                                                        <td class="text_align_right">#}
-{#                                                            {{ payment.date|date:"d.m.Y, H:i" }}#}
-{#                                                        </td>#}
-{#                                                        <td class="text_align_right">#}
-{#                                                            {{ payment.amount }}#}
-{#                                                        </td>#}
-{##}
-{#                                                    </tr>#}
-{#                                                    {% endfor %}#}
-{#                                                    <tr bgcolor="#F9F9F9" id="total_paid_tr">#}
-{#                                                        <td colspan="4">#}
-{#                                                            ИТОГО#}
-{#                                                        </td>#}
-{#                                                        <td class="text_align_right">#}
-{#                                                            {{ payments_sum }}#}
-{#                                                        </td>#}
-{##}
-{#                                                    </tr>#}
-{#                                                </tbody>#}
-{#                                            </table>#}
-{#                                        </div>#}
-{#                                    </div>#}
+                                    <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">
+                                        <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading text_align_center">Оплата</p>
+                                        </div>
+                                        <div class="body table-responsive border-1-grey margin-top-10 padding-10">
+                                            <table class="table" id="payments_list_table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text_align_center">#</th>
+                                                        <th class="text_align_right">Плательщик</th>
+                                                        <th class="text_align_right">Способ</th>
+                                                        <th class="text_align_right">Дата</th>
+                                                        <th class="text_align_right">Сумма</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="payments_list_">
+                                                    {% for payment in payments %}
+                                                    <tr>
+
+                                                        <td class="text_align_right">
+                                                            {{ forloop.counter }}
+                                                        </td>
+                                                        <td class="text_align_right">
+                                                        {% if payment.company %}
+                                                            {{ payment.company.property.short_name }} "{{ payment.company.name }}"
+                                                        {% else %}
+                                                            Частное лицо
+                                                        {% endif %}
+                                                        </td>
+                                                        <td class="text_align_right">
+                                                            {{ payment.method.name }}
+                                                        </td>
+                                                        <td class="text_align_right">
+                                                            {{ payment.date|date:"d.m.Y, H:i" }}
+                                                        </td>
+                                                        <td class="text_align_right">
+                                                            {{ payment.amount }}
+                                                        </td>
+
+                                                    </tr>
+                                                    {% endfor %}
+                                                    <tr bgcolor="#F9F9F9" id="total_paid_tr">
+                                                        <td colspan="4">
+                                                            ИТОГО
+                                                        </td>
+                                                        <td class="text_align_right">
+                                                            {{ payments_sum }}
+                                                        </td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
                                     {% if user_profile.role.role_name == 'Клиент' and order_details.price %}
 {#                                        {% if order_details.paystatus.name != 'Paid' and not order_details.company %}#}
