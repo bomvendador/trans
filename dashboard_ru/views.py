@@ -1154,6 +1154,7 @@ def update_order_payment(request):
     if request.method == 'POST':
         order_id = request.POST.get('order_id')
         company_id_raw = request.POST.get('company')
+        price_level = request.POST.get('price_level')
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
         payment_made = Payment.objects.filter(order=sent_doc).aggregate(Sum('amount'))['amount__sum']
@@ -1178,6 +1179,7 @@ def update_order_payment(request):
             company_id = company_id_raw.split('_')[1]
             company_ = Company.objects.get(id=company_id)
             payment.company = company_
+        payment.price_level = PriceLevel.objects.get(name=price_level)
         payment.added_by = request.user
         payment.order = sent_doc
         payment.amount = payment_amount

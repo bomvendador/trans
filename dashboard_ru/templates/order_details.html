@@ -2192,10 +2192,10 @@
 
         }else {
 
-            if ($('#payment_method').val() == '' || $('#payment_date').val() == ''){
+            if ($('#payment_method').val() == '' || $('#payment_date').val() == '' || $('#company').val() == '' ){
                     swal({
                         title: 'Ошибка ввода',
-                        text: 'Введите дату и/или способ оплаты',
+                        text: 'Поля даты, суммы, способа оплаты и плательщика должны быть заполнены',
                         type: 'warning'
                     });
 
