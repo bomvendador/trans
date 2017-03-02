@@ -665,123 +665,123 @@
 
 
                                 {% if user_profile.role.role_name != 'Клиент' %}
-                                    <div class="list-group-item active margin-bottom-20" style="border-radius: 0">
-                                        <p class="list-group-item-heading">Детали оплаты</p>
-                                    </div>
+                                        <div class="list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading">Детали оплаты</p>
+                                        </div>
                                    {% if order_details.paymethod.name != 'PayMaster' %}
-                                    <div class="row">
-                                        <div class="col-sm-4 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
+                                        <div class="row">
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="mdi mdi-tie font-24 {% if not order_details.company %} opacity-0_5 {% endif %}"></i>
+                                                        </span>
+                                                        <select class="form-control show-tick" id="company" name="company">
+                                                            <option value="">--</option>
+                                                            {% for company in companies %}
+                                                            <option value="{{ order_details.company.name }}_{{ order_details.company.id }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+
+                                            </div>
+                                            <div class="col-sm-4 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Платежный план</h2>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon">
+                                                            <i class="mdi mdi-credit-card font-24"></i>
+                                                        </span>
+                                                        <select class="form-control show-tick" id="payment_price_level" name="payment_price_level">
+                                                            <option value="">--  --</option>
+                                                            {% for recommended_price in recommended_prices %}
+                                                            <option value="{{ recommended_price.name }}" {% if order_details.price_level == recommended_price %} selected {% endif %}>{{ recommended_price.name }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                    </div>
+
+                                            </div>
+                                            <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
                                                 <div class="form-group input-group">
                                                     <span class="input-group-addon">
-                                                        <i class="mdi mdi-tie font-24 {% if not order_details.company %} opacity-0_5 {% endif %}"></i>
+                                                        <i class="mdi mdi-currency-rub font-24"></i>
                                                     </span>
-                                                    <select class="form-control show-tick" id="company" name="company">
-                                                        <option value="">--</option>
-                                                        {% for company in companies %}
-                                                        <option value="{{ order_details.company.name }}_{{ order_details.company.id }}" {% if order_details.company == company %} selected {% endif %}>{{ company.property.short_name }} "{{ company.name }}"</option>
-                                                        {% endfor %}
-                                                    </select>
+
+                                                    <div class="form-line">
+                                                        <input class="form-control date" id="payment_price" name="payment_price" value="{% if price %}{{ price }}{% endif %}" type="text">
+                                                    </div>
+
+
                                                 </div>
-
-                                        </div>
-                                        <div class="col-sm-4 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Платежный план</h2>
-                                                <div class="form-group input-group">
-                                                    <span class="input-group-addon">
-                                                        <i class="mdi mdi-credit-card font-24"></i>
-                                                    </span>
-                                                    <select class="form-control show-tick" id="payment_price_level" name="payment_price_level">
-                                                        <option value="">--  --</option>
-                                                        {% for recommended_price in recommended_prices %}
-                                                        <option value="{{ recommended_price.name }}" {% if order_details.price_level == recommended_price %} selected {% endif %}>{{ recommended_price.name }}</option>
-                                                        {% endfor %}
-                                                    </select>
-                                                </div>
-
-                                        </div>
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Стоимость</h2>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-currency-rub font-24"></i>
-                                                </span>
-
-                                                <div class="form-line">
-                                                    <input class="form-control date" id="payment_price" name="payment_price" value="{% if price %}{{ price }}{% endif %}" type="text">
-                                                </div>
-
 
                                             </div>
 
                                         </div>
-
-                                    </div>
 
                                     {% endif %}
-                                    <div class="list-group-item active margin-bottom-20" style="border-radius: 0">
-                                        <p class="list-group-item-heading">Ввод оплаты</p>
-                                    </div>
+                                        <div class="list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading">Ввод оплаты</p>
+                                        </div>
 
-                                    <div class="row">
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Сумма оплаты</h2>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-currency-rub font-24"></i>
-                                                </span>
-                                                {% if user_profile.role.role_name == 'Клиент' %}
-                                                <div class="form-line" id="order_price_div">
-                                                    <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
+                                        <div class="row">
+                                            <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Сумма оплаты</h2>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-currency-rub font-24"></i>
+                                                    </span>
+                                                    {% if user_profile.role.role_name == 'Клиент' %}
+                                                    <div class="form-line" id="order_price_div">
+                                                        <p class="margin-top-10">{% if order_details.price %}{{ order_details.price }}{% else %}-{% endif %}</p>
+                                                    </div>
+                                                    {% if order_details.paystatus.name == 'Paid' %}
+                                                    <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
+                                                    {% endif %}
+                                                    {% else %}
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
+                                                    </div>
+
+                                                    {% endif %}
                                                 </div>
-                                                {% if order_details.paystatus.name == 'Paid' %}
-                                                <h4><span class="label label-success">ОПЛАЧЕНО</span></h4>
-                                                {% endif %}
-                                                {% else %}
+
+                                            </div>
+
+                                            <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Дата оплаты</h2>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-calendar-today font-24"></i>
+
+                                                    </span>
+                                                    <div class="form-line">
+                                                        <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Способ оплаты</h2>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-wallet font-24"></i>
+                                                    </span>
+                                                    <select class="form-control show-tick" id="payment_method" name="payment_method_">
+                                                        <option value="">-- Выберите способ --</option>
+                                                        {% for paymethod in paymethods %}
+                                                        <option value="{{ paymethod.name }}">{{ paymethod.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-3 col-xs-12">
+                                                <h2 class="card-inside-title mrg-bottom-33">Баланс клиента</h2>
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control date" id="paid_amount" name="paid_amount" value="{% if order_details.payment_amount %}{{ order_details.payment_amount }}{% endif %}">
-                                                </div>
-
-                                                {% endif %}
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Дата оплаты</h2>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-calendar-today font-24"></i>
-
-                                                </span>
-                                                <div class="form-line">
-                                                    <input type="text" class="datetimepicker form-control" placeholder="Выберите дату..." id="payment_date" name="payment_date">
-
+                                                    <p class="">{{ client.balance }} руб.</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Способ оплаты</h2>
-                                            <div class="form-group input-group">
-                                                <span class="input-group-addon">
-                                                    <i class="mdi mdi-wallet font-24"></i>
-                                                </span>
-                                                <select class="form-control show-tick" id="payment_method" name="payment_method_">
-                                                    <option value="">-- Выберите способ --</option>
-                                                    {% for paymethod in paymethods %}
-                                                    <option value="{{ paymethod.name }}">{{ paymethod.name }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-sm-3 col-xs-12">
-                                            <h2 class="card-inside-title mrg-bottom-33">Баланс клиента</h2>
-                                            <div class="form-line">
-                                                <p class="">{{ client.balance }} руб.</p>
-                                            </div>
-                                        </div>
-                                    </div>
                                     {% else %}
                                         <div class="row">
                                             <div class="col-sm-4 col-xs-12 {% if not order_details.company %}none{% endif %}"  id="company_div">
@@ -814,8 +814,8 @@
 
 
                                     <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">
-                                        <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
-                                            <p class="list-group-item-heading text_align_center">Оплата</p>
+                                        <div class="list-group-item active margin-bottom-20" style="border-radius: 0">
+                                            <p class="list-group-item-heading">Платежи</p>
                                         </div>
                                         <div class="body table-responsive border-1-grey margin-top-10 padding-10">
                                             <table class="table" id="payments_list_table">
