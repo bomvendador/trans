@@ -127,6 +127,14 @@
                                                     <input type="text" class="datetimepicker form-control" placeholder="Введите дату рождения..." name="birthday" id="birthday" value="{% if client.date_birth %}{{ client.date_birth }}{% endif %}">
                                                 </div>
                                             </div>
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <i class="mdi mdi-lock f_s_20"></i>
+                                                </span>
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control date" placeholder="Пароль" id="password_client" name="password_client" value="{{ client.init_password }}" {% if user_profile.role.role_name != 'Суперадмин' and user_profile.role.role_name != 'Админ' %} disabled {% endif %}>
+                                                </div>
+                                            </div>
 
                                         </div>
                                 </div>
