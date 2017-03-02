@@ -1166,7 +1166,6 @@ def update_order_payment(request):
             payment_made = Payment.objects.filter(order=sent_doc).aggregate(amount__sum=Coalesce(Sum('amount'), 0))['amount__sum']
         except Payment.DoesNotExist:
             payment_made = 0
-        logger.debug('price level = ' + str(price_level))
         payment = Payment()
         if sent_doc.status.name != u'Выполнен':
             sent_doc.status = OrderStatus.objects.get(name=u'В работе')
