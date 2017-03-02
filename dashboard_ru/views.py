@@ -1151,7 +1151,10 @@ def update_order(request):
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
 def update_order_payment(request):
+    logger.debug('before pay post')
     if request.method == 'POST':
+        logger.debug('after pay post')
+
         order_id = request.POST.get('order_id')
         company_id_raw = request.POST.get('company')
         price_level = request.POST.get('price_level')
