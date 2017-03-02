@@ -1159,7 +1159,7 @@ def update_order_payment(request):
 
         order_id = request.POST.get('order_id')
         company_id_raw = request.POST.get('company')
-        price_level = request.POST.get('price_level')
+        price_level = request.POST.get('payment_price_level')
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
         try:
