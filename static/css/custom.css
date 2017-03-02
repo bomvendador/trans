@@ -451,10 +451,17 @@ ul{
         font-size: 15px;
 
     }
-
+    .tel_mob_font_size{
+        font-size: 15px;
+    }
 
 }
 
+.tel_init_style{
+    font-size: 19px;
+    margin-bottom: 0;
+    text-decoration: none
+}
 /*@media only screen*/
   /*and (max-width: 320px) {*/
     /*.mob-tel-style{*/
