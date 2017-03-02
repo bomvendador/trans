@@ -783,31 +783,29 @@
                                         </div>
 
                                         {% else %}
-{#                                            {% if order_details.paystatus.name != 'Paid' %}#}
-                                            <div class="row">
-                                                <div class="col-sm-4 col-xs-12 {% if not order_details.company %}none{% endif %}"  id="company_div">
-                                                    <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
-                                                    <div class="form-group input-group">
-                                                        <span class="input-group-addon">
-                                                            <i class="mdi mdi-tie font-24"></i>
-                                                        </span>
-                                                        <div class="form-line" id="company_div_content">
-                                                            <p class="form-control display-inline" id="company_from_client" name="company_from_client">{{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
-                                                                {% if order_details.paystatus.name != 'Paid' and user_profile.role.role_name == 'Клиент'%}
-                                                                <i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="{{ order_details.company.id }}" title="Удалить"></i>
-                                                                <i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i>
-                                                                {% endif %}
-                                                            </p>
+                                        <div class="row">
+                                            <div class="col-sm-4 col-xs-12 {% if not order_details.company %}none{% endif %}"  id="company_div">
+                                                <h2 class="card-inside-title mrg-bottom-33">Юридическое лицо</h2>
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">
+                                                        <i class="mdi mdi-tie font-24"></i>
+                                                    </span>
+                                                    <div class="form-line" id="company_div_content">
+                                                        <p class="form-control display-inline" id="company_from_client" name="company_from_client">{{ order_details.company.property.short_name }} "{{ order_details.company.name }}"
+                                                            {% if order_details.paystatus.name != 'Paid' and user_profile.role.role_name == 'Клиент'%}
+                                                            <i class="mdi mdi-close f_s_20 float-right pointer-pure"  id="delete_company" data-company-id="{{ order_details.company.id }}" title="Удалить"></i>
+                                                            <i class="mdi mdi-pencil f_s_20 float-right pointer-pure"  id="change_company" data-toggle="modal" data-target="#companies_list_modal" title="Изменить"></i>
+                                                            {% endif %}
+                                                        </p>
 
 
 
-                                                        </div>
                                                     </div>
-
                                                 </div>
 
                                             </div>
-{#                                            {% endif %}#}
+
+                                        </div>
 
                                     {% endif %}
 
@@ -817,7 +815,7 @@
 
                                     <div class="list-group {% if not order_details.payment_date %} none {% endif %}" id="payments_list">
                                         <div class="row list-group-item active margin-bottom-20" style="border-radius: 0">
-                                            <p class="list-group-item-heading text_align_center">Платежи</p>
+                                            <p class="list-group-item-heading text_align_center">Оплата</p>
                                         </div>
                                         <div class="body table-responsive border-1-grey margin-top-10 padding-10">
                                             <table class="table" id="payments_list_table">
