@@ -1163,7 +1163,7 @@ def update_order_payment(request):
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
         try:
-            payment_made = Payment.objects.filter(order=sent_doc).aggregate(Coalesce(Sum('amount'), 0))['amount__sum']
+            payment_made = Payment.objects.filter(order=sent_doc).aggregate(amount_sum=Coalesce(Sum('amount'), 0))['amount__sum']
         except Payment.DoesNotExist:
             payment_made = 0
         logger.debug('payment_made = ' + str(payment_made))
