@@ -99,6 +99,7 @@ def change_just_paid(request):
         order = SentDoc.objects.get(id=order_id)
         order.just_paid = False
         order.save()
+        return HttpResponse()
 
 
 @login_required(redirect_field_name=None, login_url='/ru/dashbrd/login')
@@ -110,3 +111,4 @@ def change_payment_failure(request):
         order = SentDoc.objects.get(id=order_id)
         order.payment_failure = False
         order.save()
+        return HttpResponse()

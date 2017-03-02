@@ -1724,8 +1724,7 @@ def save_order_comment_client(request):
                 'prolingva_tel': settings.PROLINGVA_TEL
 
             }
-            # TODO изменить имейл на имейл клиента
-            send_email(request, 'answer_to_client_comment.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
+            send_email(request, 'answer_to_client_comment.html', 'info@prolingva.ru', [SentDoc.objects.get(id=order_id).user.email], email_context)
 
         else:
             comment = OrderCommentsClients()
@@ -1741,8 +1740,7 @@ def save_order_comment_client(request):
                 'prolingva_tel': settings.PROLINGVA_TEL
 
             }
-            # TODO изменить имейл на имейл клиента
-            send_email(request, 'comments.html', 'info@prolingva.ru', ['comments@prolingva.ru'], email_context)
+            send_email(request, 'comments.html', 'info@prolingva.ru', [SentDoc.objects.get(id=order_id).user.email], email_context)
         order = SentDoc.objects.get(id=order_id)
         comment.text = comment_text
         comment.order = order
@@ -1917,9 +1915,8 @@ def send_calculation_to_client(request):
                          'prolingva_tel': settings.PROLINGVA_TEL
 
                          }
-        # TODO изменить адрес отправки
-        # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
-        send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
+        send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
+        # send_email(request, 'calculation.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
 
         timeline = TimelineOrder(order=order, author=request.user, author_profile=UserProfile.objects.get(user=request.user), event=u'Уведомление клиенту: расчет цены отправлен - ' + str(order.price) + ', ' + str(order.price_business) + ', ' + str(
             order.price_profi))
@@ -1964,9 +1961,8 @@ def send_trans_files_to_client(request):
                          'prolingva_tel': settings.PROLINGVA_TEL
 
                          }
-        # TODO изменить адрес отправки
-        # send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
-        send_email(request, 'translation_is_ready.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
+        send_email(request, 'calculation.html', 'info@prolingva.ru', [order.user.email], email_context)
+        # send_email(request, 'translation_is_ready.html', 'info@prolingva.ru', ['orders@prolingva.ru', 'bomvendador@yandex.ru'], email_context)
         user_profile = UserProfile.objects.get(user=request.user)
         timeline = TimelineOrder(order=order, author=request.user, author_profile=user_profile, event=u'Уведомление клиенту: файлы перевода загружены')
         timeline.save()
