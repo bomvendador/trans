@@ -1161,7 +1161,8 @@ def update_order_payment(request):
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
         try:
-            payment_made = Payment.objects.filter(order=sent_doc).aggregate(Sum('amount'))['amount__sum']
+            payment_made = Payment.objects.filter(order=sent_doc)
+            # payment_made = Payment.objects.filter(order=sent_doc).aggregate(Sum('amount'))['amount__sum']
         except Payment.DoesNotExist:
             payment_made = 0
         logger.debug('payment_made = ' + str(payment_made))
@@ -1170,9 +1171,9 @@ def update_order_payment(request):
             sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         payment_amount = request.POST.get('paid_amount')
         if payment_amount:
-            if Decimal(payment_amount) + payment_made >= sent_doc.price:
+            if Decimal(payment_amount) + payment_made.aggregate(Sum('amount'))['amount__sum'] >= sent_doc.price:
                 sent_doc.paystatus = PayStatus.objects.get(name='Paid')
-                client.balance += (Decimal(payment_amount) + payment_made) - sent_doc.price
+                client.balance += (Decimal(payment_amount) + payment_made.aggregate(Sum('amount'))['amount__sum']) - sent_doc.price
                 client.save()
             else:
                 sent_doc.paystatus = PayStatus.objects.get(name='Partially_paid')
