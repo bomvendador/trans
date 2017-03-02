@@ -521,9 +521,9 @@ def save_files_trans(request):
                         doc_sent.order_src = OrderSource.objects.get(name=u'Персонал')
                         email_source = u'Персонал'
                     else:
-                        print('client')
+                        logger.debug('client')
                         if request.POST.get('order_source') == 'dashboard':
-                            print('clientwww')
+                            logger.debug('clientwww')
                             doc_sent.order_src = OrderSource.objects.get(name=u'Панель управления - Клиент')
                             email_source = u'Панель управления - Клиент'
                 except UserProfile.DoesNotExist:
