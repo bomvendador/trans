@@ -1979,6 +1979,15 @@
     });
    $('#payment_price_level').on('change', function () {
         show_save_order_payment();
+       if ($(this).val() == 'Стандарт'){
+           $('#payment_price').val({{ order_details.price }})
+       }else {
+           if ($(this).val() == 'Бизнес') {
+               $('#payment_price').val({{ order_details.price_business }});
+           }else {
+               $('#payment_price').val({{ order_details.price_profi }});
+           }
+       }
     });
     //перевод
     $('#translation_sent_date').on('change', function () {
