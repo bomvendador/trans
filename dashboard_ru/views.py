@@ -1159,9 +1159,16 @@ def update_order_payment(request):
 
         order_id = request.POST.get('order_id')
         company_id_raw = request.POST.get('company')
-        price_level = request.POST.get('payment_price_level')
+        price_level_raw = request.POST.get('payment_price_level')
+        price_level = PriceLevel.objects.get(name=price_level_raw)
         sent_doc = SentDoc.objects.get(id=order_id)
         client = Client.objects.get(user=sent_doc.user)
+        if price_level_raw == u'Стандарт':
+            price_to_be_paid = sent_doc.price
+        elif price_level_raw == u'Бизнес':
+            price_to_be_paid = sent_doc.price_business
+        else:
+            price_to_be_paid = sent_doc.price_profi
         try:
             payment_made = Payment.objects.filter(order=sent_doc).aggregate(amount__sum=Coalesce(Sum('amount'), 0))['amount__sum']
         except Payment.DoesNotExist:
@@ -1171,9 +1178,9 @@ def update_order_payment(request):
             sent_doc.status = OrderStatus.objects.get(name=u'В работе')
         payment_amount = request.POST.get('paid_amount')
         if payment_amount:
-            if Decimal(payment_amount) + payment_made >= sent_doc.price:
+            if Decimal(payment_amount) + payment_made >= price_to_be_paid:
                 sent_doc.paystatus = PayStatus.objects.get(name='Paid')
-                client.balance += (Decimal(payment_amount) + payment_made) - sent_doc.price
+                client.balance += (Decimal(payment_amount) + payment_made) - price_to_be_paid
                 client.save()
             else:
                 sent_doc.paystatus = PayStatus.objects.get(name='Partially_paid')
