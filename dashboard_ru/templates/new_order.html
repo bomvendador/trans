@@ -296,8 +296,9 @@
             sendingmultiple: function (file, xhr, formData) {
                 add_csrf();
                 $('#order_source').val('dashboard');
-{#                formData.append('order_id', {{ order_details.id }});#}
                 formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+                formData.append('order_source', $('#order_source').val());
+
                 {% if user_profile.role.role_name != 'Клиент' %}
                 formData.append('name_doc_send', $('#name_doc_send').val());
                 formData.append('email_doc_send', $('#email_doc_send').val());
@@ -305,7 +306,6 @@
                 formData.append('text_doc_send', $('#text_doc_send').val());
                 formData.append('trans_from', $('#trans_from').val());
                 formData.append('trans_to', $('#trans_to').val());
-                formData.append('order_source', $('#order_source').val());
                 {% endif %}
             },
             successmultiple: function (file, data) {
