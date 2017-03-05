@@ -645,3 +645,5 @@ def get_new_testimonials_list(request):
 #         # return the whole path to the file
 #         return os.path.join(path, filename)
 #     return wrapper
+
+

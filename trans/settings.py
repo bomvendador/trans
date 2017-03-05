@@ -63,9 +63,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ru',
     # 'localeurl',
+    'channels',
     'main',
     'dashboard_ru',
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
+        'ROUTING': 'trans.routing.channel_routing',
+    }
+}
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.locale.LocaleMiddleware',
