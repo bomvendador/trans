@@ -71,9 +71,9 @@ INSTALLED_APPS = [
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgiref.inmemory.ChannelLayer',
-        'CONFIG': {
-            'hosts': [('localhost', 6379)],
-        },
+        # 'CONFIG': {
+        #     'hosts': [('localhost', 6379)],
+        # },
         'ROUTING': 'trans.routing.channel_routing',
     }
 }
