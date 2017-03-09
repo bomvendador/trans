@@ -1,8 +1,9 @@
-from channels.routing import route
+from channels import route
 from trans.consumers import ws_connect, ws_disconnect
-
+from django.contrib.auth.models import User
 
 channel_routing = [
-    route('websocket.connect', ws_connect),
-    route('websocket.disconnect', ws_disconnect),
+   # Wire up websocket channels to our consumers:
+   route("websocket.connect", User.ws_connect),
+   route("websocket.receive", User.ws_receive),
 ]

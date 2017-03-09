@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from channels.handler import AsgiHandler, Group
+from channels.handler import AsgiHandler
 
 
 def http_consumer(message):

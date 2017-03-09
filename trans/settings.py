@@ -21,6 +21,7 @@ PROLINGVA_TEL = '+7 800-100-28-60'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECURE_SSL_REDIRECT = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -71,9 +72,9 @@ INSTALLED_APPS = [
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgiref.inmemory.ChannelLayer',
-        # 'CONFIG': {
-        #     'hosts': [('localhost', 6379)],
-        # },
+        'CONFIG': {
+            'hosts': [('localhost', 6379)],
+        },
         'ROUTING': 'trans.routing.channel_routing',
     }
 }
